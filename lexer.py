@@ -2,69 +2,113 @@
 import sys
 import ply.lex as lex
 
+# Tokens
 tokens = (
         # Reserved words
-        'ARRAY', 'BY', 'CHARS', 'DLC', 'DO', 'DOWN',
+        'ARRAY', 'BY', 'CHARS', 'DCL', 'DO', 'DOWN',
         'ELSE', 'ELSIF', 'END', 'EXIT', 'FI',
         'FOR', 'IF', 'IN', 'LOC', 'TYPE', 'OD',
         'PROC', 'REF', 'RESULT', 'RETURN', 'RETURNS',
-        'SYN', 'THEN', 'TO', 'WHILE'
+        'SYN', 'THEN', 'TO', 'WHILE',
 
         # Predefined words
         'ABS', 'ASC', 'BOOL', 'CHAR', 'FALSE',
         'INT', 'LENGTH', 'LOWER', 'NULL', 'NUM', 'PRINT',
         'READ', 'TRUE', 'UPPER',
+
+        # Identifier
+        'ID',
+
+        # Operations and Delimiters
+        'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
+        'ASSIGN', 'COMMA', 'SEMI', 'ARROW',
+        'LPAREN', 'RPAREN', 'LBRACKET', 'RBRACKET',
+        'LESS', 'LESSEQ', 'GREATER', 'GREATEREQ', 'EQUAL',
+        'INCREASE', 'DECREASE', 'MULVAL', 'DIVVAL',
+
+        # Literals
+        'ICONST', 'CCONST', 'SCONST'
         )
 
-# Tokens
+# Reserved
+reserved = {
+    # Reserved words
+    'array': 'ARRAY',
+    'by': 'BY',
+    'chars': 'CHARS',
+    'dcl': 'DCL',
+    'do': 'DO',
+    'down': 'DOWN',
+    'else': 'ELSE',
+    'elsif': 'ELSIF',
+    'end': 'END',
+    'exit': 'EXIT',
+    'fi': 'FI',
+    'for': 'FOR',
+    'if': 'IF',
+    'in': 'IN',
+    'loc': 'LOC',
+    'type': 'TYPE',
+    'od': 'OD',
+    'proc': 'PROC',
+    'ref': 'REF',
+    'result': 'RESULT',
+    'return': 'RETURN',
+    'returns': 'RETURNS',
+    'syn': 'SYN',
+    'then': 'THEN',
+    'to': 'TO',
+    'while': 'WHILE',
 
-# Reserved words
-t_ARRAY = 'array'
-t_BY = 'by'
-t_CHARS = 'chars'
-t_DLC = r'dlc'
-t_DO = 'do'
-t_DOWN = 'down'
-t_ELSE = 'else'
-t_ELSIF = 'elsif'
-t_END = 'end'
-t_EXIT = 'exit'
-t_FI = 'fi'
-t_FOR = 'for'
-t_IF = 'if'
-t_IN = 'in'
-t_LOC = 'loc'
-t_TYPE = 'type'
-t_OD = 'od'
-t_PROC = 'proc'
-t_REF = 'ref'
-t_RESULT = 'result'
-t_RETURN = 'return'
-t_RETURNS = 'returns'
-t_SYN = r'syn'
-t_THEN = 'then'
-t_TO = 'to'
-t_WHILE = 'while'
+    # Predefined words
+    'abs': 'ABS',
+    'asc': 'ASC',
+    'bool': 'BOOL',
+    'char': 'CHAR',
+    'false': 'FALSE',
+    'int': 'INT',
+    'length': 'LENGTH',
+    'lower': 'LOWER',
+    'null': 'NULL',
+    'num': 'NUM',
+    'print': 'PRINT',
+    'read': 'READ',
+    'true': 'TRUE',
+    'upper': 'UPPER'
+}
 
-# Predefined words
-t_ABS = r'abs'
-t_ASC = r'asc'
-t_BOOL = r'bool'
-t_CHAR = r'char'
-t_FALSE = r'false'
-t_INT = r'int'
-t_LENGTH = r'length'
-t_LOWER = r'lower'
-t_NULL = r'null'
-t_NUM = r'num'
-t_PRINT = r'print'
-t_READ = r'read'
-t_TRUE = r'true'
-t_UPPER = r'upper'
 
+# Operations and Delimiters
+t_PLUS = r'\+'
+t_MINUS = r'-'
+t_TIMES = r'\*'
+t_DIVIDE = r'/'
+t_ASSIGN = r'='
+t_COMMA = r','
+t_SEMI = r';'
+t_ARROW = r'->'
+t_LPAREN = r'\('
+t_RPAREN = r'\)'
+t_LBRACKET = r'\['
+t_RBRACKET = r'\]'
+t_LESS = r'<'
+t_LESSEQ = r'<='
+t_GREATER = r'>'
+t_GREATEREQ = r'>='
+t_EQUAL = r'=='
+t_INCREASE = r'\+='
+t_DECREASE = r'-='
+t_MULVAL = r'\*='
+t_DIVVAL = r'/='
 
 # Comments
 t_ignore_COMMENNT = r'(/\*(.*\n?)\*/|//.*)'
+
+# Identifier
+def t_ID(t):
+    r'[A-Za-z_][a-zA-Z0-9_]*'
+    t.type = reserved.get(t.value, 'ID') # Check for reserved words
+    return t
 
 
 def t_ICONST(t):
@@ -93,6 +137,11 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
 
+
+# Error
+# def t_error(t):
+#     print("Error at " + str(t.lexer.lineno))
+#     t.lexer.skip(1)
 
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
