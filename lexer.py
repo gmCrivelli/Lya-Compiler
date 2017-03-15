@@ -60,7 +60,8 @@ tokens = [
         'ASSIGN', 'COMMA', 'COLON', 'SEMI', 'ARROW',
         'LPAREN', 'RPAREN', 'LBRACKET', 'RBRACKET',
         'LESS', 'LESSEQ', 'GREATER', 'GREATEREQ', 'EQUAL',
-        'INCREASE', 'DECREASE', 'MULVAL', 'DIVVAL',
+        'INCREASE', 'DECREASE', 'MULVAL', 'DIVVAL','DIFF',
+        'MOD','MODVAL','NEGATE',
 
         # Literals
         'ICONST', 'CCONST', 'SCONST'
@@ -89,6 +90,10 @@ t_INCREASE = r'\+='
 t_DECREASE = r'-='
 t_MULVAL = r'\*='
 t_DIVVAL = r'/='
+t_DIFF = r'!='
+t_MODVAL = r'%='
+t_NEGATE = r'!'
+t_MOD = r'%'
 
 # Comments
 t_ignore_COMMENNT = r'((/\*(. | \n)*\*/)|//.*)'
@@ -133,13 +138,13 @@ def t_error_STRING(t):
 
 
 def t_error(t):
+<<<<<<< HEAD
     if(re.match("/\*.*", t.value) != None):
         print(str(t.lexer.lineno) + ": Unterminated comment")
         t.lexer.skip(len(t.value))
     else:
         print("Illegal character '%s'" % t.value[0])
         t.lexer.skip(1)
-
 
 def main():
     file_name = sys.argv[1]
