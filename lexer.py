@@ -59,7 +59,8 @@ tokens = [
         'ASSIGN', 'COMMA', 'COLON', 'SEMI', 'ARROW',
         'LPAREN', 'RPAREN', 'LBRACKET', 'RBRACKET',
         'LESS', 'LESSEQ', 'GREATER', 'GREATEREQ', 'EQUAL',
-        'INCREASE', 'DECREASE', 'MULVAL', 'DIVVAL',
+        'INCREASE', 'DECREASE', 'MULVAL', 'DIVVAL','DIFF',
+        'MOD','MODVAL','NEGATE',
 
         # Literals
         'ICONST', 'CCONST', 'SCONST'
@@ -88,6 +89,10 @@ t_INCREASE = r'\+='
 t_DECREASE = r'-='
 t_MULVAL = r'\*='
 t_DIVVAL = r'/='
+t_DIFF = r'!='
+t_MODVAL = r'%='
+t_NEGATE = r'!'
+t_MOD = r'%'
 
 # Comments
 t_ignore_COMMENNT = r'(/\*(.*\n?)\*/|//.*)'
@@ -112,7 +117,7 @@ def t_CCONST(t):
 
 
 def t_SCONST(t):
-    r'\'(\\\"|\\\'|[^\'\"])*\''
+    r'\"(\\\"|\\\'|[^\'\"])*\"'
     t.value = str(t.value)
     return t
 
@@ -132,6 +137,7 @@ def t_newline(t):
 #     t.lexer.skip(1)
 
 def t_error(t):
+    x
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
