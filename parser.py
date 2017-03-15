@@ -6,14 +6,15 @@ from lexer import tokens
 
 def p_program(self, p):
     'program : statement_list'
-    p[0] = Program(p[1])
+    p[0] = ('Program', p[1])
 
 def p_statement_list(self, p):
     '''statement_list : statement
-                      | statement statement_list'''
-    #if(len(p) == 2)
-        p[0] = Statement_List(p[1])
-    #elif(len(p) == 3)
+                      | statement_list statement'''
+    if(len(p) == 2)
+        p[0] = [p[1]]
+    elif(len(p) == 3)
+        p[0] = p[1] + [p[2]]
 
 def p_statement(self, p):
     '''statement : declaration_statement
@@ -21,15 +22,11 @@ def p_statement(self, p):
                 | newmode_statement
                 | procedure_statement
                 | action_statement'''
-    p[0] = Statement(p[1])
+    p[0] = p[1]
 
 def p_declaration_statement(self, p):
-    '''declaration_statement : DCL declaration_list ;'
-                | synonym_statement
-                | newmode_statement
-                | procedure_statement
-                | action_statement'''
-    p[0] = Statement(p[1])
+    'declaration_statement : DCL declaration_list ;'
+    p[0] = ('Declaration', p[2])
 
 
 def p_identifier(self, p):
