@@ -1,0 +1,162 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    READ
+    LOWER
+    GREATEREQ
+    FI
+    MOD
+    UPPER
+    BOOL
+    LESS
+    CHAR
+    WHILE
+    ICONST
+    COMMA
+    ASC
+    DIFF
+    IN
+    LENGTH
+    TYPE
+    INT
+    PRINT
+    ARROW
+    ASSIGN
+    EQUAL
+    DCL
+    OD
+    CHARS
+    INCREASE
+    ARRAY
+    EXIT
+    DOWN
+    COLON
+    RBRACKET
+    FALSE
+    LBRACKET
+    RESULT
+    TRUE
+    LESSEQ
+    IF
+    GREATER
+    NULL
+    LOC
+    SYN
+    ELSIF
+    PROC
+    NUM
+    NEGATE
+    RETURNS
+    DIVVAL
+    THEN
+    MULVAL
+    CCONST
+    BY
+    END
+    ABS
+    DECREASE
+    RETURN
+    FOR
+    TO
+    ELSE
+    SEMI
+    MODVAL
+    SCONST
+    REF
+    DO
+    ID
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> expression PLUS term
+Rule 2     expression -> expression MINUS term
+Rule 3     expression -> term
+Rule 4     term -> term TIMES factor
+Rule 5     term -> term DIVIDE factor
+Rule 6     term -> factor
+Rule 7     factor -> NUMBER
+Rule 8     factor -> LPAREN expression RPAREN
+
+Terminals, with rules where they appear
+
+ABS                  : 
+ARRAY                : 
+ARROW                : 
+ASC                  : 
+ASSIGN               : 
+BOOL                 : 
+BY                   : 
+CCONST               : 
+CHAR                 : 
+CHARS                : 
+COLON                : 
+COMMA                : 
+DCL                  : 
+DECREASE             : 
+DIFF                 : 
+DIVIDE               : 5
+DIVVAL               : 
+DO                   : 
+DOWN                 : 
+ELSE                 : 
+ELSIF                : 
+END                  : 
+EQUAL                : 
+EXIT                 : 
+FALSE                : 
+FI                   : 
+FOR                  : 
+GREATER              : 
+GREATEREQ            : 
+ICONST               : 
+ID                   : 
+IF                   : 
+IN                   : 
+INCREASE             : 
+INT                  : 
+LBRACKET             : 
+LENGTH               : 
+LESS                 : 
+LESSEQ               : 
+LOC                  : 
+LOWER                : 
+LPAREN               : 8
+MINUS                : 2
+MOD                  : 
+MODVAL               : 
+MULVAL               : 
+NEGATE               : 
+NULL                 : 
+NUM                  : 
+OD                   : 
+PLUS                 : 1
+PRINT                : 
+PROC                 : 
+RBRACKET             : 
+READ                 : 
+REF                  : 
+RESULT               : 
+RETURN               : 
+RETURNS              : 
+RPAREN               : 8
+SCONST               : 
+SEMI                 : 
+SYN                  : 
+THEN                 : 
+TIMES                : 4
+TO                   : 
+TRUE                 : 
+TYPE                 : 
+UPPER                : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+NUMBER               : 7
+expression           : 1 2 8 0
+factor               : 4 5 6
+term                 : 1 2 3 4 5
+
