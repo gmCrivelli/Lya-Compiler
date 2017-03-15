@@ -1,6 +1,7 @@
 
 import sys
 import ply.lex as lex
+import re
 
 # Reserved
 reserved = {
@@ -69,7 +70,7 @@ tokens = [
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
-t_DIVIDE = r'/'
+t_DIVIDE = r'/(?!\*)'
 t_ASSIGN = r'='
 t_COMMA = r','
 t_COLON = r':'
@@ -90,7 +91,7 @@ t_MULVAL = r'\*='
 t_DIVVAL = r'/='
 
 # Comments
-t_ignore_COMMENNT = r'(/\*(.*\n?)\*/|//.*)'
+t_ignore_COMMENNT = r'((/\*(. | \n)*\*/)|//.*)'
 
 # Identifier
 def t_ID(t):
@@ -112,7 +113,7 @@ def t_CCONST(t):
 
 
 def t_SCONST(t):
-    r'\'(\\\"|\\\'|[^\'\"])*\''
+    r'\"(\\\"|\\\'|[^\'\"(\n)])*\"'
     t.value = str(t.value)
     return t
 
@@ -126,14 +127,18 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 
-# Error
-# def t_error(t):
-#     print("Error at " + str(t.lexer.lineno))
-#     t.lexer.skip(1)
+def t_error_STRING(t):
+    r'\".*'
+    print(str(t.lexer.lineno) + ": Unterminated string")
+
 
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
-    t.lexer.skip(1)
+    if(re.match("/\*.*", t.value) != None):
+        print(str(t.lexer.lineno) + ": Unterminated comment")
+        t.lexer.skip(len(t.value))
+    else:
+        print("Illegal character '%s'" % t.value[0])
+        t.lexer.skip(1)
 
 
 def main():
