@@ -138,7 +138,6 @@ def t_error_STRING(t):
 
 
 def t_error(t):
-<<<<<<< HEAD
     if(re.match("/\*.*", t.value) != None):
         print(str(t.lexer.lineno) + ": Unterminated comment")
         t.lexer.skip(len(t.value))
