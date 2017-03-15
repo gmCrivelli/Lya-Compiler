@@ -2,34 +2,6 @@
 import sys
 import ply.lex as lex
 
-# Tokens
-tokens = (
-        # Reserved words
-        'ARRAY', 'BY', 'CHARS', 'DCL', 'DO', 'DOWN',
-        'ELSE', 'ELSIF', 'END', 'EXIT', 'FI',
-        'FOR', 'IF', 'IN', 'LOC', 'TYPE', 'OD',
-        'PROC', 'REF', 'RESULT', 'RETURN', 'RETURNS',
-        'SYN', 'THEN', 'TO', 'WHILE',
-
-        # Predefined words
-        'ABS', 'ASC', 'BOOL', 'CHAR', 'FALSE',
-        'INT', 'LENGTH', 'LOWER', 'NULL', 'NUM', 'PRINT',
-        'READ', 'TRUE', 'UPPER',
-
-        # Identifier
-        'ID',
-
-        # Operations and Delimiters
-        'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
-        'ASSIGN', 'COMMA', 'SEMI', 'ARROW',
-        'LPAREN', 'RPAREN', 'LBRACKET', 'RBRACKET',
-        'LESS', 'LESSEQ', 'GREATER', 'GREATEREQ', 'EQUAL',
-        'INCREASE', 'DECREASE', 'MULVAL', 'DIVVAL',
-
-        # Literals
-        'ICONST', 'CCONST', 'SCONST'
-        )
-
 # Reserved
 reserved = {
     # Reserved words
@@ -77,6 +49,21 @@ reserved = {
     'upper': 'UPPER'
 }
 
+# Tokens
+tokens = [
+        # Identifier
+        'ID',
+
+        # Operations and Delimiters
+        'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
+        'ASSIGN', 'COMMA', 'COLON', 'SEMI', 'ARROW',
+        'LPAREN', 'RPAREN', 'LBRACKET', 'RBRACKET',
+        'LESS', 'LESSEQ', 'GREATER', 'GREATEREQ', 'EQUAL',
+        'INCREASE', 'DECREASE', 'MULVAL', 'DIVVAL',
+
+        # Literals
+        'ICONST', 'CCONST', 'SCONST'
+        ] + list(reserved.values())
 
 # Operations and Delimiters
 t_PLUS = r'\+'
@@ -85,6 +72,7 @@ t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_ASSIGN = r'='
 t_COMMA = r','
+t_COLON = r':'
 t_SEMI = r';'
 t_ARROW = r'->'
 t_LPAREN = r'\('
