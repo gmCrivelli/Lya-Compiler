@@ -2,86 +2,93 @@ Created by PLY version 3.10 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    TO
     READ
-    LOWER
-    GREATEREQ
-    FI
-    MOD
+    DIFF
+    NUM
+    REF
+    WHILE
+    FOR
+    THEN
+    LBRACKET
+    GREATER
+    NEGATE
+    LENGTH
+    LOC
+    ASSIGN
+    FALSE
+    RESULT
+    ARROW
+    MULVAL
+    RETURNS
+    DO
+    DECREASE
+    CHAR
+    ELSE
+    DIVVAL
+    INT
+    LESSEQ
+    PLUS
+    TRUE
+    ARRAY
+    ASC
+    DOWN
     UPPER
+    FI
+    COLON
+    OD
+    SYN
+    SCONST
+    ELSIF
+    GREATEREQ
+    EQUAL
+    TYPE
+    OR
+    PROC
+    IN
+    AND
+    RBRACKET
+    BY
+    EXIT
+    ABS
+    INCREASE
+    CCONST
+    END
+    LOWER
+    PRINT
+    NULL
+    MODVAL
+    MOD
+    IF
+    RETURN
     BOOL
     LESS
-    CHAR
-    WHILE
-    ICONST
-    COMMA
-    ASC
-    DIFF
-    IN
-    LENGTH
-    TYPE
-    INT
-    PRINT
-    ARROW
-    ASSIGN
-    EQUAL
-    DCL
-    OD
+    STRCAT
     CHARS
-    INCREASE
-    ARRAY
-    EXIT
-    DOWN
-    COLON
-    RBRACKET
-    FALSE
-    LBRACKET
-    RESULT
-    TRUE
-    LESSEQ
-    IF
-    GREATER
-    NULL
-    LOC
-    SYN
-    ELSIF
-    PROC
-    NUM
-    NEGATE
-    RETURNS
-    DIVVAL
-    THEN
-    MULVAL
-    CCONST
-    BY
-    END
-    ABS
-    DECREASE
-    RETURN
-    FOR
-    TO
-    ELSE
-    SEMI
-    MODVAL
-    SCONST
-    REF
-    DO
-    ID
 
 Grammar
 
-Rule 0     S' -> expression
-Rule 1     expression -> expression PLUS term
-Rule 2     expression -> expression MINUS term
-Rule 3     expression -> term
-Rule 4     term -> term TIMES factor
-Rule 5     term -> term DIVIDE factor
-Rule 6     term -> factor
-Rule 7     factor -> NUMBER
-Rule 8     factor -> LPAREN expression RPAREN
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement
+Rule 3     statement_list -> statement_list statement
+Rule 4     statement -> declaration_statement
+Rule 5     declaration_statement -> DCL declaration_list SEMI
+Rule 6     declaration_list -> identifier
+Rule 7     declaration_list -> declaration_list COMMA identifier
+Rule 8     identifier -> ID
+Rule 9     expression -> expression MINUS term
+Rule 10    expression -> term
+Rule 11    term -> term TIMES factor
+Rule 12    term -> term DIVIDE factor
+Rule 13    term -> factor
+Rule 14    factor -> ICONST
+Rule 15    factor -> LPAREN expression RPAREN
 
 Terminals, with rules where they appear
 
 ABS                  : 
+AND                  : 
 ARRAY                : 
 ARROW                : 
 ASC                  : 
@@ -92,11 +99,11 @@ CCONST               :
 CHAR                 : 
 CHARS                : 
 COLON                : 
-COMMA                : 
-DCL                  : 
+COMMA                : 7
+DCL                  : 5
 DECREASE             : 
 DIFF                 : 
-DIVIDE               : 5
+DIVIDE               : 12
 DIVVAL               : 
 DO                   : 
 DOWN                 : 
@@ -110,8 +117,8 @@ FI                   :
 FOR                  : 
 GREATER              : 
 GREATEREQ            : 
-ICONST               : 
-ID                   : 
+ICONST               : 14
+ID                   : 8
 IF                   : 
 IN                   : 
 INCREASE             : 
@@ -122,8 +129,8 @@ LESS                 :
 LESSEQ               : 
 LOC                  : 
 LOWER                : 
-LPAREN               : 8
-MINUS                : 2
+LPAREN               : 15
+MINUS                : 9
 MOD                  : 
 MODVAL               : 
 MULVAL               : 
@@ -131,7 +138,8 @@ NEGATE               :
 NULL                 : 
 NUM                  : 
 OD                   : 
-PLUS                 : 1
+OR                   : 
+PLUS                 : 
 PRINT                : 
 PROC                 : 
 RBRACKET             : 
@@ -140,12 +148,13 @@ REF                  :
 RESULT               : 
 RETURN               : 
 RETURNS              : 
-RPAREN               : 8
+RPAREN               : 15
 SCONST               : 
-SEMI                 : 
+SEMI                 : 5
+STRCAT               : 
 SYN                  : 
 THEN                 : 
-TIMES                : 4
+TIMES                : 11
 TO                   : 
 TRUE                 : 
 TYPE                 : 
@@ -155,8 +164,135 @@ error                :
 
 Nonterminals, with rules where they appear
 
-NUMBER               : 7
-expression           : 1 2 8 0
-factor               : 4 5 6
-term                 : 1 2 3 4 5
+declaration_list     : 5 7
+declaration_statement : 4
+expression           : 9 15
+factor               : 11 12 13
+identifier           : 6 7
+program              : 0
+statement            : 2 3
+statement_list       : 1 3
+term                 : 9 10 11 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . declaration_statement
+    (5) declaration_statement -> . DCL declaration_list SEMI
+
+    DCL             shift and go to state 4
+
+    program                        shift and go to state 5
+    statement_list                 shift and go to state 2
+    declaration_statement          shift and go to state 1
+    statement                      shift and go to state 3
+
+state 1
+
+    (4) statement -> declaration_statement .
+
+    DCL             reduce using rule 4 (statement -> declaration_statement .)
+    $end            reduce using rule 4 (statement -> declaration_statement .)
+
+
+state 2
+
+    (1) program -> statement_list .
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . declaration_statement
+    (5) declaration_statement -> . DCL declaration_list SEMI
+
+    $end            reduce using rule 1 (program -> statement_list .)
+    DCL             shift and go to state 4
+
+    declaration_statement          shift and go to state 1
+    statement                      shift and go to state 6
+
+state 3
+
+    (2) statement_list -> statement .
+
+    DCL             reduce using rule 2 (statement_list -> statement .)
+    $end            reduce using rule 2 (statement_list -> statement .)
+
+
+state 4
+
+    (5) declaration_statement -> DCL . declaration_list SEMI
+    (6) declaration_list -> . identifier
+    (7) declaration_list -> . declaration_list COMMA identifier
+    (8) identifier -> . ID
+
+    ID              shift and go to state 7
+
+    identifier                     shift and go to state 9
+    declaration_list               shift and go to state 8
+
+state 5
+
+    (0) S' -> program .
+
+
+
+state 6
+
+    (3) statement_list -> statement_list statement .
+
+    DCL             reduce using rule 3 (statement_list -> statement_list statement .)
+    $end            reduce using rule 3 (statement_list -> statement_list statement .)
+
+
+state 7
+
+    (8) identifier -> ID .
+
+    SEMI            reduce using rule 8 (identifier -> ID .)
+    COMMA           reduce using rule 8 (identifier -> ID .)
+
+
+state 8
+
+    (5) declaration_statement -> DCL declaration_list . SEMI
+    (7) declaration_list -> declaration_list . COMMA identifier
+
+    SEMI            shift and go to state 11
+    COMMA           shift and go to state 10
+
+
+state 9
+
+    (6) declaration_list -> identifier .
+
+    SEMI            reduce using rule 6 (declaration_list -> identifier .)
+    COMMA           reduce using rule 6 (declaration_list -> identifier .)
+
+
+state 10
+
+    (7) declaration_list -> declaration_list COMMA . identifier
+    (8) identifier -> . ID
+
+    ID              shift and go to state 7
+
+    identifier                     shift and go to state 12
+
+state 11
+
+    (5) declaration_statement -> DCL declaration_list SEMI .
+
+    DCL             reduce using rule 5 (declaration_statement -> DCL declaration_list SEMI .)
+    $end            reduce using rule 5 (declaration_statement -> DCL declaration_list SEMI .)
+
+
+state 12
+
+    (7) declaration_list -> declaration_list COMMA identifier .
+
+    SEMI            reduce using rule 7 (declaration_list -> declaration_list COMMA identifier .)
+    COMMA           reduce using rule 7 (declaration_list -> declaration_list COMMA identifier .)
 

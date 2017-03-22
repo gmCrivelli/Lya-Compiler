@@ -4,6 +4,19 @@ import ply.lex as lex
 import re
 
 class Lexer:
+
+    def __init__(self):
+        self.build()
+
+    def build(self):
+        self.lexer = lex.lex(self)
+
+    def input(self, input):
+        self.lexer.input(input)
+
+    def token(self):
+        return self.lexer.token() #guardar ultima token?
+
     # Reserved
     reserved = {
         # Reserved words
@@ -67,7 +80,7 @@ class Lexer:
 
             # Literals
             'ICONST', 'CCONST', 'SCONST'
-            ] + list(reserved.values())
+             ] + list(reserved.values())
 
     # Operations and Delimiters
     t_PLUS = r'\+'
@@ -160,14 +173,14 @@ def main():
     file_content = file.read()
 
     l = Lexer()
-    lexer = lex.lex(l)
+    #l.build()
 
     # Give the lexer some input
-    lexer.input(file_content)
+    l.lexer.input(file_content)
 
     # Tokenize
     while True:
-        tok = lexer.token()
+        tok = l.lexer.token()
         if not tok:
             break # No more input
         print(tok)
