@@ -355,7 +355,10 @@ class Parser:
     def p_operand0(self, p):
         '''operand0 :  operand1
             | operand0 operator1 operand1'''
-        p[0] = ("operand0", p[1], p[2], p[3], p.lineno)
+        if(len(p) == 2):
+            p[0] = ("operand0", p[1], p.lineno)
+        elif(len(p) == 4):
+            p[0] = ("operand0", p[1], p[2], p[3], p.lineno)
 
     def p_operator1(self, p):
         '''operator1 :  relational_operator
@@ -380,11 +383,14 @@ class Parser:
     def p_operand1(self, p):
         '''operand1 :  operand2
             | operand1 operator2 operand2'''
-        p[0] = ("operand1", p[1], p[2], p[3], p.lineno)
+        if(len(p) == 2):
+            p[0] = ("operand1", p[1], p.lineno)
+        elif(len(p) == 4):
+            p[0] = ("operand1", p[1], p[2], p[3], p.lineno)
 
     def p_operator2(self, p):
         '''operator2 :  arithmetic_additive_operator
-            | string_concatenation_operator'''
+                     | string_concatenation_operator'''
         p[0] = ("operator2", p[1], p.lineno)
 
     def p_arithmetic_additive_operator(self, p):
@@ -464,18 +470,32 @@ class Parser:
         '''assignment_action :  location assigning_operator expression'''
         p[0] = ("assignment_action", p[1], p[2], p[3], p.lineno)
 
+    #def p_assigning_operator(self, p):
+    #    '''assigning_operator : ASSIGN
+    #                          | closed_dyadic_operator ASSIGN'''
+    #    if (len(p) == 2):
+    #        p[0] = ("assignning_operator", p[1], p.lineno)
+    #    elif (len(p) == 3):
+    #        p[0] = ("assignning_operator", p[1], p[2], p.lineno)
+    #
+    #def p_closed_dyadic_operator(self, p):
+    #    '''closed_dyadic_operator :  arithmetic_additive_operator
+    #        | arithmetic_multiplicative_operator
+    #        | string_concatenation_operator'''
+    #    p[0] = ("closed_dyadic_operator", p[1], p.lineno)
+
     def p_assigning_operator(self, p):
         '''assigning_operator : ASSIGN
-                              | closed_dyadic_operator ASSIGN'''
+                              | closed_dyadic_operator'''
         if (len(p) == 2):
             p[0] = ("assignning_operator", p[1], p.lineno)
-        elif (len(p) == 3):
-            p[0] = ("assignning_operator", p[1], p[2], p.lineno)
 
     def p_closed_dyadic_operator(self, p):
-        '''closed_dyadic_operator :  arithmetic_additive_operator
-            | arithmetic_multiplicative_operator
-            | string_concatenation_operator'''
+        '''closed_dyadic_operator : INCREASE
+                                  | DECREASE
+                                  | MULCREASE
+                                  | DIVCREASE
+                                  | MODCREASE'''
         p[0] = ("closed_dyadic_operator", p[1], p.lineno)
 
     def p_if_action(self, p):
@@ -749,7 +769,14 @@ counter = 1
 while counter > 0:
     counter -= 1
     try:
-        s = "read(m,n);"
+        s = "dcl m,n,s int;" \
+"read(m,n);"\
+"s = 0;"\
+"do while m <= n;"\
+  "s += m * n;"\
+  "print(m,s);"\
+  "m += 1;"\
+"od;"
     except EOFError:
         break
     if not s: continue
