@@ -19,6 +19,7 @@ class Parser:
     def p_program(self, p):
         'program : statement_list'
         p[0] = ('Program', p[1], p.lineno)
+        print(p[0])
 
     def p_statement_list(self, p):
         '''statement_list : statement
@@ -58,7 +59,7 @@ class Parser:
             p[0] = ('Declaration', p[1], p[2], p[3], p.lineno)
 
     def p_initialization(self,p):
-        'initialization : assignment_symbol expression'
+        'initialization : ASSIGN expression'
         p[0] = ('Initialization', p[1], p[2], p.lineno)
 
     def p_identifier_list(self, p):
@@ -72,7 +73,7 @@ class Parser:
     def p_identifier(self,p):
         'identifier : ID'
         lineno = p.lineno
-        p[0] = ('ID'.p[1], lineno)
+        p[0] = ('ID', p[1], lineno)
 
     def p_synonym_statement(self, p):
         'synonym_statement : SYN synonym_list'
@@ -141,7 +142,7 @@ class Parser:
         p[0] = ('character_mode', p[1], p.lineno)
 
     def p_discrete_range_mode(self, p):
-        '''discrete_range_mode : discrete_mode_name LPAREN literal_range RPAREN
+        '''discrete_range_mode : identifier LPAREN literal_range RPAREN
                                | discrete_mode LPAREN literal_range RPAREN '''
         p[0] = ('discrete_range_mode', p[1], p[2], p[3], p[4], p.lineno)
 
@@ -149,9 +150,9 @@ class Parser:
         '''mode_name : identifier'''
         p[0] = ('mode_name', p[1], p.lineno)
 
-    def p_discrete_mode_name(self, p):
-        '''discrete_mode_name : identifier'''
-        p[0] = ('discrete_mode_name', p[1], p.lineno)
+#    def p_discrete_mode_name(self, p):
+#        '''discrete_mode_name : identifier'''
+#        p[0] = ('discrete_mode_name', p[1], p.lineno)
 
     def p_literal_range(self, p):
         '''literal_range : lower_bound COLON upper_bound'''
@@ -203,8 +204,12 @@ class Parser:
         '''element_mode : mode'''
         p[0] = ('element_mode', p[1], p.lineno)
 
+    def p_integer_expression(self, p):
+        '''integer_expression : expression'''
+        p[0] = ('integer_expression', p[1], p.lineno)
+
     def p_location(self, p):
-        '''location : location_name
+        '''location : identifier
                     | dereferenced_reference
                     | string_element
                     | string_slice
@@ -218,7 +223,7 @@ class Parser:
         p[0] = ('dereferenced_reference', p[1], p[2], p.lineno)
 
     def p_string_element(self, p):
-        '''string_element : string_location LBRACKET start_element RBRACKET'''
+        '''string_element : identifier LBRACKET start_element RBRACKET'''
         p[0] = ('string_element', p[1], p[2], p[3], p[4], p.lineno)
 
     def p_start_element(self, p):
@@ -226,12 +231,12 @@ class Parser:
         p[0] = ('start_element', p[1], p.lineno)
 
     def p_string_slice(self, p):
-        '''string_slice : string_location LBRACKET left_element COLON right_element RBRACKET'''
+        '''string_slice : identifier LBRACKET left_element COLON right_element RBRACKET'''
         p[0] = ('string_slice', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno)
 
-    def p_string_location(self, p):
-        '''string_location : identifier'''
-        p[0] = ('string_location', p[1], p.lineno)
+#    def p_string_location(self, p):
+#        '''string_location : identifier'''
+#        p[0] = ('string_location', p[1], p.lineno)
 
     def p_left_element(self, p):
         '''left_element : integer_expression'''
@@ -269,8 +274,7 @@ class Parser:
         p[0] = ('primitive_value', p[1], p.lineno)
 
     def p_literal(self, p):
-        '''literal : integer_literal
-                   | boolean_literal
+        '''literal : boolean_literal
                    | character_literal
                    | empty_literal
                    | character_string_literal '''
@@ -300,11 +304,11 @@ class Parser:
         p[0] = ('character_string_literal', p[1], p.lineno)
 
     def p_value_array_element(self, p):
-        '''value_array_element : array_primitive_value LBRACKET expression_list RBRACKET'''
+        '''value_array_element : array_primitive_value LBRACKET integer_expression RBRACKET'''
         p[0] = ('value_array_element', p[1], p[2], p[3], p[4], p.lineno)
 
     def p_value_array_slice(self, p):
-        '''value_array_slice : array_primitive_value LBRACKET lower_element COLON upper_element RBRACKET'''
+        '''value_array_slice : array_primitive_value LBRACKET lower_bound COLON upper_bound RBRACKET'''
         p[0] = ('value_array_slice', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno)
 
     def p_array_primitive_value(self, p):
@@ -407,8 +411,7 @@ class Parser:
         p[0] = ("arithmetic_multiplicative_operator", p[1], p.lineno)
 
     def p_operand3(self, p):
-        '''operand3 : integer_literal
-            | operand4
+        '''operand3 : operand4
             | monadic_operator operand4'''
         if (len(p) == 2):
             p[0] = ("operand3", p[1], p.lineno)
@@ -423,7 +426,8 @@ class Parser:
     def p_operand4(self, p):
         '''operand4 :  location
             | referenced_location
-            | primitive_value'''
+            | primitive_value
+            | integer_literal'''
         p[0] = ("operand4", p[1], p.lineno)
 
     def p_referenced_location(self, p):
@@ -461,8 +465,8 @@ class Parser:
         p[0] = ("assignment_action", p[1], p[2], p[3], p.lineno)
 
     def p_assigning_operator(self, p):
-        '''assigning_operator : assignment_symbol
-                              | closed_dyadic_operator assignment_symbol'''
+        '''assigning_operator : ASSIGN
+                              | closed_dyadic_operator ASSIGN'''
         if (len(p) == 2):
             p[0] = ("assignning_operator", p[1], p.lineno)
         elif (len(p) == 3):
@@ -474,35 +478,59 @@ class Parser:
             | string_concatenation_operator'''
         p[0] = ("closed_dyadic_operator", p[1], p.lineno)
 
-    def p_assignment_symbol(self, p):
-        '''assignment_symbol :  ASSIGN'''
-        p[0] = ("assignment_symbol", p[1], p.lineno)
-
     def p_if_action(self, p):
         '''if_action :  IF boolean_expression then_clause FI
                      | IF boolean_expression then_clause else_clause FI'''
         if (len(p) == 5):
             p[0] = ("if_action", p[1], p[2], p[3], p[4], p.lineno)
-        elif (len(p) == 5):
+        elif (len(p) == 6):
             p[0] = ("if_action", p[1], p[2], p[3], p[4], p[5], p.lineno)
 
-####################################################
     def p_then_clause(self, p):
-        '''then_clause :  THEN { action_statement }*'''
-        p[0] = ("then_clause", p[1], p[2], p[3], p[4], p.lineno)
+        '''then_clause :  THEN
+                       |  THEN action_statement_list'''
+        if (len(p) == 2):
+            p[0] = ("then_clause", p[1], p.lineno)
+        elif (len(p) == 3):
+            p[0] = ("then_clause", p[1], p[2], p.lineno)
 
-###
+    def p_action_statement_list(self, p):
+        '''action_statement_list : action_statement
+                                 | action_statement_list action_statement'''
+        if (len(p) == 2):
+            p[0] = [p[1]]
+        elif (len(p) == 3):
+            p[0] = p[1] + [p[2]]
+
     def p_else_clause(self, p):
-        '''else_clause :  ELSE { action_statement }*
-            | ELSIF boolean_expression then_clause [ else_clause ]'''
-        p[0] = ("else_clause", p[1], p[2], p[3], p[4], p[5], p[6], p.lineno)
-###
+        '''else_clause :  ELSE
+                        | ELSE action_statement_list
+                        | ELSIF boolean_expression then_clause
+                        | ELSIF boolean_expression then_clause else_clause '''
+        if (len(p) == 2):
+            p[0] = ("else_clause", p[1], p.lineno)
+        elif (len(p) == 3):
+            p[0] = ("else_clause", p[1], p[2], p.lineno)
+        elif (len(p) == 4):
+            p[0] = ("else_clause", p[1], p[2], p[3], p.lineno)
+        elif (len(p) == 5):
+            p[0] = ("else_clause", p[1], p[2], p[3], p[4], p.lineno)
+
     def p_do_action(self, p):
-        '''do_action :  DO [ control_part SEMI ] { action_statement }* OD'''
-        p[0] = ("do_action", p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p.lineno)
+        '''do_action :  DO OD
+                     |  DO control_part SEMI OD
+                     |  DO action_statement_list OD
+                     |  DO control_part SEMI action_statement_list OD'''
+        if (len(p) == 3):
+            p[0] = ("do_action", p[1], p[2], p.lineno)
+        elif (len(p) == 5):
+            p[0] = ("do_action", p[1], p[2], p[3], p[4], p.lineno)
+        elif (len(p) == 6):
+            p[0] = ("do_action", p[1], p[2], p[3], p[4], p[5], p.lineno)
 
     def p_control_part(self, p):
         '''control_part :  for_control
+                        | while_control
                         | for_control while_control'''
         if (len(p) == 2):
             p[0] = ("control_part", p[1], p.lineno)
@@ -519,8 +547,16 @@ class Parser:
         p[0] = ("iteration", p[1], p.lineno)
 
     def p_step_enumeration(self, p):
-        '''step_enumeration :  loop_counter assignment_symbol start_value [ step_value ] [ DOWN ] end_value'''
-        p[0] = ("step_enumeration", p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p.lineno)
+        '''step_enumeration :  loop_counter ASSIGN start_value end_value
+                            | loop_counter ASSIGN start_value step_value end_value
+                            | loop_counter ASSIGN start_value DOWN end_value
+                            | loop_counter ASSIGN start_value step_value DOWN end_value'''
+        if (len(p) == 5):
+            p[0] = ("step_enumeration", p[1], p[2], p[3], p[4], p.lineno)
+        elif (len(p) == 6):
+            p[0] = ("step_enumeration", p[1], p[2], p[3], p[4], p[5], p.lineno)
+        elif (len(p) == 7):
+            p[0] = ("step_enumeration", p[1], p[2], p[3], p[4], p[5], p[6], p.lineno)
 
     def p_loop_counter(self, p):
         '''loop_counter :  identifier'''
@@ -543,8 +579,12 @@ class Parser:
         p[0] = ("discrete_expression", p[1], p.lineno)
 
     def p_range_enumeration(self, p):
-        '''range_enumeration :  loop_counter [ DOWN ] IN discrete_mode'''
-        p[0] = ("range_enumeration", p[1], p[2], p[3], p[4], p[5], p[6], p.lineno)
+        '''range_enumeration : loop_counter IN discrete_mode
+                             | loop_counter DOWN IN discrete_mode'''
+        if (len(p) == 4):
+            p[0] = ("range_enumeration", p[1], p[2], p[3], p.lineno)
+        elif (len(p) == 5):
+            p[0] = ("range_enumeration", p[1], p[2], p[3], p[4], p.lineno)
 
     def p_while_control(self, p):
         '''while_control :  WHILE boolean_expression'''
@@ -552,32 +592,44 @@ class Parser:
 
     def p_call_action(self, p):
         '''call_action :  procedure_call
-            | builtin_call'''
+                        | builtin_call'''
         p[0] = ("call_action", p[1], p.lineno)
 
     def p_procedure_call(self, p):
-        '''procedure_call :  procedure_name ( [ parameter_list ] )'''
-        p[0] = ("procedure_call", p[1], p[2], p[3], p[4], p[5], p[6], p.lineno)
+        '''procedure_call :  identifier LPAREN RPAREN
+                          | identifier LPAREN parameter_list RPAREN'''
+        if (len(p) == 4):
+            p[0] = ("procedure_call", p[1], p[2], p[3], p.lineno)
+        elif (len(p) == 5):
+            p[0] = ("procedure_call", p[1], p[2], p[3], p[4], p.lineno)
 
     def p_parameter_list(self, p):
-        '''parameter_list :  parameter { COMMA parameter }*'''
-        p[0] = ("parameter_list", p[1], p[2], p[3], p[4], p[5], p.lineno)
+        '''parameter_list :  parameter
+                          |  parameter_list COMMA parameter'''
+        if (len(p) == 2):
+            p[0] = [p[1]]
+        elif (len(p) == 4):
+            p[0] = p[1] + [p[3]]
 
     def p_parameter(self, p):
         '''parameter :  expression'''
         p[0] = ("parameter", p[1], p.lineno)
 
-    def p_procedure_name(self, p):
-        '''procedure_name :  identifier'''
-        p[0] = ("procedure_name", p[1], p.lineno)
+#    def p_procedure_name(self, p):
+#        '''procedure_name :  identifier'''
+#        p[0] = ("procedure_name", p[1], p.lineno)
 
-    def p_exit_actiom(self, p):
-        '''exit_actiom :  EXIT label_id'''
-        p[0] = ("exit_actiom", p[1], p[2], p.lineno)
+    def p_exit_action(self, p):
+        '''exit_action :  EXIT label_id'''
+        p[0] = ("exit_action", p[1], p[2], p.lineno)
 
     def p_return_action(self, p):
-        '''return_action :  RETURN [ result ]'''
-        p[0] = ("return_action", p[1], p[2], p[3], p[4], p.lineno)
+        '''return_action :  RETURN
+                         |  RETURN result'''
+        if (len(p) == 2):
+            p[0] = ("return_action", p[1], p.lineno)
+        elif (len(p) == 3):
+            p[0] = ("return_action", p[1], p[2], p.lineno)
 
     def p_result_action(self, p):
         '''result_action :  RESULT result'''
@@ -588,18 +640,22 @@ class Parser:
         p[0] = ("result", p[1], p.lineno)
 
     def p_builtin_call(self, p):
-        '''builtin_call :  builtin_name LPAREN [ parameter_list ] RPAREN'''
-        p[0] = ("builtin_call", p[1], p[2], p[3], p[4], p[5], p[6], p.lineno)
+        '''builtin_call :  builtin_name LPAREN RPAREN
+                        | builtin_name LPAREN parameter_list RPAREN'''
+        if (len(p) == 4):
+            p[0] = ("builtin_call", p[1], p[2], p[3], p.lineno)
+        elif (len(p) == 5):
+            p[0] = ("builtin_call", p[1], p[2], p[3], p[4], p.lineno)
 
     def p_builtin_name(self, p):
         '''builtin_name :  ABS
-            | ASC
-            | NUM
-            | UPPER
-            | LOWER
-            | LENGTH
-            | READ
-            | PRINT'''
+                        | ASC
+                        | NUM
+                        | UPPER
+                        | LOWER
+                        | LENGTH
+                        | READ
+                        | PRINT'''
         p[0] = ("builtin_name", p[1], p.lineno)
 
     def p_procedure_statement(self, p):
@@ -607,38 +663,67 @@ class Parser:
         p[0] = ("procedure_statement", p[1], p[2], p[3], p[4], p.lineno)
 
     def p_procedure_definition(self, p):
-        '''procedure_definition :      PROC LPAREN [ formal_parameter_list ] RPAREN [ result_spec ]SEMI     { statement }* END'''
-        p[0] = ("procedure_definition", p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p.lineno)
+        '''procedure_definition :  formal_procedure_head END
+                                |  formal_procedure_head statement_list END'''
+        if (len(p) == 3):
+            p[0] = ("procedure_definition", p[1], p[2], p.lineno)
+        elif (len(p) == 4):
+            p[0] = ("procedure_definition", p[1], p[2], p[3], p.lineno)
+
+    def p_formal_procedure_head(self, p):
+        '''formal_procedure_head : PROC LPAREN RPAREN SEMI
+                                 | PROC LPAREN formal_parameter_list RPAREN SEMI
+                                 | PROC LPAREN RPAREN result_spec SEMI
+                                 | PROC LPAREN formal_parameter_list RPAREN result_spec SEMI'''
+        if (len(p) == 5):
+            p[0] = ("formal_procedure_head", p[1], p[2], p[3], p[4], p.lineno)
+        elif (len(p) == 6):
+            p[0] = ("formal_procedure_head", p[1], p[2], p[3], p[4], p[5], p.lineno)
+        elif (len(p) == 7):
+            p[0] = ("formal_procedure_head", p[1], p[2], p[3], p[4], p[5], p[6], p.lineno)
+
 
     def p_formal_parameter_list(self, p):
-        '''formal_parameter_list :  formal_parameter { , formal_parameter }*'''
-        p[0] = ("formal_parameter_list", p[1], p[2], p[3], p[4], p[5], p.lineno)
+        '''formal_parameter_list :  formal_parameter
+                                 |  formal_parameter_list COMMA formal_parameter'''
+        if (len(p) == 2):
+            p[0] = [p[1]]
+        elif (len(p) == 3):
+            p[0] = p[1] + [p[2]]
 
     def p_formal_parameter(self, p):
         '''formal_parameter :  identifier_list parameter_spec'''
         p[0] = ("formal_parameter", p[1], p[2], p.lineno)
 
     def p_parameter_spec(self, p):
-        '''parameter_spec :  mode [ parameter_attribute ]'''
-        p[0] = ("parameter_spec", p[1], p[2], p[3], p[4], p.lineno)
+        '''parameter_spec :  mode
+                          |  mode parameter_attribute'''
+        if(len(p) == 2):
+            p[0] = ("parameter_spec", p[1], p.lineno)
+        elif(len(p) == 3):
+            p[0] = ("parameter_spec", p[1], p[2], p.lineno)
 
     def p_parameter_attribute(self, p):
         '''parameter_attribute :  LOC'''
         p[0] = ("parameter_attribute", p[1], p.lineno)
 
     def p_result_spec(self, p):
-        '''result_spec :  RETURNS LPAREN mode [ result_attribute ] RPAREN'''
-        p[0] = ("result_spec", p[1], p[2], p[3], p[4], p[5], p[6], p[7], p.lineno)
+        '''result_spec  :  RETURNS LPAREN mode RPAREN
+                        |  RETURNS LPAREN mode result_attribute RPAREN'''
+        if(len(p) == 5):
+            p[0] = ("result_spec", p[1], p[2], p[3], p[4], p.lineno)
+        elif(len(p) == 6):
+            p[0] = ("result_spec", p[1], p[2], p[3], p[4], p[5], p.lineno)
 
     def p_result_attribute(self, p):
         '''result_attribute :  LOC'''
         p[0] = ("result_attribute", p[1], p.lineno)
 
-    def p_comment(self, p):
-        '''comment :  bracketed_comment
-            | line_end_comment'''
-        p[0] = ("comment", p[1], p.lineno)
-
+    #def p_comment(self, p):
+    #    '''comment :  bracketed_comment
+    #        | line_end_comment'''
+    #    p[0] = ("comment", p[1], p.lineno)
+    #
     # def p_bracketed_comment(self, p):
     #     '''bracketed_comment :  /* character_string */'''
     #     p[0] = ("bracketed_comment", p[1], p[2], p[3], p.lineno)
@@ -646,24 +731,25 @@ class Parser:
     # def p_line_end_comment(self, p):
     #     '''line_end_comment :  // character_string end_of_line'''
     #     p[0] = ("line_end_comment", p[1], p[2], p[3], p.lineno)
-
-    def p_character_string(self, p):
-        '''character_string :  { character }*'''
-        p[0] = ("character_string", p[1], p[2], p[3], p.lineno)
+    #
+    #def p_character_string(self, p):
+    #    '''character_string :  { character }*'''
+    #    p[0] = ("character_string", p[1], p[2], p[3], p.lineno)
 
     # Error rule for syntax errors
     def p_error(self,p):
         print("Syntax error in input!")
+        print(p)
 
     def parse(self, text):
         self.parser.parse(text, self.lexer)
 
 # Build the parser
-
-
-while True:
+counter = 1
+while counter > 0:
+    counter -= 1
     try:
-        s = "dcl x, y = 0"
+        s = "read(m,n);"
     except EOFError:
         break
     if not s: continue
