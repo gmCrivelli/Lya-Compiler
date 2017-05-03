@@ -57,12 +57,10 @@ class Parser:
     def p_declaration(self, p):
         '''declaration : identifier_list mode
                        | identifier_list mode initialization'''
-        # if (len(p) == 3):
-            # p[0] = ('Declaration', p[1], p[2], p.lineno(1))
-        # elif (len(p) == 4):
-            # p[0] = ('Declaration', p[1], p[2], p[3], p.lineno(1))
-
-        p[0] = Declaration(p[1], p[2], initialization = p[3], lineno = p.lineno(1))
+        if (len(p) == 3):
+            p[0] = Declaration(p[1], p[2], None, lineno = p.lineno(1))
+        elif (len(p) == 4):
+            p[0] = Declaration(p[1], p[2], p[3], lineno = p.lineno(1))
 
     def p_initialization(self,p):
         'initialization : ASSIGN expression'
@@ -105,11 +103,9 @@ class Parser:
         '''synonym_definition : identifier_list ASSIGN expression
                               | identifier_list mode ASSIGN expression'''
         if (len(p) == 4):
-            # p[0] = ('Synonym Definition', p[1], p[2], p[3], p.lineno(1))
-            p[0] = Synonym_Definition(identifier_list = p[1], expression = p[3], lineno = p.lineno(1))
+            p[0] = Synonym_Definition(p[1], None, p[3], lineno = p.lineno(1))
         elif (len(p) == 5):
-            # p[0] = ('Synonym Definition', p[1], p[2], p[3], p[4], p.lineno(1))
-            p[0] = Synonym_Definition(identifier_list = p[1], mode = p[2], expression = p[4], lineno = p.lineno(1))
+            p[0] = Synonym_Definition(p[1], p[2], p[4], lineno = p.lineno(1))
 
     #def p_constant_expression(self, p):
     #    'constant_expression : expression'
@@ -409,12 +405,7 @@ class Parser:
     def p_expression(self, p):
         '''expression : operand0
                       | conditional_expression'''
-<<<<<<< HEAD
-        #p[0] = ('expression', p[1], p.lineno(1))
-=======
         # p[0] = ('expression', p[1], p.lineno(1))
-
->>>>>>> 850ddca934e44e2ac8a59f470f184d36b7f5d205
         p[0] = p[1]
 
     def p_conditional_expression(self, p):
@@ -422,16 +413,16 @@ class Parser:
                                   | IF boolean_expression then_expression elsif_expression else_expression FI '''
         if (len(p) == 6):
             # p[0] = ('conditional_expression', p[1], p[2], p[3], p[4], p[5], p.lineno(1))
-            p[0] = Conditional_Expression(p[2], p[3], p[4], lineno = p.lineno(1))
+            p[0] = Conditional_Expression(p[2], p[3], None, p[4], lineno = p.lineno(1))
         elif (len(p) == 7):
             # p[0] = ('conditional_expression', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
-            p[0] = Conditional_Expression(p[2], p[3], p[5], elsif_expression = p[4], lineno = p.lineno(1))
+            p[0] = Conditional_Expression(p[2], p[3], p[4], p[5], lineno = p.lineno(1))
 
     def p_boolean_expression(self, p):
         '''boolean_expression : expression'''
         # p[0] = ('boolean_expression', p[1], p.lineno(1))
 
-        p[0] = Expression(p[1], lineno = p.lineno(1))
+        p[0] = Boolean_Expression(p[1], lineno = p.lineno(1))
 
     def p_then_expression(self, p):
         '''then_expression : THEN expression'''
@@ -459,11 +450,9 @@ class Parser:
         '''operand0 :  operand1
             | operand0 operator1 operand1'''
         if(len(p) == 2):
-            # p[0] = ("operand0", p[1], p.lineno(1))
-            p[0] = Operand0(None, None, p[1], lineno = p.lineno(1))
+            p[0] = p[1]
         elif(len(p) == 4):
-            # p[0] = ("operand0", p[1], p[2], p[3], p.lineno(1))
-            p[0] = Operand0(p[1], p[2], p[3], lineno = p.lineno(1))
+            p[0] = Rel_Mem_Expression(p[1], p[2], p[3], lineno = p.lineno(1))
 
     def p_operator1(self, p):
         '''operator1 :  relational_operator
@@ -493,10 +482,9 @@ class Parser:
             | operand1 operator2 operand2'''
         if(len(p) == 2):
             # p[0] = ("operand1", p[1], p.lineno(1))
-            p[0] = Operand1(None, None, p[1], lineno = p.lineno(1))
+            p[0] = p[1]
         elif(len(p) == 4):
-            # p[0] = ("operand1", p[1], p[2], p[3], p.lineno(1))
-            p[0] = Operand1(p[1], p[2], p[3], lineno = p.lineno(1))
+            p[0] = Binary_Expression(p[1], p[2], p[3], lineno = p.lineno(1))
 
     def p_operator2(self, p):
         '''operator2 :  arithmetic_additive_operator
@@ -513,15 +501,15 @@ class Parser:
 
     def p_string_concatenation_operator(self, p):
         '''string_concatenation_operator :  STRCAT'''
-        p[0] = ("string_concatenation_operator", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_operand2(self, p):
         '''operand2 :  operand3
             | operand2 arithmetic_multiplicative_operator operand3'''
         if (len(p) == 2):
-            p[0] = Operand2(None, None, p[1], lineno = p.lineno(1))
+            p[0] = p[1]
         elif (len(p) == 4):
-            p[0] = Operand2(p[1], p[2], p[3], lineno = p.lineno(1))
+            p[0] = Binary_Expression(p[1], p[2], p[3], lineno = p.lineno(1))
 
     def p_arithmetic_multiplicative_operator(self, p):
         '''arithmetic_multiplicative_operator :  TIMES
@@ -535,10 +523,9 @@ class Parser:
             | monadic_operator operand4'''
         if (len(p) == 2):
             # p[0] = ("operand3", p[1], p.lineno(1))
-            p[0] = Operand3(None, p[1], lineno = p.lineno(1))
+            p[0] = p[1]
         elif (len(p) == 3):
-            # p[0] = ("operand3", p[1], p[2], p.lineno(1))
-            p[0] = Operand3(p[1], p[2], lineno = p.lineno(1))
+            p[0] = Unary_Expression(p[1], p[2], lineno = p.lineno(1))
 
     def p_monadic_operator(self, p):
         '''monadic_operator :  MINUS
@@ -917,7 +904,7 @@ class Parser:
         print(p)
 
     def parse(self, text):
-        self.parser.parse(text, self.lexer)
+        return self.parser.parse(text, self.lexer)
 
 # Build the parser
 counter = 1
@@ -936,6 +923,8 @@ while counter > 0:
         break
     if not s: continue
     result = Parser()
-    result.parse(s)
+    ast = result.parse(s)
 
-    print(result)
+    nv = NodeVisitor()
+    nv.visit(ast)
+
