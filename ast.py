@@ -170,6 +170,83 @@ class Array_Primitive_Value(AST):
 class Parenthesized_Expression(AST):
     _fields = ['expression']
 
+# expression
+
+class Conditional_Expression(AST):
+    _fields = ['boolean_expression', 'then_expression', 'else_expression']
+
+class Boolean_Expression(AST):
+    _fields = ['expression']
+
+class Then_Expression(AST):
+    _fields = ['expression']
+
+class Else_Expression(AST):
+    _fields = ['expression']
+
+class Elsif_Expression(AST):
+    _fields = ['elsif_expression', 'boolean_expresson', 'then_expression']
+
+class Operand0(AST):
+    _fields = ['operand0', 'operator1', 'operand1']
+
+# operator1
+
+# relational_operator
+
+# membership_operator
+
+# operator2
+
+# arithmetic_additive_operator
+
+# string_concatenation_operator
+
+class Operand2(AST):
+    _fields = ['operand2', 'arithmetic_multiplicative_operator', 'operand3']
+
+# arithmetic_multiplicative_operator
+
+class Operand3(AST):
+    _fields = ['monadic_operator', 'operand4']
+
+# monadic_operator
+
+# operand4
+
+class Referenced_Location(AST):
+    _fields = ['location']
+
+class Action_Statement(AST):
+    _fields = ['label_id', 'action']
+
+class Label_Id(AST):
+    _fields = ['identifier']
+
+# action
+
+# bracketed_action
+
+class Assignment_Action(AST):
+    _fields = ['location', 'assigning_operator', 'expression']
+
+# assigning_operator
+
+# closed_dyadic_operator
+
+class If_Action(AST):
+    _fields = ['boolean_expression', 'then_clause', 'else_clause']
+
+class Then_Clause(AST):
+    _fields = ['action_statement_list']
+
+# action_statement_list
+
+class Else_Clause(AST):
+    _fields = ['action_statement_list', 'boolean_expression', 'then_clause', 'else_clause']
+
+class Do_Action(AST):
+    _fields = ['control_part', 'action_statement_list']
 
 class Control_Part(AST):
     _fields = ['for_control','while_control']
@@ -244,6 +321,3 @@ class Result_Spec(AST):
     _fields = ['mode', 'result_attribute']
 
 #result_attribute
-
-class Assignment(AST):
-    _fields = ['lvalue', 'op', 'rvalue']
