@@ -409,7 +409,8 @@ class Parser:
     def p_expression(self, p):
         '''expression : operand0
                       | conditional_expression'''
-        p[0] = ('expression', p[1], p.lineno(1))
+        #p[0] = ('expression', p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_conditional_expression(self, p):
         '''conditional_expression : IF boolean_expression then_expression else_expression FI
@@ -636,79 +637,89 @@ class Parser:
             p[0] = ("do_action", p[1], p[2], p[3], p[4], p[5], p.lineno(1))
 
     def p_control_part(self, p):
-        '''control_part :  for_control
-                        | while_control
-                        | for_control while_control'''
+        '''control_part : while_control
+                        | FOR for_control
+                        | FOR for_control while_control'''
         if (len(p) == 2):
-            p[0] = ("control_part", p[1], p.lineno(1))
+            p[0] = Control_Part(None, p[1], lineno = p.lineno(1))
         elif (len(p) == 3):
-            p[0] = ("control_part", p[1], p[2], p.lineno(1))
+            p[0] = Control_Part(p[2], None, lineno = p.lineno(1))
+        elif (len(p) == 4):
+            p[0] = Control_Part(p[2], p[3], lineno = p.lineno(1))
 
     def p_for_control(self, p):
-        '''for_control :  FOR iteration'''
-        p[0] = ("for_control", p[1], p[2], p.lineno(1))
+        '''for_control : iteration'''
+        #p[0] = ("for_control", p[1], p[2], p.lineno(1))
+        p[0] = p[1]
 
     def p_iteration(self, p):
-        '''iteration :  step_enumeration
+        '''iteration : step_enumeration
                      | range_enumeration'''
-        p[0] = ("iteration", p[1], p.lineno(1))
+        #p[0] = ("iteration", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_step_enumeration(self, p):
-        '''step_enumeration :  loop_counter ASSIGN start_value end_value
-                            | loop_counter ASSIGN start_value step_value end_value
-                            | loop_counter ASSIGN start_value DOWN end_value
-                            | loop_counter ASSIGN start_value step_value DOWN end_value'''
+        '''step_enumeration : loop_counter ASSIGN start_value end_value
+                            | loop_counter ASSIGN start_value step_value end_value'''
         if (len(p) == 5):
-            p[0] = ("step_enumeration", p[1], p[2], p[3], p[4], p.lineno(1))
+            p[0] = Step_Enumeration(p[1], p[3], None, p[4], lineno = p.lineno(1))
         elif (len(p) == 6):
-            p[0] = ("step_enumeration", p[1], p[2], p[3], p[4], p[5], p.lineno(1))
-        elif (len(p) == 7):
-            p[0] = ("step_enumeration", p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
+            p[0] = Step_Enumeration(p[1], p[3], p[4], p[5], lineno = p.lineno(1))
 
     def p_loop_counter(self, p):
         '''loop_counter :  identifier'''
-        p[0] = ("loop_counter", p[1], p.lineno(1))
+        #p[0] = ("loop_counter", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_start_value(self, p):
         '''start_value :  discrete_expression'''
-        p[0] = ("start_value", p[1], p.lineno(1))
+        #p[0] = ("start_value", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_step_value(self, p):
         '''step_value :  BY integer_expression'''
-        p[0] = ("step_value", p[1], p[2], p.lineno(1))
+        #p[0] = ("step_value", p[1], p[2], p.lineno(1))
+        p[0] = p[2]
 
     def p_end_value(self, p):
-        '''end_value :  TO discrete_expression'''
-        p[0] = ("end_value", p[1], p[2], p.lineno(1))
+        '''end_value : TO discrete_expression
+                     | DOWN TO discrete_expression'''
+        #p[0] = ("end_value", p[1], p[2], p.lineno(1))
+        if (len(p) == 3):
+            p[0] = p[2]
+        elif(len(p) == 4):
+            p[0] = p[3]
 
     def p_discrete_expression(self, p):
-        '''discrete_expression :  expression'''
-        p[0] = ("discrete_expression", p[1], p.lineno(1))
+        '''discrete_expression : expression'''
+        #p[0] = ("discrete_expression", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_range_enumeration(self, p):
         '''range_enumeration : loop_counter IN discrete_mode
                              | loop_counter DOWN IN discrete_mode'''
         if (len(p) == 4):
-            p[0] = ("range_enumeration", p[1], p[2], p[3], p.lineno(1))
+            p[0] = Range_Enumeration(p[1], p[3], lineno = p.lineno(1))
         elif (len(p) == 5):
-            p[0] = ("range_enumeration", p[1], p[2], p[3], p[4], p.lineno(1))
+            p[0] = Range_Enumeration(p[1], p[4], lineno = p.lineno(1))
 
     def p_while_control(self, p):
         '''while_control :  WHILE boolean_expression'''
-        p[0] = ("while_control", p[1], p[2], p.lineno(1))
+        p[0] = While_Control(p[2], lineno = p.lineno(1))
 
     def p_call_action(self, p):
         '''call_action :  procedure_call
                         | builtin_call'''
-        p[0] = ("call_action", p[1], p.lineno(1))
+        #p[0] = ("call_action", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_procedure_call(self, p):
         '''procedure_call :  identifier LPAREN RPAREN
                           | identifier LPAREN parameter_list RPAREN'''
         if (len(p) == 4):
-            p[0] = ("procedure_call", p[1], p[2], p[3], p.lineno(1))
+            p[0] = Procedure_call(p[1], None, lineno = p.lineno(1))
         elif (len(p) == 5):
-            p[0] = ("procedure_call", p[1], p[2], p[3], p[4], p.lineno(1))
+            p[0] = Procedure_call(p[1], p[3], lineno = p.lineno(1))
 
     def p_parameter_list(self, p):
         '''parameter_list :  parameter
@@ -720,7 +731,7 @@ class Parser:
 
     def p_parameter(self, p):
         '''parameter :  expression'''
-        p[0] = ("parameter", p[1], p.lineno(1))
+        p[0] = Parameter(p[1], lineno = p.lineno(1))
 
 #    def p_procedure_name(self, p):
 #        '''procedure_name :  identifier'''
@@ -728,34 +739,35 @@ class Parser:
 
     def p_exit_action(self, p):
         '''exit_action :  EXIT label_id'''
-        p[0] = ("exit_action", p[1], p[2], p.lineno(1))
+        p[0] = Exit_Action(p[2], lineno = p.lineno(1))
 
     def p_return_action(self, p):
         '''return_action :  RETURN
                          |  RETURN result'''
         if (len(p) == 2):
-            p[0] = ("return_action", p[1], p.lineno(1))
+            p[0] = Return_Action(None, lineno = p.lineno(1))
         elif (len(p) == 3):
-            p[0] = ("return_action", p[1], p[2], p.lineno(1))
+            p[0] = Return_Action(p[2], lineno = p.lineno(1))
 
     def p_result_action(self, p):
         '''result_action :  RESULT result'''
-        p[0] = ("result_action", p[1], p[2], p.lineno(1))
+        p[0] = Result_Action(p[2], lineno = p.lineno(1))
 
     def p_result(self, p):
         '''result :  expression'''
-        p[0] = ("result", p[1], p.lineno(1))
+        #p[0] = ("result", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_builtin_call(self, p):
         '''builtin_call :  builtin_name LPAREN RPAREN
                         | builtin_name LPAREN parameter_list RPAREN'''
         if (len(p) == 4):
-            p[0] = ("builtin_call", p[1], p[2], p[3], p.lineno(1))
+            p[0] = Builtin_Call(p[1], None, lineno = p.lineno(1))
         elif (len(p) == 5):
-            p[0] = ("builtin_call", p[1], p[2], p[3], p[4], p.lineno(1))
+            p[0] = Builtin_Call(p[1], p[3], lineno = p.lineno(1))
 
     def p_builtin_name(self, p):
-        '''builtin_name :  ABS
+        '''builtin_name : ABS
                         | ASC
                         | NUM
                         | UPPER
@@ -763,32 +775,35 @@ class Parser:
                         | LENGTH
                         | READ
                         | PRINT'''
-        p[0] = ("builtin_name", p[1], p.lineno(1))
+        p[0] = Builtin_Name(p[1], lineno = p.lineno(1))
 
     def p_procedure_statement(self, p):
         '''procedure_statement :  label_id COLON procedure_definition SEMI'''
-        p[0] = ("procedure_statement", p[1], p[2], p[3], p[4], p.lineno(1))
+        p[0] = Procedure_Statement(p[1], p[3], lineno = p.lineno(1))
 
     def p_procedure_definition(self, p):
         '''procedure_definition :  formal_procedure_head END
                                 |  formal_procedure_head statement_list END'''
         if (len(p) == 3):
-            p[0] = ("procedure_definition", p[1], p[2], p.lineno(1))
+            p[0] = Procedure_Definition(p[1], None, lineno = p.lineno(1))
         elif (len(p) == 4):
-            p[0] = ("procedure_definition", p[1], p[2], p[3], p.lineno(1))
+            p[0] = Procedure_Definition(p[1], p[2], lineno = p.lineno(1))
 
     def p_formal_procedure_head(self, p):
-        '''formal_procedure_head : PROC LPAREN RPAREN SEMI
-                                 | PROC LPAREN formal_parameter_list RPAREN SEMI
-                                 | PROC LPAREN RPAREN result_spec SEMI
-                                 | PROC LPAREN formal_parameter_list RPAREN result_spec SEMI'''
-        if (len(p) == 5):
-            p[0] = ("formal_procedure_head", p[1], p[2], p[3], p[4], p.lineno(1))
-        elif (len(p) == 6):
-            p[0] = ("formal_procedure_head", p[1], p[2], p[3], p[4], p[5], p.lineno(1))
-        elif (len(p) == 7):
-            p[0] = ("formal_procedure_head", p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
+        '''formal_procedure_head : PROC parenthesis_gambiarra SEMI
+                                 | PROC parenthesis_gambiarra result_spec SEMI'''
+        if (len(p) == 4):
+            Formal_Procedure_Head(p[2], None, lineno = p.lineno(1))
+        elif (len(p) == 5):
+            Formal_Procedure_Head(p[2], p[3], lineno = p.lineno(1))
 
+    def p_parenthesis_gambiarra(self, p):
+        '''parenthesis_gambiarra : LPAREN RPAREN
+                                 | LPAREN formal_parameter_list RPAREN'''
+        if (len(p) == 3):
+            p[0] = None
+        elif (len(p) == 4):
+            p[0] = p[2]
 
     def p_formal_parameter_list(self, p):
         '''formal_parameter_list :  formal_parameter
@@ -800,31 +815,33 @@ class Parser:
 
     def p_formal_parameter(self, p):
         '''formal_parameter :  identifier_list parameter_spec'''
-        p[0] = ("formal_parameter", p[1], p[2], p.lineno(1))
+        Formal_Parameter(p[1], p[2], lineno = p.lineno(1))
 
     def p_parameter_spec(self, p):
         '''parameter_spec :  mode
                           |  mode parameter_attribute'''
         if(len(p) == 2):
-            p[0] = ("parameter_spec", p[1], p.lineno(1))
+            Parameter_Spec(p[1], None, lineno = p.lineno(1))
         elif(len(p) == 3):
-            p[0] = ("parameter_spec", p[1], p[2], p.lineno(1))
+            Parameter_Spec(p[1], p[2], lineno = p.lineno(1))
 
     def p_parameter_attribute(self, p):
         '''parameter_attribute :  LOC'''
-        p[0] = ("parameter_attribute", p[1], p.lineno(1))
+        #p[0] = ("parameter_attribute", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_result_spec(self, p):
         '''result_spec  :  RETURNS LPAREN mode RPAREN
                         |  RETURNS LPAREN mode result_attribute RPAREN'''
         if(len(p) == 5):
-            p[0] = ("result_spec", p[1], p[2], p[3], p[4], p.lineno(1))
+            p[0] = Result_Spec(p[3], None, lineno = p.lineno(1))
         elif(len(p) == 6):
-            p[0] = ("result_spec", p[1], p[2], p[3], p[4], p[5], p.lineno(1))
+            p[0] = Result_Spec(p[3], p[4], lineno = p.lineno(1))
 
     def p_result_attribute(self, p):
         '''result_attribute :  LOC'''
-        p[0] = ("result_attribute", p[1], p.lineno(1))
+        #p[0] = ("result_attribute", p[1], p.lineno(1))
+        p[0] = p[1]
 
     #def p_comment(self, p):
     #    '''comment :  bracketed_comment

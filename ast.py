@@ -171,8 +171,79 @@ class Parenthesized_Expression(AST):
     _fields = ['expression']
 
 
+class Control_Part(AST):
+    _fields = ['for_control','while_control']
 
+#for_control
+#iteration
 
+class Step_Enumeration(AST):
+    _fields = ['loop_counter', 'start_value', 'step_value', 'end_value']
+
+#start_value
+#step_value
+#end_value
+
+#discrete_expression
+
+class Range_Enumeration(AST):
+    _fields = ['loop_counter', 'discrete_mode']
+
+class While_Control(AST):
+    _fields = ['boolean_expression']
+
+#class Call_Action(AST):
+#    _fields = ['label_id']
+
+class Procedure_Call(AST):
+    _fields = ['identifier', 'parameter_list']
+
+#parameter_list
+
+class Parameter(AST):
+    _fields = ['expression']
+
+class Exit_Action(AST):
+    _fields = ['label_id']
+
+class Return_Action(AST):
+    _fields = ['result']
+
+class Result_Action(AST):
+    _fields = ['result']
+
+#class Result(AST):
+#    _fields = ['expression']
+
+class Builtin_Call(AST):
+    _fields = ['builtin_name', 'parameter_list']
+
+class Builtin_Name(AST):
+    _fields = ['name']
+
+class Procedure_Statement(AST):
+    _fields = ['label_id', 'procedure_definition']
+
+class Procedure_Definition(AST):
+    _fields = ['formal_procedure_head', 'statement_list']
+
+class Formal_Procedure_Head(AST): # I HAVE NO IDEA
+    _fields = ['formal_parameter_list', 'result_spec']
+
+#formal_parameter_list
+
+class Formal_Parameter(AST):
+    _fields = ['identifier_list', 'parameter_spec']
+
+class Parameter_Spec(AST):
+    _fields = ['mode', 'parameter_attribute']
+
+#parameter_attribute
+
+class Result_Spec(AST):
+    _fields = ['mode', 'result_attribute']
+
+#result_attribute
 
 class Assignment(AST):
     _fields = ['lvalue', 'op', 'rvalue']
