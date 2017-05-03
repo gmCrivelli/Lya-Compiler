@@ -409,48 +409,63 @@ class Parser:
     def p_expression(self, p):
         '''expression : operand0
                       | conditional_expression'''
-        p[0] = ('expression', p[1], p.lineno(1))
+        # p[0] = ('expression', p[1], p.lineno(1))
+
+        p[0] = p[1]
 
     def p_conditional_expression(self, p):
         '''conditional_expression : IF boolean_expression then_expression else_expression FI
                                   | IF boolean_expression then_expression elsif_expression else_expression FI '''
         if (len(p) == 6):
-            p[0] = ('conditional_expression', p[1], p[2], p[3], p[4], p[5], p.lineno(1))
+            # p[0] = ('conditional_expression', p[1], p[2], p[3], p[4], p[5], p.lineno(1))
+            p[0] = Conditional_Expression(p[2], p[3], p[4], lineno = p.lineno(1))
         elif (len(p) == 7):
-            p[0] = ('conditional_expression', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
+            # p[0] = ('conditional_expression', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
+            p[0] = Conditional_Expression(p[2], p[3], p[5], elsif_expression = p[4], lineno = p.lineno(1))
 
     def p_boolean_expression(self, p):
         '''boolean_expression : expression'''
-        p[0] = ('boolean_expression', p[1], p.lineno(1))
+        # p[0] = ('boolean_expression', p[1], p.lineno(1))
+
+        p[0] = Expression(p[1], lineno = p.lineno(1))
 
     def p_then_expression(self, p):
         '''then_expression : THEN expression'''
-        p[0] = ('then_expression', p[1], p[2], p.lineno(1))
+        # p[0] = ('then_expression', p[1], p[2], p.lineno(1))
+
+        p[0] = Then_Expression(p[2], lineno = p.lineno(1))
 
     def p_else_expression(self, p):
         '''else_expression : ELSE expression'''
-        p[0] = ('else_expression', p[1], p[2], p.lineno(1))
+        # p[0] = ('else_expression', p[1], p[2], p.lineno(1))
+
+        p[0] = Else_Expression(p[2], lineno = p.lineno(1))
 
     def p_elsif_expression(self, p):
         '''elsif_expression : ELSIF boolean_expression then_expression
                             | elsif_expression ELSIF boolean_expression then_expression '''
         if(len(p) == 4):
-            p[0] = ('elsif_expression', p[1], p[2], p[3], p.lineno(1))
+            # p[0] = ('elsif_expression', p[1], p[2], p[3], p.lineno(1))
+            p[0] = Elsif_Expression(None, p[2], p[3], lineno = p.lineno(1))
         elif(len(p) == 5):
-            p[0] = ('elsif_expression', p[1], p[2], p[3], p[4], p.lineno(1))
+            # p[0] = ('elsif_expression', p[1], p[2], p[3], p[4], p.lineno(1))
+            p[0] = Elsif_Expression(p[1], p[3], p[4], lineno = p.lineno(1))
 
     def p_operand0(self, p):
         '''operand0 :  operand1
             | operand0 operator1 operand1'''
         if(len(p) == 2):
-            p[0] = ("operand0", p[1], p.lineno(1))
+            # p[0] = ("operand0", p[1], p.lineno(1))
+            p[0] = Operand0(None, None, p[1], lineno = p.lineno(1))
         elif(len(p) == 4):
-            p[0] = ("operand0", p[1], p[2], p[3], p.lineno(1))
+            # p[0] = ("operand0", p[1], p[2], p[3], p.lineno(1))
+            p[0] = Operand0(p[1], p[2], p[3], lineno = p.lineno(1))
 
     def p_operator1(self, p):
         '''operator1 :  relational_operator
             | membership_operator'''
-        p[0] = ("operator1", p[1], p.lineno(1))
+        # p[0] = ("operator1", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_relational_operator(self, p):
         '''relational_operator :  AND
@@ -461,29 +476,36 @@ class Parser:
             | GREATEREQ
             | LESS
             | LESSEQ'''
-        p[0] = ("relational_operator", p[1], p.lineno(1))
+        # p[0] = ("relational_operator", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_membership_operator(self, p):
         '''membership_operator :  IN'''
-        p[0] = ("membership_operator", p[1], p.lineno(1))
+        # p[0] = ("membership_operator", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_operand1(self, p):
         '''operand1 :  operand2
             | operand1 operator2 operand2'''
         if(len(p) == 2):
-            p[0] = ("operand1", p[1], p.lineno(1))
+            # p[0] = ("operand1", p[1], p.lineno(1))
+            p[0] = Operand1(None, None, p[1], lineno = p.lineno(1))
         elif(len(p) == 4):
-            p[0] = ("operand1", p[1], p[2], p[3], p.lineno(1))
+            # p[0] = ("operand1", p[1], p[2], p[3], p.lineno(1))
+            p[0] = Operand1(p[1], p[2], p[3], lineno = p.lineno(1))
 
     def p_operator2(self, p):
         '''operator2 :  arithmetic_additive_operator
                      | string_concatenation_operator'''
-        p[0] = ("operator2", p[1], p.lineno(1))
+        # p[0] = ("operator2", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_arithmetic_additive_operator(self, p):
         '''arithmetic_additive_operator :  PLUS
             | MINUS'''
-        p[0] = ("arithmetic_additive_operator", p[1], p.lineno(1))
+        # p[0] = ("arithmetic_additive_operator", p[1], p.lineno(1))
+
+        p[0] = p[1]
 
     def p_string_concatenation_operator(self, p):
         '''string_concatenation_operator :  STRCAT'''
@@ -493,51 +515,60 @@ class Parser:
         '''operand2 :  operand3
             | operand2 arithmetic_multiplicative_operator operand3'''
         if (len(p) == 2):
-            p[0] = ("operand2", p[1], p.lineno(1))
+            p[0] = Operand2(None, None, p[1], lineno = p.lineno(1))
         elif (len(p) == 4):
-            p[0] = ("operand2", p[1], p[2], p[3], p.lineno(1))
+            p[0] = Operand2(p[1], p[2], p[3], lineno = p.lineno(1))
 
     def p_arithmetic_multiplicative_operator(self, p):
         '''arithmetic_multiplicative_operator :  TIMES
             | DIVIDE
             | MOD'''
-        p[0] = ("arithmetic_multiplicative_operator", p[1], p.lineno(1))
+        # p[0] = ("arithmetic_multiplicative_operator", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_operand3(self, p):
         '''operand3 : operand4
             | monadic_operator operand4'''
         if (len(p) == 2):
-            p[0] = ("operand3", p[1], p.lineno(1))
+            # p[0] = ("operand3", p[1], p.lineno(1))
+            p[0] = Operand3(None, p[1], lineno = p.lineno(1))
         elif (len(p) == 3):
-            p[0] = ("operand3", p[1], p[2], p.lineno(1))
+            # p[0] = ("operand3", p[1], p[2], p.lineno(1))
+            p[0] = Operand3(p[1], p[2], lineno = p.lineno(1))
 
     def p_monadic_operator(self, p):
         '''monadic_operator :  MINUS
             | NOT'''
-        p[0] = ("monadic_operator", p[1], p.lineno(1))
+        # p[0] = ("monadic_operator", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_operand4(self, p):
         '''operand4 :  location
             | referenced_location
             | primitive_value
             | integer_literal'''
-        p[0] = ("operand4", p[1], p.lineno(1))
+        # p[0] = ("operand4", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_referenced_location(self, p):
         '''referenced_location :  ARROW location'''
-        p[0] = ("referenced_location", p[1], p[2], p.lineno(1))
+        # p[0] = ("referenced_location", p[1], p[2], p.lineno(1))
+        p[0] = Referenced_Location(p[2], lineno = p.lineno(1))
 
     def p_action_statement(self, p):
         '''action_statement :  action SEMI
             | label_id COLON action SEMI'''
         if (len(p) == 3):
-            p[0] = ("action_statement", p[1], p[2], p.lineno(1))
+            # p[0] = ("action_statement", p[1], p[2], p.lineno(1))
+            p[0] = Action_Statement(None, p[1], lineno = p.lineno(1))
         elif (len(p) == 5):
-            p[0] = ("action_statement", p[1], p[2], p[3], p[4], p.lineno(1))
+            # p[0] = ("action_statement", p[1], p[2], p[3], p[4], p.lineno(1))
+            p[0] = Action_Statement(p[1], p[3], lineno = p.lineno(1))
 
     def p_label_id(self, p):
         '''label_id :  identifier'''
-        p[0] = ("label_id", p[1], p.lineno(1))
+        # p[0] = ("label_id", p[1], p.lineno(1))
+        p[0] = Label_Id(p[1], lineno = p.lineno(1))
 
     def p_action(self, p):
         '''action :  bracketed_action
@@ -546,16 +577,19 @@ class Parser:
             | exit_action
             | return_action
             | result_action'''
-        p[0] = ("action", p[1], p.lineno(1))
+        # p[0] = ("action", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_bracketed_action(self, p):
         '''bracketed_action :  if_action
             | do_action'''
-        p[0] = ("bracketed_action", p[1], p.lineno(1))
+        # p[0] = ("bracketed_action", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_assignment_action(self, p):
         '''assignment_action :  location assigning_operator expression'''
-        p[0] = ("assignment_action", p[1], p[2], p[3], p.lineno(1))
+        # p[0] = ("assignment_action", p[1], p[2], p[3], p.lineno(1))
+        p[0] = Assignment_Action(p[1], p[2], p[3], lineno = p.lineno(1))
 
     #def p_assigning_operator(self, p):
     #    '''assigning_operator : ASSIGN
@@ -574,8 +608,8 @@ class Parser:
     def p_assigning_operator(self, p):
         '''assigning_operator : ASSIGN
                               | closed_dyadic_operator'''
-        if (len(p) == 2):
-            p[0] = ("assignning_operator", p[1], p.lineno(1))
+        # p[0] = ("assignning_operator", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_closed_dyadic_operator(self, p):
         '''closed_dyadic_operator : INCREASE
@@ -583,23 +617,28 @@ class Parser:
                                   | MULCREASE
                                   | DIVCREASE
                                   | MODCREASE'''
-        p[0] = ("closed_dyadic_operator", p[1], p.lineno(1))
+        # p[0] = ("closed_dyadic_operator", p[1], p.lineno(1))
+        p[0] = p[1]
 
     def p_if_action(self, p):
         '''if_action :  IF boolean_expression then_clause FI
                      | IF boolean_expression then_clause else_clause FI'''
         if (len(p) == 5):
-            p[0] = ("if_action", p[1], p[2], p[3], p[4], p.lineno(1))
+            # p[0] = ("if_action", p[1], p[2], p[3], p[4], p.lineno(1))
+            p[0] = If_Action(p[2], p[3], None, lineno = p.lineno(1))
         elif (len(p) == 6):
-            p[0] = ("if_action", p[1], p[2], p[3], p[4], p[5], p.lineno(1))
+            # p[0] = ("if_action", p[1], p[2], p[3], p[4], p[5], p.lineno(1))
+            p[0] = If_Action(p[2], p[3], p[4], lineno = p.lineno(1))
 
     def p_then_clause(self, p):
         '''then_clause :  THEN
                        |  THEN action_statement_list'''
         if (len(p) == 2):
-            p[0] = ("then_clause", p[1], p.lineno(1))
+            # p[0] = ("then_clause", p[1], p.lineno(1))
+            p[0] = Then_Clause(None, lineno = p.lineno(1))
         elif (len(p) == 3):
-            p[0] = ("then_clause", p[1], p[2], p.lineno(1))
+            # p[0] = ("then_clause", p[1], p[2], p.lineno(1))
+            p[0] = Then_Clause(p[2], lineno = p.lineno(1))
 
     def p_action_statement_list(self, p):
         '''action_statement_list : action_statement
@@ -615,13 +654,17 @@ class Parser:
                         | ELSIF boolean_expression then_clause
                         | ELSIF boolean_expression then_clause else_clause '''
         if (len(p) == 2):
-            p[0] = ("else_clause", p[1], p.lineno(1))
+            # p[0] = ("else_clause", p[1], p.lineno(1))
+            p[0] = Else_Clause(None, None, None, None, lineno = p.lineno(1))
         elif (len(p) == 3):
-            p[0] = ("else_clause", p[1], p[2], p.lineno(1))
+            # p[0] = ("else_clause", p[1], p[2], p.lineno(1))
+            p[0] = Else_Clause(p[2], None, None, None, lineno = p.lineno(1))
         elif (len(p) == 4):
-            p[0] = ("else_clause", p[1], p[2], p[3], p.lineno(1))
+            # p[0] = ("else_clause", p[1], p[2], p[3], p.lineno(1))
+            p[0] = Else_Clause(None, p[2], p[3], None, lineno = p.lineno(1))
         elif (len(p) == 5):
-            p[0] = ("else_clause", p[1], p[2], p[3], p[4], p.lineno(1))
+            # p[0] = ("else_clause", p[1], p[2], p[3], p[4], p.lineno(1))
+            p[0] = Else_Clause(None, p[2], p[3], p[4], lineno = p.lineno(1))
 
     def p_do_action(self, p):
         '''do_action :  DO OD
@@ -629,11 +672,16 @@ class Parser:
                      |  DO action_statement_list OD
                      |  DO control_part SEMI action_statement_list OD'''
         if (len(p) == 3):
-            p[0] = ("do_action", p[1], p[2], p.lineno(1))
+            # p[0] = ("do_action", p[1], p[2], p.lineno(1))
+            p[0] = Do_Action(None, None, lineno = p.lineno(1))
         elif (len(p) == 5):
-            p[0] = ("do_action", p[1], p[2], p[3], p[4], p.lineno(1))
+            # p[0] = ("do_action", p[1], p[2], p[3], p[4], p.lineno(1))
+            p[0] = Do_Action(p[2], None, lineno = p.lineno(1))
+        elif(len(p) == 4):
+            p[0] = Do_Action(None, p[2], lineno = p.lineno(1))
         elif (len(p) == 6):
-            p[0] = ("do_action", p[1], p[2], p[3], p[4], p[5], p.lineno(1))
+            # p[0] = ("do_action", p[1], p[2], p[3], p[4], p[5], p.lineno(1))
+            p[0] = Do_Action(p[2], p[4], lineno = p.lineno(1))
 
     def p_control_part(self, p):
         '''control_part :  for_control
