@@ -1,8 +1,6 @@
 # Yacc example
 import ply.yacc as yacc
 
-from ast import *
-
 # Get the token map from the lexer.  This is required.
 import lexer as lex
 
@@ -20,9 +18,9 @@ class Parser:
 
     def p_program(self, p):
         'program : statement_list'
-        # p[0] = ('Program', p[1], p.lineno(1))
+        p[0] = ('Program', p[1], p.lineno(1))
 
-        p[0] = Program(p[1], lineno = p.lineno(1))
+      #  p[0] = Program(p[1], lineno = p.lineno(1))
 
     def p_statement_list(self, p):
         '''statement_list : statement
@@ -43,8 +41,8 @@ class Parser:
 
     def p_declaration_statement(self,p):
         'declaration_statement : DCL declaration_list SEMI'
-        # p[0] = ('Declaration_Statement', p[1], p[2], p[3], p.lineno(1))
-        p[0] = Declaration_Statement(p[2], lineno = p.lineno(1))
+        p[0] = ('Declaration_Statement', p[1], p[2], p[3], p.lineno(1))
+      #  p[0] = Declaration_Statement(p[2], lineno = p.lineno(1))
 
     def p_declaration_list(self,p):
         '''declaration_list : declaration
@@ -57,22 +55,23 @@ class Parser:
     def p_declaration(self, p):
         '''declaration : identifier_list mode
                        | identifier_list mode initialization'''
-        # if (len(p) == 3):
-            # p[0] = ('Declaration', p[1], p[2], p.lineno(1))
-        # elif (len(p) == 4):
-            # p[0] = ('Declaration', p[1], p[2], p[3], p.lineno(1))
+        if (len(p) == 3):
+            p[0] = ('Declaration', p[1], p[2], p.lineno(1))
+        elif (len(p) == 4):
+            p[0] = ('Declaration', p[1], p[2], p[3], p.lineno(1))
 
-        p[0] = Declaration(p[1], p[2], initialization = p[3], lineno = p.lineno(1))
+      #  p[0] = Declaration(p[1], p[2], initialization = p[3], lineno = p.lineno(1))
 
     def p_initialization(self,p):
         'initialization : ASSIGN expression'
-        # p[0] = ('Initialization', p[1], p[2], p.lineno(1))
+        p[0] = ('Initialization', p[1], p[2], p.lineno(1))
 
-        p[0] = Initialization(p[2], lineno = p.lineno(1))
+        # p[0] = Initialization(p[2], lineno = p.lineno(1))
+        p[0] = p[2]
 
     def p_identifier_list(self, p):
-        '''identifier_list : ID
-                           | identifier_list COMMA ID'''
+        '''identifier_list : identifier
+                           | identifier_list COMMA identifier'''
         if (len(p) == 2):
             p[0] = [p[1]]
         elif (len(p) == 4):
@@ -81,17 +80,17 @@ class Parser:
     def p_identifier(self,p):
         'identifier : ID'
         # lineno = p.lineno(1)
-        # p[0] = ('ID', p[1], lineno)
+        p[0] = ('ID', p[1], p.lineno(1))
 
-        p[0] = Identifier(p[1], lineno = p.lineno(1))
+     #   p[0] = Identifier(p[1], lineno = p.lineno(1))
 
     def p_synonym_statement(self, p):
         'synonym_statement : SYN synonym_list'
 
         ### Shouldn't be p[2]? (p[1] = SYN, p[2] = synonym_list)
-        # p[0] = ('Synonym_statement', p[1], p.lineno(1))
+        p[0] = ('Synonym_statement', p[2], p.lineno(1))
 
-        p[0] = Synonym_Statement(p[2], lineno = p.lineno(1))
+      #  p[0] = Synonym_Statement(p[2], lineno = p.lineno(1))
 
     def p_synonym_list(self, p):
         '''synonym_list : synonym_definition
@@ -105,22 +104,22 @@ class Parser:
         '''synonym_definition : identifier_list ASSIGN expression
                               | identifier_list mode ASSIGN expression'''
         if (len(p) == 4):
-            # p[0] = ('Synonym Definition', p[1], p[2], p[3], p.lineno(1))
-            p[0] = Synonym_Definition(identifier_list = p[1], expression = p[3], lineno = p.lineno(1))
+            p[0] = ('Synonym Definition', p[1], p[2], p[3], p.lineno(1))
+       #     p[0] = Synonym_Definition(identifier_list = p[1], expression = p[3], lineno = p.lineno(1))
         elif (len(p) == 5):
-            # p[0] = ('Synonym Definition', p[1], p[2], p[3], p[4], p.lineno(1))
-            p[0] = Synonym_Definition(identifier_list = p[1], mode = p[2], expression = p[4], lineno = p.lineno(1))
+            p[0] = ('Synonym Definition', p[1], p[2], p[3], p[4], p.lineno(1))
+       #     p[0] = Synonym_Definition(identifier_list = p[1], mode = p[2], expression = p[4], lineno = p.lineno(1))
 
     #def p_constant_expression(self, p):
     #    'constant_expression : expression'
-    #    # p[0] = ('Constant Expression', p[1], p.lineno(1))
+    #    p[0] = ('Constant Expression', p[1], p.lineno(1))
     #   p[0] = Constant_Expression(p[1], lineno = p.lineno(1))
 
     def p_newmode_statement(self, p):
         'newmode_statement : TYPE newmode_list SEMI'
-        # p[0] = ('Newmode Statement', p[1], p[2], p[3], p.lineno(1))
+        p[0] = ('Newmode Statement', p[1], p[2], p[3], p.lineno(1))
 
-        p[0] = Newmode_Statement(p[1], p[2], lineno = p.lineno(1))
+     #   p[0] = Newmode_Statement(p[1], p[2], lineno = p.lineno(1))
 
     def p_newmode_list(self, p):
         '''newmode_list : mode_definition
@@ -132,9 +131,9 @@ class Parser:
 
     def p_mode_definition(self, p):
         'mode_definition : identifier_list ASSIGN mode'
-        # p[0] = ('Mode Definition', p[1], p[2], p[3], p.lineno(1))
+        p[0] = ('Mode Definition', p[1], p[2], p[3], p.lineno(1))
 
-        p[0] = Mode_Definition(p[1], p[3], lineno = p.lineno(1))
+      #  p[0] = Mode_Definition(p[1], p[3], lineno = p.lineno(1))
 
     def p_mode(self, p):
         '''mode : mode_name
@@ -174,9 +173,9 @@ class Parser:
 
     def p_mode_name(self, p):
         '''mode_name : identifier'''
-        # p[0] = ('mode_name', p[1], p.lineno(1))
+        p[0] = ('mode_name', p[1], p.lineno(1))
 
-        p[0] = Mode_Name(p[1], lineno = p.lineno(1))
+      #  p[0] = Mode_Name(p[1], lineno = p.lineno(1))
 
 #    def p_discrete_mode_name(self, p):
 #        '''discrete_mode_name : identifier'''
@@ -184,26 +183,26 @@ class Parser:
 
     def p_literal_range(self, p):
         '''literal_range : lower_bound COLON upper_bound'''
-        # p[0] = ('literal_range', p[1], p[2], p[3], p.lineno(1))
-        p[0] = Literal_Range(p[1], p[3], lineno = p.lineno(1))
+        p[0] = ('literal_range', p[1], p[2], p[3], p.lineno(1))
+       # p[0] = Literal_Range(p[1], p[3], lineno = p.lineno(1))
 
     def p_lower_bound(self, p):
         '''lower_bound : expression'''
-        # p[0] = ('lower_bound', p[1], p.lineno(1))
+        p[0] = ('lower_bound', p[1], p.lineno(1))
 
-        p[0] = Lower_Bound(p[1], lineno = p.lineno(1))
+      #  p[0] = Lower_Bound(p[1], lineno = p.lineno(1))
 
     def p_upper_bound(self, p):
         '''upper_bound : expression'''
-        # p[0] = ('upper_bound', p[1], p.lineno(1))
+        p[0] = ('upper_bound', p[1], p.lineno(1))
 
-        p[0] = Upper_Bound(p[1], lineno = p.lineno(1))
+      #  p[0] = Upper_Bound(p[1], lineno = p.lineno(1))
 
     def p_reference_mode(self, p):
         '''reference_mode : REF mode'''
-        # p[0] = ('reference_mode', p[1], p[2], p.lineno(1))
+        p[0] = ('reference_mode', p[1], p[2], p.lineno(1))
 
-        p[0] = Reference_Mode(p[2], lineno = p.lineno(1))
+     #   p[0] = Reference_Mode(p[2], lineno = p.lineno(1))
 
     def p_composite_mode(self, p):
         '''composite_mode : string_mode
@@ -213,21 +212,21 @@ class Parser:
 
     def p_string_mode(self, p):
         '''string_mode : CHARS LBRACKET string_length RBRACKET'''
-        # p[0] = ('string_mode', p[1], p[2], p[3], p[4], p.lineno(1))
+        p[0] = ('string_mode', p[1], p[2], p[3], p[4], p.lineno(1))
 
-        p[0] = String_Mode(p[3], lineno = p.lineno(1))
+      #  p[0] = String_Mode(p[3], lineno = p.lineno(1))
 
     def p_string_length(self, p):
         '''string_length : integer_literal'''
-        # p[0] = ('string_length', p[1], p.lineno(1))
+        p[0] = ('string_length', p[1], p.lineno(1))
 
-        p[0] = String_Length(p[1], lineno = p.lineno(1))
+      #  p[0] = String_Length(p[1], lineno = p.lineno(1))
 
     def p_array_mode(self, p):
         '''array_mode : ARRAY LBRACKET index_mode_list RBRACKET element_mode'''
-        # p[0] = ('array_mode', p[1], p[2], p[3], p[4], p[5], p.lineno(1))
+        p[0] = ('array_mode', p[1], p[2], p[3], p[4], p[5], p.lineno(1))
 
-        p[0] = Array_Mode(p[3], p[5], lineno = p.lineno(1))
+      #  p[0] = Array_Mode(p[3], p[5], lineno = p.lineno(1))
 
     def p_index_mode_list(self, p):
         '''index_mode_list : index_mode
@@ -240,20 +239,19 @@ class Parser:
     def p_index_mode(self, p):
         '''index_mode : discrete_mode
                       | literal_range'''
-        #p[0] = ('index_mode', p[1], p.lineno(1))
-        p[0] = p[1]
+        p[0] = ('index_mode', p[1], p.lineno(1))
 
     def p_element_mode(self, p):
         '''element_mode : mode'''
-        # p[0] = ('element_mode', p[1], p.lineno(1))
+        p[0] = ('element_mode', p[1], p.lineno(1))
 
-        p[0] = Element_Mode(p[1], lineno = p.lineno(1))
+    #    p[0] = Element_Mode(p[1], lineno = p.lineno(1))
 
     def p_integer_expression(self, p):
         '''integer_expression : expression'''
-        # p[0] = ('integer_expression', p[1], p.lineno(1))
+        p[0] = ('integer_expression', p[1], p.lineno(1))
 
-        p[0] = Integer_Expression(p[1], lineno = p.lineno(1))
+     #   p[0] = Integer_Expression(p[1], lineno = p.lineno(1))
 
     def p_location(self, p):
         '''location : identifier
@@ -263,32 +261,31 @@ class Parser:
                     | array_element
                     | array_slice
                     | call_action '''
-        #p[0] = ('location', p[1], p.lineno(1))
-        p[0] = p[1]
+        p[0] = ('location', p[1], p.lineno(1))
 
     def p_dereferenced_reference(self, p):
         '''dereferenced_reference : location ARROW'''
-        # p[0] = ('dereferenced_reference', p[1], p[2], p.lineno(1))
+        p[0] = ('dereferenced_reference', p[1], p[2], p.lineno(1))
 
-        p[0] = Dereferenced_Reference(p[1], lineno = p.lineno(1))
+      #  p[0] = Dereferenced_Reference(p[1], lineno = p.lineno(1))
 
     def p_string_element(self, p):
         '''string_element : identifier LBRACKET start_element RBRACKET'''
-        # p[0] = ('string_element', p[1], p[2], p[3], p[4], p.lineno(1))
+        p[0] = ('string_element', p[1], p[2], p[3], p[4], p.lineno(1))
 
-        p[0] = String_Element(p[1], p[3], lineno = p.lineno(1))
+       # p[0] = String_Element(p[1], p[3], lineno = p.lineno(1))
 
     def p_start_element(self, p):
         '''start_element : integer_expression'''
-        # p[0] = ('start_element', p[1], p.lineno(1))
+        p[0] = ('start_element', p[1], p.lineno(1))
 
-        p[0] = Start_Element(p[1], lineno = p.lineno(1))
+      #  p[0] = Start_Element(p[1], lineno = p.lineno(1))
 
     def p_string_slice(self, p):
         '''string_slice : identifier LBRACKET left_element COLON right_element RBRACKET'''
-        # p[0] = ('string_slice', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
+        p[0] = ('string_slice', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
 
-        p[0] = String_Slice(p[1], p[3], p[5], lineno = p.lineno(1))
+       # p[0] = String_Slice(p[1], p[3], p[5], lineno = p.lineno(1))
 
 #    def p_string_location(self, p):
 #        '''string_location : identifier'''
@@ -296,21 +293,21 @@ class Parser:
 
     def p_left_element(self, p):
         '''left_element : integer_expression'''
-        # p[0] = ('left_element', p[1], p.lineno(1))
+        p[0] = ('left_element', p[1], p.lineno(1))
 
-        p[0] = Left_Element(p[1], lineno = p.lineno(1))
+      #  p[0] = Left_Element(p[1], lineno = p.lineno(1))
 
     def p_right_element(self, p):
         '''right_element : integer_expression'''
-        # p[0] = ('right_element', p[1], p.lineno(1))
+        p[0] = ('right_element', p[1], p.lineno(1))
 
-        p[0] = Right_Element(p[1], lineno = p.lineno(1))
+      #  p[0] = Right_Element(p[1], lineno = p.lineno(1))
 
     def p_array_element(self, p):
         '''array_element : array_location LBRACKET expression_list RBRACKET'''
-        # p[0] = ('array_element', p[1], p[2], p[3], p[4], p.lineno(1))
+        p[0] = ('array_element', p[1], p[2], p[3], p[4], p.lineno(1))
 
-        p[0] = Array_Element(p[1], p[3], lineno = p.lineno(1))
+    #    p[0] = Array_Element(p[1], p[3], lineno = p.lineno(1))
 
     def p_expression_list(self, p):
         '''expression_list : expression
@@ -322,23 +319,23 @@ class Parser:
 
     def p_array_slice(self, p):
         '''array_slice : array_location LBRACKET lower_bound COLON upper_bound RBRACKET'''
-        # p[0] = ('array_slice', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
+        p[0] = ('array_slice', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
 
-        p[0] = Array_Slice(p[1], p[3], p[5], lineno = p.lineno(1))
+     #   p[0] = Array_Slice(p[1], p[3], p[5], lineno = p.lineno(1))
 
     def p_array_location(self, p):
         '''array_location : location'''
-        # p[0] = ('array_location', p[1], p.lineno(1))
+        p[0] = ('array_location', p[1], p.lineno(1))
 
-        p[0] = Array_Location(p[1], lineno = p.lineno(1))
+      #  p[0] = Array_Location(p[1], lineno = p.lineno(1))
 
     def p_primitive_value(self, p):
         '''primitive_value : literal
                            | value_array_element
                            | value_array_slice
                            | parenthesized_expression '''
-        #p[0] = ('primitive_value', p[1], p.lineno(1))
-        p[0] = p[1]
+        p[0] = ('primitive_value', p[1], p.lineno(1))
+
 
 
     def p_literal(self, p):
@@ -346,65 +343,64 @@ class Parser:
                    | character_literal
                    | empty_literal
                    | character_string_literal '''
-        #p[0] = ('literal', p[1], p.lineno(1))
-        p[0] = p[1]
+        p[0] = ('literal', p[1], p.lineno(1))
 
     def p_integer_literal(self, p):
         '''integer_literal : ICONST'''
-        # p[0] = ('integer_literal', p[1], p.lineno(1))
+        p[0] = ('integer_literal', p[1], p.lineno(1))
 
-        p[0] = Integer_Literal(p[1], lineno = p.lineno(1))
+      #  p[0] = Integer_Literal(p[1], lineno = p.lineno(1))
 
     def p_boolean_literal(self, p):
         '''boolean_literal : FALSE
                            | TRUE'''
-        # p[0] = ('boolean_literal', p[1], p.lineno(1))
+        p[0] = ('boolean_literal', p[1], p.lineno(1))
 
-        p[0] = Boolean_Literal(p[1], lineno = p.lineno(1))
+       # p[0] = Boolean_Literal(p[1], lineno = p.lineno(1))
 
     #CCONST ESTA SENDO USADO CORRETAMENTE???
     def p_character_literal(self, p):
         '''character_literal : CCONST '''
-        # p[0] = ('character_literal', p[1], p.lineno(1))
+        p[0] = ('character_literal', p[1], p.lineno(1))
 
-        p[0] = Character_Literal(p[1], lineno = p.lineno(1))
+       # p[0] = Character_Literal(p[1], lineno = p.lineno(1))
 
     def p_empty_literal(self, p):
         '''empty_literal : NULL'''
-        # p[0] = ('empty_literal', p[1], p.lineno(1))
+        p[0] = ('empty_literal', p[1], p.lineno(1))
 
-        p[0] = Empty_Literal(p[1], lineno = p.lineno(1))
+        #p[0] = Empty_Literal(p[1], lineno = p.lineno(1))
 
     #SCONST ESTA SENDO USADO CORRETAMENTE???
     def p_character_string_literal(self, p):
         '''character_string_literal : SCONST'''
-        # p[0] = ('character_string_literal', p[1], p.lineno(1))
+        p[0] = ('character_string_literal', p[1], p.lineno(1))
 
-        p[0] = Character_String_Literal(p[1], lineno = p.lineno(1))
+        #p[0] = Character_String_Literal(p[1], lineno = p.lineno(1))
 
     def p_value_array_element(self, p):
         '''value_array_element : array_primitive_value LBRACKET integer_expression RBRACKET'''
-        # p[0] = ('value_array_element', p[1], p[2], p[3], p[4], p.lineno(1))
+        p[0] = ('value_array_element', p[1], p[2], p[3], p[4], p.lineno(1))
 
-        p[0] = Value_Array_Element(p[1], p[3], lineno = p.lineno(1))
+        #p[0] = Value_Array_Element(p[1], p[3], lineno = p.lineno(1))
 
     def p_value_array_slice(self, p):
         '''value_array_slice : array_primitive_value LBRACKET lower_bound COLON upper_bound RBRACKET'''
-        # p[0] = ('value_array_slice', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
+        p[0] = ('value_array_slice', p[1], p[2], p[3], p[4], p[5], p[6], p.lineno(1))
 
-        p[0] = Value_Array_Slice(p[1], p[3], p[5], lineno = p.lineno(1))
+        #p[0] = Value_Array_Slice(p[1], p[3], p[5], lineno = p.lineno(1))
 
     def p_array_primitive_value(self, p):
         '''array_primitive_value : primitive_value'''
-        # p[0] = ('array_primitive_value', p[1], p.lineno(1))
+        p[0] = ('array_primitive_value', p[1], p.lineno(1))
 
-        p[0] = Array_Primitive_Value(p[1], lineno = p.lineno(1))
+        #p[0] = Array_Primitive_Value(p[1], lineno = p.lineno(1))
 
     def p_parenthesized_expression(self, p):
         '''parenthesized_expression : LPAREN expression RPAREN'''
-        # p[0] = ('parenthesized_expression', p[1], p[2], p[3], p.lineno(1))
+        p[0] = ('parenthesized_expression', p[1], p[2], p[3], p.lineno(1))
 
-        p[0] = Parenthesized_Expression(p[2], lineno = p.lineno(1))
+        #p[0] = Parenthesized_Expression(p[2], lineno = p.lineno(1))
 
     def p_expression(self, p):
         '''expression : operand0

@@ -28,12 +28,12 @@ class Declaration_Statement(AST):
 # declaration_list
 
 class Declaration(AST):
-    _fields = ['identifier_list', 'mode']
+    _fields = ['identifier_list', 'mode', 'initialization']
 
 class Initialization(AST):
     _fields = ['expression']
 
-# indentifier_list
+# identifier_list
 
 class Identifier(AST):
     _fields = ['ID']
@@ -46,11 +46,11 @@ class Synonym_Statement(AST):
 class Synonym_Definition(AST):
     _fields = []
 
-class Constant_Expression(AST):
-    _fields = ['expression']
+#class Constant_Expression(AST):
+#    _fields = ['expression']
 
 class Newmode_Statement(AST):
-    _fields = ['newmode_list']
+    _fields = ['type', 'newmode_list']
 
 # newmode_list
 
@@ -61,16 +61,16 @@ class Mode_Definition(AST):
 
 # discrete_mode
 
-class Integer_Mode(AST):
-    _fields = ['INT']
+#class Integer_Mode(AST):
+#    _fields = ['INT']
 
-class Boolean_Mode(AST):
-    _fields = ['BOOL']
+#class Boolean_Mode(AST):
+#    _fields = ['BOOL']
 
-class Character_Mode(AST):
-    _fields = ['CHAR']
+#class Character_Mode(AST):
+#    _fields = ['CHAR']
 
-# discrete_mode_range
+# discrete_range_mode STILL WORK TO BE DONE IN THIS LINE RIGHT HERE!!!
 
 class Mode_Name(AST):
     _fields = ['identifier']
@@ -90,7 +90,7 @@ class Reference_Mode(AST):
 # composite_mode
 
 class String_Mode(AST):
-    _fields = ['CHARS', 'string_length']
+    _fields = ['string_length']
 
 class String_Length(AST):
     _fields = ['integer_literal']
@@ -175,4 +175,4 @@ class Parenthesized_Expression(AST):
 
 
 class Assignment(AST):
-    _fields = [’lvalue’, ’op’, ’rvalue’]
+    _fields = ['lvalue', 'op', 'rvalue']
