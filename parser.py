@@ -2,6 +2,7 @@
 import ply.yacc as yacc
 
 from ast import *
+from semantic import *
 
 # Get the token map from the lexer.  This is required.
 import lexer as lex
@@ -69,8 +70,8 @@ class Parser:
         p[0] = Initialization(p[2], lineno = p.lineno(1))
 
     def p_identifier_list(self, p):
-        '''identifier_list : ID
-                           | identifier_list COMMA ID'''
+        '''identifier_list : identifier
+                           | identifier_list COMMA identifier'''
         if (len(p) == 2):
             p[0] = [p[1]]
         elif (len(p) == 4):
@@ -338,7 +339,8 @@ class Parser:
 
 
     def p_literal(self, p):
-        '''literal : boolean_literal
+        '''literal : integer_literal
+                   | boolean_literal
                    | character_literal
                    | empty_literal
                    | character_string_literal '''
@@ -536,8 +538,7 @@ class Parser:
     def p_operand4(self, p):
         '''operand4 :  location
             | referenced_location
-            | primitive_value
-            | integer_literal'''
+            | primitive_value'''
         # p[0] = ("operand4", p[1], p.lineno(1))
         p[0] = p[1]
 
@@ -925,6 +926,6 @@ while counter > 0:
     result = Parser()
     ast = result.parse(s)
 
-    nv = NodeVisitor()
+    nv = Visitor()
     nv.visit(ast)
 

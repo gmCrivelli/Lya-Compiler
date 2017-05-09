@@ -25,8 +25,6 @@ class NodeVisitor(object):
         NodeName is the name of the class of a particular node.
         """
         if node:
-
-
             method = 'visit_' + node.__class__.__name__
             visitor = getattr(self, method, self.generic_visit)
             return visitor(node)
@@ -34,6 +32,7 @@ class NodeVisitor(object):
             return None
 
     def generic_visit(self,node):
+        node.print()
         """
         Method executed if no applicable visit_ method can be found.
         This examines the node to see if it has _fields, is a list,
@@ -44,10 +43,10 @@ class NodeVisitor(object):
             if isinstance(value, list):
                 for item in value:
                     if isinstance(item,AST):
-                        print(item)
+                        #item.print()
                         self.visit(item)
             elif isinstance(value, AST):
-                print(value)
+                #value.print()
                 self.visit(value)
 
 
@@ -70,7 +69,6 @@ class AST(object):
             setattr(self,name,value)
 
     def print(self):
-        print("here")
         for field in self._fields:
             if isinstance(field, list):
                 for item in field:

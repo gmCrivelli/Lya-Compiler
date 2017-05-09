@@ -76,7 +76,7 @@ class Lexer:
             'LESS', 'LESSEQ', 'GREATER', 'GREATEREQ', 'EQUAL',
             'AND', 'OR', 'STRCAT',
             'INCREASE', 'DECREASE', 'MULCREASE', 'DIVCREASE', 'MODCREASE',
-            'MULVAL', 'DIVVAL','DIFF', 'MOD','MODVAL','NOT',
+            'DIFF', 'MOD','NOT',
 
             # Literals
             'ICONST', 'CCONST', 'SCONST'
@@ -109,10 +109,7 @@ class Lexer:
     t_MULCREASE = r'\*='
     t_DIVCREASE = r'/='
     t_MODCREASE = r'%='
-    t_MULVAL = r'\*='
-    t_DIVVAL = r'/='
     t_DIFF = r'!='
-    t_MODVAL = r'%='
     t_NOT = r'!'
     t_MOD = r'%'
 
