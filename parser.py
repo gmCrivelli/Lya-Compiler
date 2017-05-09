@@ -85,7 +85,7 @@ class Parser:
         p[0] = Identifier(p[1], lineno = p.lineno(1))
 
     def p_synonym_statement(self, p):
-        'synonym_statement : SYN synonym_list'
+        'synonym_statement : SYN synonym_list SEMI'
 
         ### Shouldn't be p[2]? (p[1] = SYN, p[2] = synonym_list)
         # p[0] = ('Synonym_statement', p[1], p.lineno(1))
@@ -142,32 +142,35 @@ class Parser:
         p[0] = p[1]
 
     def p_discrete_mode(self, p):
-        '''discrete_mode : INT
-                | BOOL
-                | CHAR
+        '''discrete_mode : integer_mode
+                | boolean_mode
+                | character_mode
                 | discrete_range_mode'''
         #p[0] = ('Discrete Mode', p[1], p.lineno(1))
         p[0] = p[1]
 
-    #def p_integer_mode(self, p):
-    #    '''integer_mode : INT'''
-    #    # p[0] = ('integer_mode', p[1], p.lineno(1))
-    #    p[0] = Integer_Mode(p[1], lineno = p.lineno(1))
+    def p_integer_mode(self, p):
+        '''integer_mode : INT'''
+        # p[0] = ('integer_mode', p[1], p.lineno(1))
+        p[0] = Integer_Mode(p[1], lineno = p.lineno(1))
 
-    #def p_boolean_mode(self, p):
-    #    '''boolean_mode : BOOL'''
-    #    # p[0] = ('boolean_mode', p[1], p.lineno(1))
-    #   p[0] = Boolean_Mode(p[1], lineno = p.lineno(1))
+    def p_boolean_mode(self, p):
+        '''boolean_mode : BOOL'''
+        # p[0] = ('boolean_mode', p[1], p.lineno(1))
+        p[0] = Boolean_Mode(p[1], lineno = p.lineno(1))
 
-    #def p_character_mode(self, p):
-    #    '''character_mode : CHAR'''
-    #    # p[0] = ('character_mode', p[1], p.lineno(1))
-    #   p[0] = Character_Mode(p[1], lineno = p.lineno(1))
+    def p_character_mode(self, p):
+        '''character_mode : CHAR'''
+        # p[0] = ('character_mode', p[1], p.lineno(1))
+        p[0] = Character_Mode(p[1], lineno = p.lineno(1))
 
     def p_discrete_range_mode(self, p):
         '''discrete_range_mode : identifier LPAREN literal_range RPAREN
                                | discrete_mode LPAREN literal_range RPAREN '''
-        p[0] = ('discrete_range_mode', p[1], p[2], p[3], p[4], p.lineno(1))
+        if isinstance(p[1], Identifier):
+            p[0] = Discrete_Range_Mode(p[1], p[3], None, lineno = p.lineno(1))
+        else:
+            p[0] = Discrete_Range_Mode(None, p[3], p[1], lineno = p.lineno(1))
 
     def p_mode_name(self, p):
         '''mode_name : identifier'''
@@ -913,6 +916,7 @@ while counter > 0:
     counter -= 1
     try:
         s = "dcl m,n,s int;" \
+            "syn k = \"hello\";"\
             "read(m,n);"\
             "s = 0;"\
             "do while m <= n;"\

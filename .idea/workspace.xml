@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b94fdf1e-cd9c-4c77-a6f7-44740909cd5e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/semantic.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Lya-Compiler.iml" afterPath="$PROJECT_DIR$/.idea/Lya-Compiler.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ast.py" afterPath="$PROJECT_DIR$/ast.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexer.py" afterPath="$PROJECT_DIR$/lexer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.out" afterPath="$PROJECT_DIR$/parser.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.py" afterPath="$PROJECT_DIR$/parser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parsetab.py" afterPath="$PROJECT_DIR$/parsetab.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/semantic.py" afterPath="$PROJECT_DIR$/semantic.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,76 +21,180 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="lexer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lexer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-100">
-              <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-              <folding>
-                <element signature="e#1#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5219">
-              <caret line="348" column="0" lean-forward="true" selection-start-line="348" selection-start-column="0" selection-end-line="348" selection-end-column="0" />
-              <folding>
-                <element signature="e#15#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ast.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1008">
-              <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sample.lya" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sample.lya">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/semantic.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="151" column="32" lean-forward="true" selection-start-line="151" selection-start-column="32" selection-end-line="151" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="semantic.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/semantic.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="237" column="31" lean-forward="false" selection-start-line="237" selection-start-column="23" selection-end-line="237" selection-end-column="31" />
-              <folding>
-                <element signature="e#102#112#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.42667845">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/ast.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="208">
+                  <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/parser.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="151">
+                  <caret line="135" column="14" lean-forward="false" selection-start-line="135" selection-start-column="8" selection-end-line="135" selection-end-column="14" />
+                  <folding>
+                    <element signature="e#15#38#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/semantic.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="189">
+                  <caret line="395" column="17" lean-forward="true" selection-start-line="395" selection-start-column="17" selection-end-line="395" selection-end-column="17" />
+                  <folding>
+                    <element signature="e#0#10#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/ast.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="151">
+                  <caret line="302" column="11" lean-forward="false" selection-start-line="302" selection-start-column="6" selection-end-line="302" selection-end-column="11" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/parser.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="151">
+                  <caret line="681" column="31" lean-forward="false" selection-start-line="681" selection-start-column="26" selection-end-line="681" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#15#38#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="semantic.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/semantic.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="146" column="0" lean-forward="true" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#10#0" expanded="true" />
+                    <marker date="1494361597000" expanded="true" signature="2210:14637" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="5730:5844" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="5882:5918" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="5960:6056" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="6099:6129" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="6169:6208" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="6250:6291" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="6379:6439" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="6480:6510" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="6557:6593" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="6660:6694" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="6737:6812" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="6854:6898" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="6939:7052" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="7093:7137" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="7179:7223" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="7265:7352" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="7439:7553" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="7596:7630" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="7636:7668" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="7712:7799" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="7843:7926" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="7972:8061" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="8103:8165" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="8218:8314" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="8362:8453" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="8499:8620" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="8670:8711" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="8764:8800" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="8869:9037" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="9084:9120" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="9164:9200" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="9244:9280" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="9325:9451" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="9498:9663" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="9669:9734" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="9780:9941" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="9947:10089" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="10134:10276" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="10282:10316" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="10364:10398" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="10443:10509" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="10546:10582" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="10588:10620" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="10666:10850" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="10856:10906" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="10944:11062" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="11135:11161" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="11260:11467" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="11505:11632" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="11673:11749" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="11755:11784" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="11829:11975" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="11981:12054" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="12100:12177" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="12219:12263" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="12269:12340" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="12383:12460" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="12539:12575" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="12615:12649" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="12691:12723" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="12765:12797" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="12803:12871" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="12912:12991" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="13051:13082" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="13179:13259" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="13308:13400" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="13473:13575" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="13649:13730" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="13773:13848" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="13915:13987" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="14035:14284" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="14322:14637" ph="..." />
+                    <marker date="1494361597000" expanded="true" signature="14331:14432" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="lya_parser.py" pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/lya_parser.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1230">
+                  <caret line="401" column="25" lean-forward="true" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="semantic.py" pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/semantic.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-3394">
+                  <caret line="240" column="33" lean-forward="true" selection-start-line="240" selection-start-column="33" selection-end-line="240" selection-end-column="33" />
+                  <folding>
+                    <element signature="e#102#112#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -104,33 +205,47 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>times</find>
-      <find>TIMES</find>
-      <find>operand0</find>
-      <find>factor</find>
-      <find>==</find>
-      <find>discrete_range_mode</find>
-      <find>m</find>
-      <find>id</find>
-      <find>od</find>
-      <find>do_action</find>
-      <find>modcrease</find>
-      <find>bracketed</find>
-      <find>type</find>
       <find>environ</find>
       <find>check_type</find>
-      <find>literal</find>
       <find>primiti</find>
-      <find>integer_literal</find>
       <find>map_liter</find>
       <find>visit_hel</find>
       <find>black_list</find>
       <find>program</find>
       <find>from_new_</find>
       <find>new_type</find>
+      <find>semi</find>
+      <find>syn</find>
+      <find>class</find>
+      <find>(AST)</find>
+      <find>_fields = ['</find>
+      <find>', '</find>
+      <find>print</find>
+      <find>integer_literal</find>
+      <find>primitive</find>
+      <find>mode</find>
+      <find>index_mode</find>
+      <find>bool</find>
+      <find>literal</find>
+      <find>p_discrete_mode</find>
+      <find>_Mode</find>
+      <find>p_mode</find>
+      <find>']</find>
+      <find>discrete_mode</find>
+      <find>assig</find>
+      <find>list</find>
+      <find>loop</find>
     </findStrings>
     <replaceStrings>
+      <replace>def visit_</replace>
+      <replace>(self, node)</replace>
+      <replace>self.visit(</replace>
+      <replace>)\nself.visit(node.</replace>
+      <replace>)\n\tself.visit(node.</replace>
+      <replace>)\n\t\tself.visit(node.</replace>
       <replace>type</replace>
+      <replace>self.visit(node.</replace>
+      <replace>)</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -140,11 +255,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/sample.lya" />
-        <option value="$PROJECT_DIR$/ast.py" />
         <option value="$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/meuCodigo" />
-        <option value="$PROJECT_DIR$/semantic.py" />
         <option value="$PROJECT_DIR$/lexer.py" />
+        <option value="$PROJECT_DIR$/ast.py" />
         <option value="$PROJECT_DIR$/parser.py" />
+        <option value="$PROJECT_DIR$/semantic.py" />
       </list>
     </option>
   </component>
@@ -215,7 +330,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Lya-Compiler" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/semantic.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/parser.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -712,46 +827,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lexer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+        <state relative-caret-position="151">
+          <caret line="44" column="12" lean-forward="false" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="12" />
           <folding>
             <element signature="e#1#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5219">
-          <caret line="348" column="0" lean-forward="true" selection-start-line="348" selection-start-column="0" selection-end-line="348" selection-end-column="0" />
-          <folding>
-            <element signature="e#15#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1008">
-          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/semantic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="237" column="31" lean-forward="false" selection-start-line="237" selection-start-column="23" selection-end-line="237" selection-end-column="31" />
+        <state relative-caret-position="-3394">
+          <caret line="240" column="33" lean-forward="true" selection-start-line="240" selection-start-column="33" selection-end-line="240" selection-end-column="33" />
           <folding>
             <element signature="e#102#112#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/lya_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1230">
+          <caret line="401" column="25" lean-forward="true" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ast.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="135" column="14" lean-forward="false" selection-start-line="135" selection-start-column="8" selection-end-line="135" selection-end-column="14" />
+          <folding>
+            <element signature="e#15#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/semantic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="151" column="32" lean-forward="true" selection-start-line="151" selection-start-column="32" selection-end-line="151" selection-end-column="32" />
+        <state relative-caret-position="189">
+          <caret line="395" column="17" lean-forward="true" selection-start-line="395" selection-start-column="17" selection-end-line="395" selection-end-column="17" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

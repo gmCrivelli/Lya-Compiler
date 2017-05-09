@@ -32,7 +32,12 @@ class NodeVisitor(object):
             return None
 
     def generic_visit(self,node):
+        #if not isinstance(node, AST):
+        #    print(node)
+        #    return
+
         node.print()
+
         """
         Method executed if no applicable visit_ method can be found.
         This examines the node to see if it has _fields, is a list,
@@ -126,16 +131,17 @@ class Mode_Definition(AST):
 
 # discrete_mode
 
-#class Integer_Mode(AST):
-#    _fields = ['INT']
+class Integer_Mode(AST):
+    _fields = ['INT']
 
-#class Boolean_Mode(AST):
-#    _fields = ['BOOL']
+class Boolean_Mode(AST):
+    _fields = ['BOOL']
 
-#class Character_Mode(AST):
-#    _fields = ['CHAR']
+class Character_Mode(AST):
+    _fields = ['CHAR']
 
-# discrete_range_mode STILL WORK TO BE DONE IN THIS LINE RIGHT HERE!!!
+class Discrete_Range_Mode(AST):
+    _fields = ['identifier', 'literal_range', 'discrete_mode']
 
 class Mode_Name(AST):
     _fields = ['identifier']
@@ -212,7 +218,7 @@ class Integer_Literal(AST):
     _fields = ['ICONST']
 
 class Boolean_Literal(AST):
-    _fields = ['bool']
+    _fields = ['BOOL']
 
 class Character_Literal(AST):
     _fields = ['CCONST']
