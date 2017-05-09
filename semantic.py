@@ -405,7 +405,6 @@ class Visitor(NodeVisitor):
     # start_value
     # step_value
     # end_value
-
     # discrete_expression
 
     def visit_Range_Enumeration(self, node):

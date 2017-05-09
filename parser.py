@@ -915,15 +915,43 @@ counter = 1
 while counter > 0:
     counter -= 1
     try:
-        s = "dcl m,n,s int;" \
-            "syn k = \"hello\";"\
-            "read(m,n);"\
-            "s = 0;"\
-            "do while m <= n;"\
-            "s += m * n;"\
-            "print(m,s);"\
-            "m += 1;"\
-            "od;"
+        s = "dcl m,n,s int; "\
+            "syn k = \"hello\"; "\
+            "read(m,n); "\
+            "s = 0; "\
+            "do while m <= n; "\
+            "s += m * n; "\
+            "print(m,s); "\
+            "m += 1; "\
+            "od; "
+
+        s = "/* Bubble sort code: */ "\
+        "dcl v array[0:100] int; "\
+        "dcl n, c, d, swap int; "\
+        "print(\"Enter number of elements: \"); "\
+        "read(n); "\
+        "print(\"Enter \", n, \" integers\\n\"); "\
+        "do "\
+        "for c = 0 to n - 1; "\
+        "read(v[c]); "\
+        "od; "\
+        "do "\
+        "for c = 0 to n-2; "\
+        "do "\
+        "for d = 0 to n-c-2; "\
+        "if v[d] > v[d + 1] then "\
+        "swap = v[d]; "\
+        "v[d] =  v[d + 1]; "\
+        "v[d + 1] = swap; "\
+        "fi; "\
+        "od; "\
+        "od; "\
+        "print(\"Sorted list in ascending order:\\n\"); "\
+        "do "\
+        "for c = 0 to n - 1; "\
+        "print(v[c], \" \"); "\
+        "od;"
+
     except EOFError:
         break
     if not s: continue
