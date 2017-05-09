@@ -30,17 +30,21 @@ class ExprType(object):
         self.supported_operators = []
 
 int_type = ExprType("int")
-int_type.unary_ops = ["PLUS", "MINUS", "TIMES", "DIVIDE", "MOD", "DIFF", "EQUAL"]
-int_type.bin_ops = ["PLUS", "MINUS", "TIMES", "DIVIDE", "MOD", "DIFF", "EQUAL"]
+int_type.unary_ops = ["-"]
+int_type.binary_ops = ["+", "-", "*", "/", "%", "!=", "==", ">", ">=", "<", "<="]
 
 bool_type = ExprType("bool")
-bool_type.supported_operators = ["AND", "OR",  "NOT", "DIFF", "EQUAL"]
+bool_type.unary_ops = ["!"]
+bool_type.binary_ops = ["==", "!="]
 
 char_type = ExprType("char")
+char_type.unary_ops = []
+char_type.binary_ops = []
 #char_type.supported_operators = ["PLUS", "MINUS",  "TIMES", "DIVIDE", "MOD"]
 
 string_type = ExprType("string")
-string_type.supported_operators = ["STRCAT"]
+string_type.unary_ops = []
+string_type.binary_ops = ["+", "==", "!="]
 
 class Environment(object):
     def __init__(self):
@@ -95,7 +99,6 @@ class Visitor(NodeVisitor):
         }
 
     def print_error(self, lineno, text):
-
         if lineno is None:
             e = "ERROR: "
         else:
@@ -130,54 +133,72 @@ class Visitor(NodeVisitor):
         node.environment = self.environment
         node.symtab = self.environment.peek()
         # Visit all of the statements
-        for stmts in node.stmts: self.visit(stmts)
+        if not node.stmts is None:
+            for stmts in node.stmts: self.visit(stmts)
 
     def visit_Declaration_Statement(self,node):
         # Visit all of the declarations
-        for dcl in node.declaration_list: self.visit(dcl)
+        if not node.declaration_list is None:
+            for dcl in node.declaration_list: self.visit(dcl)
 
     def visit_Declaration(self,node):
-        # Visit all of the identifiers
-        for ident in node.identifier_list: self.visit(ident)
         self.visit(node.mode)
         self.visit(node.initialization)
+
+        # Visit all of the identifiers
+        if not node.identifier_list is None:
+            for ident in node.identifier_list:
+                if not self.environment.lookup(ident.ID) is None:
+                    self.print_error(node.lineno, "Variable " + str(ident.ID) + " already declared")
+                else:
+                    self.environment.add_local(ident.ID, node.mode.type)
 
     def visit_Initialization(self, node):
         self.visit(node.expression)
 
     def visit_Identifier(self, node):
+        node.type = self.environment.lookup(node.ID)
+        #node.type =
         #self.visit(node.ID)
-        print("I'm visiting an identifier with ID " + str(node.ID))
+        print("I'm visiting an identifier with ID " + str(node.ID) + " and type " + str(node.type))
 
     def visit_Synonym_Statement(self, node):
         # Visit all of the synonyms
-        for syn in node.synonym_list:
-            self.visit(syn)
+        if not node.synonym_list is None:
+            for syn in node.synonym_list: self.visit(syn)
 
     def visit_Synonym_Definition(self, node):
-        for ident in node.identifier_list: self.visit(ident)
+        if not node.identifier_list is None:
+            for ident in node.identifier_list: self.visit(ident)
         self.visit(node.mode)
         self.visit(node.expression)
 
     def visit_Newmode_Statement(self, node):
         self.visit(node.type)
-        for newmode in node.newmode_list: self.visit(newmode)
+        if not node.newmode_list is None:
+            for newmode in node.newmode_list: self.visit(newmode)
 
     def visit_Mode_Definition(self, node):
-        for ident in node.identifier_list: self.visit(ident)
         self.visit(node.mode)
+
+        if not node.identifier_list is None:
+            for ident in node.identifier_list: self.visit(ident)
+
 
     def visit_Integer_Mode(self, node):
         #self.visit(node.INT)
         print("Integer Mode: " + str(node.INT))
+        node.type = self.typemap[node.INT]
 
     def visit_Boolean_Mode(self, node):
         #self.visit(node.BOOL)
         print("Boolean Mode" + str(node.BOOL))
+        node.type = self.typemap[node.BOOL]
 
     def visit_Character_Mode(self, node):
         #self.visit(node.CHAR)
         print("Character Mode" + str(node.CHAR))
+        node.type = self.typemap[node.CHAR]
 
     def visit_Discrete_Range_Mode(self, node):
         self.visit(node.identifier)
@@ -201,7 +222,8 @@ class Visitor(NodeVisitor):
         self.visit(node.integer_literal)
 
     def visit_Array_Mode(self, node):
-        for index_mode in node.index_mode_list: self.visit(index_mode)
+        if not node.index_mode_list is None:
+            for index_mode in node.index_mode_list: self.visit(index_mode)
         self.visit(node.element_mode)
 
     def visit_Element_Mode(self, node):
@@ -235,7 +257,8 @@ class Visitor(NodeVisitor):
 
     def visit_Array_Element(self, node):
         self.visit(node.array_location)
-        for expression in node.expression_list: self.visit(expression)
+        if not node.expression_list is None:
+            for expression in node.expression_list: self.visit(expression)
 
     # expression_list
 
@@ -253,15 +276,16 @@ class Visitor(NodeVisitor):
 
     def visit_Integer_Literal(self, node):
         #self.visit(node.ICONST)
-        print("Integer Literal: " + str(node.ICONST))
+        self.type = "int"
+        print("Integer Literal: " + str(node.value))
 
     def visit_Boolean_Literal(self, node):
         #self.visit(node.BOOL)
-        print("Boolean Literal: " + str(node.BOOL))
+        print("Boolean Literal: " + str(node.value))
 
     def visit_Character_Literal(self, node):
         #self.visit(node.CCONST)
-        print("Character Literal: " + str(node.CCONST))
+        print("Character Literal: " + str(node.value))
 
     def visit_Empty_Literal(self, node):
         #self.visit(node.NULL)
@@ -269,7 +293,7 @@ class Visitor(NodeVisitor):
 
     def visit_Character_String_Literal(self, node):
         #self.visit(node.SCONST)
-        print("Character String Literal: " + str(node.SCONST))
+        print("Character String Literal: " + str(node.value))
 
     def visit_Value_Array_Element(self, node):
         self.visit(node.array_primitive_value)
@@ -311,7 +335,7 @@ class Visitor(NodeVisitor):
     def visit_Rel_Mem_Expression(self, node):
         self.visit(node.operand0)
         #self.visit(node.operator1)
-        print("Relacional operator: " + str(node.operator1))
+        print("Relational or Membership operator: " + str(node.operator1))
         self.visit(node.operand1)
 
     # operator1
@@ -322,9 +346,10 @@ class Visitor(NodeVisitor):
 
     def visit_Binary_Expression(self, node):
         self.visit(node.operand1)
+        self.visit(node.operand2)
         #self.visit(node.operator2)
         print("Binary operator: " + str(node.operator2))
-        self.visit(node.operand2)
+        node.type = self.raw_type_binary(node, node.operator2, node.operand1, node.operand2)
 
     # operator2
 
@@ -340,6 +365,8 @@ class Visitor(NodeVisitor):
         #self.visit(node.monadic_operator)
         print("Monadic operator: " + str(node.monadic_operator))
         self.visit(node.operand4)
+        node.type = self.raw_type_unary(node, node.monadic_operator, node.operand4)
+
 
     # monadic_operator
 
@@ -375,19 +402,22 @@ class Visitor(NodeVisitor):
         self.visit(node.else_clause)
 
     def visit_Then_Clause(self, node):
-        for action_statement in node.action_statement_list: self.visit(action_statement)
+        if not node.action_statement_list is None:
+            for action_statement in node.action_statement_list: self.visit(action_statement)
 
     # action_statement_list
 
     def visit_Else_Clause(self, node):
-        for action_statement in node.action_statement_list: self.visit(action_statement)
+        if not node.action_statement_list is None:
+            for action_statement in node.action_statement_list: self.visit(action_statement)
         self.visit(node.boolean_expression)
         self.visit(node.then_clause)
         self.visit(node.else_clause)
 
     def visit_Do_Action(self, node):
         self.visit(node.control_part)
-        for action_statement in node.action_statement_list: self.visit(action_statement)
+        if not node.action_statement_list is None:
+            for action_statement in node.action_statement_list: self.visit(action_statement)
 
     def visit_Control_Part(self, node):
         self.visit(node.for_control)
@@ -419,7 +449,8 @@ class Visitor(NodeVisitor):
 
     def visit_Procedure_Call(self, node):
         self.visit(node.identifier)
-        for param in node.parameter_list: self.visit(param)
+        if not node.parameter_list is None:
+            for param in node.parameter_list: self.visit(param)
 
     # parameter_list
 
@@ -440,7 +471,8 @@ class Visitor(NodeVisitor):
 
     def visit_Builtin_Call(self, node):
         self.visit(node.builtin_name)
-        for param in node.parameter_list: self.visit(param)
+        if not node.parameter_list is None:
+            for param in node.parameter_list: self.visit(param)
 
     def visit_Builtin_Name(self, node):
         #self.visit(node.name)
@@ -452,7 +484,8 @@ class Visitor(NodeVisitor):
 
     def visit_Procedure_Definition(self, node):
         self.visit(node.formal_procedure_head)
-        for statement in node.statement_list: self.visit(statement)
+        if not node.statement_list is None:
+            for statement in node.statement_list: self.visit(statement)
 
     def visit_Formal_Procedure_Head(self, node):  # I HAVE NO IDEA
         self.visit(node.formal_parameter_list)
@@ -473,21 +506,3 @@ class Visitor(NodeVisitor):
     def visit_Result_Spec(self, node):
         self.visit(node.mode)
         self.visit(node.result_attribute)
-
-
-#########
-    def visit_UnaryExpr(self,node):
-        self.visit(node.expr)
-        # Make sure that the operation is supported by the type
-        raw_type = self.raw_type_unary(node, node.op, node.expr)
-        # Set the result type to the same as the operand
-        node.raw_type = raw_type
-
-    def visit_BinaryExpr(self,node):
-        # Make sure left and right operands have the same type
-        # Make sure the operation is supported
-        self.visit(node.left)
-        self.visit(node.right)
-        raw_type = self.raw_type_binary(node, node.op, node.left, node.right)
-        # Assign the result type
-        node.raw_type = raw_type

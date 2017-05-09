@@ -215,19 +215,19 @@ class Array_Location(AST):
 # literal
 
 class Integer_Literal(AST):
-    _fields = ['ICONST']
+    _fields = ['value']
 
 class Boolean_Literal(AST):
-    _fields = ['BOOL']
+    _fields = ['value']
 
 class Character_Literal(AST):
-    _fields = ['CCONST']
+    _fields = ['value']
 
 class Empty_Literal(AST):
-    _fields = ['NULL']
+    _fields = ['value']
 
 class Character_String_Literal(AST):
-    _fields = ['SCONST']
+    _fields = ['value']
 
 class Value_Array_Element(AST):
     _fields = ['array_primitive_value', 'integer_expression']

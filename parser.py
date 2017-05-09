@@ -904,8 +904,7 @@ class Parser:
 
     # Error rule for syntax errors
     def p_error(self,p):
-        print("Syntax error in input!")
-        print(p)
+        print("Syntax error in input! Found " + str(p))
 
     def parse(self, text):
         return self.parser.parse(text, self.lexer)
@@ -951,6 +950,8 @@ while counter > 0:
         "for c = 0 to n - 1; "\
         "print(v[c], \" \"); "\
         "od;"
+
+        s = "dcl a int; a = 10; dcl b int; a += a + b;"
 
     except EOFError:
         break
