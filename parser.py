@@ -67,7 +67,8 @@ class Parser:
         'initialization : ASSIGN expression'
         # p[0] = ('Initialization', p[1], p[2], p.lineno(1))
 
-        p[0] = Initialization(p[2], lineno = p.lineno(1))
+        #p[0] = Initialization(p[2], lineno = p.lineno(1))
+        p[0] = p[2]
 
     def p_identifier_list(self, p):
         '''identifier_list : identifier
@@ -101,12 +102,12 @@ class Parser:
             p[0] = p[1] + [p[2]]
 
     def p_synonym_definition(self, p):
-        '''synonym_definition : identifier_list ASSIGN expression
-                              | identifier_list mode ASSIGN expression'''
-        if (len(p) == 4):
-            p[0] = Synonym_Definition(p[1], None, p[3], lineno = p.lineno(1))
-        elif (len(p) == 5):
-            p[0] = Synonym_Definition(p[1], p[2], p[4], lineno = p.lineno(1))
+        '''synonym_definition : identifier_list initialization
+                              | identifier_list mode initialization'''
+        if (len(p) == 3):
+            p[0] = Synonym_Definition(p[1], None, p[2], lineno = p.lineno(1))
+        elif (len(p) == 4):
+            p[0] = Synonym_Definition(p[1], p[2], p[3], lineno = p.lineno(1))
 
     #def p_constant_expression(self, p):
     #    'constant_expression : expression'
@@ -405,7 +406,8 @@ class Parser:
         '''parenthesized_expression : LPAREN expression RPAREN'''
         # p[0] = ('parenthesized_expression', p[1], p[2], p[3], p.lineno(1))
 
-        p[0] = Parenthesized_Expression(p[2], lineno = p.lineno(1))
+        #p[0] = Parenthesized_Expression(p[2], lineno = p.lineno(1))
+        p[0] = p[2]
 
     def p_expression(self, p):
         '''expression : operand0
@@ -759,9 +761,9 @@ class Parser:
         '''procedure_call :  identifier LPAREN RPAREN
                           | identifier LPAREN parameter_list RPAREN'''
         if (len(p) == 4):
-            p[0] = Procedure_call(p[1], None, lineno = p.lineno(1))
+            p[0] = Procedure_Call(p[1], None, lineno = p.lineno(1))
         elif (len(p) == 5):
-            p[0] = Procedure_call(p[1], p[3], lineno = p.lineno(1))
+            p[0] = Procedure_Call(p[1], p[3], lineno = p.lineno(1))
 
     def p_parameter_list(self, p):
         '''parameter_list :  parameter
@@ -835,9 +837,10 @@ class Parser:
         '''formal_procedure_head : PROC parenthesis_gambiarra SEMI
                                  | PROC parenthesis_gambiarra result_spec SEMI'''
         if (len(p) == 4):
-            Formal_Procedure_Head(p[2], None, lineno = p.lineno(1))
+            p[0] = Formal_Procedure_Head(p[2], None, lineno = p.lineno(1))
         elif (len(p) == 5):
-            Formal_Procedure_Head(p[2], p[3], lineno = p.lineno(1))
+            p[0] = Formal_Procedure_Head(p[2], p[3], lineno = p.lineno(1))
+
 
     def p_parenthesis_gambiarra(self, p):
         '''parenthesis_gambiarra : LPAREN RPAREN
@@ -852,38 +855,38 @@ class Parser:
                                  |  formal_parameter_list COMMA formal_parameter'''
         if (len(p) == 2):
             p[0] = [p[1]]
-        elif (len(p) == 3):
-            p[0] = p[1] + [p[2]]
+        elif (len(p) == 4):
+            p[0] = p[1] + [p[3]]
 
     def p_formal_parameter(self, p):
         '''formal_parameter :  identifier_list parameter_spec'''
-        Formal_Parameter(p[1], p[2], lineno = p.lineno(1))
+        p[0] = Formal_Parameter(p[1], p[2], lineno = p.lineno(1))
 
     def p_parameter_spec(self, p):
         '''parameter_spec :  mode
-                          |  mode parameter_attribute'''
+                          |  mode LOC'''
         if(len(p) == 2):
-            Parameter_Spec(p[1], None, lineno = p.lineno(1))
+            p[0] = Parameter_Spec(p[1], None, lineno = p.lineno(1))
         elif(len(p) == 3):
-            Parameter_Spec(p[1], p[2], lineno = p.lineno(1))
+            p[0] = Parameter_Spec(p[1], p[2], lineno = p.lineno(1))
 
-    def p_parameter_attribute(self, p):
-        '''parameter_attribute :  LOC'''
-        #p[0] = ("parameter_attribute", p[1], p.lineno(1))
-        p[0] = p[1]
+    #def p_parameter_attribute(self, p):
+    #    '''parameter_attribute :  LOC'''
+    #    #p[0] = ("parameter_attribute", p[1], p.lineno(1))
+    #    p[0] = p[1]
 
     def p_result_spec(self, p):
         '''result_spec  :  RETURNS LPAREN mode RPAREN
-                        |  RETURNS LPAREN mode result_attribute RPAREN'''
+                        |  RETURNS LPAREN mode LOC RPAREN'''
         if(len(p) == 5):
             p[0] = Result_Spec(p[3], None, lineno = p.lineno(1))
         elif(len(p) == 6):
             p[0] = Result_Spec(p[3], p[4], lineno = p.lineno(1))
 
-    def p_result_attribute(self, p):
-        '''result_attribute :  LOC'''
-        #p[0] = ("result_attribute", p[1], p.lineno(1))
-        p[0] = p[1]
+    #def p_result_attribute(self, p):
+    #    '''result_attribute :  LOC'''
+    #    #p[0] = ("result_attribute", p[1], p.lineno(1))
+    #    p[0] = p[1]
 
     #def p_comment(self, p):
     #    '''comment :  bracketed_comment
@@ -925,7 +928,6 @@ while counter > 0:
             "od; "
 
         s = "/* Bubble sort code: */ "\
-        "dcl v array[0:100] int; "\
         "dcl n, c, d, swap int; "\
         "print(\"Enter number of elements: \"); "\
         "read(n); "\
@@ -951,8 +953,26 @@ while counter > 0:
         "print(v[c], \" \"); "\
         "od;"
 
-        s = "dcl a int; a = 10; dcl b int; a += a + b;"
-        s = "dcl a,b bool; a = false; b = false; a = b || a;"
+
+        #s = "dcl a,b bool; a = false; b = false; a = b || a;"
+
+        #s = "if v[d] > v[d + 1] then " \
+        #    "swap = v[d]; " \
+        #    "v[d] =  v[d + 1]; " \
+        #    "v[d + 1] = swap; " \
+        #    "fi; "
+
+        #s = "dcl s chars[10];"
+
+        #s = "syn a int = 10; dcl b int; a += a + b;"
+
+        #s = "g: proc(t int); return \"cgasg\"; dcl x int; t *= 2; x = 2 * t; z = x + 1; end; nope(5) = 2;"
+
+        s = "/* example2: */"\
+        "dcl z, t int;"\
+        "g: proc(t int); dcl x int; t *= 2; x = 2 * t; z = x + 1; end;"\
+        "z = 3; t = 4; g(t); print(z, t); g(z); print(z, t); g(t + z); print(z, t); g(7); print(z, t);"
+
 
     except EOFError:
         break

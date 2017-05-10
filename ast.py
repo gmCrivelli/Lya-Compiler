@@ -114,7 +114,7 @@ class Synonym_Statement(AST):
 # synonym_list
 
 class Synonym_Definition(AST):
-    _fields = ['identifier_list', 'mode', 'expression']
+    _fields = ['identifier_list', 'mode', 'initialization']
 
 #class Constant_Expression(AST):
 #    _fields = ['expression']
@@ -377,7 +377,7 @@ class Procedure_Statement(AST):
 class Procedure_Definition(AST):
     _fields = ['formal_procedure_head', 'statement_list']
 
-class Formal_Procedure_Head(AST): # I HAVE NO IDEA
+class Formal_Procedure_Head(AST):
     _fields = ['formal_parameter_list', 'result_spec']
 
 #formal_parameter_list
