@@ -37,6 +37,7 @@ class ExprType(object):
         return self.type
 
 relational_ops = ["!=", "==", ">", ">=", "<", "<="]
+membership_ops = ["in"]
 
 int_type = ExprType("int",["-"],["+", "-", "*", "/", "%", "!=", "==", ">", ">=", "<", "<="],['+=','-=','*=','/=','%='],0)
 bool_type = ExprType("bool",["!"],["==", "!="],[],False)
@@ -174,7 +175,7 @@ class Visitor(NodeVisitor):
         if not node.initialization is None:
             self.visit(node.initialization)
             if(node.mode.type != node.initialization.type):
-                self.print_error(node.lineno, "Mismatched type initialization, expected " + node.mode.type + ", found " + node.initialization.type)
+                self.print_error(node.lineno, "Mismatched type initialization, expected " + str(node.mode.type) + ", found " + str(node.initialization.type))
 
         # Visit all of the identifiers
         if not node.identifier_list is None:
@@ -228,10 +229,9 @@ class Visitor(NodeVisitor):
 
     def visit_Mode_Definition(self, node):
         self.visit(node.mode)
-
+        newtype = node.mode.type
         if not node.identifier_list is None:
             for ident in node.identifier_list: self.visit(ident)
-
 
     def visit_Integer_Mode(self, node):
         #self.visit(node.INT)
@@ -412,23 +412,48 @@ class Visitor(NodeVisitor):
     def visit_Boolean_Expression(self, node):
         print("Boolean expression")
         self.visit(node.expression)
-        if (node.expression.type != self.typemap['bool']):
+        exp_type = None
+        if node.expression.type != None:
+            if isinstance(node.expression, Identifier):
+                exp_type = node.expression.type[1]
+            else:
+                exp_type = node.expression.type
+
+        if (exp_type != self.typemap['bool']):
             self.print_error(node.lineno, "Expected boolean expression, found {}".format(node.expression.type))
-        node.type = node.expression.type
+        node.type = exp_type
 
     def visit_Then_Expression(self, node):
         print("Then expression")
         self.visit(node.expression)
+        if isinstance(node.expression, Identifier):
+            exp_type = node.expression.type[1]
+        else:
+            exp_type = node.expression.type
+        node.type = exp_type
 
     def visit_Else_Expression(self, node):
         print("Else expression")
         self.visit(node.expression)
+        if isinstance(node.expression, Identifier):
+            exp_type = node.expression.type[1]
+        else:
+            exp_type = node.expression.type
+        node.type = exp_type
 
     def visit_Elsif_Expression(self, node):
         print("Elsif expression")
-        self.visit(node.elsif_expression)
+
         self.visit(node.boolean_expresson)
         self.visit(node.then_expression)
+        then_type = node.then_expression.type
+        if not node.elsif_expression is None:
+            self.visit(node.elsif_expression)
+            elsif_type = node.elsif_expression.type
+            if(then_type != elsif_type):
+                self.print_error(node.lineno, "Mismatching types in Elsif expression {} and {}".format(then_type, elsif_type))
+        node.type = then_type
+
 
     def visit_Rel_Mem_Expression(self, node):
         self.visit(node.operand0)
@@ -590,6 +615,7 @@ class Visitor(NodeVisitor):
     def visit_Procedure_Call(self, node):
         self.visit(node.identifier)
         type = self.environment.lookup(node.identifier.ID)
+        node.type = type[1]
         if type is None:
             self.print_error(node.lineno,"Procedure {} not found".format(node.identifier.ID))
         elif (type[0] != 'proc'):

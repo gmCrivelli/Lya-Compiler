@@ -758,7 +758,7 @@ class Parser:
         p[0] = p[1]
 
     def p_procedure_call(self, p):
-        '''procedure_call :  identifier LPAREN RPAREN
+        '''procedure_call : identifier LPAREN RPAREN
                           | identifier LPAREN parameter_list RPAREN'''
         if (len(p) == 4):
             p[0] = Procedure_Call(p[1], None, lineno = p.lineno(1))
@@ -907,7 +907,7 @@ class Parser:
 
     # Error rule for syntax errors
     def p_error(self,p):
-        print("Syntax error in input! Found " + str(p))
+        print("Syntax error in input! Found unknown " + str(p))
 
     def parse(self, text):
         return self.parser.parse(text, self.lexer)
@@ -964,9 +964,9 @@ while counter > 0:
 
         #s = "dcl s chars[10];"
 
-        #s = "syn a int = 10; dcl b int; a += a + b;"
+        s = "syn a int = 10; dcl b int; a += a + b;"
 
-        s = "g: proc(t int); return \"cgasg\"; dcl x int; t *= 2; x = 2 * t; z = x + 1; end; nope(5) = 2;"
+        #s = "g: proc(t int); return \"cgasg\"; dcl x int; t *= 2; x = 2 * t; z = x + 1; end; nope(5) = 2;"
 
         #s = "/* example2: */"\
         #"dcl z, t int;"\
@@ -985,20 +985,37 @@ while counter > 0:
         #"reverse = reverse + t % 10; t = t / 10; od; if n == reverse then "\
         #"print(n, \" is a palindrome number.\\n\"); else print(n, \" is not a palindrome number.\\n\"); fi;"
 
-        #s = "/* Check Armstrong Number: */"\
-        #"power: proc(n int, r int) returns(int); dcl c int, p int = 1; do for c = 1 to r;  p = p * n; od; return p; end;"\
-        #"dcl n int, sum int = 0; dcl temp, remainder int, digits int = 0;"\
-        #"print(\"Input an integer: \"); read(n); temp = n; do while temp != 0; digits += 1; temp = temp / 10; od; temp = n;"\
-        #"do while temp != 0; remainder = temp % 10; sum = sum + power(remainder, digits); temp = temp / 10; od;"\
-        #"if n == sum then print(n, \" is an Armstrong number.\\n\"); else print(n, \" is not an Armstrong number.\\n\"); fi;"\
-
-
+        s = "/* Check Armstrong Number: */"\
+        "power: proc(n int, r int) returns(int); dcl c int, p int = 1; do for c = 1 to r;  p = p * n; od; return p; end;"\
+        "dcl n int, sum int = 0; dcl temp, remainder int, digits int = 0;"\
+        "print(\"Input an integer: \"); read(n); temp = n; do while temp != 0; digits += 1; temp = temp / 10; od; temp = n;"\
+        "do while temp != 0; remainder = temp % 10; sum = sum + power(remainder, digits); temp = temp / 10; od;"\
+        "if n == sum then print(n, \" is an Armstrong number.\\n\"); else print(n, \" is not an Armstrong number.\\n\"); fi;"\
 
     except EOFError:
         break
+
     if not s: continue
+    result = Parser()
+    ast = result.parse(s)
+    nv = Visitor()
+    nv.visit(ast)
+
+
+# Run parser on given file
+def main():
+    file_name = sys.argv[1]
+
+    # Read given file
+    file = open(file_name, "r")
+
+    s = file.read()
+
     result = Parser()
     ast = result.parse(s)
 
     nv = Visitor()
     nv.visit(ast)
+
+
+if __name__ == "__main__": main()

@@ -32,9 +32,9 @@ class NodeVisitor(object):
             return None
 
     def generic_visit(self,node):
-        #if not isinstance(node, AST):
-        #    print(node)
-        #    return
+        if not isinstance(node, AST):
+            print(node)
+            return
 
         node.print()
 

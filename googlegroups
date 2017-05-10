@@ -1,0 +1,21 @@
+/* some tests for syntax analysis */
+
+p1:proc ();
+  dcl x int = 3;
+end;
+p1();
+
+p2:proc () returns (int);
+  dcl x int = 3;
+  return x;
+end;
+dcl y1 int = p1();
+print(y1, p2());
+
+
+dcl bb, c, d bool;
+dcl xx, yy, zz, ww int;
+
+xx = if bb then yy else zz fi;
+ww = if bb then xx elsif c then yy else zz fi;
+print (if d then xx elsif c then yy elsif b then zz else ww fi);
