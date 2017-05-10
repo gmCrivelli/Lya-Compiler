@@ -29,6 +29,9 @@ class ExprType(object):
         self.type = type
         self.supported_operators = []
 
+    def __str__(self):
+        return self.type
+
 int_type = ExprType("int")
 int_type.unary_ops = ["-"]
 int_type.binary_ops = ["+", "-", "*", "/", "%", "!=", "==", ">", ">=", "<", "<="]
@@ -113,10 +116,10 @@ class Visitor(NodeVisitor):
             return val.type
 
     def raw_type_binary(self, node, op, left, right):
-        if hasattr(left, "type") and hasattr(right, "type"):
+        if hasattr(left, "type") and hasattr(right, "type"):                
             if left.type != right.type:
                 self.print_error(node.lineno,
-                "Binary operator {} does not have matching types".format(op))
+                "Binary operator {} does not have matching types: {} and {}".format(op, left.type, right.type))
                 return left.type
             errside = None
             if op not in left.type.binary_ops:
@@ -126,7 +129,13 @@ class Visitor(NodeVisitor):
             if errside is not None:
                 self.print_error(node.lineno,
                       "Binary operator {} not supported on {} of expression".format(op, errside))
-        return left.type
+            return left.type
+        if(not hasattr(left, "type")):
+            self.print_error(node.lineno,
+            "Operator {} has no type".format(left))
+        else:
+            self.print_error(node.lineno,
+            "Operator {} has no type".format(right))
 
     def visit_Program(self,node):
         self.environment.push(node)
@@ -160,7 +169,11 @@ class Visitor(NodeVisitor):
         node.type = self.environment.lookup(node.ID)
         #node.type =
         #self.visit(node.ID)
-        print("I'm visiting an identifier with ID " + str(node.ID) + " and type " + str(node.type))
+        if(node.type != None):
+            print("I'm visiting an identifier with ID \"" + str(node.ID) + "\" and type \"" + str(node.type) + "\"")
+        else:
+            self.print_error(node.lineno,
+            "Variable {} was not defined".format(node.ID))
 
     def visit_Synonym_Statement(self, node):
         # Visit all of the synonyms
@@ -192,12 +205,12 @@ class Visitor(NodeVisitor):
 
     def visit_Boolean_Mode(self, node):
         #self.visit(node.BOOL)
-        print("Boolean Mode" + str(node.BOOL))
+        print("Boolean Mode: " + str(node.BOOL))
         node.type = self.typemap[node.BOOL]
 
     def visit_Character_Mode(self, node):
         #self.visit(node.CHAR)
-        print("Character Mode" + str(node.CHAR))
+        print("Character Mode: " + str(node.CHAR))
         node.type = self.typemap[node.CHAR]
 
     def visit_Discrete_Range_Mode(self, node):
@@ -277,15 +290,18 @@ class Visitor(NodeVisitor):
     def visit_Integer_Literal(self, node):
         #self.visit(node.ICONST)
         self.type = "int"
+        node.type = self.typemap["int"]
         print("Integer Literal: " + str(node.value))
 
     def visit_Boolean_Literal(self, node):
         #self.visit(node.BOOL)
         print("Boolean Literal: " + str(node.value))
+        node.type = self.typemap["bool"]
 
     def visit_Character_Literal(self, node):
         #self.visit(node.CCONST)
         print("Character Literal: " + str(node.value))
+        node.type = self.typemap["char"]
 
     def visit_Empty_Literal(self, node):
         #self.visit(node.NULL)
@@ -391,6 +407,20 @@ class Visitor(NodeVisitor):
         #self.visit(node.assigning_operator)
         print("Assigning operator: " + str(node.assigning_operator))
         self.visit(node.expression)
+
+        if(hasattr(node.location, "type") and hasattr(node.expression, "type")):
+            if(node.location.type != node.expression.type):
+                self.print_error(node.lineno,
+                "Assignment has different types: {} and {}".format(node.location.type, node.expression.type))
+
+        if(not hasattr(node.location, "type")):
+            self.print_error(node.lineno,
+            "Location {} has no type".format(node.location))
+        if(not hasattr(node.expression, "type")):
+            self.print_error(node.lineno,
+            "Expression {} has no type".format(node.expression))
+
+
 
     # assigning_operator
 

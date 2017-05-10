@@ -952,6 +952,7 @@ while counter > 0:
         "od;"
 
         s = "dcl a int; a = 10; dcl b int; a += a + b;"
+        s = "dcl a,b bool; a = false; b = false; a = b || a;"
 
     except EOFError:
         break
@@ -961,4 +962,3 @@ while counter > 0:
 
     nv = Visitor()
     nv.visit(ast)
-
