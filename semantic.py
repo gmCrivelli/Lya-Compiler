@@ -685,7 +685,7 @@ class Visitor(NodeVisitor):
             result_type = 'void'
         else:
             self.visit(node.result_spec)
-            result_type = node.return_spec.mode.type
+            result_type = node.result_spec.mode.type
 
         proc_name = self.environment.peek().return_type().replace("PROCEDURE DECLARATION ","")
         print(proc_name)

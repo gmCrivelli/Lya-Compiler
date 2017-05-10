@@ -37,9 +37,10 @@
                   <caret line="260" column="24" lean-forward="true" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
                   <folding>
                     <element signature="e#15#38#0" expanded="true" />
-                    <marker date="1494425752000" expanded="true" signature="33617:35628" ph="..." />
-                    <marker date="1494425752000" expanded="true" signature="35006:35229" ph="&quot;...&quot;" />
-                    <marker date="1494425752000" expanded="true" signature="35244:35364" ph="&quot;...&quot;" />
+                    <marker date="1494427428000" expanded="true" signature="33617:35630" ph="..." />
+                    <marker date="1494427428000" expanded="true" signature="35005:35228" ph="&quot;...&quot;" />
+                    <marker date="1494427428000" expanded="true" signature="35243:35363" ph="&quot;...&quot;" />
+                    <marker date="1494427428000" expanded="true" signature="35378:35630" ph="&quot;...&quot;" />
                   </folding>
                 </state>
               </provider>
@@ -48,8 +49,8 @@
           <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/semantic.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="485">
-                  <caret line="695" column="36" lean-forward="false" selection-start-line="695" selection-start-column="36" selection-end-line="695" selection-end-column="36" />
+                <state relative-caret-position="396">
+                  <caret line="679" column="59" lean-forward="true" selection-start-line="679" selection-start-column="59" selection-end-line="679" selection-end-column="59" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
@@ -76,8 +77,8 @@
           <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ast.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-845">
-                  <caret line="293" column="12" lean-forward="false" selection-start-line="293" selection-start-column="12" selection-end-line="293" selection-end-column="12" />
+                <state relative-caret-position="279">
+                  <caret line="370" column="24" lean-forward="true" selection-start-line="370" selection-start-column="24" selection-end-line="370" selection-end-column="24" />
                   <folding />
                 </state>
               </provider>
@@ -86,8 +87,8 @@
           <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/parser.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1707">
-                  <caret line="837" column="71" lean-forward="false" selection-start-line="837" selection-start-column="62" selection-end-line="837" selection-end-column="71" />
+                <state relative-caret-position="329">
+                  <caret line="968" column="8" lean-forward="false" selection-start-line="968" selection-start-column="8" selection-end-line="968" selection-end-column="8" />
                   <folding>
                     <element signature="e#15#38#0" expanded="true" />
                   </folding>
@@ -162,7 +163,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.type</find>
       <find>parameter</find>
       <find>procedure</find>
       <find>identifier_list</find>
@@ -192,6 +192,7 @@
       <find>string_ele</find>
       <find>&lt;</find>
       <find>integer_expr</find>
+      <find>result_sp</find>
     </findStrings>
     <replaceStrings>
       <replace>def visit_</replace>
@@ -216,8 +217,8 @@
         <option value="$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/meuCodigo" />
         <option value="$PROJECT_DIR$/lexer.py" />
         <option value="$PROJECT_DIR$/ast.py" />
-        <option value="$PROJECT_DIR$/parser.py" />
         <option value="$PROJECT_DIR$/semantic.py" />
+        <option value="$PROJECT_DIR$/parser.py" />
       </list>
     </option>
   </component>
@@ -554,9 +555,6 @@
           <caret line="480" column="39" lean-forward="true" selection-start-line="480" selection-start-column="39" selection-end-line="480" selection-end-column="39" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494425752000" expanded="true" signature="33617:35628" ph="..." />
-            <marker date="1494425752000" expanded="true" signature="35006:35229" ph="&quot;...&quot;" />
-            <marker date="1494425752000" expanded="true" signature="35244:35364" ph="&quot;...&quot;" />
           </folding>
         </state>
       </provider>
@@ -605,9 +603,6 @@
           <caret line="576" column="28" lean-forward="false" selection-start-line="576" selection-start-column="19" selection-end-line="576" selection-end-column="28" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494425752000" expanded="true" signature="33617:35628" ph="..." />
-            <marker date="1494425752000" expanded="true" signature="35006:35229" ph="&quot;...&quot;" />
-            <marker date="1494425752000" expanded="true" signature="35244:35364" ph="&quot;...&quot;" />
           </folding>
         </state>
       </provider>
@@ -668,9 +663,6 @@
           <caret line="168" column="18" lean-forward="false" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494425752000" expanded="true" signature="33617:35628" ph="..." />
-            <marker date="1494425752000" expanded="true" signature="35006:35229" ph="&quot;...&quot;" />
-            <marker date="1494425752000" expanded="true" signature="35244:35364" ph="&quot;...&quot;" />
           </folding>
         </state>
       </provider>
@@ -691,9 +683,6 @@
           <caret line="374" column="35" lean-forward="false" selection-start-line="374" selection-start-column="35" selection-end-line="374" selection-end-column="35" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494425752000" expanded="true" signature="33617:35628" ph="..." />
-            <marker date="1494425752000" expanded="true" signature="35006:35229" ph="&quot;...&quot;" />
-            <marker date="1494425752000" expanded="true" signature="35244:35364" ph="&quot;...&quot;" />
           </folding>
         </state>
       </provider>
@@ -736,9 +725,6 @@
           <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494425752000" expanded="true" signature="33617:35628" ph="..." />
-            <marker date="1494425752000" expanded="true" signature="35006:35229" ph="&quot;...&quot;" />
-            <marker date="1494425752000" expanded="true" signature="35244:35364" ph="&quot;...&quot;" />
           </folding>
         </state>
       </provider>
@@ -759,9 +745,6 @@
           <caret line="60" column="35" lean-forward="false" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494425752000" expanded="true" signature="33617:35628" ph="..." />
-            <marker date="1494425752000" expanded="true" signature="35006:35229" ph="&quot;...&quot;" />
-            <marker date="1494425752000" expanded="true" signature="35244:35364" ph="&quot;...&quot;" />
           </folding>
         </state>
       </provider>
@@ -937,31 +920,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="379" column="33" lean-forward="true" selection-start-line="379" selection-start-column="33" selection-end-line="379" selection-end-column="33" />
+        <state relative-caret-position="279">
+          <caret line="370" column="24" lean-forward="true" selection-start-line="370" selection-start-column="24" selection-end-line="370" selection-end-column="24" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="260" column="24" lean-forward="true" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
-          <folding>
-            <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494425752000" expanded="true" signature="33617:35628" ph="..." />
-            <marker date="1494425752000" expanded="true" signature="35006:35229" ph="&quot;...&quot;" />
-            <marker date="1494425752000" expanded="true" signature="35244:35364" ph="&quot;...&quot;" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/semantic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="695" column="36" lean-forward="false" selection-start-line="695" selection-start-column="36" selection-end-line="695" selection-end-column="36" />
+        <state relative-caret-position="-286">
+          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="968" column="8" lean-forward="false" selection-start-line="968" selection-start-column="8" selection-end-line="968" selection-end-column="8" />
+          <folding>
+            <element signature="e#15#38#0" expanded="true" />
           </folding>
         </state>
       </provider>

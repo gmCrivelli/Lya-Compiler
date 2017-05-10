@@ -966,7 +966,7 @@ while counter > 0:
 
         #s = "syn a int = 10; dcl b int; a += a + b;"
 
-        #s = "g: proc(t int); return \"cgasg\"; dcl x int; t *= 2; x = 2 * t; z = x + 1; end; nope(5) = 2;"
+        s = "g: proc(t int); return \"cgasg\"; dcl x int; t *= 2; x = 2 * t; z = x + 1; end; nope(5) = 2;"
 
         #s = "/* example2: */"\
         #"dcl z, t int;"\
@@ -976,14 +976,23 @@ while counter > 0:
         #s = "/ *example1: * /"\
         #"dcl m, n, s int; read(m, n); s = 0; do while m <= n; s += m * n; print(m, s); m += 1; od;"
 
-        s = "/*Compute the Fibonacci of an integer */"\
-        "fibo: proc(n int, g int loc); dcl h int; if n < 0 then print(g); return;"\
-        "else h = g; fibo(n - 1, h); g = h; fibo(n - 2, g); fi; print(n, g); end; dcl k int = 0; fibo(3, k); fibo(-1, k);"
+        #s = "/*Compute the Fibonacci of an integer */"\
+        #"fibo: proc(n int, g int loc); dcl h int; if n < 0 then print(g); return;"\
+        #"else h = g; fibo(n - 1, h); g = h; fibo(n - 2, g); fi; print(n, g); end; dcl k int = 0; fibo(3, k); fibo(-1, k);"
 
         #s = "/*Palindrome numbers: */"\
         #"dcl n, t int, reverse int = 0; print(\"Enter a number: \"); read(n); t = n; do while t != 0; reverse = reverse * 10;"\
         #"reverse = reverse + t % 10; t = t / 10; od; if n == reverse then "\
         #"print(n, \" is a palindrome number.\\n\"); else print(n, \" is not a palindrome number.\\n\"); fi;"
+
+        #s = "/* Check Armstrong Number: */"\
+        #"power: proc(n int, r int) returns(int); dcl c int, p int = 1; do for c = 1 to r;  p = p * n; od; return p; end;"\
+        #"dcl n int, sum int = 0; dcl temp, remainder int, digits int = 0;"\
+        #"print(\"Input an integer: \"); read(n); temp = n; do while temp != 0; digits += 1; temp = temp / 10; od; temp = n;"\
+        #"do while temp != 0; remainder = temp % 10; sum = sum + power(remainder, digits); temp = temp / 10; od;"\
+        #"if n == sum then print(n, \" is an Armstrong number.\\n\"); else print(n, \" is not an Armstrong number.\\n\"); fi;"\
+
+
 
     except EOFError:
         break
