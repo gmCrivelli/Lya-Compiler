@@ -55,6 +55,17 @@ class Environment(object):
             "char": char_type,
             "string": string_type,
             "bool": bool_type
+
+            #TODO: implement structure for built-in calls
+            # Remember that parameters and returns may vary
+            #"abs": ['proc', 'int', ['int']],
+            #"asc": ['proc', 'int', ['char' OR 'string']],
+            #"num": ['proc', 'int' OR 'bool, ['string']],
+            #"upper": ['proc', 'string' OR 'char', ['string' OR 'char']],
+            #"lower": ['proc', 'string' OR 'char', ['string' OR 'char']],
+            #"length": ['proc', 'int', ['string' OR array?]],
+            #"read": ['proc', 'void', [ MULTIPLE VARIABLES ]],
+            #"print": ['proc', 'void', ['string']]
         })
     def push(self, enclosure):
         self.stack.append(SymbolTable(decl=enclosure))
@@ -113,28 +124,41 @@ class Visitor(NodeVisitor):
             e = "ERROR (line " + str(lineno) + "): "
         print(e + text)
 
+    def get_exprType(self, raw_type, lineno):
+        if raw_type in self.typemap:
+            return self.typemap[raw_type]
+        self.print_error(lineno, "Type {} not found".format(raw_type))
+        return self.typemap["void"]
+
     def raw_type_unary(self, node, op, val):
-        if hasattr(val, "type") and (val.type != None):
-            if isinstance(val.type, ExprType):
-                val_type = val.type
-            else:
-                val_type = val.type[1]
+        if hasattr(val, "raw_type") and (val.raw_type != None):
+            #if isinstance(val.type, ExprType):
+            #    val_type = val.type
+            #else:
+            #    val_type = val.type[1]
+
+            val_type = self.get_exprType(val.raw_type, node.lineno)
+
             if op not in val_type.unary_ops:
                 self.print_error(node.lineno,
                       "Unary operator {} not supported".format(op))
             return val_type
 
     def raw_type_binary(self, node, op, left, right):
-        if hasattr(left, "type") and hasattr(right, "type") and (left.type != None) and (right.type != None):
-            if isinstance(left.type, ExprType):
-                left_type = left.type
-            else:
-                left_type = left.type[1]
+        if hasattr(left, "raw_type") and hasattr(right, "raw_type") and (left.raw_type != None) and (right.raw_type != None):
 
-            if isinstance(right.type, ExprType):
-                right_type = right.type
-            else:
-                right_type = right.type[1]
+            #if isinstance(left.type, ExprType):
+            #    left_type = left.type
+            #else:
+            #    left_type = left.type[1]
+
+            #if isinstance(right.type, ExprType):
+            #    right_type = right.type
+            #else:
+            #    right_type = right.type[1]
+
+            left_type = self.get_exprType(left.raw_type, node.lineno)
+            right_type = self.get_exprType(right.raw_type, node.lineno)
 
             if left_type != right_type:
                 self.print_error(node.lineno,
@@ -152,7 +176,8 @@ class Visitor(NodeVisitor):
             if op in relational_ops:
                 return self.typemap['bool']
             return left_type
-        if(not hasattr(left, "type")):
+
+        if(not hasattr(left, "raw_type")):
             self.print_error(node.lineno,
             "Operand {} has no type".format(left))
         else:
@@ -178,8 +203,8 @@ class Visitor(NodeVisitor):
         self.visit(node.mode)
         if not node.initialization is None:
             self.visit(node.initialization)
-            if(node.mode.type != node.initialization.type):
-                self.print_error(node.lineno, "Mismatched type initialization, expected " + str(node.mode.type) + ", found " + str(node.initialization.type))
+            if(node.mode.raw_type != node.initialization.raw_type):
+                self.print_error(node.lineno, "Mismatched type initialization, expected " + str(node.mode.raw_type) + ", found " + str(node.initialization.type))
 
         # Visit all of the identifiers
         if not node.identifier_list is None:
@@ -190,19 +215,22 @@ class Visitor(NodeVisitor):
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
-                    self.environment.add_local(ident.ID, ['var', node.mode.type])
+                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type])
 
 #    def visit_Initialization(self, node):
 #        self.visit(node.expression) <- GO HERE
 
     def visit_Identifier(self, node):
         node.type = self.environment.lookup(node.ID)
-        #node.type =
+        node.raw_type = None
+        node.dcl_type = None
         #self.visit(node.ID)
         if(node.type != None):
             print("Identifier: ID \"" + str(node.ID) + "\" type \"{} {}\"".format(node.type[0], node.type[1]))
-            while(not isinstance(node.type, ExprType) and node.type[0] == "type"):
-                node.type = node.type[1]
+            node.dcl_type = node.type[0]
+            node.raw_type = node.type[1]
+            #while(not isinstance(node.type, ExprType) and node.type[0] == "type"):
+            #    node.type = node.type[1]
         else:
             self.print_error(node.lineno,
             "Variable {} was not defined".format(node.ID))
@@ -216,16 +244,16 @@ class Visitor(NodeVisitor):
         self.visit(node.initialization)
         if not node.mode is None:
             self.visit(node.mode)
-            if (node.mode.type != node.initialization.type):
+            if (node.mode.raw_type != node.initialization.raw_type):
                 self.print_error(node.lineno,
-                                 "Mismatched type initialization, expected " + node.mode.type + ", found " + node.initialization.type)
+                                 "Mismatched type initialization, expected " + node.mode.raw_type + ", found " + node.initialization.type)
         for ident in node.identifier_list:
             aux_type = self.environment.lookup(ident.ID)
             if not aux_type is None:
                 self.print_error(node.lineno,
                                 "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0], aux_type[1]))
             else:
-                self.environment.add_local(ident.ID, ['const', node.initialization.type])
+                self.environment.add_local(ident.ID, ['const', node.initialization.raw_type])
 
     def visit_Newmode_Statement(self, node):
         if not node.newmode_list is None:
@@ -233,7 +261,6 @@ class Visitor(NodeVisitor):
 
     def visit_Mode_Definition(self, node):
         self.visit(node.mode)
-        newtype = node.mode.type
         if not node.identifier_list is None:
             for ident in node.identifier_list:
                 aux_type = self.environment.lookup(ident.ID)
@@ -242,22 +269,22 @@ class Visitor(NodeVisitor):
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
-                    self.environment.add_local(ident.ID, ['type', newtype])
+                    self.environment.add_local(ident.ID, ['type', node.mode.raw_type])
 
     def visit_Integer_Mode(self, node):
         #self.visit(node.INT)
         print("Integer Mode: " + str(node.INT))
-        node.type = self.typemap[node.INT]
+        node.raw_type = 'int' #self.typemap[node.INT]
 
     def visit_Boolean_Mode(self, node):
         #self.visit(node.BOOL)
         print("Boolean Mode: " + str(node.BOOL))
-        node.type = self.typemap[node.BOOL]
+        node.raw_type = 'bool' #self.typemap[node.BOOL]
 
     def visit_Character_Mode(self, node):
         #self.visit(node.CHAR)
         print("Character Mode: " + str(node.CHAR))
-        node.type = self.typemap[node.CHAR]
+        node.raw_type = 'char' #self.typemap[node.CHAR]
 
     def visit_Discrete_Range_Mode(self, node):
         self.visit(node.identifier)
@@ -267,7 +294,7 @@ class Visitor(NodeVisitor):
     def visit_Mode_Name(self, node):
         print("Mode name")
         self.visit(node.identifier)
-        node.type = node.identifier.type
+        node.raw_type = node.identifier.raw_type
 
     def visit_Literal_Range(self, node):
         self.visit(node.lower_bound.expression)
@@ -275,11 +302,11 @@ class Visitor(NodeVisitor):
 
     def visit_Reference_Mode(self, node):
         self.visit(node.mode)
-        node.type = node.mode.type
+        node.raw_type = node.mode.raw_type
 
     def visit_String_Mode(self, node):
         print("String Mode")
-        node.type = self.typemap["string"]
+        node.raw_type = 'string' #self.typemap["string"]
         self.visit(node.string_length)
 
     def visit_String_Length(self, node):
@@ -296,15 +323,17 @@ class Visitor(NodeVisitor):
     def visit_Integer_Expression(self, node):
         print("Integer expression")
         self.visit(node.expression)
-        if isinstance(node.expression, Identifier):
-            exp_type = node.expression.type[1]
-        else:
-            exp_type = node.expression.type
 
-        if (exp_type != self.typemap['int']):
-            self.print_error(node.lineno, "Expected integer expression, found {}".format(node.expression.type))
+        #if isinstance(node.expression, Identifier):
+        #    exp_type = node.expression.type[1]
+        #else:
+        #    exp_type = node.expression.type
+        exp_type = node.expression.raw_type
 
-        node.type = exp_type
+        if (exp_type != 'int'):
+            self.print_error(node.lineno, "Expected integer expression, found {}".format(exp_type))
+
+        node.raw_type = exp_type
 
     # location
 
@@ -314,11 +343,12 @@ class Visitor(NodeVisitor):
     def visit_String_Element(self, node):
         self.visit(node.identifier)
         self.visit(node.start_element)
-        node.type = None
-        if (node.identifier.type == self.typemap['string']):
-            node.type = self.typemap['char']
+        node.raw_type = None
+        node.dcl_type = node.identifier.dcl_type
+        if (node.identifier.raw_type == 'string'):
+            node.raw_type = 'char'
         else:
-            self.print_error(node.lineno, "Attempted string element in non-string " + str(node.identifier.ID))
+            self.print_error(node.lineno, "Attempted to access string element in non-string " + str(node.identifier.ID))
 
 
 
@@ -329,6 +359,13 @@ class Visitor(NodeVisitor):
         self.visit(node.identifier)
         self.visit(node.left_element)
         self.visit(node.right_element)
+
+        node.raw_type = None
+        node.dcl_type = node.identifier.dcl_type
+        if (node.identifier.raw_type == 'string'):
+            node.raw_type = 'char'
+        else:
+            self.print_error(node.lineno, "Attempted to access string element in non-string " + str(node.identifier.ID))
 
     def visit_Left_Element(self, node):
         self.visit(node.integer_expression)
@@ -341,6 +378,9 @@ class Visitor(NodeVisitor):
         if not node.expression_list is None:
             for expression in node.expression_list: self.visit(expression)
 
+        node.raw_type = node.array_location.raw_type
+        node.dcl_type = node.array_location.dcl_type
+
     # expression_list
 
     def visit_Array_Slice(self, node):
@@ -348,6 +388,13 @@ class Visitor(NodeVisitor):
         self.visit(node.lower_bound)
         self.visit(node.upper_bound)
 
+        node.raw_type = node.array_location.raw_type
+        node.dcl_type = node.array_location.dcl_type
+        if (node.lower_bound.raw_type != node.upper_bound.raw_type):
+            self.print_error(node.lineno, "Mismatching bound types {} and {} in array slice".format(node.lower_bound.raw_type, node.upper_bound.raw_type))
+
+
+    # TODO: CHECK IF LOCATION IS ARRAY
     def visit_Array_Location(self, node):
         self.visit(node.location)
 
@@ -357,28 +404,28 @@ class Visitor(NodeVisitor):
 
     def visit_Integer_Literal(self, node):
         #self.visit(node.ICONST)
-        node.type = self.typemap["int"]
+        node.raw_type = 'int' #self.typemap["int"]
         print("Integer Literal: " + str(node.value))
 
     def visit_Boolean_Literal(self, node):
         #self.visit(node.BOOL)
         print("Boolean Literal: " + str(node.value))
-        node.type = self.typemap["bool"]
+        node.raw_type = 'bool' #self.typemap["bool"]
 
     def visit_Character_Literal(self, node):
         #self.visit(node.CCONST)
         print("Character Literal: " + str(node.value))
-        node.type = self.typemap["char"]
+        node.raw_type = 'char' #self.typemap["char"]
 
     def visit_Empty_Literal(self, node):
         #self.visit(node.NULL)
         print("Empty literal")
-        node.type = self.typemap["void"]
+        node.raw_type = 'void' #self.typemap["void"]
 
     def visit_Character_String_Literal(self, node):
         #self.visit(node.SCONST)
         print("Character String Literal: " + str(node.value))
-        node.type = self.typemap["string"]
+        node.raw_type = 'string' #self.typemap["string"]
 
     def visit_Value_Array_Element(self, node):
         self.visit(node.array_primitive_value)
@@ -402,15 +449,15 @@ class Visitor(NodeVisitor):
         self.visit(node.boolean_expression)
 
         self.visit(node.then_expression)
-        then_type = node.then_expression.type
+        then_type = node.then_expression.raw_type
         elsif_type = then_type
 
         if not node.elsif_expression is None:
             self.visit(node.elsif_expression)
-            elsif_type = node.elsif_expression.type
+            elsif_type = node.elsif_expression.raw_type
 
         self.visit(node.else_expression)
-        else_type = node.else_expression.type
+        else_type = node.else_expression.raw_type
 
         if not (then_type == elsif_type and elsif_type == else_type):
             aux_msg = "Mismatching types in conditional expression, found {}".format(then_type)
@@ -419,53 +466,58 @@ class Visitor(NodeVisitor):
             aux_msg += " and {}".format(else_type)
             self.print_error(node.lineno, aux_msg)
         else:
-            node.type = then_type
+            node.raw_type = then_type
 
 
     def visit_Boolean_Expression(self, node):
         print("Boolean expression")
         self.visit(node.expression)
         exp_type = None
-        if node.expression.type != None:
-            if isinstance(node.expression, Identifier):
-                exp_type = node.expression.type[1]
-            else:
-                exp_type = node.expression.type
+        if node.expression.raw_type != None:
+            #if isinstance(node.expression, Identifier):
+            #    exp_type = node.expression.type[1]
+            #else:
+            #    exp_type = node.expression.type
+            exp_type = node.expression.raw_type
 
-        if (exp_type != self.typemap['bool']):
-            self.print_error(node.lineno, "Expected boolean expression, found {}".format(node.expression.type))
-        node.type = exp_type
+        if (exp_type != 'bool'):
+            self.print_error(node.lineno, "Expected boolean expression, found {}".format(exp_type))
+        node.raw_type = exp_type
 
     def visit_Then_Expression(self, node):
         print("Then expression")
         self.visit(node.expression)
-        if isinstance(node.expression, Identifier):
-            exp_type = node.expression.type[1]
-        else:
-            exp_type = node.expression.type
-        node.type = exp_type
+
+        #if isinstance(node.expression, Identifier):
+        #    exp_type = node.expression.type[1]
+        #else:
+        #    exp_type = node.expression.type
+        exp_type = node.expression.raw_type
+        node.raw_type = exp_type
 
     def visit_Else_Expression(self, node):
         print("Else expression")
         self.visit(node.expression)
-        if isinstance(node.expression, Identifier):
-            exp_type = node.expression.type[1]
-        else:
-            exp_type = node.expression.type
-        node.type = exp_type
+
+        #if isinstance(node.expression, Identifier):
+        #    exp_type = node.expression.type[1]
+        #else:
+        #    exp_type = node.expression.type
+        exp_type = node.expression.raw_type
+        node.raw_type = exp_type
 
     def visit_Elsif_Expression(self, node):
         print("Elsif expression")
 
         self.visit(node.boolean_expresson)
         self.visit(node.then_expression)
-        then_type = node.then_expression.type
+        then_type = node.then_expression.raw_type
         if not node.elsif_expression is None:
             self.visit(node.elsif_expression)
-            elsif_type = node.elsif_expression.type
+            elsif_type = node.elsif_expression.raw_type
             if(then_type != elsif_type):
                 self.print_error(node.lineno, "Mismatching types in Elsif expression {} and {}".format(then_type, elsif_type))
-        node.type = then_type
+        node.raw_type = then_type
 
 
     def visit_Rel_Mem_Expression(self, node):
@@ -474,6 +526,7 @@ class Visitor(NodeVisitor):
         # self.visit(node.operator1)
         print("Relational or Membership operator: " + str(node.operator1))
         node.type = self.raw_type_binary(node, node.operator1, node.operand0, node.operand1)
+        node.raw_type = node.operand0.raw_type
 
     # operator1
 
@@ -487,6 +540,7 @@ class Visitor(NodeVisitor):
         #self.visit(node.operator2)
         print("Binary operator: " + str(node.operator2))
         node.type = self.raw_type_binary(node, node.operator2, node.operand1, node.operand2)
+        node.raw_type = node.operand1.raw_type
 
     # operator2
 
@@ -503,7 +557,7 @@ class Visitor(NodeVisitor):
         print("Monadic operator: " + str(node.monadic_operator))
         self.visit(node.operand4)
         node.type = self.raw_type_unary(node, node.monadic_operator, node.operand4)
-
+        node.raw_type = node.operand4.raw_type
 
     # monadic_operator
 
@@ -517,7 +571,14 @@ class Visitor(NodeVisitor):
         self.visit(node.action)
 
     def visit_Label_Id(self, node):
-        self.visit(node.identifier)
+        ident = node.identifier
+        aux_type = self.environment.lookup(ident.ID)
+        if not aux_type is None:
+            self.print_error(node.lineno,
+                             "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
+                                                                                                 aux_type[1]))
+        else:
+            self.environment.add_local(ident.ID, ['label', 'void'])
 
     # action
 
@@ -528,37 +589,44 @@ class Visitor(NodeVisitor):
         self.visit(node.expression)
 
         #if (hasattr(node.location, "type") and hasattr(node.expression, "type") and (node.location.type != None) and (node.expression.type != None)):
-        if(hasattr(node.location, "type") and hasattr(node.expression, "type")):
-            if node.location.type is None:
+        if(hasattr(node.location, "dcl_type") and hasattr(node.location, "raw_type") and hasattr(node.expression, "raw_type")):
+            if node.location.dcl_type is None:
                 self.print_error(node.lineno, "Assigning to undefined location")
                 return
-            if (node.location.type[0] != 'var'):
-                self.print_error(node.lineno, "Assignment to unsupported type ".format(node.location.type[0]))
+            if (node.location.dcl_type != 'var'):
+                self.print_error(node.lineno, "Assignment to unsupported dcl_type {}".format(node.location.dcl_type))
                 return
-            if node.expression.type is None:
+            if node.expression.raw_type is None:
                 self.print_error(node.lineno, "Assigning from undefined location")
                 return
-            if isinstance(node.expression, Identifier):
-                exp_type = node.expression.type[1]
-            else:
-                exp_type = node.expression.type
 
-            if(node.location.type[1] != exp_type):
+            #if isinstance(node.expression, Identifier):
+            #    exp_type = node.expression.type[1]
+            #else:
+            #    exp_type = node.expression.type
+            exp_type = node.expression.raw_type
+
+            if(node.location.raw_type != exp_type):
                 self.print_error(node.lineno,
-                "Mismatched assignment types {} and {}".format(node.location.type[1], exp_type))
+                                 "Mismatched assignment types {} and {}".format(node.location.raw_type, exp_type))
 
             # self.visit(node.assigning_operator)
             print("Assigning operator: " + str(node.assigning_operator))
             if(node.assigning_operator != self.assign):
-                if not (node.assigning_operator in node.location.type[1].closed_dyadic_ops):
+                loc_type = self.get_exprType(node.location.raw_type, node.lineno)
+                if not (node.assigning_operator in loc_type.closed_dyadic_ops):
                     self.print_error(node.lineno, "Assignment operator {} not supported".format(node.assigning_operator))
 
-        if(not hasattr(node.location, "type")):
+
+        if(not hasattr(node.location, "dcl_type")):
             self.print_error(node.lineno,
-            "Location {} has no type".format(node.location))
-        if(not hasattr(node.expression, "type")):
+                             "Location {} has no dcl_type".format(node.location))
+        if (not hasattr(node.location, "raw_type")):
             self.print_error(node.lineno,
-            "Expression {} has no type".format(node.expression))
+                             "Location {} has no type".format(node.location))
+        if(not hasattr(node.expression, "raw_type")):
+            self.print_error(node.lineno,
+                             "Expression {} has no type".format(node.expression))
 
     # assigning_operator
 
@@ -628,7 +696,8 @@ class Visitor(NodeVisitor):
     def visit_Procedure_Call(self, node):
         self.visit(node.identifier)
         type = self.environment.lookup(node.identifier.ID)
-        node.type = type[1]
+        node.dcl_type = type[0]
+        node.raw_type = type[1]
         if type is None:
             self.print_error(node.lineno,"Procedure {} not found".format(node.identifier.ID))
         elif (type[0] != 'proc'):
@@ -643,15 +712,17 @@ class Visitor(NodeVisitor):
             elif not node.parameter_list is None:
                 for i, param in enumerate(node.parameter_list, start=0):
                     self.visit(param)
-                    if param.type is None:
+                    if param.raw_type is None:
                         self.print_error(node.lineno,
                                          "Incorrect parameter type at position i={}; Expected {}, found {}".format(
                                              i, type[2][i], param_type))
                     else:
-                        if isinstance(param.type, ExprType):
-                            param_type = param.type
-                        else:
-                            param_type = param.type[1]
+                        #if isinstance(param.type, ExprType):
+                        #    param_type = param.type
+                        #else:
+                        #    param_type = param.type[1]
+                        param_type = param.raw_type
+
                         if (param_type != type[2][i]):
                             self.print_error(node.lineno,
                                              "Incorrect parameter type at position i={}; Expected {}, found {}".format(
@@ -661,7 +732,7 @@ class Visitor(NodeVisitor):
 
     def visit_Parameter(self, node):
         self.visit(node.expression)
-        node.type = node.expression.type
+        node.raw_type = node.expression.raw_type
 
     def visit_Exit_Action(self, node):
         self.visit(node.label_id)
@@ -676,13 +747,17 @@ class Visitor(NodeVisitor):
     #    self.visit(node.expression)
 
     def visit_Builtin_Call(self, node):
+        #node.identifier = Identifier(node.builtin_name.name)
+        #self.visit_Procedure_Call(node)
+
         self.visit(node.builtin_name)
         if not node.parameter_list is None:
             for param in node.parameter_list: self.visit(param)
 
-    def visit_Builtin_Name(self, node):
-        #self.visit(node.name)
-        print("Builtin Name: " + str(node.name))
+    # TODO: LIST OF PARAMETERS FOR BUILTIN NAMES
+    #def visit_Builtin_Name(self, node):
+    #    print("Builtin Name: " + str(node.name))
+
 
     def visit_Procedure_Statement(self, node):
         proc_name = node.label_id.identifier.ID
@@ -702,29 +777,30 @@ class Visitor(NodeVisitor):
                     expected = node.formal_procedure_head.result_spec
                     found_type = None
                     if not statement.action.result is None:
-                        if (isinstance(statement.action.result.type, ExprType)):
-                            found_type = statement.action.result.type
-                        else:
-                            found_type = statement.action.result.type[1]
+                        #if (isinstance(statement.action.result.type, ExprType)):
+                        #    found_type = statement.action.result.type
+                        #else:
+                        #    found_type = statement.action.result.type[1]
+                        found_type = statement.action.result.raw_type
 
                     if expected is None:
                             self.print_error(node.lineno, "Expected void return, found {}".format(found_type))
                     else:
-                        if (found_type != expected.mode.type):
-                            self.print_error(node.lineno, "Expected {} return, found {}".format(expected.mode.type,found_type))
+                        if (found_type != expected.mode.raw_type):
+                            self.print_error(node.lineno, "Expected {} return, found {}".format(expected.mode.raw_type,found_type))
 
     def visit_Formal_Procedure_Head(self, node):
         node.param_types = []
         if not node.formal_parameter_list is None:
             for formal_param in node.formal_parameter_list:
                 self.visit(formal_param)
-                node.param_types.append(formal_param.type)
+                node.param_types.append(formal_param.raw_type)
 
         if node.result_spec is None:
             result_type = 'void'
         else:
             self.visit(node.result_spec)
-            result_type = node.result_spec.mode.type
+            result_type = node.result_spec.mode.raw_type
 
         proc_name = self.environment.peek().return_type().replace("PROCEDURE DECLARATION ","")
         print(proc_name)
@@ -744,7 +820,7 @@ class Visitor(NodeVisitor):
     def visit_Formal_Parameter(self, node):
 
         self.visit(node.parameter_spec)
-        node.type = node.parameter_spec.mode.type
+        node.raw_type = node.parameter_spec.mode.raw_type
 
         if not node.identifier_list is None:
             for ident in node.identifier_list:
@@ -755,18 +831,18 @@ class Visitor(NodeVisitor):
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
-                    self.environment.add_local(ident.ID, ['var', node.type])
+                    self.environment.add_local(ident.ID, ['var', node.raw_type])
         self.visit(node.parameter_spec)
 
     def visit_Parameter_Spec(self, node):
         self.visit(node.mode)
         #if (node.parameter_attribute != None):
             #WHAT IS LOC?
-            #node.mode.type.append(node.parameter_attribute)
+            #node.mode.raw_type.append(node.parameter_attribute)
 
     # parameter_attribute
 
     def visit_Result_Spec(self, node):
         self.visit(node.mode)
-        if (node.result_attribute != None):
-            node.mode.type.append(node.result_attribute)
+        #if (node.result_attribute != None):
+        #    node.mode.type.append(node.result_attribute)

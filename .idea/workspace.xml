@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b94fdf1e-cd9c-4c77-a6f7-44740909cd5e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ast.py" afterPath="$PROJECT_DIR$/ast.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.out" afterPath="$PROJECT_DIR$/parser.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.py" afterPath="$PROJECT_DIR$/parser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parsetab.py" afterPath="$PROJECT_DIR$/parsetab.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/semantic.py" afterPath="$PROJECT_DIR$/semantic.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,8 +45,8 @@
           <file leaf-file-name="ast.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/ast.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="697">
-                  <caret line="379" column="33" lean-forward="false" selection-start-line="379" selection-start-column="33" selection-end-line="379" selection-end-column="33" />
+                <state relative-caret-position="4792">
+                  <caret line="385" column="26" lean-forward="false" selection-start-line="385" selection-start-column="16" selection-end-line="385" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
@@ -62,8 +59,8 @@
                   <caret line="260" column="24" lean-forward="false" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
                   <folding>
                     <element signature="e#15#38#0" expanded="true" />
-                    <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-                    <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+                    <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+                    <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -73,9 +70,24 @@
             <entry file="file://$PROJECT_DIR$/semantic.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="293">
-                  <caret line="224" column="45" lean-forward="true" selection-start-line="224" selection-start-column="45" selection-end-line="224" selection-end-column="45" />
+                  <caret line="252" column="45" lean-forward="true" selection-start-line="252" selection-start-column="45" selection-end-line="252" selection-end-column="45" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
+                    <marker date="1494881427000" expanded="true" signature="4355:4756" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="4938:6094" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="8122:8123" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="13201:13314" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="13827:13987" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="14157:14271" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="17286:17463" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="18994:19267" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="19431:19685" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="19925:20151" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="22820:22833" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="26657:27222" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="27704:27954" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="28045:28095" ph="..." />
+                    <marker date="1494881427000" expanded="true" signature="28843:29101" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -116,8 +128,8 @@
                       <caret line="878" column="34" lean-forward="false" selection-start-line="878" selection-start-column="27" selection-end-line="878" selection-end-column="34" />
                       <folding>
                         <element signature="e#15#38#0" expanded="true" />
-                        <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-                        <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+                        <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+                        <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
                       </folding>
                     </state>
                   </provider>
@@ -126,8 +138,8 @@
               <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/semantic.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-1419">
-                      <caret line="249" column="32" lean-forward="false" selection-start-line="249" selection-start-column="25" selection-end-line="249" selection-end-column="32" />
+                    <state relative-caret-position="473">
+                      <caret line="615" column="80" lean-forward="false" selection-start-line="615" selection-start-column="80" selection-end-line="615" selection-end-column="80" />
                       <folding>
                         <element signature="e#0#10#0" expanded="true" />
                       </folding>
@@ -172,12 +184,12 @@
               <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/parser.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="824">
-                      <caret line="996" column="83" lean-forward="false" selection-start-line="996" selection-start-column="83" selection-end-line="996" selection-end-column="83" />
+                    <state relative-caret-position="662">
+                      <caret line="992" column="8" lean-forward="false" selection-start-line="992" selection-start-column="8" selection-end-line="992" selection-end-column="8" />
                       <folding>
                         <element signature="e#15#38#0" expanded="true" />
-                        <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-                        <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+                        <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+                        <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
                       </folding>
                     </state>
                   </provider>
@@ -198,17 +210,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>call</find>
-      <find>label_id</find>
-      <find>node.label_id.ID</find>
-      <find>location</find>
-      <find>loc</find>
-      <find>call_ac</find>
-      <find>mismat</find>
-      <find>result</find>
-      <find>relatio</find>
-      <find>boole</find>
-      <find>conditional</find>
       <find>boolean</find>
       <find>string_ele</find>
       <find>&lt;</find>
@@ -221,13 +222,24 @@
       <find>reference_mode</find>
       <find>type</find>
       <find>initialization</find>
-      <find>expression</find>
       <find>lbracket</find>
       <find>array</find>
       <find>declaration</find>
-      <find>add_local</find>
       <find>lookup</find>
       <find>returns</find>
+      <find>initiali</find>
+      <find>expression</find>
+      <find>add_local</find>
+      <find>&quot;int&quot;</find>
+      <find>.type</find>
+      <find>location</find>
+      <find>#if isin</find>
+      <find>identifi</find>
+      <find>integer_expression</find>
+      <find>upper</find>
+      <find>call_ac</find>
+      <find>identifier</find>
+      <find>print(</find>
     </findStrings>
     <replaceStrings>
       <replace>def visit_</replace>
@@ -240,6 +252,7 @@
       <replace>)</replace>
       <replace>type</replace>
       <replace>proc_name</replace>
+      <replace>.raw_type</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -252,8 +265,8 @@
         <option value="$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/meuCodigo" />
         <option value="$PROJECT_DIR$/lexer.py" />
         <option value="$PROJECT_DIR$/ast.py" />
-        <option value="$PROJECT_DIR$/semantic.py" />
         <option value="$PROJECT_DIR$/parser.py" />
+        <option value="$PROJECT_DIR$/semantic.py" />
       </list>
     </option>
   </component>
@@ -502,7 +515,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.077083334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21464466" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21464466" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33076924" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33516484" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -589,8 +602,8 @@
           <caret line="260" column="24" lean-forward="true" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-            <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
           </folding>
         </state>
       </provider>
@@ -619,8 +632,8 @@
           <caret line="480" column="39" lean-forward="true" selection-start-line="480" selection-start-column="39" selection-end-line="480" selection-end-column="39" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-            <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
           </folding>
         </state>
       </provider>
@@ -669,8 +682,8 @@
           <caret line="576" column="28" lean-forward="false" selection-start-line="576" selection-start-column="19" selection-end-line="576" selection-end-column="28" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-            <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
           </folding>
         </state>
       </provider>
@@ -731,8 +744,8 @@
           <caret line="168" column="18" lean-forward="false" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-            <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
           </folding>
         </state>
       </provider>
@@ -753,8 +766,8 @@
           <caret line="374" column="35" lean-forward="false" selection-start-line="374" selection-start-column="35" selection-end-line="374" selection-end-column="35" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-            <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
           </folding>
         </state>
       </provider>
@@ -797,8 +810,8 @@
           <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-            <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
           </folding>
         </state>
       </provider>
@@ -819,8 +832,8 @@
           <caret line="60" column="35" lean-forward="false" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-            <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
           </folding>
         </state>
       </provider>
@@ -962,22 +975,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/semantic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="416" column="160" lean-forward="false" selection-start-line="416" selection-start-column="155" selection-end-line="416" selection-end-column="160" />
-          <folding>
-            <element signature="e#102#112#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lexer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="463">
           <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
           <folding>
             <element signature="e#1#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/semantic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="416" column="160" lean-forward="false" selection-start-line="416" selection-start-column="155" selection-end-line="416" selection-end-column="160" />
+          <folding>
+            <element signature="e#102#112#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -996,16 +1009,16 @@
           <caret line="878" column="34" lean-forward="false" selection-start-line="878" selection-start-column="27" selection-end-line="878" selection-end-column="34" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494874519000" expanded="true" signature="27817:27846" ph="..." />
-            <marker date="1494874519000" expanded="true" signature="37180:37181" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="27817:27846" ph="..." />
+            <marker date="1494881351000" expanded="true" signature="37194:37195" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/semantic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1419">
-          <caret line="249" column="32" lean-forward="false" selection-start-line="249" selection-start-column="25" selection-end-line="249" selection-end-column="32" />
+        <state relative-caret-position="473">
+          <caret line="615" column="80" lean-forward="false" selection-start-line="615" selection-start-column="80" selection-end-line="615" selection-end-column="80" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

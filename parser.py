@@ -973,7 +973,7 @@ while counter > 0:
         #"g: proc(t int); dcl x int; t *= 2; x = 2 * t; z = x + 1; end;"\
         #"z = 3; t = 4; g(t); print(z, t); g(z); print(z, t); g(t + z); print(z, t); g(7); print(z, t);"
 
-        #s = "/ *example1: * /"\
+        #s = "/*example1: */"\
         #"dcl m, n, s int; read(m, n); s = 0; do while m <= n; s += m * n; print(m, s); m += 1; od;"
 
         #s = "/*Compute the Fibonacci of an integer */"\
@@ -985,16 +985,16 @@ while counter > 0:
         #"reverse = reverse + t % 10; t = t / 10; od; if n == reverse then "\
         #"print(n, \" is a palindrome number.\\n\"); else print(n, \" is not a palindrome number.\\n\"); fi;"
 
-        #s = "/* Check Armstrong Number: */"\
-        #"power: proc(n int, r int) returns(int); dcl c int, p int = 1; do for c = 1 to r;  p = p * n; od; return p; end;"\
-        #"dcl n int, sum int = 0; dcl temp, remainder int, digits int = 0;"\
-        #"print(\"Input an integer: \"); read(n); temp = n; do while temp != 0; digits += 1; temp = temp / 10; od; temp = n;"\
-        #"do while temp != 0; remainder = temp % 10; sum = sum + power(remainder, digits); temp = temp / 10; od;"\
-        #"if n == sum then print(n, \" is an Armstrong number.\\n\"); else print(n, \" is not an Armstrong number.\\n\"); fi;"\
+        s = "/* Check Armstrong Number: */"\
+        "power: proc(n int, r int) returns(int); dcl c int, p int = 1; do for c = 1 to r;  p = p * n; od; return p; end;"\
+        "dcl n int, sum int = 0; dcl temp, remainder int, digits int = 0;"\
+        "print(\"Input an integer: \"); read(n); temp = n; do while temp != 0; digits += 1; temp = temp / 10; od; temp = n;"\
+        "do while temp != 0; remainder = temp % 10; sum = sum + power(remainder, digits); temp = temp / 10; od;"\
+        "if n == sum then print(n, \" is an Armstrong number.\\n\"); else print(n, \" is not an Armstrong number.\\n\"); fi;"\
 
         #s =  "dcl s chars[8] = \"setembro\";"
 
-        s = "type ptr = bool; type dd = ptr; power: proc() returns (dd); dcl k bool; return k; end;"
+        #s = "type ptr = bool; type dd = ptr; power: proc(k int, j bool) returns (int); dcl k bool; k = 1; return k; end;"
 
     except EOFError:
         break
