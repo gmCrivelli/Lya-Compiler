@@ -120,7 +120,7 @@ class Synonym_Definition(AST):
 #    _fields = ['expression']
 
 class Newmode_Statement(AST):
-    _fields = ['type', 'newmode_list']
+    _fields = ['newmode_list']
 
 # newmode_list
 

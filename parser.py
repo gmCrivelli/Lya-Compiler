@@ -118,7 +118,7 @@ class Parser:
         'newmode_statement : TYPE newmode_list SEMI'
         # p[0] = ('Newmode Statement', p[1], p[2], p[3], p.lineno(1))
 
-        p[0] = Newmode_Statement(p[1], p[2], lineno = p.lineno(1))
+        p[0] = Newmode_Statement(p[2], lineno = p.lineno(1))
 
     def p_newmode_list(self, p):
         '''newmode_list : mode_definition
@@ -964,7 +964,7 @@ while counter > 0:
 
         #s = "dcl s chars[10];"
 
-        s = "syn a int = 10; dcl b int; a += a + b;"
+        #s = "syn a int = 10; dcl b int; a += a + b;"
 
         #s = "g: proc(t int); return \"cgasg\"; dcl x int; t *= 2; x = 2 * t; z = x + 1; end; nope(5) = 2;"
 
@@ -985,12 +985,16 @@ while counter > 0:
         #"reverse = reverse + t % 10; t = t / 10; od; if n == reverse then "\
         #"print(n, \" is a palindrome number.\\n\"); else print(n, \" is not a palindrome number.\\n\"); fi;"
 
-        s = "/* Check Armstrong Number: */"\
-        "power: proc(n int, r int) returns(int); dcl c int, p int = 1; do for c = 1 to r;  p = p * n; od; return p; end;"\
-        "dcl n int, sum int = 0; dcl temp, remainder int, digits int = 0;"\
-        "print(\"Input an integer: \"); read(n); temp = n; do while temp != 0; digits += 1; temp = temp / 10; od; temp = n;"\
-        "do while temp != 0; remainder = temp % 10; sum = sum + power(remainder, digits); temp = temp / 10; od;"\
-        "if n == sum then print(n, \" is an Armstrong number.\\n\"); else print(n, \" is not an Armstrong number.\\n\"); fi;"\
+        #s = "/* Check Armstrong Number: */"\
+        #"power: proc(n int, r int) returns(int); dcl c int, p int = 1; do for c = 1 to r;  p = p * n; od; return p; end;"\
+        #"dcl n int, sum int = 0; dcl temp, remainder int, digits int = 0;"\
+        #"print(\"Input an integer: \"); read(n); temp = n; do while temp != 0; digits += 1; temp = temp / 10; od; temp = n;"\
+        #"do while temp != 0; remainder = temp % 10; sum = sum + power(remainder, digits); temp = temp / 10; od;"\
+        #"if n == sum then print(n, \" is an Armstrong number.\\n\"); else print(n, \" is not an Armstrong number.\\n\"); fi;"\
+
+        #s =  "dcl s chars[8] = \"setembro\";"
+
+        s = "type ptr = bool; type dd = ptr; power: proc() returns (dd); dcl k bool; return k; end;"
 
     except EOFError:
         break
@@ -1003,19 +1007,19 @@ while counter > 0:
 
 
 # Run parser on given file
-def main():
-    file_name = sys.argv[1]
+#def main():
+#    file_name = sys.argv[1]
 
     # Read given file
-    file = open(file_name, "r")
+    #file = open(file_name, "r")
 
-    s = file.read()
+    #s = file.read()
 
-    result = Parser()
-    ast = result.parse(s)
+    #result = Parser()
+    #ast = result.parse(s)
 
-    nv = Visitor()
-    nv.visit(ast)
+    #nv = Visitor()
+    #nv.visit(ast)
 
 
-if __name__ == "__main__": main()
+#if __name__ == "__main__": main()

@@ -83,6 +83,9 @@ class Environment(object):
             return True
         else:
             return False
+    def printStack(self):
+        for table in self.stack:
+            print(table)
 
 class Visitor(NodeVisitor):
     """
@@ -164,6 +167,8 @@ class Visitor(NodeVisitor):
         if not node.stmts is None:
             for stmts in node.stmts: self.visit(stmts)
 
+        self.environment.printStack()
+
     def visit_Declaration_Statement(self,node):
         # Visit all of the declarations
         if not node.declaration_list is None:
@@ -171,7 +176,6 @@ class Visitor(NodeVisitor):
 
     def visit_Declaration(self,node):
         self.visit(node.mode)
-
         if not node.initialization is None:
             self.visit(node.initialization)
             if(node.mode.type != node.initialization.type):
@@ -197,6 +201,8 @@ class Visitor(NodeVisitor):
         #self.visit(node.ID)
         if(node.type != None):
             print("Identifier: ID \"" + str(node.ID) + "\" type \"{} {}\"".format(node.type[0], node.type[1]))
+            while(not isinstance(node.type, ExprType) and node.type[0] == "type"):
+                node.type = node.type[1]
         else:
             self.print_error(node.lineno,
             "Variable {} was not defined".format(node.ID))
@@ -221,9 +227,7 @@ class Visitor(NodeVisitor):
             else:
                 self.environment.add_local(ident.ID, ['const', node.initialization.type])
 
-
     def visit_Newmode_Statement(self, node):
-        self.visit(node.type)
         if not node.newmode_list is None:
             for newmode in node.newmode_list: self.visit(newmode)
 
@@ -231,7 +235,14 @@ class Visitor(NodeVisitor):
         self.visit(node.mode)
         newtype = node.mode.type
         if not node.identifier_list is None:
-            for ident in node.identifier_list: self.visit(ident)
+            for ident in node.identifier_list:
+                aux_type = self.environment.lookup(ident.ID)
+                if not aux_type is None:
+                    self.print_error(node.lineno,
+                                     "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
+                                                                                                         aux_type[1]))
+                else:
+                    self.environment.add_local(ident.ID, ['type', newtype])
 
     def visit_Integer_Mode(self, node):
         #self.visit(node.INT)
@@ -256,6 +267,7 @@ class Visitor(NodeVisitor):
     def visit_Mode_Name(self, node):
         print("Mode name")
         self.visit(node.identifier)
+        node.type = node.identifier.type
 
     def visit_Literal_Range(self, node):
         self.visit(node.lower_bound.expression)
@@ -263,6 +275,7 @@ class Visitor(NodeVisitor):
 
     def visit_Reference_Mode(self, node):
         self.visit(node.mode)
+        node.type = node.mode.type
 
     def visit_String_Mode(self, node):
         print("String Mode")
