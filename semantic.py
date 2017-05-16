@@ -40,7 +40,7 @@ relational_ops = ["!=", "==", ">", ">=", "<", "<="]
 membership_ops = ["in"]
 
 int_type = ExprType("int",["-"],["+", "-", "*", "/", "%", "!=", "==", ">", ">=", "<", "<="],['+=','-=','*=','/=','%='],0)
-bool_type = ExprType("bool",["!"],["==", "!="],[],False)
+bool_type = ExprType("bool",["!"],["==", "!=", "&&", "||"],[],False)
 char_type = ExprType("char",[],[],[],"")
 string_type = ExprType("string",[],["+", "==", "!="],['+='],"")
 void_type = ExprType("void",[],[],[],"")
@@ -116,6 +116,7 @@ class Visitor(NodeVisitor):
             "void": void_type
         }
         self.assign = '='
+        self.semantic_error = False
 
     def print_error(self, lineno, text):
         if lineno is None:
@@ -123,6 +124,7 @@ class Visitor(NodeVisitor):
         else:
             e = "ERROR (line " + str(lineno) + "): "
         print(e + text)
+        self.semantic_error = True
 
     def get_exprType(self, raw_type, lineno):
         if raw_type in self.typemap:
@@ -131,6 +133,7 @@ class Visitor(NodeVisitor):
         return self.typemap["void"]
 
     def raw_type_unary(self, node, op, val):
+
         if hasattr(val, "raw_type") and (val.raw_type != None):
             #if isinstance(val.type, ExprType):
             #    val_type = val.type
@@ -142,7 +145,8 @@ class Visitor(NodeVisitor):
             if op not in val_type.unary_ops:
                 self.print_error(node.lineno,
                       "Unary operator {} not supported".format(op))
-            return val_type
+            return val.raw_type
+        return None
 
     def raw_type_binary(self, node, op, left, right):
         if hasattr(left, "raw_type") and hasattr(right, "raw_type") and (left.raw_type != None) and (right.raw_type != None):
@@ -174,8 +178,8 @@ class Visitor(NodeVisitor):
                       "Binary operator {} not supported on {} of expression".format(op, errside))
 
             if op in relational_ops:
-                return self.typemap['bool']
-            return left_type
+                return 'bool'
+            return left.raw_type
 
         if(not hasattr(left, "raw_type")):
             self.print_error(node.lineno,
@@ -183,6 +187,7 @@ class Visitor(NodeVisitor):
         else:
             self.print_error(node.lineno,
             "Operand {} has no type".format(right))
+        return None
 
     def visit_Program(self,node):
         self.environment.push(node)
@@ -204,7 +209,7 @@ class Visitor(NodeVisitor):
         if not node.initialization is None:
             self.visit(node.initialization)
             if(node.mode.raw_type != node.initialization.raw_type):
-                self.print_error(node.lineno, "Mismatched type initialization, expected " + str(node.mode.raw_type) + ", found " + str(node.initialization.type))
+                self.print_error(node.lineno, "Mismatched type initialization, expected " + str(node.mode.raw_type) + ", found " + str(node.initialization.raw_type))
 
         # Visit all of the identifiers
         if not node.identifier_list is None:
@@ -316,9 +321,11 @@ class Visitor(NodeVisitor):
         if not node.index_mode_list is None:
             for index_mode in node.index_mode_list: self.visit(index_mode)
         self.visit(node.element_mode)
+        node.raw_type = '[' + node.element_mode.raw_type + ']'
 
     def visit_Element_Mode(self, node):
         self.visit(node.mode)
+        node.raw_type = node.mode.raw_type
 
     def visit_Integer_Expression(self, node):
         print("Integer expression")
@@ -337,8 +344,10 @@ class Visitor(NodeVisitor):
 
     # location
 
-    #def visit_Dereferenced_Reference(self, node):
-    #    self.visit(node.location)
+    def visit_Dereferenced_Reference(self, node):
+        self.visit(node.location)
+        node.raw_type = node.location.raw_type
+        node.dcl_type = node.location.dcl_type
 
     def visit_String_Element(self, node):
         self.visit(node.identifier)
@@ -349,8 +358,6 @@ class Visitor(NodeVisitor):
             node.raw_type = 'char'
         else:
             self.print_error(node.lineno, "Attempted to access string element in non-string " + str(node.identifier.ID))
-
-
 
     def visit_Start_Element(self, node):
         self.visit(node.integer_expression)
@@ -397,6 +404,7 @@ class Visitor(NodeVisitor):
     # TODO: CHECK IF LOCATION IS ARRAY
     def visit_Array_Location(self, node):
         self.visit(node.location)
+        print(node.location.raw_type)
 
     # primitive_value
 
@@ -525,8 +533,8 @@ class Visitor(NodeVisitor):
         self.visit(node.operand1)
         # self.visit(node.operator1)
         print("Relational or Membership operator: " + str(node.operator1))
-        node.type = self.raw_type_binary(node, node.operator1, node.operand0, node.operand1)
-        node.raw_type = node.operand0.raw_type
+        node.raw_type = self.raw_type_binary(node, node.operator1, node.operand0, node.operand1)
+
 
     # operator1
 
@@ -539,8 +547,7 @@ class Visitor(NodeVisitor):
         self.visit(node.operand2)
         #self.visit(node.operator2)
         print("Binary operator: " + str(node.operator2))
-        node.type = self.raw_type_binary(node, node.operator2, node.operand1, node.operand2)
-        node.raw_type = node.operand1.raw_type
+        node.raw_type = self.raw_type_binary(node, node.operator2, node.operand1, node.operand2)
 
     # operator2
 
@@ -556,8 +563,7 @@ class Visitor(NodeVisitor):
         #self.visit(node.monadic_operator)
         print("Monadic operator: " + str(node.monadic_operator))
         self.visit(node.operand4)
-        node.type = self.raw_type_unary(node, node.monadic_operator, node.operand4)
-        node.raw_type = node.operand4.raw_type
+        node.raw_type = self.raw_type_unary(node, node.monadic_operator, node.operand4)
 
     # monadic_operator
 
@@ -565,6 +571,8 @@ class Visitor(NodeVisitor):
 
     def visit_Referenced_Location(self, node):
         self.visit(node.location)
+        node.raw_type = node.location.raw_type
+        node.dcl_type = node.location.dcl_type
 
     def visit_Action_Statement(self, node):
         self.visit(node.label_id)
@@ -696,11 +704,13 @@ class Visitor(NodeVisitor):
     def visit_Procedure_Call(self, node):
         self.visit(node.identifier)
         type = self.environment.lookup(node.identifier.ID)
-        node.dcl_type = type[0]
-        node.raw_type = type[1]
         if type is None:
             self.print_error(node.lineno,"Procedure {} not found".format(node.identifier.ID))
-        elif (type[0] != 'proc'):
+            return
+
+        node.dcl_type = type[0]
+        node.raw_type = type[1]
+        if (type[0] != 'proc'):
             self.print_error(node.lineno, "Expected Procedure call {}, found {} {}".format(node.identifier.ID, type[0], type[1]))
         else:
             parameter_count = 0
@@ -712,21 +722,11 @@ class Visitor(NodeVisitor):
             elif not node.parameter_list is None:
                 for i, param in enumerate(node.parameter_list, start=0):
                     self.visit(param)
-                    if param.raw_type is None:
+                    param_type = param.raw_type
+                    if (param_type != type[2][i]):
                         self.print_error(node.lineno,
                                          "Incorrect parameter type at position i={}; Expected {}, found {}".format(
                                              i, type[2][i], param_type))
-                    else:
-                        #if isinstance(param.type, ExprType):
-                        #    param_type = param.type
-                        #else:
-                        #    param_type = param.type[1]
-                        param_type = param.raw_type
-
-                        if (param_type != type[2][i]):
-                            self.print_error(node.lineno,
-                                             "Incorrect parameter type at position i={}; Expected {}, found {}".format(
-                                                 i, type[2][i], param_type))
 
     # parameter_list
 
@@ -755,8 +755,8 @@ class Visitor(NodeVisitor):
             for param in node.parameter_list: self.visit(param)
 
     # TODO: LIST OF PARAMETERS FOR BUILTIN NAMES
-    #def visit_Builtin_Name(self, node):
-    #    print("Builtin Name: " + str(node.name))
+    def visit_Builtin_Name(self, node):
+        print("Builtin Name: " + str(node.name))
 
 
     def visit_Procedure_Statement(self, node):
@@ -768,13 +768,13 @@ class Visitor(NodeVisitor):
 
     def visit_Procedure_Definition(self, node):
         self.visit(node.formal_procedure_head)
-
+        expected = node.formal_procedure_head.result_spec
+        hasReturns = False
         if not node.statement_list is None:
             for statement in node.statement_list:
                 self.visit(statement)
-                if hasattr(statement, 'action') and statement.action.__class__.__name__ == "Return_Action":
-
-                    expected = node.formal_procedure_head.result_spec
+                if hasattr(statement, 'action') and isinstance(statement.action, Return_Action):
+                    hasReturns = True
                     found_type = None
                     if not statement.action.result is None:
                         #if (isinstance(statement.action.result.type, ExprType)):
@@ -784,10 +784,14 @@ class Visitor(NodeVisitor):
                         found_type = statement.action.result.raw_type
 
                     if expected is None:
+                        if not found_type is None:
                             self.print_error(node.lineno, "Expected void return, found {}".format(found_type))
                     else:
                         if (found_type != expected.mode.raw_type):
                             self.print_error(node.lineno, "Expected {} return, found {}".format(expected.mode.raw_type,found_type))
+        if not hasReturns and expected is not None:
+            proc_name = self.environment.peek().return_type().replace("PROCEDURE DECLARATION ", "")
+            self.print_error(node.lineno, "Procedure {} has no return".format(proc_name))
 
     def visit_Formal_Procedure_Head(self, node):
         node.param_types = []
@@ -803,7 +807,7 @@ class Visitor(NodeVisitor):
             result_type = node.result_spec.mode.raw_type
 
         proc_name = self.environment.peek().return_type().replace("PROCEDURE DECLARATION ","")
-        print(proc_name)
+        print("Procedure declaration: {}".format(proc_name))
 
         aux_type = self.environment.lookup(proc_name)
         if not aux_type is None:

@@ -954,7 +954,7 @@ while counter > 0:
         "od;"
 
 
-        #s = "dcl a,b bool; a = false; b = false; a = b || a;"
+        #s = "dcl a,b bool; a = false; b = false; a = b || 1;"
 
         #s = "if v[d] > v[d + 1] then " \
         #    "swap = v[d]; " \
@@ -966,7 +966,7 @@ while counter > 0:
 
         #s = "syn a int = 10; dcl b int; a += a + b;"
 
-        #s = "g: proc(t int); return \"cgasg\"; dcl x int; t *= 2; x = 2 * t; z = x + 1; end; nope(5) = 2;"
+        #s = "g: proc(t int) returns(int); dcl x int; t *= 2; x = 2 * t; z = x + 1; end; g(K) = 2;"
 
         #s = "/* example2: */"\
         #"dcl z, t int;"\
@@ -976,9 +976,9 @@ while counter > 0:
         #s = "/*example1: */"\
         #"dcl m, n, s int; read(m, n); s = 0; do while m <= n; s += m * n; print(m, s); m += 1; od;"
 
-        s = "/*Compute the Fibonacci of an integer */"\
-        "fibo: proc(n int, g int loc); dcl h int; if n < 0 then print(g); return;"\
-        "else h = g; fibo(n - 1, h); g = h; fibo(n - 2, g); fi; print(n, g); end; dcl k int = 0; fibo(3, k); fibo(-1, k);"
+        #s = "/*Compute the Fibonacci of an integer */"\
+        #"fibo: proc(n int, g int loc); dcl h int; if n < 0 then print(g); return;"\
+        #"else h = g; fibo(n - 1, h); g = h; fibo(n - 2, g); fi; print(n, g); end; dcl k int = 0; fibo(3, k); fibo(-1, k);"
 
         #s = "/*Palindrome numbers: */"\
         #"dcl n, t int, reverse int = 0; print(\"Enter a number: \"); read(n); t = n; do while t != 0; reverse = reverse * 10;"\
@@ -999,27 +999,27 @@ while counter > 0:
     except EOFError:
         break
 
-    if not s: continue
+    # if not s: continue
+    # result = Parser()
+    # ast = result.parse(s)
+    # nv = Visitor()
+    # nv.visit(ast)
+
+
+# Run parser on given file
+def main():
+    file_name = sys.argv[1]
+
+    # Read given file
+    file = open(file_name, "r")
+
+    s = file.read()
+
     result = Parser()
     ast = result.parse(s)
+
     nv = Visitor()
     nv.visit(ast)
 
 
-# Run parser on given file
-#def main():
-#    file_name = sys.argv[1]
-
-    # Read given file
-    #file = open(file_name, "r")
-
-    #s = file.read()
-
-    #result = Parser()
-    #ast = result.parse(s)
-
-    #nv = Visitor()
-    #nv.visit(ast)
-
-
-#if __name__ == "__main__": main()
+if __name__ == "__main__": main()
