@@ -319,9 +319,11 @@ class Visitor(NodeVisitor):
 
     def visit_Array_Mode(self, node):
         if not node.index_mode_list is None:
-            for index_mode in node.index_mode_list: self.visit(index_mode)
+            for index_mode in node.index_mode_list:
+                print(index_mode)
+                self.visit(index_mode)
         self.visit(node.element_mode)
-        node.raw_type = '[' + node.element_mode.raw_type + ']'
+        node.raw_type = '[' + node.element_mode.raw_type
 
     def visit_Element_Mode(self, node):
         self.visit(node.mode)
@@ -371,6 +373,8 @@ class Visitor(NodeVisitor):
         node.dcl_type = node.identifier.dcl_type
         if (node.identifier.raw_type == 'string'):
             node.raw_type = 'char'
+        #elif (node.raw_type[0] == '['):
+        #    self.visit_Array_Slice(node)
         else:
             self.print_error(node.lineno, "Attempted to access string element in non-string " + str(node.identifier.ID))
 

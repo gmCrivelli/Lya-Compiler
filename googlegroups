@@ -6,11 +6,11 @@ end;
 p1();
 
 
-type vector = array [1:3] int;
+type vector = array [bool, int] int;
 dcl x1 vector, i int;
 do
   for i = 1 to 3;
-    x1[i] = i;
+    x1[i][i] = i;
 od;
 x1[i] += x1[j];
 
