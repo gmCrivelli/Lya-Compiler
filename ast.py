@@ -330,6 +330,9 @@ class Control_Part(AST):
 class Step_Enumeration(AST):
     _fields = ['loop_counter', 'start_value', 'step_value', 'end_value']
 
+class Loop_Counter(AST):
+    _fields = ['identifier']
+
 #start_value
 #step_value
 #end_value

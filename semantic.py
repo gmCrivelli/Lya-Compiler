@@ -70,6 +70,7 @@ class Environment(object):
     def push(self, enclosure):
         self.stack.append(SymbolTable(decl=enclosure))
     def pop(self):
+        self.printStack()
         self.stack.pop()
     def peek(self):
         return self.stack[-1]
@@ -95,6 +96,7 @@ class Environment(object):
         else:
             return False
     def printStack(self):
+        print("Printing environment scope stack:")
         for table in self.stack:
             print(table)
 
@@ -116,6 +118,8 @@ class Visitor(NodeVisitor):
             "void": void_type
         }
         self.assign = '='
+        self.array_symbol = '$'
+        self.ref_symbol = '&'
         self.semantic_error = False
 
     def print_error(self, lineno, text):
@@ -292,9 +296,20 @@ class Visitor(NodeVisitor):
         node.raw_type = 'char' #self.typemap[node.CHAR]
 
     def visit_Discrete_Range_Mode(self, node):
-        self.visit(node.identifier)
         self.visit(node.literal_range)
-        self.visit(node.discrete_mode)
+        raw_type = None
+        params = []
+        if node.identifier is not None:
+            self.visit(node.identifier)
+            raw_type = node.identifier.raw_type
+        else:
+            self.visit(node.discrete_mode)
+            raw_type = node.discrete_mode.raw_type
+            if hasattr(node.discrete_mode, "params"):
+                params = node.discrete_mode.params
+        #node.raw_type = '(' + raw_type
+        node.raw_type = raw_type
+        node.params = params.append(node.literal_range.raw_type)
 
     def visit_Mode_Name(self, node):
         print("Mode name")
@@ -304,10 +319,14 @@ class Visitor(NodeVisitor):
     def visit_Literal_Range(self, node):
         self.visit(node.lower_bound.expression)
         self.visit(node.upper_bound.expression)
+        if node.lower_bound.expression.raw_type != None and node.upper_bound.expression.raw_type != None:
+            if node.lower_bound.expression.raw_type != node.upper_bound.expression.raw_type:
+                self.print_error(node.lineno, "Mismatching bound types in literal range")
+        node.raw_type = node.lower_bound.expression.raw_type
 
     def visit_Reference_Mode(self, node):
         self.visit(node.mode)
-        node.raw_type = node.mode.raw_type
+        node.raw_type = self.ref_symbol + node.mode.raw_type
 
     def visit_String_Mode(self, node):
         print("String Mode")
@@ -320,10 +339,10 @@ class Visitor(NodeVisitor):
     def visit_Array_Mode(self, node):
         if not node.index_mode_list is None:
             for index_mode in node.index_mode_list:
-                print(index_mode)
+                #print(index_mode)
                 self.visit(index_mode)
         self.visit(node.element_mode)
-        node.raw_type = '[' + node.element_mode.raw_type
+        node.raw_type = self.array_symbol + node.element_mode.raw_type
 
     def visit_Element_Mode(self, node):
         self.visit(node.mode)
@@ -348,51 +367,68 @@ class Visitor(NodeVisitor):
 
     def visit_Dereferenced_Reference(self, node):
         self.visit(node.location)
-        node.raw_type = node.location.raw_type
+        raw_type = None
+        if node.location.raw_type is not None and node.location.raw_type[0] == self.ref_symbol:
+            raw_type = node.location.raw_type.replace(self.ref_symbol, '', 1)
+        else:
+            self.print_error(node.lineno, "Attempted to dereference in non-reference element")
+
+        node.raw_type = raw_type
         node.dcl_type = node.location.dcl_type
 
-    def visit_String_Element(self, node):
-        self.visit(node.identifier)
-        self.visit(node.start_element)
-        node.raw_type = None
-        node.dcl_type = node.identifier.dcl_type
-        if (node.identifier.raw_type == 'string'):
-            node.raw_type = 'char'
-        else:
-            self.print_error(node.lineno, "Attempted to access string element in non-string " + str(node.identifier.ID))
+    # def visit_String_Element(self, node):
+    #     self.visit(node.identifier)
+    #     self.visit(node.start_element)
+    #     node.raw_type = None
+    #     node.dcl_type = node.identifier.dcl_type
+    #     if (node.identifier.raw_type == 'string'):
+    #         node.raw_type = 'char'
+    #     else:
+    #         self.print_error(node.lineno, "Attempted to access string element in non-string " + str(node.identifier.ID))
 
-    def visit_Start_Element(self, node):
-        self.visit(node.integer_expression)
+    #def visit_Start_Element(self, node):
+    #    self.visit(node.integer_expression)
 
-    def visit_String_Slice(self, node):
-        self.visit(node.identifier)
-        self.visit(node.left_element)
-        self.visit(node.right_element)
+    # def visit_String_Slice(self, node):
+    #     self.visit(node.identifier)
+    #     self.visit(node.left_element)
+    #     self.visit(node.right_element)
+    #
+    #     node.raw_type = None
+    #     node.dcl_type = node.identifier.dcl_type
+    #     if (node.identifier.raw_type == 'string'):
+    #         node.raw_type = 'char'
+    #     #elif (node.raw_type[0] == self.array_symbol):
+    #     #    self.visit_Array_Slice(node)
+    #     else:
+    #         self.print_error(node.lineno, "Attempted to access string element in non-string " + str(node.identifier.ID))
+    #
+    # def visit_Left_Element(self, node):
+    #     self.visit(node.integer_expression)
+    #
+    # def visit_Right_Element(self, node):
+    #     self.visit(node.integer_expression)
 
-        node.raw_type = None
-        node.dcl_type = node.identifier.dcl_type
-        if (node.identifier.raw_type == 'string'):
-            node.raw_type = 'char'
-        #elif (node.raw_type[0] == '['):
-        #    self.visit_Array_Slice(node)
-        else:
-            self.print_error(node.lineno, "Attempted to access string element in non-string " + str(node.identifier.ID))
-
-    def visit_Left_Element(self, node):
-        self.visit(node.integer_expression)
-
-    def visit_Right_Element(self, node):
-        self.visit(node.integer_expression)
-
-    def visit_Array_Element(self, node):
-        self.visit(node.array_location)
-        if not node.expression_list is None:
-            for expression in node.expression_list: self.visit(expression)
-
-        node.raw_type = node.array_location.raw_type
-        node.dcl_type = node.array_location.dcl_type
 
     # expression_list
+
+    def visit_Array_Element(self, node):
+
+        self.visit(node.array_location)
+        raw_type = None
+        if node.array_location.raw_type is not None:
+            if node.array_location.raw_type == 'string':
+                raw_type = 'char'
+            elif node.array_location.raw_type[0] == self.array_symbol:
+                raw_type = node.array_location.raw_type.replace(self.array_symbol,'',1)
+            else:
+                self.print_error(node.lineno, "Attempted subscript in non-array element")
+
+            if not node.expression_list is None:
+                for expression in node.expression_list: self.visit(expression)
+
+        node.raw_type = raw_type
+        node.dcl_type = node.array_location.dcl_type
 
     def visit_Array_Slice(self, node):
         self.visit(node.array_location)
@@ -408,7 +444,9 @@ class Visitor(NodeVisitor):
     # TODO: CHECK IF LOCATION IS ARRAY
     def visit_Array_Location(self, node):
         self.visit(node.location)
-        print(node.location.raw_type)
+
+        node.raw_type = node.location.raw_type
+        node.dcl_type = node.location.dcl_type
 
     # primitive_value
 
@@ -575,7 +613,7 @@ class Visitor(NodeVisitor):
 
     def visit_Referenced_Location(self, node):
         self.visit(node.location)
-        node.raw_type = node.location.raw_type
+        node.raw_type = self.ref_symbol + node.location.raw_type
         node.dcl_type = node.location.dcl_type
 
     def visit_Action_Statement(self, node):
@@ -689,6 +727,17 @@ class Visitor(NodeVisitor):
         self.visit(node.start_value)
         self.visit(node.step_value)
         self.visit(node.end_value)
+
+    def visit_Loop_Counter(self, node):
+        type = self.environment.lookup(node.identifier.ID)
+        if type is None:
+            print("No counter found, creating new")
+            self.environment.add_local(node.identifier.ID, ['var', 'int'])
+        else:
+            if type[0] != 'var' or type[1] != 'int':
+                self.print_error(node.lineno, "Loop counter is not integer variable")
+
+
 
     # start_value
     # step_value

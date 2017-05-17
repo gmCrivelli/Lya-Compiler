@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b94fdf1e-cd9c-4c77-a6f7-44740909cd5e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ast.py" afterPath="$PROJECT_DIR$/ast.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/googlegroups" afterPath="$PROJECT_DIR$/googlegroups" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.out" afterPath="$PROJECT_DIR$/parser.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.py" afterPath="$PROJECT_DIR$/parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parsetab.py" afterPath="$PROJECT_DIR$/parsetab.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/semantic.py" afterPath="$PROJECT_DIR$/semantic.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,14 +44,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.32135418">
+    <splitter split-orientation="horizontal" split-proportion="0.5692308">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ast.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ast.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="218">
-                  <caret line="183" column="15" lean-forward="false" selection-start-line="183" selection-start-column="6" selection-end-line="183" selection-end-column="15" />
+                <state relative-caret-position="222">
+                  <caret line="333" column="28" lean-forward="false" selection-start-line="333" selection-start-column="28" selection-end-line="333" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
@@ -56,40 +60,55 @@
           <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/parser.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3810">
-                  <caret line="260" column="24" lean-forward="false" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
+                <state relative-caret-position="764">
+                  <caret line="881" column="34" lean-forward="false" selection-start-line="881" selection-start-column="34" selection-end-line="881" selection-end-column="34" />
                   <folding>
                     <element signature="e#15#38#0" expanded="true" />
-                    <marker date="1494892792000" expanded="true" signature="3781:3941" ph="..." />
+                    <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
+                    <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="semantic.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/semantic.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="293">
-                  <caret line="257" column="45" lean-forward="true" selection-start-line="257" selection-start-column="45" selection-end-line="257" selection-end-column="45" />
+                <state relative-caret-position="279">
+                  <caret line="98" column="42" lean-forward="false" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
-                    <marker date="1494963917000" expanded="true" signature="1404:1676" ph="..." />
-                    <marker date="1494963917000" expanded="true" signature="1428:1676" ph="..." />
-                    <marker date="1494963917000" expanded="true" signature="1550:1676" ph="..." />
-                    <marker date="1494963917000" expanded="true" signature="32108:32156" ph="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="lexer.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lexer.py">
+          <file leaf-file-name="lya_parser.py" pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/lya_parser.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-390">
-                  <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#1#11#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="5985">
+                  <caret line="401" column="25" lean-forward="false" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="astdecorator.py" pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/Downloads/Lya-Compiler-master/astdecorator.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/Downloads/Lya-Compiler-master/ast.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="4545">
+                  <caret line="303" column="34" lean-forward="false" selection-start-line="303" selection-start-column="34" selection-end-line="303" selection-end-column="34" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -97,95 +116,21 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.5">
-          <split-first>
-            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/ast.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="218">
-                      <caret line="371" column="20" lean-forward="false" selection-start-line="371" selection-start-column="20" selection-end-line="371" selection-end-column="20" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/parser.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="764">
-                      <caret line="878" column="34" lean-forward="false" selection-start-line="878" selection-start-column="34" selection-end-line="878" selection-end-column="34" />
-                      <folding>
-                        <element signature="e#15#38#0" expanded="true" />
-                        <marker date="1494892792000" expanded="true" signature="3781:3941" ph="..." />
-                        <marker date="1494892792000" expanded="true" signature="37193:37194" ph="..." />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/semantic.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="379">
-                      <caret line="330" column="0" lean-forward="true" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
-                      <folding>
-                        <element signature="e#0#10#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="lya_parser.py" pinned="false" current-in-tab="false">
-                <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/lya_parser.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="5985">
-                      <caret line="401" column="25" lean-forward="false" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="astdecorator.py" pinned="false" current-in-tab="false">
-                <entry file="file://$USER_HOME$/Downloads/Lya-Compiler-master/astdecorator.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="0">
-                      <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
-                <entry file="file://$USER_HOME$/Downloads/Lya-Compiler-master/ast.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="4545">
-                      <caret line="303" column="34" lean-forward="false" selection-start-line="303" selection-start-column="34" selection-end-line="303" selection-end-column="34" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-first>
-          <split-second>
-            <leaf>
-              <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/parser.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="558">
-                      <caret line="315" column="35" lean-forward="true" selection-start-line="315" selection-start-column="35" selection-end-line="315" selection-end-column="35" />
-                      <folding>
-                        <element signature="e#15#38#0" expanded="true" />
-                        <marker date="1494892792000" expanded="true" signature="37193:37194" ph="..." />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-second>
-        </splitter>
+        <leaf>
+          <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/parser.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-6469">
+                  <caret line="554" column="35" lean-forward="false" selection-start-line="554" selection-start-column="35" selection-end-line="554" selection-end-column="35" />
+                  <folding>
+                    <element signature="e#15#38#0" expanded="true" />
+                    <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
       </split-second>
     </splitter>
   </component>
@@ -198,24 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>call_ac</find>
-      <find>identifier</find>
-      <find>print(</find>
-      <find>unary</find>
-      <find>raw_type_una</find>
-      <find>nam</find>
-      <find>:</find>
-      <find>&quot;ame</find>
-      <find>&quot;am</find>
-      <find>&quot;a</find>
-      <find>&quot;</find>
-      <find>&quot;name&quot;</find>
-      <find>&quot;name</find>
-      <find>name</find>
-      <find>'name</find>
-      <find>'name'1</find>
-      <find>'name2'</find>
-      <find>'name'</find>
       <find>declaration</find>
       <find>assignment types</find>
       <find>self.environment.lookup</find>
@@ -224,10 +151,28 @@
       <find>action_sta</find>
       <find>action</find>
       <find>array_elem</find>
-      <find>dereferen</find>
       <find>value_array</find>
       <find>primitive</find>
       <find>array</find>
+      <find>node.array_location.raw_type</find>
+      <find>dereferen</find>
+      <find>index_mode</find>
+      <find>literal_ran</find>
+      <find>p_mode</find>
+      <find>print(node</find>
+      <find>print\([^&quot;]</find>
+      <find>lineno</find>
+      <find>print(&quot;</find>
+      <find>_list</find>
+      <find>while_control</find>
+      <find>loop_coun</find>
+      <find>loop_counter</find>
+      <find>step_e</find>
+      <find>add_local</find>
+      <find>'['</find>
+      <find>ARROW</find>
+      <find>print(</find>
+      <find>self.environment.pop</find>
     </findStrings>
     <replaceStrings>
       <replace>def visit_</replace>
@@ -241,6 +186,7 @@
       <replace>type</replace>
       <replace>proc_name</replace>
       <replace>.raw_type</replace>
+      <replace>location_raw_type</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -252,17 +198,15 @@
         <option value="$PROJECT_DIR$/sample.lya" />
         <option value="$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/meuCodigo" />
         <option value="$PROJECT_DIR$/lexer.py" />
-        <option value="$PROJECT_DIR$/ast.py" />
         <option value="$PROJECT_DIR$/parser.py" />
+        <option value="$PROJECT_DIR$/ast.py" />
         <option value="$PROJECT_DIR$/semantic.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1920" />
-    <option name="y" value="-280" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="width" value="999" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -515,14 +459,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1920" y="-280" width="1920" height="1080" extended-state="0" />
+    <frame x="0" y="0" width="999" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.077083334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2894482" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.249668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33076924" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33516484" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -619,8 +563,8 @@
           <caret line="260" column="24" lean-forward="true" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494892792000" expanded="true" signature="3781:3941" ph="..." />
-            <marker date="1494892792000" expanded="true" signature="37193:37194" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
           </folding>
         </state>
       </provider>
@@ -630,7 +574,7 @@
         <state relative-caret-position="1890">
           <caret line="126" column="10" lean-forward="false" selection-start-line="126" selection-start-column="10" selection-end-line="126" selection-end-column="10" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -649,8 +593,8 @@
           <caret line="480" column="39" lean-forward="true" selection-start-line="480" selection-start-column="39" selection-end-line="480" selection-end-column="39" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494892792000" expanded="true" signature="3781:3941" ph="..." />
-            <marker date="1494892792000" expanded="true" signature="37193:37194" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
           </folding>
         </state>
       </provider>
@@ -688,7 +632,7 @@
         <state relative-caret-position="1665">
           <caret line="111" column="18" lean-forward="false" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="18" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -699,8 +643,8 @@
           <caret line="576" column="28" lean-forward="false" selection-start-line="576" selection-start-column="19" selection-end-line="576" selection-end-column="28" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494892792000" expanded="true" signature="3781:3941" ph="..." />
-            <marker date="1494892792000" expanded="true" signature="37193:37194" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
           </folding>
         </state>
       </provider>
@@ -735,7 +679,7 @@
         <state relative-caret-position="1500">
           <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -761,8 +705,8 @@
           <caret line="168" column="18" lean-forward="false" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494892792000" expanded="true" signature="3781:3941" ph="..." />
-            <marker date="1494892792000" expanded="true" signature="37193:37194" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
           </folding>
         </state>
       </provider>
@@ -772,7 +716,7 @@
         <state relative-caret-position="1530">
           <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -783,8 +727,8 @@
           <caret line="374" column="35" lean-forward="false" selection-start-line="374" selection-start-column="35" selection-end-line="374" selection-end-column="35" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494892792000" expanded="true" signature="3781:3941" ph="..." />
-            <marker date="1494892792000" expanded="true" signature="37193:37194" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
           </folding>
         </state>
       </provider>
@@ -809,7 +753,7 @@
         <state relative-caret-position="1500">
           <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -827,8 +771,8 @@
           <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494892792000" expanded="true" signature="3781:3941" ph="..." />
-            <marker date="1494892792000" expanded="true" signature="37193:37194" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
           </folding>
         </state>
       </provider>
@@ -838,7 +782,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -849,8 +793,8 @@
           <caret line="60" column="35" lean-forward="false" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494892792000" expanded="true" signature="3781:3941" ph="..." />
-            <marker date="1494892792000" expanded="true" signature="37193:37194" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
           </folding>
         </state>
       </provider>
@@ -867,7 +811,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -884,7 +828,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -901,7 +845,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -911,7 +855,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -921,7 +865,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -997,28 +941,16 @@
         <state relative-caret-position="-390">
           <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="371" column="20" lean-forward="false" selection-start-line="371" selection-start-column="20" selection-end-line="371" selection-end-column="20" />
+        <state relative-caret-position="222">
+          <caret line="333" column="28" lean-forward="false" selection-start-line="333" selection-start-column="28" selection-end-line="333" selection-end-column="28" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="764">
-          <caret line="878" column="34" lean-forward="false" selection-start-line="878" selection-start-column="34" selection-end-line="878" selection-end-column="34" />
-          <folding>
-            <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494892792000" expanded="true" signature="3781:3941" ph="..." />
-            <marker date="1494892792000" expanded="true" signature="37193:37194" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1032,10 +964,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="764">
+          <caret line="881" column="34" lean-forward="false" selection-start-line="881" selection-start-column="34" selection-end-line="881" selection-end-column="34" />
+          <folding>
+            <element signature="e#15#38#0" expanded="true" />
+            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
+            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/semantic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="330" column="0" lean-forward="true" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+        <state relative-caret-position="279">
+          <caret line="98" column="42" lean-forward="false" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

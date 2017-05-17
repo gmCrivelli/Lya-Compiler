@@ -6,11 +6,11 @@ end;
 p1();
 
 
-type vector = array [bool, int] int;
-dcl x1 vector, i int;
+type vector = array [1:3] int;
+dcl x1 vector;
 do
   for i = 1 to 3;
-    x1[i][i] = i;
+    x1[i] = i;
 od;
 x1[i] += x1[j];
 
@@ -34,7 +34,7 @@ od;
 dcl s chars[8] = "setembro";
 dcl b bool;
 if b then
-  print(s);
+  print(s[0]);
 else
   print("agosto");
 fi;
