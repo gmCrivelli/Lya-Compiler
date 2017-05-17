@@ -752,7 +752,7 @@ class Parser:
 
     def p_while_control(self, p):
         '''while_control :  WHILE boolean_expression'''
-        p[0] = While_Control(p[2], lineno = p[1].lineno)
+        p[0] = While_Control(p[2], lineno = p.lineno(1))
 
     def p_call_action(self, p):
         '''call_action :  procedure_call
@@ -869,9 +869,9 @@ class Parser:
         '''parameter_spec :  mode
                           |  mode LOC'''
         if(len(p) == 2):
-            p[0] = Parameter_Spec(p[1], None, lineno = p[1].lineno)
+            p[0] = Parameter_Spec(p[1], False, lineno = p[1].lineno)
         elif(len(p) == 3):
-            p[0] = Parameter_Spec(p[1], p[2], lineno = p[1].lineno)
+            p[0] = Parameter_Spec(p[1], True, lineno = p[1].lineno)
 
     #def p_parameter_attribute(self, p):
     #    '''parameter_attribute :  LOC'''
@@ -882,9 +882,9 @@ class Parser:
         '''result_spec  :  RETURNS LPAREN mode RPAREN
                         |  RETURNS LPAREN mode LOC RPAREN'''
         if(len(p) == 5):
-            p[0] = Result_Spec(p[3], None, lineno = p.lineno(1))
+            p[0] = Result_Spec(p[3], False, lineno = p.lineno(1))
         elif(len(p) == 6):
-            p[0] = Result_Spec(p[3], p[4], lineno = p.lineno(1))
+            p[0] = Result_Spec(p[3], True, lineno = p.lineno(1))
 
     #def p_result_attribute(self, p):
     #    '''result_attribute :  LOC'''

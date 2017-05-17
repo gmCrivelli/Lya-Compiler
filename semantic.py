@@ -120,6 +120,7 @@ class Visitor(NodeVisitor):
         self.assign = '='
         self.array_symbol = '$'
         self.ref_symbol = '&'
+        self.loc_symbol = '!'
         self.semantic_error = False
 
     def print_error(self, lineno, text):
@@ -224,25 +225,28 @@ class Visitor(NodeVisitor):
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
-                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type])
+                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type, False])
 
 #    def visit_Initialization(self, node):
 #        self.visit(node.expression) <- GO HERE
 
     def visit_Identifier(self, node):
         node.type = self.environment.lookup(node.ID)
-        node.raw_type = None
-        node.dcl_type = None
+        node.raw_type = '^UNDEFINED^'
+        node.dcl_type = '^UNDEFINED^'
+        node.loc = False
         #self.visit(node.ID)
         if(node.type != None):
             print("Identifier: ID \"" + str(node.ID) + "\" type \"{} {}\"".format(node.type[0], node.type[1]))
             node.dcl_type = node.type[0]
             node.raw_type = node.type[1]
+            node.loc = node.type[2]
+
             #while(not isinstance(node.type, ExprType) and node.type[0] == "type"):
             #    node.type = node.type[1]
         else:
             self.print_error(node.lineno,
-            "Variable {} was not defined".format(node.ID))
+            "Identifier {} was not defined".format(node.ID))
 
     def visit_Synonym_Statement(self, node):
         # Visit all of the synonyms
@@ -262,7 +266,7 @@ class Visitor(NodeVisitor):
                 self.print_error(node.lineno,
                                 "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0], aux_type[1]))
             else:
-                self.environment.add_local(ident.ID, ['const', node.initialization.raw_type])
+                self.environment.add_local(ident.ID, ['synonym', node.initialization.raw_type, False])
 
     def visit_Newmode_Statement(self, node):
         if not node.newmode_list is None:
@@ -278,7 +282,7 @@ class Visitor(NodeVisitor):
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
-                    self.environment.add_local(ident.ID, ['type', node.mode.raw_type])
+                    self.environment.add_local(ident.ID, ['mode', node.mode.raw_type, False])
 
     def visit_Integer_Mode(self, node):
         #self.visit(node.INT)
@@ -312,8 +316,10 @@ class Visitor(NodeVisitor):
         node.params = params.append(node.literal_range.raw_type)
 
     def visit_Mode_Name(self, node):
-        print("Mode name")
+        #print("Mode name")
         self.visit(node.identifier)
+        if node.identifier.type is None or (node.identifier.type is not None and node.identifier.type[0] != 'mode'):
+            self.print_error(node.lineno, "{} is not a valid mode.".format(node.identifier.ID))
         node.raw_type = node.identifier.raw_type
 
     def visit_Literal_Range(self, node):
@@ -375,6 +381,8 @@ class Visitor(NodeVisitor):
 
         node.raw_type = raw_type
         node.dcl_type = node.location.dcl_type
+        node.ID = node.location.ID
+        node.loc = node.location.loc
 
     # def visit_String_Element(self, node):
     #     self.visit(node.identifier)
@@ -429,6 +437,8 @@ class Visitor(NodeVisitor):
 
         node.raw_type = raw_type
         node.dcl_type = node.array_location.dcl_type
+        node.ID = node.array_location.ID
+        node.loc = node.array_location.loc
 
     def visit_Array_Slice(self, node):
         self.visit(node.array_location)
@@ -437,16 +447,19 @@ class Visitor(NodeVisitor):
 
         node.raw_type = node.array_location.raw_type
         node.dcl_type = node.array_location.dcl_type
+        node.ID = node.array_location.ID
+        node.loc = node.array_location.loc
+
         if (node.lower_bound.raw_type != node.upper_bound.raw_type):
             self.print_error(node.lineno, "Mismatching bound types {} and {} in array slice".format(node.lower_bound.raw_type, node.upper_bound.raw_type))
 
-
-    # TODO: CHECK IF LOCATION IS ARRAY
     def visit_Array_Location(self, node):
         self.visit(node.location)
 
         node.raw_type = node.location.raw_type
         node.dcl_type = node.location.dcl_type
+        node.ID = node.location.ID
+        node.loc = node.location.loc
 
     # primitive_value
 
@@ -454,40 +467,68 @@ class Visitor(NodeVisitor):
 
     def visit_Integer_Literal(self, node):
         #self.visit(node.ICONST)
-        node.raw_type = 'int' #self.typemap["int"]
         print("Integer Literal: " + str(node.value))
+        node.raw_type = 'int' #self.typemap["int"]
+        node.dcl_type = 'literal'
+        node.ID = ''
+        node.loc = False
 
     def visit_Boolean_Literal(self, node):
         #self.visit(node.BOOL)
         print("Boolean Literal: " + str(node.value))
         node.raw_type = 'bool' #self.typemap["bool"]
+        node.dcl_type = 'literal'
+        node.ID = ''
+        node.loc = False
 
     def visit_Character_Literal(self, node):
         #self.visit(node.CCONST)
         print("Character Literal: " + str(node.value))
         node.raw_type = 'char' #self.typemap["char"]
+        node.dcl_type = 'literal'
+        node.ID = ''
+        node.loc = False
 
     def visit_Empty_Literal(self, node):
         #self.visit(node.NULL)
         print("Empty literal")
         node.raw_type = 'void' #self.typemap["void"]
+        node.dcl_type = 'literal'
+        node.ID = ''
+        node.loc = False
 
     def visit_Character_String_Literal(self, node):
         #self.visit(node.SCONST)
         print("Character String Literal: " + str(node.value))
         node.raw_type = 'string' #self.typemap["string"]
+        node.dcl_type = 'literal'
+        node.ID = ''
+        node.loc = False
 
     def visit_Value_Array_Element(self, node):
         self.visit(node.array_primitive_value)
         self.visit(node.integer_expression)
+        node.raw_type = node.array_primitive_value.raw_type
+        node.dcl_type = 'literal'
+        node.ID = ''
+        node.loc = False
 
     def visit_Value_Array_Slice(self, node):
         self.visit(node.array_primitive_value)
         self.visit(node.lower_bound)
         self.visit(node.upper_bound)
+        node.raw_type = node.array_primitive_value.raw_type
+        node.dcl_type = 'literal'
+        node.ID = ''
+        node.loc = False
 
     def visit_Array_Primitive_Value(self, node):
         self.visit(node.primitive_value)
+        node.raw_type = node.array_primitive_value.raw_type
+        # you don't really need the rest here
+        #node.dcl_type = 'literal'
+        #node.ID = ''
+        #node.loc = False
 
     #def visit_Parenthesized_Expression(self, node):
     #    self.visit(node.expression)
@@ -515,8 +556,11 @@ class Visitor(NodeVisitor):
                 aux_msg += ", {}".format(elsif_type)
             aux_msg += " and {}".format(else_type)
             self.print_error(node.lineno, aux_msg)
-        else:
-            node.raw_type = then_type
+
+        node.raw_type = then_type
+        node.dcl_type = 'conditional expression'
+        node.ID = ''
+        node.loc = False
 
 
     def visit_Boolean_Expression(self, node):
@@ -569,14 +613,15 @@ class Visitor(NodeVisitor):
                 self.print_error(node.lineno, "Mismatching types in Elsif expression {} and {}".format(then_type, elsif_type))
         node.raw_type = then_type
 
-
     def visit_Rel_Mem_Expression(self, node):
         self.visit(node.operand0)
         self.visit(node.operand1)
         # self.visit(node.operator1)
         print("Relational or Membership operator: " + str(node.operator1))
         node.raw_type = self.raw_type_binary(node, node.operator1, node.operand0, node.operand1)
-
+        node.dcl_type = 'relational expression'
+        node.ID = ''
+        node.loc = False
 
     # operator1
 
@@ -590,6 +635,9 @@ class Visitor(NodeVisitor):
         #self.visit(node.operator2)
         print("Binary operator: " + str(node.operator2))
         node.raw_type = self.raw_type_binary(node, node.operator2, node.operand1, node.operand2)
+        node.dcl_type = 'binary expression'
+        node.ID = ''
+        node.loc = False
 
     # operator2
 
@@ -606,6 +654,9 @@ class Visitor(NodeVisitor):
         print("Monadic operator: " + str(node.monadic_operator))
         self.visit(node.operand4)
         node.raw_type = self.raw_type_unary(node, node.monadic_operator, node.operand4)
+        node.dcl_type = 'unary expression'
+        node.ID = ''
+        node.loc = False
 
     # monadic_operator
 
@@ -615,6 +666,8 @@ class Visitor(NodeVisitor):
         self.visit(node.location)
         node.raw_type = self.ref_symbol + node.location.raw_type
         node.dcl_type = node.location.dcl_type
+        node.ID = node.location.ID
+        node.loc = node.location.loc
 
     def visit_Action_Statement(self, node):
         self.visit(node.label_id)
@@ -628,7 +681,7 @@ class Visitor(NodeVisitor):
                              "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                  aux_type[1]))
         else:
-            self.environment.add_local(ident.ID, ['label', 'void'])
+            self.environment.add_local(ident.ID, ['label', 'void', False])
 
     # action
 
@@ -643,7 +696,10 @@ class Visitor(NodeVisitor):
             if node.location.dcl_type is None:
                 self.print_error(node.lineno, "Assigning to undefined location")
                 return
-            if (node.location.dcl_type != 'var'):
+            if node.location.dcl_type != 'var' and node.location.dcl_type != 'proc':
+                self.print_error(node.lineno, "Assignment to unsupported dcl_type {}".format(node.location.dcl_type))
+                return
+            if node.location.dcl_type == 'proc' and not node.location.loc:
                 self.print_error(node.lineno, "Assignment to unsupported dcl_type {}".format(node.location.dcl_type))
                 return
             if node.expression.raw_type is None:
@@ -661,7 +717,7 @@ class Visitor(NodeVisitor):
                                  "Mismatched assignment types {} and {}".format(node.location.raw_type, exp_type))
 
             # self.visit(node.assigning_operator)
-            print("Assigning operator: " + str(node.assigning_operator))
+            print("Assigning to {} with operator {}".format(node.location.ID, node.assigning_operator))
             if(node.assigning_operator != self.assign):
                 loc_type = self.get_exprType(node.location.raw_type, node.lineno)
                 if not (node.assigning_operator in loc_type.closed_dyadic_ops):
@@ -732,7 +788,7 @@ class Visitor(NodeVisitor):
         type = self.environment.lookup(node.identifier.ID)
         if type is None:
             print("No counter found, creating new")
-            self.environment.add_local(node.identifier.ID, ['var', 'int'])
+            self.environment.add_local(node.identifier.ID, ['var', 'int', False])
         else:
             if type[0] != 'var' or type[1] != 'int':
                 self.print_error(node.lineno, "Loop counter is not integer variable")
@@ -754,8 +810,22 @@ class Visitor(NodeVisitor):
     # def visit_Call_Action(self, node):
     #    self.visit(node.label_id)
 
+
+    #TODO: CHECK IF LOC PARAMETER IS VARIABLE OR PROC WITH LOC RETURN
+    #this may be tough, since parameters are expressions
+
     def visit_Procedure_Call(self, node):
         self.visit(node.identifier)
+
+        # type is a matrix.
+        # type[0] is the dcl_type, expected to be 'proc'.
+        # type[1] is the raw return type.
+        # type[2] is a boolean value representing LOC
+        # type[3] is a list of parameters. each parameter is a list by itself:
+        # type[3][i][0] is the parameter type.
+        # type[3][i][1] is a boolean value representing LOC
+        # now go forth and conquer the beast!
+
         type = self.environment.lookup(node.identifier.ID)
         if type is None:
             self.print_error(node.lineno,"Procedure {} not found".format(node.identifier.ID))
@@ -763,29 +833,49 @@ class Visitor(NodeVisitor):
 
         node.dcl_type = type[0]
         node.raw_type = type[1]
+        node.ID = node.identifier.ID
+        node.loc = node.identifier.loc
+
+        if len(type) == 4:
+            node.loc = True
+        else:
+            node.loc = False
+
         if (type[0] != 'proc'):
             self.print_error(node.lineno, "Expected Procedure call {}, found {} {}".format(node.identifier.ID, type[0], type[1]))
         else:
             parameter_count = 0
             if not node.parameter_list is None:
                 parameter_count = len(node.parameter_list)
-            expected_count = len(type[2])
+            expected_count = len(type[3])
             if (parameter_count != expected_count):
                 self.print_error(node.lineno, "Incorrect parameter count at Procedure {}; Expected {}, found {}".format(node.identifier.ID, expected_count, parameter_count))
             elif not node.parameter_list is None:
                 for i, param in enumerate(node.parameter_list, start=0):
                     self.visit(param)
-                    param_type = param.raw_type
-                    if (param_type != type[2][i]):
+                    if (param.raw_type != type[3][i][0]):
                         self.print_error(node.lineno,
                                          "Incorrect parameter type at position i={}; Expected {}, found {}".format(
-                                             i, type[2][i], param_type))
+                                             i, type[3][i][0], param.raw_type))
+                    elif type[3][i][1]:
+                        if param.dcl_type != 'var' and param.dcl_type != 'proc':
+                            self.print_error(node.lineno,
+                                         "Expected location at position i={}; Found {} instead".format(
+                                             i, param.dcl_type))
+                        elif param.dcl_type == 'proc' and not param.loc:
+                            self.print_error(node.lineno,
+                                         "Expected location at position i={}; Found {} instead".format(
+                                             i, param.dcl_type))
+
 
     # parameter_list
 
     def visit_Parameter(self, node):
         self.visit(node.expression)
         node.raw_type = node.expression.raw_type
+        node.dcl_type = node.expression.dcl_type
+        node.ID = node.expression.ID
+        node.loc = node.expression.loc
 
     def visit_Exit_Action(self, node):
         self.visit(node.label_id)
@@ -806,6 +896,11 @@ class Visitor(NodeVisitor):
         self.visit(node.builtin_name)
         if not node.parameter_list is None:
             for param in node.parameter_list: self.visit(param)
+
+        node.raw_type = 'void'
+        node.dcl_type = 'proc'
+        node.ID = node.builtin_name.name
+        node.loc = False
 
     # TODO: LIST OF PARAMETERS FOR BUILTIN NAMES
     def visit_Builtin_Name(self, node):
@@ -851,13 +946,16 @@ class Visitor(NodeVisitor):
         if not node.formal_parameter_list is None:
             for formal_param in node.formal_parameter_list:
                 self.visit(formal_param)
-                node.param_types.append(formal_param.raw_type)
+                node.param_types.append([formal_param.raw_type, formal_param.loc])
 
+        param_list = node.param_types
         if node.result_spec is None:
             result_type = 'void'
+            result_loc = False
         else:
             self.visit(node.result_spec)
             result_type = node.result_spec.mode.raw_type
+            result_loc = node.result_spec.loc
 
         proc_name = self.environment.peek().return_type().replace("PROCEDURE DECLARATION ","")
         print("Procedure declaration: {}".format(proc_name))
@@ -868,8 +966,7 @@ class Visitor(NodeVisitor):
                              "Identifier " + str(proc_name) + " already declared as {} {}".format(aux_type[0],
                                                                                                   aux_type[1]))
         else:
-            param_list = node.param_types
-            self.environment.add_parent(proc_name, ['proc', result_type, node.param_types])
+            self.environment.add_parent(proc_name, ['proc', result_type, result_loc, node.param_types])
 
 
     # formal_parameter_list
@@ -878,6 +975,7 @@ class Visitor(NodeVisitor):
 
         self.visit(node.parameter_spec)
         node.raw_type = node.parameter_spec.mode.raw_type
+        node.loc = node.parameter_spec.loc
 
         if not node.identifier_list is None:
             for ident in node.identifier_list:
@@ -887,19 +985,17 @@ class Visitor(NodeVisitor):
                     self.print_error(node.lineno,
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
-                else:
-                    self.environment.add_local(ident.ID, ['var', node.raw_type])
-        self.visit(node.parameter_spec)
+
+
+
 
     def visit_Parameter_Spec(self, node):
         self.visit(node.mode)
-        #if (node.parameter_attribute != None):
-            #WHAT IS LOC?
-            #node.mode.raw_type.append(node.parameter_attribute)
-
+        #if (node.loc != None):
+        #    node.mode.dcl_type = self.loc_symbol + node.mode.dcl_type
     # parameter_attribute
 
     def visit_Result_Spec(self, node):
         self.visit(node.mode)
-        #if (node.result_attribute != None):
-        #    node.mode.type.append(node.result_attribute)
+        #if (node.loc != None):
+        #    node.mode.dcl_type = self.loc_symbol + node.mode.dcl_type

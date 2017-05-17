@@ -1,0 +1,106 @@
+Integer Mode: int
+Integer Mode: int
+Integer Mode: int
+Procedure declaration: power
+Integer Mode: int
+Integer Mode: int
+Integer Literal: 1
+Integer Literal: 1
+ERROR (line 10): Identifier r was not defined
+Identifier: ID "p" type "var int"
+Identifier: ID "p" type "var int"
+ERROR (line 11): Identifier n was not defined
+Binary operator: *
+ERROR (line 11): Type ^UNDEFINED^ not found
+ERROR (line 11): Binary operator * does not have matching types: int and void
+ERROR (line 11): Mismatched assignment types int and int
+Assigning to p with operator =
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7f04b6479fd0>, 'int': <semantic.ExprType object at 0x7f04b6473438>, 'bool': <semantic.ExprType object at 0x7f04b6479f60>, 'string': <semantic.ExprType object at 0x7f04b63fb048>}
+{'power': ['proc', 'int', False, [['int', False], ['int', False]]]}
+{'c': ['var', 'int', False], 'p': ['var', 'int', False]}
+{}
+Identifier: ID "p" type "var int"
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7f04b6479fd0>, 'int': <semantic.ExprType object at 0x7f04b6473438>, 'bool': <semantic.ExprType object at 0x7f04b6479f60>, 'string': <semantic.ExprType object at 0x7f04b63fb048>}
+{'power': ['proc', 'int', False, [['int', False], ['int', False]]]}
+{'c': ['var', 'int', False], 'p': ['var', 'int', False]}
+Integer Mode: int
+Integer Mode: int
+Integer Literal: 0
+Integer Mode: int
+Integer Mode: int
+Integer Literal: 0
+Builtin Name: print
+Character String Literal: "Input an integer: "
+Builtin Name: read
+Identifier: ID "n" type "var int"
+Identifier: ID "temp" type "var int"
+Identifier: ID "n" type "var int"
+Assigning to temp with operator =
+Boolean expression
+Identifier: ID "temp" type "var int"
+Integer Literal: 0
+Relational or Membership operator: !=
+Identifier: ID "digits" type "var int"
+Integer Literal: 1
+Assigning to digits with operator +=
+Identifier: ID "temp" type "var int"
+Identifier: ID "temp" type "var int"
+Integer Literal: 10
+Binary operator: /
+Assigning to temp with operator =
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7f04b6479fd0>, 'int': <semantic.ExprType object at 0x7f04b6473438>, 'bool': <semantic.ExprType object at 0x7f04b6479f60>, 'string': <semantic.ExprType object at 0x7f04b63fb048>}
+{'n': ['var', 'int', False], 'digits': ['var', 'int', False], 'remainder': ['var', 'int', False], 'power': ['proc', 'int', False, [['int', False], ['int', False]]], 'sum': ['var', 'int', False], 'temp': ['var', 'int', False]}
+{}
+Identifier: ID "temp" type "var int"
+Identifier: ID "n" type "var int"
+Assigning to temp with operator =
+Boolean expression
+Identifier: ID "temp" type "var int"
+Integer Literal: 0
+Relational or Membership operator: !=
+Identifier: ID "remainder" type "var int"
+Identifier: ID "temp" type "var int"
+Integer Literal: 10
+Binary operator: %
+Assigning to remainder with operator =
+Identifier: ID "sum" type "var int"
+Identifier: ID "sum" type "var int"
+Identifier: ID "power" type "proc int"
+Identifier: ID "remainder" type "var int"
+Identifier: ID "digits" type "var int"
+Binary operator: +
+Assigning to sum with operator =
+Identifier: ID "temp" type "var int"
+Identifier: ID "temp" type "var int"
+Integer Literal: 10
+Binary operator: /
+Assigning to temp with operator =
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7f04b6479fd0>, 'int': <semantic.ExprType object at 0x7f04b6473438>, 'bool': <semantic.ExprType object at 0x7f04b6479f60>, 'string': <semantic.ExprType object at 0x7f04b63fb048>}
+{'n': ['var', 'int', False], 'digits': ['var', 'int', False], 'remainder': ['var', 'int', False], 'power': ['proc', 'int', False, [['int', False], ['int', False]]], 'sum': ['var', 'int', False], 'temp': ['var', 'int', False]}
+{}
+If Action
+Boolean expression
+Identifier: ID "n" type "var int"
+Identifier: ID "sum" type "var int"
+Relational or Membership operator: ==
+Builtin Name: print
+Identifier: ID "n" type "var int"
+Character String Literal: " is an Armstrong number.\n"
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7f04b6479fd0>, 'int': <semantic.ExprType object at 0x7f04b6473438>, 'bool': <semantic.ExprType object at 0x7f04b6479f60>, 'string': <semantic.ExprType object at 0x7f04b63fb048>}
+{'n': ['var', 'int', False], 'digits': ['var', 'int', False], 'remainder': ['var', 'int', False], 'power': ['proc', 'int', False, [['int', False], ['int', False]]], 'sum': ['var', 'int', False], 'temp': ['var', 'int', False]}
+{}
+Builtin Name: print
+Identifier: ID "n" type "var int"
+Character String Literal: " is not an Armstrong number.\n"
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7f04b6479fd0>, 'int': <semantic.ExprType object at 0x7f04b6473438>, 'bool': <semantic.ExprType object at 0x7f04b6479f60>, 'string': <semantic.ExprType object at 0x7f04b63fb048>}
+{'n': ['var', 'int', False], 'digits': ['var', 'int', False], 'remainder': ['var', 'int', False], 'power': ['proc', 'int', False, [['int', False], ['int', False]]], 'sum': ['var', 'int', False], 'temp': ['var', 'int', False]}
+{}
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7f04b6479fd0>, 'int': <semantic.ExprType object at 0x7f04b6473438>, 'bool': <semantic.ExprType object at 0x7f04b6479f60>, 'string': <semantic.ExprType object at 0x7f04b63fb048>}
+{'n': ['var', 'int', False], 'digits': ['var', 'int', False], 'remainder': ['var', 'int', False], 'power': ['proc', 'int', False, [['int', False], ['int', False]]], 'sum': ['var', 'int', False], 'temp': ['var', 'int', False]}

@@ -1,0 +1,57 @@
+Integer Mode: int
+Integer Mode: int
+Integer Literal: 0
+Builtin Name: print
+Character String Literal: "Enter a number: "
+Builtin Name: read
+Identifier: ID "n" type "var int"
+Identifier: ID "t" type "var int"
+Identifier: ID "n" type "var int"
+Assigning to t with operator =
+Boolean expression
+Identifier: ID "t" type "var int"
+Integer Literal: 0
+Relational or Membership operator: !=
+Identifier: ID "reverse" type "var int"
+Identifier: ID "reverse" type "var int"
+Integer Literal: 10
+Binary operator: *
+Assigning to reverse with operator =
+Identifier: ID "reverse" type "var int"
+Identifier: ID "reverse" type "var int"
+Identifier: ID "t" type "var int"
+Integer Literal: 10
+Binary operator: %
+Binary operator: +
+Assigning to reverse with operator =
+Identifier: ID "t" type "var int"
+Identifier: ID "t" type "var int"
+Integer Literal: 10
+Binary operator: /
+Assigning to t with operator =
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7fe9a5ed5fd0>, 'bool': <semantic.ExprType object at 0x7fe9a5ed5f60>, 'int': <semantic.ExprType object at 0x7fe9a5ecf438>, 'string': <semantic.ExprType object at 0x7fe9a5e57048>}
+{'n': ['var', 'int', False], 't': ['var', 'int', False], 'reverse': ['var', 'int', False]}
+{}
+If Action
+Boolean expression
+Identifier: ID "n" type "var int"
+Identifier: ID "reverse" type "var int"
+Relational or Membership operator: ==
+Builtin Name: print
+Identifier: ID "n" type "var int"
+Character String Literal: " is a palindrome number.\n"
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7fe9a5ed5fd0>, 'bool': <semantic.ExprType object at 0x7fe9a5ed5f60>, 'int': <semantic.ExprType object at 0x7fe9a5ecf438>, 'string': <semantic.ExprType object at 0x7fe9a5e57048>}
+{'n': ['var', 'int', False], 't': ['var', 'int', False], 'reverse': ['var', 'int', False]}
+{}
+Builtin Name: print
+Identifier: ID "n" type "var int"
+Character String Literal: " is not a palindrome number.\n"
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7fe9a5ed5fd0>, 'bool': <semantic.ExprType object at 0x7fe9a5ed5f60>, 'int': <semantic.ExprType object at 0x7fe9a5ecf438>, 'string': <semantic.ExprType object at 0x7fe9a5e57048>}
+{'n': ['var', 'int', False], 't': ['var', 'int', False], 'reverse': ['var', 'int', False]}
+{}
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7fe9a5ed5fd0>, 'bool': <semantic.ExprType object at 0x7fe9a5ed5f60>, 'int': <semantic.ExprType object at 0x7fe9a5ecf438>, 'string': <semantic.ExprType object at 0x7fe9a5e57048>}
+{'n': ['var', 'int', False], 't': ['var', 'int', False], 'reverse': ['var', 'int', False]}

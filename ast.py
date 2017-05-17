@@ -389,11 +389,11 @@ class Formal_Parameter(AST):
     _fields = ['identifier_list', 'parameter_spec']
 
 class Parameter_Spec(AST):
-    _fields = ['mode', 'parameter_attribute']
+    _fields = ['mode', 'loc']
 
 #parameter_attribute
 
 class Result_Spec(AST):
-    _fields = ['mode', 'result_attribute']
+    _fields = ['mode', 'loc']
 
 #result_attribute

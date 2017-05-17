@@ -1,0 +1,91 @@
+Integer Literal: 0
+Integer Literal: 100
+Integer Mode: int
+Integer Mode: int
+Builtin Name: print
+Character String Literal: "Enter number of elements: "
+Builtin Name: read
+Identifier: ID "n" type "var int"
+Builtin Name: print
+Character String Literal: "Enter "
+Identifier: ID "n" type "var int"
+Character String Literal: " integers\n"
+Integer Literal: 0
+Identifier: ID "n" type "var int"
+Integer Literal: 1
+Binary operator: -
+Builtin Name: read
+Identifier: ID "v" type "var $int"
+Identifier: ID "c" type "var int"
+Printing environment scope stack:
+{'bool': <semantic.ExprType object at 0x7f712354ef60>, 'char': <semantic.ExprType object at 0x7f712354efd0>, 'int': <semantic.ExprType object at 0x7f7123548438>, 'string': <semantic.ExprType object at 0x7f71234d0048>}
+{'v': ['var', '$int', False], 'n': ['var', 'int', False], 'c': ['var', 'int', False], 'swap': ['var', 'int', False], 'd': ['var', 'int', False]}
+{}
+Integer Literal: 0
+Identifier: ID "n" type "var int"
+Integer Literal: 2
+Binary operator: -
+Integer Literal: 0
+Identifier: ID "n" type "var int"
+Identifier: ID "c" type "var int"
+Binary operator: -
+Integer Literal: 2
+Binary operator: -
+If Action
+Boolean expression
+Identifier: ID "v" type "var $int"
+Identifier: ID "d" type "var int"
+Identifier: ID "v" type "var $int"
+Identifier: ID "d" type "var int"
+Integer Literal: 1
+Binary operator: +
+Relational or Membership operator: >
+Identifier: ID "swap" type "var int"
+Identifier: ID "v" type "var $int"
+Identifier: ID "d" type "var int"
+Assigning to swap with operator =
+Identifier: ID "v" type "var $int"
+Identifier: ID "d" type "var int"
+Identifier: ID "v" type "var $int"
+Identifier: ID "d" type "var int"
+Integer Literal: 1
+Binary operator: +
+Assigning to v with operator =
+Identifier: ID "v" type "var $int"
+Identifier: ID "d" type "var int"
+Integer Literal: 1
+Binary operator: +
+Identifier: ID "swap" type "var int"
+Assigning to v with operator =
+Printing environment scope stack:
+{'bool': <semantic.ExprType object at 0x7f712354ef60>, 'char': <semantic.ExprType object at 0x7f712354efd0>, 'int': <semantic.ExprType object at 0x7f7123548438>, 'string': <semantic.ExprType object at 0x7f71234d0048>}
+{'v': ['var', '$int', False], 'n': ['var', 'int', False], 'c': ['var', 'int', False], 'swap': ['var', 'int', False], 'd': ['var', 'int', False]}
+{}
+{}
+{}
+Printing environment scope stack:
+{'bool': <semantic.ExprType object at 0x7f712354ef60>, 'char': <semantic.ExprType object at 0x7f712354efd0>, 'int': <semantic.ExprType object at 0x7f7123548438>, 'string': <semantic.ExprType object at 0x7f71234d0048>}
+{'v': ['var', '$int', False], 'n': ['var', 'int', False], 'c': ['var', 'int', False], 'swap': ['var', 'int', False], 'd': ['var', 'int', False]}
+{}
+{}
+Printing environment scope stack:
+{'bool': <semantic.ExprType object at 0x7f712354ef60>, 'char': <semantic.ExprType object at 0x7f712354efd0>, 'int': <semantic.ExprType object at 0x7f7123548438>, 'string': <semantic.ExprType object at 0x7f71234d0048>}
+{'v': ['var', '$int', False], 'n': ['var', 'int', False], 'c': ['var', 'int', False], 'swap': ['var', 'int', False], 'd': ['var', 'int', False]}
+{}
+Builtin Name: print
+Character String Literal: "Sorted list in ascending order:\n"
+Integer Literal: 0
+Identifier: ID "n" type "var int"
+Integer Literal: 1
+Binary operator: -
+Builtin Name: print
+Identifier: ID "v" type "var $int"
+Identifier: ID "c" type "var int"
+Character String Literal: " "
+Printing environment scope stack:
+{'bool': <semantic.ExprType object at 0x7f712354ef60>, 'char': <semantic.ExprType object at 0x7f712354efd0>, 'int': <semantic.ExprType object at 0x7f7123548438>, 'string': <semantic.ExprType object at 0x7f71234d0048>}
+{'v': ['var', '$int', False], 'n': ['var', 'int', False], 'c': ['var', 'int', False], 'swap': ['var', 'int', False], 'd': ['var', 'int', False]}
+{}
+Printing environment scope stack:
+{'bool': <semantic.ExprType object at 0x7f712354ef60>, 'char': <semantic.ExprType object at 0x7f712354efd0>, 'int': <semantic.ExprType object at 0x7f7123548438>, 'string': <semantic.ExprType object at 0x7f71234d0048>}
+{'v': ['var', '$int', False], 'n': ['var', 'int', False], 'c': ['var', 'int', False], 'swap': ['var', 'int', False], 'd': ['var', 'int', False]}

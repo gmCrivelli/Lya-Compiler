@@ -1,0 +1,52 @@
+Integer Mode: int
+Integer Mode: int
+Procedure declaration: fat
+If Action
+Boolean expression
+ERROR (line 5): Identifier n was not defined
+Integer Literal: 0
+Relational or Membership operator: ==
+ERROR (line 5): Type ^UNDEFINED^ not found
+ERROR (line 5): Binary operator == does not have matching types: void and int
+ERROR (line 5): Expected boolean expression, found void
+Integer Literal: 1
+Printing environment scope stack:
+{'string': <semantic.ExprType object at 0x7f981f546048>, 'char': <semantic.ExprType object at 0x7f981f5c4fd0>, 'bool': <semantic.ExprType object at 0x7f981f5c4f60>, 'int': <semantic.ExprType object at 0x7f981f5be438>}
+{'fat': ['proc', 'int', False, [['int', False]]]}
+{}
+{}
+ERROR (line 8): Identifier n was not defined
+Identifier: ID "fat" type "proc int"
+ERROR (line 8): Identifier n was not defined
+Integer Literal: 1
+Binary operator: -
+ERROR (line 8): Type ^UNDEFINED^ not found
+ERROR (line 8): Binary operator - does not have matching types: void and int
+ERROR (line 8): Incorrect parameter type at position i=0; Expected int, found void
+Binary operator: *
+ERROR (line 8): Type ^UNDEFINED^ not found
+ERROR (line 8): Binary operator * does not have matching types: void and int
+Printing environment scope stack:
+{'string': <semantic.ExprType object at 0x7f981f546048>, 'char': <semantic.ExprType object at 0x7f981f5c4fd0>, 'bool': <semantic.ExprType object at 0x7f981f5c4f60>, 'int': <semantic.ExprType object at 0x7f981f5be438>}
+{'fat': ['proc', 'int', False, [['int', False]]]}
+{}
+{}
+ERROR (line 4): Procedure fat has no return
+Printing environment scope stack:
+{'string': <semantic.ExprType object at 0x7f981f546048>, 'char': <semantic.ExprType object at 0x7f981f5c4fd0>, 'bool': <semantic.ExprType object at 0x7f981f5c4f60>, 'int': <semantic.ExprType object at 0x7f981f5be438>}
+{'fat': ['proc', 'int', False, [['int', False]]]}
+{}
+Integer Mode: int
+Builtin Name: print
+Character String Literal: "give-me a positive a integer:\n"
+Builtin Name: read
+Identifier: ID "x" type "var int"
+Builtin Name: print
+Character String Literal: "fatorial of "
+Identifier: ID "x" type "var int"
+Character String Literal: " = "
+Identifier: ID "fat" type "proc int"
+Identifier: ID "x" type "var int"
+Printing environment scope stack:
+{'string': <semantic.ExprType object at 0x7f981f546048>, 'char': <semantic.ExprType object at 0x7f981f5c4fd0>, 'bool': <semantic.ExprType object at 0x7f981f5c4f60>, 'int': <semantic.ExprType object at 0x7f981f5be438>}
+{'fat': ['proc', 'int', False, [['int', False]]], 'x': ['var', 'int', False]}

@@ -12,6 +12,6 @@ fat: proc (n int) returns (int);
 end;
 
 dcl x int;
-print("give-me a positive a integer:\n);
+print("give-me a positive a integer:\n");
 read(x);
 print("fatorial of ", x, " = ", fat(x));

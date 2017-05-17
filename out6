@@ -1,0 +1,67 @@
+Integer Mode: int
+Integer Mode: int
+Procedure declaration: fibo
+Integer Mode: int
+If Action
+Boolean expression
+ERROR (line 5): Identifier n was not defined
+Integer Literal: 0
+Relational or Membership operator: <
+ERROR (line 5): Type ^UNDEFINED^ not found
+ERROR (line 5): Binary operator < does not have matching types: void and int
+ERROR (line 5): Expected boolean expression, found void
+Builtin Name: print
+ERROR (line 6): Identifier g was not defined
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7ff923f30fd0>, 'string': <semantic.ExprType object at 0x7ff923eb2048>, 'bool': <semantic.ExprType object at 0x7ff923f30f60>, 'int': <semantic.ExprType object at 0x7ff923f2a438>}
+{'fibo': ['proc', 'void', False, [['int', False], ['int', True]]]}
+{'h': ['var', 'int', False]}
+{}
+Identifier: ID "h" type "var int"
+ERROR (line 9): Identifier g was not defined
+ERROR (line 9): Mismatched assignment types int and ^UNDEFINED^
+Assigning to h with operator =
+Identifier: ID "fibo" type "proc void"
+ERROR (line 9): Identifier n was not defined
+Integer Literal: 1
+Binary operator: -
+ERROR (line 9): Type ^UNDEFINED^ not found
+ERROR (line 9): Binary operator - does not have matching types: void and int
+ERROR (line 9): Incorrect parameter type at position i=0; Expected int, found void
+Identifier: ID "h" type "var int"
+ERROR (line 10): Identifier g was not defined
+Identifier: ID "h" type "var int"
+ERROR (line 10): Assignment to unsupported dcl_type ^UNDEFINED^
+Identifier: ID "fibo" type "proc void"
+ERROR (line 10): Identifier n was not defined
+Integer Literal: 2
+Binary operator: -
+ERROR (line 10): Type ^UNDEFINED^ not found
+ERROR (line 10): Binary operator - does not have matching types: void and int
+ERROR (line 10): Incorrect parameter type at position i=0; Expected int, found void
+ERROR (line 10): Identifier g was not defined
+ERROR (line 10): Incorrect parameter type at position i=1; Expected int, found ^UNDEFINED^
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7ff923f30fd0>, 'string': <semantic.ExprType object at 0x7ff923eb2048>, 'bool': <semantic.ExprType object at 0x7ff923f30f60>, 'int': <semantic.ExprType object at 0x7ff923f2a438>}
+{'fibo': ['proc', 'void', False, [['int', False], ['int', True]]]}
+{'h': ['var', 'int', False]}
+{}
+Builtin Name: print
+ERROR (line 12): Identifier n was not defined
+ERROR (line 12): Identifier g was not defined
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7ff923f30fd0>, 'string': <semantic.ExprType object at 0x7ff923eb2048>, 'bool': <semantic.ExprType object at 0x7ff923f30f60>, 'int': <semantic.ExprType object at 0x7ff923f2a438>}
+{'fibo': ['proc', 'void', False, [['int', False], ['int', True]]]}
+{'h': ['var', 'int', False]}
+Integer Mode: int
+Integer Literal: 0
+Identifier: ID "fibo" type "proc void"
+Integer Literal: 3
+Identifier: ID "k" type "var int"
+Identifier: ID "fibo" type "proc void"
+Monadic operator: -
+Integer Literal: 1
+Identifier: ID "k" type "var int"
+Printing environment scope stack:
+{'char': <semantic.ExprType object at 0x7ff923f30fd0>, 'string': <semantic.ExprType object at 0x7ff923eb2048>, 'bool': <semantic.ExprType object at 0x7ff923f30f60>, 'int': <semantic.ExprType object at 0x7ff923f2a438>}
+{'k': ['var', 'int', False], 'fibo': ['proc', 'void', False, [['int', False], ['int', True]]]}
