@@ -1024,5 +1024,7 @@ def main():
     nv = Visitor()
     nv.visit(ast)
 
+    ast.visit()
+
 
 if __name__ == "__main__": main()

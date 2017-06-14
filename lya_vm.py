@@ -1,7 +1,7 @@
 
 
-MEMORY_SIZE = 1024
-DISPLAY_SIZE = 32
+MEMORY_SIZE = 64
+DISPLAY_SIZE = 8
 
 class VirtualMachine:
 
@@ -32,23 +32,67 @@ class VirtualMachine:
         #     ('end',)
         #     ]
 
-        H = ["Welcome.\n", "What’s you name?", "Nice to meet you "]
+        # H = ["Welcome.\n", "What’s you name?", "Nice to meet you "]
+        #
+        # program = [
+        #     ('stp',),
+        #     ('alc', 11),
+        #     ('ldc', 0),
+        #     ('stv', 0, 0),    # dcl name chars[10];
+        #     ('prc', 0),      # print("Welcome.\n");
+        #     ('prc', 1),      # print("What’s your name?");
+        #     ('ldr', 0, 0),
+        #     ('rds',),         # read(name);
+        #     ('prc', 2),
+        #     ('ldr', 0, 0),
+        #     ('prs',),         # print("Nice to meet you ", name);
+        #     ('dlc', 11),
+        #     ('end',)
+        #     ]
 
+        H = ["give-me a positive integer:", "fatorial of ", " = ", ]
         program = [
-            ('stp',),
-            ('alc', 11),
-            ('ldc', 0),
-            ('stv', 0, 0),    # dcl name chars[10];
-            ('prc', 0),      # print("Welcome.\n");
-            ('prc', 1),      # print("What’s your name?");
-            ('ldr', 0, 0),
-            ('rds',),         # read(name);
-            ('prc', 2),
-            ('ldr', 0, 0),
-            ('prs',),         # print("Nice to meet you ", name);
-            ('dlc', 11),
-            ('end',)
-            ]
+          ('stp', ),
+          ('alc', 1),
+          ('jmp', 3),
+          ('lbl', 1),
+          ('enf', 1),
+          ('ldv', 1, -3),
+          ('ldc', 0),
+          ('equ', ),
+          ('jof', 4),
+          ('ldc', 1),
+          ('stv', 1, -4),
+          ('jmp', 2),
+          ('jmp', 5),
+          ('lbl', 4),
+          ('ldv', 1, -3),
+          ('alc', 1),
+          ('ldv', 1, -3),
+          ('ldc', 1),
+          ('sub', ),
+          ('cfu', 1),
+          ('mul', ),
+          ('stv', 1, -4),
+          ('jmp', 2),
+          ('lbl', 5),
+          ('lbl', 2),
+          ('ret', 1, 1),
+          ('lbl', 3),
+          ('prc', 0),
+          ('rdv', ),
+          ('stv', 0, 0),
+          ('prc', 1),
+          ('ldv', 0, 0),
+          ('prv', 0),
+          ('prc', 2),
+          ('alc', 1),
+          ('ldv', 0, 0),
+          ('cfu', 1),
+          ('prv', 0),
+          ('dlc', 1),
+          ('end',)
+          ]
 
         VirtualMachine.execute(program, H, False)
 
@@ -179,7 +223,7 @@ class VirtualMachine:
                 sp -= 1
 
             elif t[0] == 'equ':
-                memory[sp - 1] = memory[sp-1] >= memory[sp]
+                memory[sp - 1] = memory[sp - 1] == memory[sp]
                 sp -= 1
 
             elif t[0] == 'neq':
@@ -215,8 +259,8 @@ class VirtualMachine:
                 p = t[1]
 
                 sp += 1
-                memory[sp]=pc+1
-                pc = p
+                memory[sp] = pc
+                pc = labels.get(p, pc)
 
             elif t[0] == 'enf':
                 k = t[1]
@@ -236,7 +280,7 @@ class VirtualMachine:
             elif t[0] == 'idx':
                 k = t[1]
 
-                memory[sp-1] = memory[sp - 1] + memory[sp] * k
+                memory[sp - 1] = memory[sp - 1] + memory[sp] * k
                 sp -= 1
 
             elif t[0] == 'grc':

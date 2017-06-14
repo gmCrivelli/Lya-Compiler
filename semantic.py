@@ -226,6 +226,7 @@ class Visitor(NodeVisitor):
                                                                                                          aux_type[1]))
                 else:
                     self.environment.add_local(ident.ID, ['var', node.mode.raw_type, False])
+                    self.visit(ident)
 
 #    def visit_Initialization(self, node):
 #        self.visit(node.expression) <- GO HERE
@@ -787,11 +788,11 @@ class Visitor(NodeVisitor):
     def visit_Loop_Counter(self, node):
         type = self.environment.lookup(node.identifier.ID)
         if type is None:
-            print("No counter found, creating new")
-            self.environment.add_local(node.identifier.ID, ['var', 'int', False])
+            self.print_error(node.lineno, "Loop counter is not declared")
+
         else:
             if type[0] != 'var' or type[1] != 'int':
-                self.print_error(node.lineno, "Loop counter is not integer variable")
+                self.print_error(node.lineno, "Loop counter is not integer variable. To be continued...")
 
 
 

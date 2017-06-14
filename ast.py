@@ -86,8 +86,22 @@ class AST(object):
             else:
                 print(field)
 
+    def visit(self):
+        for field in self._fields:
+            aux = getattr(self, field)
+            if isinstance(aux, list):
+                for item in aux:
+                    if isinstance(item, AST):
+                        item.visit()
+            elif isinstance(aux, AST):
+                aux.visit()
+
 class Program(AST):
     _fields = ['stmts']
+
+    def visit(self):
+        print("Program")
+        super(Program, self).visit()
 
 # statement_list
 # statement
@@ -107,6 +121,10 @@ class Initialization(AST):
 
 class Identifier(AST):
     _fields = ['ID']
+
+    def visit(self):
+        print("ID={}, raw_type={}, dcl_type={}, loc={}".format(self.ID, self.raw_type, self.dcl_type, self.loc))
+        # print(self.__dict__)
 
 class Synonym_Statement(AST):
     _fields = ['synonym_list']
