@@ -6,6 +6,33 @@ DISPLAY_SIZE = 8
 class VirtualMachine:
 
     def main():
+        # dcl a, b int;
+        # a = 10;
+        # b = 20;
+        # a = a + b - 30;
+        # print(a);
+
+        program = [
+            ('stp',),
+            ('alc', 2),
+            ('ldc', 100),
+            ('stv', 0, 0),
+            ('ldc', 200),
+            ('stv', 0, 1),
+            ('ldv', 0, 0),
+            ('ldv', 0, 1),
+            ('add',),
+            ('ldc', 3000),
+            ('sub',),
+            ('stv', 0, 0),
+            ('ldv', 0, 0),
+            ('prv', 0),
+            ('ldv', 0, 1),
+            ('prv', 0),
+            ('dlc', 2),
+            ('end',)
+        ]
+
         # program =  [
         #     ('stp',),
         #     ('alc', 2),      # dcl i,k int;
@@ -51,48 +78,48 @@ class VirtualMachine:
         #     ]
 
         H = ["give-me a positive integer:", "fatorial of ", " = ", ]
-        program = [
-          ('stp', ),
-          ('alc', 1),
-          ('jmp', 3),
-          ('lbl', 1),
-          ('enf', 1),
-          ('ldv', 1, -3),
-          ('ldc', 0),
-          ('equ', ),
-          ('jof', 4),
-          ('ldc', 1),
-          ('stv', 1, -4),
-          ('jmp', 2),
-          ('jmp', 5),
-          ('lbl', 4),
-          ('ldv', 1, -3),
-          ('alc', 1),
-          ('ldv', 1, -3),
-          ('ldc', 1),
-          ('sub', ),
-          ('cfu', 1),
-          ('mul', ),
-          ('stv', 1, -4),
-          ('jmp', 2),
-          ('lbl', 5),
-          ('lbl', 2),
-          ('ret', 1, 1),
-          ('lbl', 3),
-          ('prc', 0),
-          ('rdv', ),
-          ('stv', 0, 0),
-          ('prc', 1),
-          ('ldv', 0, 0),
-          ('prv', 0),
-          ('prc', 2),
-          ('alc', 1),
-          ('ldv', 0, 0),
-          ('cfu', 1),
-          ('prv', 0),
-          ('dlc', 1),
-          ('end',)
-          ]
+        # program = [
+        #   ('stp', ),
+        #   ('alc', 1),
+        #   ('jmp', 3),
+        #   ('lbl', 1),
+        #   ('enf', 1),
+        #   ('ldv', 1, -3),
+        #   ('ldc', 0),
+        #   ('equ', ),
+        #   ('jof', 4),
+        #   ('ldc', 1),
+        #   ('stv', 1, -4),
+        #   ('jmp', 2),
+        #   ('jmp', 5),
+        #   ('lbl', 4),
+        #   ('ldv', 1, -3),
+        #   ('alc', 1),
+        #   ('ldv', 1, -3),
+        #   ('ldc', 1),
+        #   ('sub', ),
+        #   ('cfu', 1),
+        #   ('mul', ),
+        #   ('stv', 1, -4),
+        #   ('jmp', 2),
+        #   ('lbl', 5),
+        #   ('lbl', 2),
+        #   ('ret', 1, 1),
+        #   ('lbl', 3),
+        #   ('prc', 0),
+        #   ('rdv', ),
+        #   ('stv', 0, 0),
+        #   ('prc', 1),
+        #   ('ldv', 0, 0),
+        #   ('prv', 0),
+        #   ('prc', 2),
+        #   ('alc', 1),
+        #   ('ldv', 0, 0),
+        #   ('cfu', 1),
+        #   ('prv', 0),
+        #   ('dlc', 1),
+        #   ('end',)
+        #   ]
 
         VirtualMachine.execute(program, H, False)
 
