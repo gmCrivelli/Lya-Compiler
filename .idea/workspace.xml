@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b94fdf1e-cd9c-4c77-a6f7-44740909cd5e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ast.py" afterPath="$PROJECT_DIR$/ast.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/googlegroups" afterPath="$PROJECT_DIR$/googlegroups" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.out" afterPath="$PROJECT_DIR$/parser.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.py" afterPath="$PROJECT_DIR$/parser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parsetab.py" afterPath="$PROJECT_DIR$/parsetab.py" />
@@ -20,94 +18,48 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
-              <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/semantic.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="177">
-                    <caret line="415" column="15" lean-forward="true" selection-start-line="415" selection-start-column="15" selection-end-line="415" selection-end-column="15" />
-                    <folding>
-                      <element signature="e#102#112#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5692308">
+    <splitter split-orientation="horizontal" split-proportion="0.52421874">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ast.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="222">
-                  <caret line="333" column="28" lean-forward="false" selection-start-line="333" selection-start-column="28" selection-end-line="333" selection-end-column="28" />
+                <state relative-caret-position="797">
+                  <caret line="198" column="0" lean-forward="true" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/parser.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="764">
-                  <caret line="881" column="34" lean-forward="false" selection-start-line="881" selection-start-column="34" selection-end-line="881" selection-end-column="34" />
+                <state relative-caret-position="410">
+                  <caret line="249" column="19" lean-forward="false" selection-start-line="249" selection-start-column="19" selection-end-line="249" selection-end-column="19" />
                   <folding>
                     <element signature="e#15#38#0" expanded="true" />
-                    <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
-                    <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/semantic.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="279">
-                  <caret line="98" column="42" lean-forward="false" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="lya_parser.py" pinned="false" current-in-tab="false">
-            <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/lya_parser.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="5985">
-                  <caret line="401" column="25" lean-forward="false" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="astdecorator.py" pinned="false" current-in-tab="false">
-            <entry file="file://$USER_HOME$/Downloads/Lya-Compiler-master/astdecorator.py">
+          <file leaf-file-name="scratch.py" pinned="false" current-in-tab="false">
+            <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
-            <entry file="file://$USER_HOME$/Downloads/Lya-Compiler-master/ast.py">
+          <file leaf-file-name="lya_vm.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lya_vm.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4545">
-                  <caret line="303" column="34" lean-forward="false" selection-start-line="303" selection-start-column="34" selection-end-line="303" selection-end-column="34" />
+                <state relative-caret-position="90">
+                  <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="12" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
@@ -116,15 +68,27 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/semantic.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="313">
+                  <caret line="384" column="24" lean-forward="false" selection-start-line="384" selection-start-column="24" selection-end-line="384" selection-end-column="24" />
+                  <folding>
+                    <element signature="e#0#10#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/parser.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-6469">
-                  <caret line="554" column="35" lean-forward="false" selection-start-line="554" selection-start-column="35" selection-end-line="554" selection-end-column="35" />
+                <state relative-caret-position="8498">
+                  <caret line="611" column="19" lean-forward="true" selection-start-line="611" selection-start-column="19" selection-end-line="611" selection-end-column="19" />
                   <folding>
                     <element signature="e#15#38#0" expanded="true" />
-                    <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+                    <marker date="1498077917000" expanded="true" signature="199:33678" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -143,23 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>declaration</find>
-      <find>assignment types</find>
-      <find>self.environment.lookup</find>
-      <find>mode</find>
-      <find>ARRAY</find>
-      <find>action_sta</find>
-      <find>action</find>
-      <find>array_elem</find>
-      <find>value_array</find>
-      <find>primitive</find>
-      <find>array</find>
-      <find>node.array_location.raw_type</find>
-      <find>dereferen</find>
-      <find>index_mode</find>
-      <find>literal_ran</find>
-      <find>p_mode</find>
-      <find>print(node</find>
       <find>print\([^&quot;]</find>
       <find>lineno</find>
       <find>print(&quot;</find>
@@ -168,11 +115,28 @@
       <find>loop_coun</find>
       <find>loop_counter</find>
       <find>step_e</find>
-      <find>add_local</find>
       <find>'['</find>
       <find>ARROW</find>
       <find>print(</find>
       <find>self.environment.pop</find>
+      <find>loc</find>
+      <find>loc = True</find>
+      <find>for_</find>
+      <find>do</find>
+      <find>array</find>
+      <find>)</find>
+      <find>integer_mode</find>
+      <find>assign</find>
+      <find>add_local</find>
+      <find>mode</find>
+      <find>integer_liter</find>
+      <find>,</find>
+      <find>lower_bound</find>
+      <find>upper</find>
+      <find>expression</find>
+      <find>location</find>
+      <find>upper_bound</find>
+      <find>element</find>
     </findStrings>
     <replaceStrings>
       <replace>def visit_</replace>
@@ -187,6 +151,9 @@
       <replace>proc_name</replace>
       <replace>.raw_type</replace>
       <replace>location_raw_type</replace>
+      <replace>('</replace>
+      <replace>')</replace>
+      <replace>',</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -198,18 +165,20 @@
         <option value="$PROJECT_DIR$/sample.lya" />
         <option value="$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/meuCodigo" />
         <option value="$PROJECT_DIR$/lexer.py" />
-        <option value="$PROJECT_DIR$/parser.py" />
         <option value="$PROJECT_DIR$/ast.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
+        <option value="$PROJECT_DIR$/lya_vm.py" />
         <option value="$PROJECT_DIR$/semantic.py" />
+        <option value="$PROJECT_DIR$/parser.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="999" />
+    <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -246,6 +215,7 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/gmcrivelli/Lya-Compiler/lexer.py" />
     <property name="FullScreen" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="Python" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -309,7 +279,25 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Lya-Compiler" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/parser.py" />
-      <option name="PARAMETERS" value="googlegroups" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="lya_vm" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Lya-Compiler" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lya_vm.py" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
@@ -410,16 +398,18 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.semantic" />
       <item index="1" class="java.lang.String" itemvalue="Python.ast" />
       <item index="2" class="java.lang.String" itemvalue="Python.lexer" />
+      <item index="3" class="java.lang.String" itemvalue="Python.lya_vm" />
     </list>
     <recent_temporary>
-      <list size="3">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Python.lexer" />
-        <item index="1" class="java.lang.String" itemvalue="Python.ast" />
-        <item index="2" class="java.lang.String" itemvalue="Python.semantic" />
+        <item index="1" class="java.lang.String" itemvalue="Python.lya_vm" />
+        <item index="2" class="java.lang.String" itemvalue="Python.ast" />
+        <item index="3" class="java.lang.String" itemvalue="Python.semantic" />
       </list>
     </recent_temporary>
     <configuration default="true" type="tests" factoryName="Attests">
@@ -459,14 +449,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="999" height="800" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.077083334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0765625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.249668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23505977" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33076924" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33516484" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -475,22 +465,11 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2894482" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33076924" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33516484" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.077083334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -499,11 +478,11 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21490803" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23505977" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33076924" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33516484" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.077083334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0765625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -523,24 +502,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/lya_parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6015">
-          <caret line="401" column="25" lean-forward="false" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/semantic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3495">
-          <caret line="240" column="33" lean-forward="false" selection-start-line="240" selection-start-column="33" selection-end-line="240" selection-end-column="33" />
-          <folding>
-            <element signature="e#102#112#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/Lya-Compiler-master/astdecorator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -563,8 +524,7 @@
           <caret line="260" column="24" lean-forward="true" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
-            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+            <marker date="1498077917000" expanded="true" signature="199:33678" ph="..." />
           </folding>
         </state>
       </provider>
@@ -573,9 +533,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1890">
           <caret line="126" column="10" lean-forward="false" selection-start-line="126" selection-start-column="10" selection-end-line="126" selection-end-column="10" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -593,8 +550,7 @@
           <caret line="480" column="39" lean-forward="true" selection-start-line="480" selection-start-column="39" selection-end-line="480" selection-end-column="39" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
-            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+            <marker date="1498077917000" expanded="true" signature="199:33678" ph="..." />
           </folding>
         </state>
       </provider>
@@ -622,7 +578,7 @@
         <state relative-caret-position="3600">
           <caret line="240" column="33" lean-forward="true" selection-start-line="240" selection-start-column="33" selection-end-line="240" selection-end-column="33" />
           <folding>
-            <element signature="e#102#112#0" expanded="true" />
+            <element signature="e#102#112#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -631,9 +587,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1665">
           <caret line="111" column="18" lean-forward="false" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="18" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -643,8 +596,7 @@
           <caret line="576" column="28" lean-forward="false" selection-start-line="576" selection-start-column="19" selection-end-line="576" selection-end-column="28" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
-            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+            <marker date="1498077917000" expanded="true" signature="199:33678" ph="..." />
           </folding>
         </state>
       </provider>
@@ -669,7 +621,7 @@
         <state relative-caret-position="135">
           <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
           <folding>
-            <element signature="e#102#112#0" expanded="true" />
+            <element signature="e#102#112#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -678,9 +630,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1500">
           <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -705,8 +654,7 @@
           <caret line="168" column="18" lean-forward="false" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
-            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+            <marker date="1498077917000" expanded="true" signature="199:33678" ph="..." />
           </folding>
         </state>
       </provider>
@@ -715,9 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1530">
           <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -727,8 +672,7 @@
           <caret line="374" column="35" lean-forward="false" selection-start-line="374" selection-start-column="35" selection-end-line="374" selection-end-column="35" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
-            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+            <marker date="1498077917000" expanded="true" signature="199:33678" ph="..." />
           </folding>
         </state>
       </provider>
@@ -752,9 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1500">
           <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -771,8 +712,7 @@
           <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
-            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+            <marker date="1498077917000" expanded="true" signature="199:33678" ph="..." />
           </folding>
         </state>
       </provider>
@@ -781,9 +721,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -793,8 +730,7 @@
           <caret line="60" column="35" lean-forward="false" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
-            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+            <marker date="1498077917000" expanded="true" signature="199:33678" ph="..." />
           </folding>
         </state>
       </provider>
@@ -810,9 +746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -827,9 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -844,9 +774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -854,9 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -864,9 +788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -912,10 +833,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/lya_parser.py">
+    <entry file="file://$PROJECT_DIR$/lexer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5985">
-          <caret line="401" column="25" lean-forward="false" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
+        <state relative-caret-position="-390">
+          <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/semantic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="415" column="15" lean-forward="false" selection-start-line="415" selection-start-column="15" selection-end-line="415" selection-end-column="15" />
+          <folding>
+            <element signature="e#102#112#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Lya-Compiler-master/ast.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2521">
+          <caret line="303" column="34" lean-forward="false" selection-start-line="303" selection-start-column="34" selection-end-line="303" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -928,58 +866,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/Lya-Compiler-master/ast.py">
+    <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/lya_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4545">
-          <caret line="303" column="34" lean-forward="false" selection-start-line="303" selection-start-column="34" selection-end-line="303" selection-end-column="34" />
+        <state relative-caret-position="5199">
+          <caret line="401" column="25" lean-forward="false" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lexer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-390">
-          <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-          <folding>
-            <element signature="e#1#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="333" column="28" lean-forward="false" selection-start-line="333" selection-start-column="28" selection-end-line="333" selection-end-column="28" />
+        <state relative-caret-position="797">
+          <caret line="198" column="0" lean-forward="true" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/stelzer-monar-mc911-995bb216a393/semantic.py">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="415" column="15" lean-forward="true" selection-start-line="415" selection-start-column="15" selection-end-line="415" selection-end-column="15" />
-          <folding>
-            <element signature="e#102#112#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lya_vm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="12" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="764">
-          <caret line="881" column="34" lean-forward="false" selection-start-line="881" selection-start-column="34" selection-end-line="881" selection-end-column="34" />
+        <state relative-caret-position="8498">
+          <caret line="611" column="19" lean-forward="true" selection-start-line="611" selection-start-column="19" selection-end-line="611" selection-end-column="19" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <marker date="1494976549000" expanded="true" signature="431:555" ph="..." />
-            <marker date="1494976549000" expanded="true" signature="37364:37365" ph="..." />
+            <marker date="1498077917000" expanded="true" signature="199:33678" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/semantic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="98" column="42" lean-forward="false" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
+        <state relative-caret-position="313">
+          <caret line="384" column="24" lean-forward="false" selection-start-line="384" selection-start-column="24" selection-end-line="384" selection-end-column="24" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

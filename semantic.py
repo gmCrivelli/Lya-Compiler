@@ -50,6 +50,7 @@ class Environment(object):
         self.stack = []
         self.root = SymbolTable()
         self.stack.append(self.root)
+        self.offset = 0
         self.root.update({
             "int": int_type,
             "char": char_type,
@@ -99,6 +100,8 @@ class Environment(object):
         print("Printing environment scope stack:")
         for table in self.stack:
             print(table)
+    def getOffset(self):
+        return self.offset
 
 class Visitor(NodeVisitor):
     """
@@ -225,7 +228,9 @@ class Visitor(NodeVisitor):
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
-                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type, False])
+                    offset = self.environment.offset
+                    self.environment.offset += node.mode.size
+                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type, False, offset])
                     self.visit(ident)
 
 #    def visit_Initialization(self, node):
@@ -236,12 +241,15 @@ class Visitor(NodeVisitor):
         node.raw_type = '^UNDEFINED^'
         node.dcl_type = '^UNDEFINED^'
         node.loc = False
+        node.offset = 0
         #self.visit(node.ID)
         if(node.type != None):
             print("Identifier: ID \"" + str(node.ID) + "\" type \"{} {}\"".format(node.type[0], node.type[1]))
             node.dcl_type = node.type[0]
             node.raw_type = node.type[1]
             node.loc = node.type[2]
+            node.offset = node.type[3]
+            node.size = node.offset
 
             #while(not isinstance(node.type, ExprType) and node.type[0] == "type"):
             #    node.type = node.type[1]
@@ -283,22 +291,25 @@ class Visitor(NodeVisitor):
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
-                    self.environment.add_local(ident.ID, ['mode', node.mode.raw_type, False])
+                    self.environment.add_local(ident.ID, ['mode', node.mode.raw_type, False, node.mode.size])
 
     def visit_Integer_Mode(self, node):
         #self.visit(node.INT)
         print("Integer Mode: " + str(node.INT))
         node.raw_type = 'int' #self.typemap[node.INT]
+        node.size = 1
 
     def visit_Boolean_Mode(self, node):
         #self.visit(node.BOOL)
         print("Boolean Mode: " + str(node.BOOL))
         node.raw_type = 'bool' #self.typemap[node.BOOL]
+        node.size = 1
 
     def visit_Character_Mode(self, node):
         #self.visit(node.CHAR)
         print("Character Mode: " + str(node.CHAR))
         node.raw_type = 'char' #self.typemap[node.CHAR]
+        node.size = 1
 
     def visit_Discrete_Range_Mode(self, node):
         self.visit(node.literal_range)
@@ -315,6 +326,7 @@ class Visitor(NodeVisitor):
         #node.raw_type = '(' + raw_type
         node.raw_type = raw_type
         node.params = params.append(node.literal_range.raw_type)
+        #TODO: calculate size of literal range
 
     def visit_Mode_Name(self, node):
         #print("Mode name")
@@ -322,34 +334,44 @@ class Visitor(NodeVisitor):
         if node.identifier.type is None or (node.identifier.type is not None and node.identifier.type[0] != 'mode'):
             self.print_error(node.lineno, "{} is not a valid mode.".format(node.identifier.ID))
         node.raw_type = node.identifier.raw_type
+        node.size = node.identifier.offset
 
     def visit_Literal_Range(self, node):
         self.visit(node.lower_bound.expression)
         self.visit(node.upper_bound.expression)
+        node.size = 10
         if node.lower_bound.expression.raw_type != None and node.upper_bound.expression.raw_type != None:
             if node.lower_bound.expression.raw_type != node.upper_bound.expression.raw_type:
                 self.print_error(node.lineno, "Mismatching bound types in literal range")
-        node.raw_type = node.lower_bound.expression.raw_type
+            #else:
+            #    node.size = node.upper_bound.value - node.upper_bound.value
+        #node.raw_type = node.lower_bound.expression.raw_type
 
     def visit_Reference_Mode(self, node):
         self.visit(node.mode)
         node.raw_type = self.ref_symbol + node.mode.raw_type
+        node.size = node.mode.size
 
     def visit_String_Mode(self, node):
         print("String Mode")
         node.raw_type = 'string' #self.typemap["string"]
         self.visit(node.string_length)
+        node.size = node.string_length.size
 
     def visit_String_Length(self, node):
         self.visit(node.integer_literal)
+        node.size = node.integer_literal.value
 
     def visit_Array_Mode(self, node):
+        node.size = 1
         if not node.index_mode_list is None:
             for index_mode in node.index_mode_list:
                 #print(index_mode)
                 self.visit(index_mode)
+                node.size *= index_mode.size
         self.visit(node.element_mode)
         node.raw_type = self.array_symbol + node.element_mode.raw_type
+        node.size *= node.element_mode.size
 
     def visit_Element_Mode(self, node):
         self.visit(node.mode)

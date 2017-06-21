@@ -247,7 +247,7 @@ class Parser:
         '''element_mode : mode'''
         # p[0] = ('element_mode', p[1], p.lineno(1))
 
-        p[0] = Element_Mode(p[1], lineno = p[1].lineno)
+        p[0] = p[1]
 
     def p_integer_expression(self, p):
         '''integer_expression : expression'''
@@ -965,7 +965,7 @@ while counter > 0:
         #    "v[d + 1] = swap; " \
         #    "fi; "
 
-        #s = "dcl s chars[10];"
+        s = "dcl v array[0:100] int;"
 
         #s = "syn a int = 10; dcl b int; a += a + b;"
 
@@ -1002,29 +1002,29 @@ while counter > 0:
     except EOFError:
         break
 
-    # if not s: continue
-    # result = Parser()
-    # ast = result.parse(s)
-    # nv = Visitor()
-    # nv.visit(ast)
-
-
-# Run parser on given file
-def main():
-    file_name = sys.argv[1]
-
-    # Read given file
-    file = open(file_name, "r")
-
-    s = file.read()
-
+    if not s: continue
     result = Parser()
     ast = result.parse(s)
-
     nv = Visitor()
     nv.visit(ast)
 
-    ast.visit()
 
-
-if __name__ == "__main__": main()
+# Run parser on given file
+# def main():
+#     file_name = sys.argv[1]
+#
+#     # Read given file
+#     file = open(file_name, "r")
+#
+#     s = file.read()
+#
+#     result = Parser()
+#     ast = result.parse(s)
+#
+#     nv = Visitor()
+#     nv.visit(ast)
+#
+#     ast.visit()
+#
+#
+# if __name__ == "__main__": main()
