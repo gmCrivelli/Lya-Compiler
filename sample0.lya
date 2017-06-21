@@ -2,5 +2,8 @@
 dcl a, b int;
 a = 10;
 b = 20;
-a = a + b - 30;
+if a == 10 then
 print(a);
+else
+print(b);
+fi;

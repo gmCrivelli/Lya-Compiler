@@ -67,7 +67,7 @@ class AST(object):
     _fields = []
     code = []
     variables = {}
-    sp = 0
+    label_counter = 0
 
     def __init__(self, *args, **kwargs):
         assert len(args) == len(self._fields)
@@ -105,8 +105,7 @@ class Program(AST):
 
     def generate_code(self):
         AST.code = []
-        AST.variables = {}
-        AST.sp = 0
+        AST.label_counter = 0
 
         print("Program")
         AST.code.append(("stp", ))
@@ -127,13 +126,18 @@ class Declaration(AST):
     def generate_code(self):
         size = 1
         n = len(self.identifier_list)
-        super(Declaration, self).generate_code()
-
-        for identifier in self.identifier_list:
-            AST.variables[identifier.ID] = AST.sp
-            AST.sp += 1
 
         AST.code.append(("alc", size * n))
+
+        if self.initialization != None:
+            self.initialization.generate_code()
+
+            for i, ident in enumerate(self.identifier_list):
+                AST.code.append(("stv", 0, ident.offset))
+
+                if i != len(self.identifier_list) - 1:
+                    AST.code.append(("ldv", 0, ident.offset))
+
 
 class Initialization(AST):
     _fields = ['expression']
@@ -144,8 +148,9 @@ class Identifier(AST):
     _fields = ['ID']
 
     def generate_code(self):
-        print("ID={}, raw_type={}, dcl_type={}, loc={}".format(self.ID, self.raw_type, self.dcl_type, self.loc))
+        # print("ID={}, raw_type={}, dcl_type={}, loc={}".format(self.ID, self.raw_type, self.dcl_type, self.loc))
         # print(self.__dict__)
+        AST.code.append(('ldv', 0, self.offset))
 
 class Synonym_Statement(AST):
     _fields = ['synonym_list']
@@ -256,6 +261,10 @@ class Array_Location(AST):
 class Integer_Literal(AST):
     _fields = ['value']
 
+    def generate_code(self):
+        super(Integer_Literal, self).generate_code()
+        AST.code.append(("ldc", self.value))
+
 class Boolean_Literal(AST):
     _fields = ['value']
 
@@ -311,7 +320,34 @@ class Binary_Expression(AST):
 
     def generate_code(self):
         super(Binary_Expression, self).generate_code()
-        print(self.operator2)
+        if self.operator2 == '+' :
+            AST.code.append(("add",))
+        elif self.operator2 == '-':
+            AST.code.append(("sub",))
+        elif self.operator2 == '*':
+            AST.code.append(("mul",))
+        elif self.operator2 == '/':
+            AST.code.append(("div",))
+        elif self.operator2 == '%':
+            AST.code.append(("mod",))
+        elif self.operator2 == '>':
+            AST.code.append(("grt",))
+        elif self.operator2 == '>=':
+            AST.code.append(("gre",))
+        elif self.operator2 == '<':
+            AST.code.append(("les",))
+        elif self.operator2 == '<=':
+            AST.code.append(("leq",))
+        elif self.operator2 == '==':
+            AST.code.append(("equ",))
+        elif self.operator2 == '!=':
+            AST.code.append(("neq",))
+        elif self.operator2 == '&&':
+            AST.code.append(("and",))
+        elif self.operator2 == '||':
+            AST.code.append(("lor",))
+        else:
+            raise Exception("Not implemented yet")
 
 # operator2
 
@@ -328,6 +364,13 @@ class Unary_Expression(AST):
 
     def generate_code(self):
         super(Unary_Expression, self).generate_code()
+
+        if self.monadic_operator == '-':
+            AST.code.append(("neg",))
+        elif self.monadic_operator == '!':
+            AST.code.append(("not"))
+        else:
+            raise Exception("Not implemented yet")
 
 # monadic_operator
 
@@ -350,8 +393,35 @@ class Assignment_Action(AST):
     _fields = ['location', 'assigning_operator', 'expression']
 
     def generate_code(self):
-        super(Assignment_Action, self).generate_code()
-        AST.code.append(("stv", 0, AST.variables[self.location.ID]))
+        # super(Assignment_Action, self).generate_code()
+        if self.assigning_operator == '=':
+            self.expression.generate_code()
+            AST.code.append(("stv", 0, self.location.offset))
+        elif self.assigning_operator == '+=':
+            AST.code.append(("ldv", 0, self.location.offset))
+            self.expression.generate_code()
+            AST.code.append(("add",))
+            AST.code.append(("stv", 0, self.location.offset))
+        elif self.assigning_operator == '-=':
+            AST.code.append(("ldv", 0, self.location.offset))
+            self.expression.generate_code()
+            AST.code.append(("sub",))
+            AST.code.append(("stv", 0, self.location.offset))
+        elif self.assigning_operator == '*=':
+            AST.code.append(("ldv", 0, self.location.offset))
+            self.expression.generate_code()
+            AST.code.append(("mul",))
+            AST.code.append(("stv", 0, self.location.offset))
+        elif self.assigning_operator == '/=':
+            AST.code.append(("ldv", 0, self.location.offset))
+            self.expression.generate_code()
+            AST.code.append(("div",))
+            AST.code.append(("stv", 0, self.location.offset))
+        elif self.assigning_operator == '%=':
+            AST.code.append(("ldv", 0, self.location.offset))
+            self.expression.generate_code()
+            AST.code.append(("mod",))
+            AST.code.append(("stv", 0, self.location.offset))
 
 # assigning_operator
 
@@ -359,6 +429,20 @@ class Assignment_Action(AST):
 
 class If_Action(AST):
     _fields = ['boolean_expression', 'then_clause', 'else_clause']
+
+    def generate_code(self):
+        else_label = AST.label_counter
+        AST.label_counter += 1
+        end_label = AST.label_counter
+        AST.label_counter += 1
+
+        self.boolean_expression.generate_code()
+        AST.code.append(("jof", else_label))
+        self.then_clause.generate_code()
+        AST.code.append(("jmp", end_label))
+        AST.code.append(("lbl", else_label))
+        self.else_clause.generate_code()
+        AST.code.append(("lbl", end_label))
 
 class Then_Clause(AST):
     _fields = ['action_statement_list']
@@ -423,7 +507,7 @@ class Builtin_Call(AST):
 
     def generate_code(self):
         var = self.parameter_list[0].expression
-        AST.code.append(('ldv', 0, AST.variables[var.ID]))
+        AST.code.append(('ldv', 0, var.offset))
         if var.raw_type == 'char':
             AST.code.append(('prv', 1))
         else:
