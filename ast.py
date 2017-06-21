@@ -65,6 +65,10 @@ class AST(object):
     additional arguments specified as keywords are also assigned.
     """
     _fields = []
+    code = []
+    variables = {}
+    sp = 0
+
     def __init__(self, *args, **kwargs):
         assert len(args) == len(self._fields)
         for name,value in zip(self._fields, args):
@@ -86,22 +90,28 @@ class AST(object):
             else:
                 print(field)
 
-    def visit(self):
+    def generate_code(self):
         for field in self._fields:
             aux = getattr(self, field)
             if isinstance(aux, list):
                 for item in aux:
                     if isinstance(item, AST):
-                        item.visit()
+                        item.generate_code()
             elif isinstance(aux, AST):
-                aux.visit()
+                aux.generate_code()
 
 class Program(AST):
     _fields = ['stmts']
 
-    def visit(self):
+    def generate_code(self):
+        AST.code = []
+        AST.variables = {}
+        AST.sp = 0
+
         print("Program")
-        super(Program, self).visit()
+        AST.code.append(("stp", ))
+        super(Program, self).generate_code()
+        AST.code.append(("end", ))
 
 # statement_list
 # statement
@@ -114,6 +124,17 @@ class Declaration_Statement(AST):
 class Declaration(AST):
     _fields = ['identifier_list', 'mode', 'initialization']
 
+    def generate_code(self):
+        size = 1
+        n = len(self.identifier_list)
+        super(Declaration, self).generate_code()
+
+        for identifier in self.identifier_list:
+            AST.variables[identifier.ID] = AST.sp
+            AST.sp += 1
+
+        AST.code.append(("alc", size * n))
+
 class Initialization(AST):
     _fields = ['expression']
 
@@ -122,7 +143,7 @@ class Initialization(AST):
 class Identifier(AST):
     _fields = ['ID']
 
-    def visit(self):
+    def generate_code(self):
         print("ID={}, raw_type={}, dcl_type={}, loc={}".format(self.ID, self.raw_type, self.dcl_type, self.loc))
         # print(self.__dict__)
 
@@ -288,6 +309,10 @@ class Rel_Mem_Expression(AST):
 class Binary_Expression(AST):
     _fields = ['operand1', 'operator2', 'operand2']
 
+    def generate_code(self):
+        super(Binary_Expression, self).generate_code()
+        print(self.operator2)
+
 # operator2
 
 # arithmetic_additive_operator
@@ -300,6 +325,9 @@ class Binary_Expression(AST):
 
 class Unary_Expression(AST):
     _fields = ['monadic_operator', 'operand4']
+
+    def generate_code(self):
+        super(Unary_Expression, self).generate_code()
 
 # monadic_operator
 
@@ -320,6 +348,10 @@ class Label_Id(AST):
 
 class Assignment_Action(AST):
     _fields = ['location', 'assigning_operator', 'expression']
+
+    def generate_code(self):
+        super(Assignment_Action, self).generate_code()
+        AST.code.append(("stv", 0, AST.variables[self.location.ID]))
 
 # assigning_operator
 
@@ -388,6 +420,16 @@ class Result_Action(AST):
 
 class Builtin_Call(AST):
     _fields = ['builtin_name', 'parameter_list']
+
+    def generate_code(self):
+        var = self.parameter_list[0].expression
+        AST.code.append(('ldv', 0, AST.variables[var.ID]))
+        if var.raw_type == 'char':
+            AST.code.append(('prv', 1))
+        else:
+            AST.code.append(('prv', 0))
+
+        super(Builtin_Call, self).generate_code()
 
 class Builtin_Name(AST):
     _fields = ['name']

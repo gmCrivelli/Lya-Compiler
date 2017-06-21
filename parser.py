@@ -1024,7 +1024,9 @@ def main():
     nv = Visitor()
     nv.visit(ast)
 
-    ast.visit()
+    ast.generate_code()
+
+    print(AST.code)
 
 
 if __name__ == "__main__": main()
