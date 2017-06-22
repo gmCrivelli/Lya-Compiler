@@ -1,4 +1,5 @@
-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 MEMORY_SIZE = 64
 DISPLAY_SIZE = 8
@@ -232,19 +233,19 @@ class VirtualMachine:
                 memory[sp] = not memory[sp]
 
             elif t[0] == 'les':
-                memory[sp - 1] = memory[sp - 1] = memory[sp]
+                memory[sp - 1] = memory[sp - 1] < memory[sp]
                 sp -= 1
 
             elif t[0] == 'leq':
-                memory[sp - 1] = memory[sp - 1] <= memory[sp];
-                sp -= 1
-
-            elif t[0] == 'grt':
                 memory[sp - 1] = memory[sp - 1] <= memory[sp]
                 sp -= 1
 
-            elif t[0] == 'gre':
+            elif t[0] == 'grt':
                 memory[sp - 1] = memory[sp - 1] > memory[sp]
+                sp -= 1
+
+            elif t[0] == 'gre':
+                memory[sp - 1] = memory[sp - 1] >= memory[sp]
                 sp -= 1
 
             elif t[0] == 'equ':

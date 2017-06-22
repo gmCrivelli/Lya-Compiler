@@ -358,9 +358,8 @@ class Visitor(NodeVisitor):
         self.visit(node.string_length)
         node.size = node.string_length.size
 
-    def visit_String_Length(self, node):
-        self.visit(node.integer_literal)
-        node.size = node.integer_literal.value
+    # def visit_String_Length(self, node):
+    #     node.size = node.string_length
 
     def visit_Array_Mode(self, node):
         node.size = 1
@@ -808,15 +807,9 @@ class Visitor(NodeVisitor):
         self.visit(node.end_value)
 
     def visit_Loop_Counter(self, node):
-        type = self.environment.lookup(node.identifier.ID)
-        if type is None:
-            self.print_error(node.lineno, "Loop counter is not declared")
-
-        else:
-            if type[0] != 'var' or type[1] != 'int':
-                self.print_error(node.lineno, "Loop counter is not integer variable. To be continued...")
-
-
+        self.visit(node.identifier)
+        if node.identifier.dcl_type != 'var':
+            self.print_error(node.lineno, "Loop counter is not variable.")
 
     # start_value
     # step_value

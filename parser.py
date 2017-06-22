@@ -220,7 +220,7 @@ class Parser:
         p[0] = String_Mode(p[3], lineno = p.lineno(1))
 
     def p_string_length(self, p):
-        '''string_length : integer_literal'''
+        '''string_length : ICONST'''
         # p[0] = ('string_length', p[1], p.lineno(1))
 
         p[0] = String_Length(p[1], lineno = p[1].lineno)
@@ -698,8 +698,8 @@ class Parser:
 
     def p_for_control(self, p):
         '''for_control : iteration'''
-        #p[0] = ("for_control", p[1], p[2], p.lineno(1))
-        p[0] = p[1]
+        p[0] = For_Control(p[1], lineno = p[1].lineno)
+        #p[0] = p[1]
 
     def p_iteration(self, p):
         '''iteration : step_enumeration
