@@ -2,7 +2,7 @@
 
 dcl z,t int;
 
-g: proc (t int);
+g: proc (a int);
   dcl x int;
   t *= 2;
   x  = 2*t;

@@ -71,6 +71,7 @@ class AST(object):
     label_dict = dict()
     offset = 0
     scope = 0
+    scope_offset = []
 
     def __init__(self, *args, **kwargs):
         assert len(args) == len(self._fields)
@@ -107,12 +108,16 @@ class Program(AST):
     _fields = ['stmts']
 
     def generate_code(self):
+        AST.scope_offset = self.scope_offset
+
         AST.code = []
         AST.label_counter = 0
 
         print("Program")
         AST.code.append(("stp", ))
         super(Program, self).generate_code()
+        if AST.scope_offset[0] > 0:
+            AST.code.append(("dlc", AST.scope_offset[0]))
         AST.code.append(("end", ))
 
 # statement_list
@@ -136,7 +141,7 @@ class Declaration(AST):
             self.initialization.generate_code()
 
             for i, ident in enumerate(self.identifier_list):
-                AST.code.append(("stv", 0, ident.offset))
+                AST.code.append(("stv", ident.scope, ident.offset))
 
                 if i != len(self.identifier_list) - 1:
                     AST.code.append(("ldv", ident.scope, ident.offset))
@@ -637,6 +642,9 @@ class Return_Action(AST):
         if self.result != None:
             self.result.generate_code()
             AST.code.append(("stv", self.scope, self.offset))
+
+        if AST.scope_offset[self.scope] > 0:
+            AST.code.append(("dlc", AST.scope_offset[self.scope]))
         AST.code.append(("ret", self.scope, self.parameter_space))
 
 class Result_Action(AST):
@@ -697,6 +705,10 @@ class Procedure_Definition(AST):
         for statement in self.statement_list:
             statement.generate_code()
 
+        if AST.scope_offset[self.scope] > 0:
+            AST.code.append(("dlc", AST.scope_offset[self.scope]))
+
+        AST.code.append(("ret", self.scope, self.parameter_space))
         AST.code.append(("lbl", end_label))
 
 class Formal_Procedure_Head(AST):

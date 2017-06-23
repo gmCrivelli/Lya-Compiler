@@ -53,6 +53,7 @@ class Environment(object):
         self.stack.append(self.root)
         self.offset = 0
         self.current_scope = -1
+        self.scope_offset = dict()
 
         self.hasReturns = False
         self.expected = None
@@ -85,6 +86,7 @@ class Environment(object):
         self.stack.append(SymbolTable(decl=enclosure))
         self.scope_stack.append(self.current_scope)
         self.offset = 0
+        self.scope_offset[self.current_scope] = 0
     def pop(self):
         self.printStack()
         self.scope_stack.pop()
@@ -223,6 +225,7 @@ class Visitor(NodeVisitor):
             for stmts in node.stmts: self.visit(stmts)
 
         self.environment.printStack()
+        node.scope_offset = self.environment.scope_offset
 
     def visit_Declaration_Statement(self,node):
         # Visit all of the declarations
@@ -245,9 +248,10 @@ class Visitor(NodeVisitor):
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
-                    offset = self.environment.offset
-                    self.environment.offset += node.mode.size
-                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type, False, offset, self.environment.get_current_scope()])
+                    node.scope = self.environment.get_current_scope()
+                    node.offset = self.environment.scope_offset[node.scope]
+                    self.environment.scope_offset[node.scope] += node.mode.size
+                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type, False, node.offset, node.scope])
                     self.visit(ident)
 
 #    def visit_Initialization(self, node):

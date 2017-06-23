@@ -278,7 +278,7 @@ class VirtualMachine:
             elif t[0] == 'dlc':
                 n = t[1]
 
-                memory.pop(n)
+                #memory.pop(3)
                 sp -= n
 
             elif t[0] == 'cfu':
@@ -290,17 +290,20 @@ class VirtualMachine:
 
             elif t[0] == 'enf':
                 k = t[1]
-
                 sp += 1
                 memory[sp] = display[k]
+                #print("entering function, memory = ", memory)
+                #print("sp is now", sp)
                 display[k] = sp + 1
 
             elif t[0] == 'ret':
                 k = t[1]
                 n = t[2]
-
+                #print("returning, sp is", sp)
+                #print("this is memory", memory)
                 display[k] = memory[sp]
                 pc = memory[sp - 1]
+                #print("jumping to ", pc)
                 sp -= (n + 2)
 
             elif t[0] == 'idx':
