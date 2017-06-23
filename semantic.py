@@ -53,6 +53,13 @@ class Environment(object):
         self.stack.append(self.root)
         self.offset = 0
         self.current_scope = -1
+
+        self.hasReturns = False
+        self.expected = None
+        self.parameter_space_stack = []
+        self.procedure_scope_stack = []
+        self.procedure_return_stack = []
+
         self.root.update({
             "int": int_type,
             "char": char_type,
@@ -134,6 +141,7 @@ class Visitor(NodeVisitor):
         self.ref_symbol = '&'
         self.loc_symbol = '!'
         self.semantic_error = False
+        self.string_literals = []
 
     def print_error(self, lineno, text):
         if lineno is None:
@@ -258,7 +266,7 @@ class Visitor(NodeVisitor):
             node.dcl_type = node.type[0]
             node.raw_type = node.type[1]
             node.loc = node.type[2]
-            if node.raw_type != 'proc':
+            if node.dcl_type != 'proc':
                 node.offset = node.type[3]
                 node.scope = node.type[4]
             else:
@@ -541,6 +549,9 @@ class Visitor(NodeVisitor):
         node.dcl_type = 'literal'
         node.ID = None
         node.loc = False
+        node.heap_index = len(self.string_literals)
+        self.string_literals.append(node.value[1:-1])
+
 
     def visit_Value_Array_Element(self, node):
         self.visit(node.array_primitive_value)
@@ -935,7 +946,23 @@ class Visitor(NodeVisitor):
 
 
     def visit_Return_Action(self, node):
-        self.visit(node.result)
+
+        self.environment.hasReturns = True
+        node.scope = self.environment.procedure_scope_stack[-1]
+        node.parameter_space = self.environment.parameter_space_stack[-1]
+        node.offset = self.environment.procedure_return_stack[-1]
+        found_type = 'void'
+
+        if not node.result is None:
+            self.visit(node.result)
+            found_type = node.result.raw_type
+
+        if self.environment.expected is None:
+            if not found_type is None:
+                self.print_error(node.lineno, "Expected void return, found {}".format(found_type))
+        else:
+            if (found_type != self.environment.expected.mode.raw_type):
+                self.print_error(node.lineno, "Expected {} return, found {}".format(self.environment.expected.mode.raw_type, found_type))
 
     def visit_Result_Action(self, node):
         self.visit(node.result)
@@ -963,42 +990,40 @@ class Visitor(NodeVisitor):
 
     def visit_Procedure_Statement(self, node):
         proc_name = node.label_id.identifier.ID
-
         self.environment.push('PROCEDURE DECLARATION '+ proc_name)
         self.visit(node.procedure_definition)
         self.environment.pop()
 
+        self.environment.parameter_space_stack.pop()
+        self.environment.procedure_scope_stack.pop()
+        self.environment.procedure_return_stack.pop()
+
+        node.scope = node.procedure_definition.scope
+
     def visit_Procedure_Definition(self, node):
         self.visit(node.formal_procedure_head)
-        expected = node.formal_procedure_head.result_spec
-        hasReturns = False
+        node.scope = node.formal_procedure_head.scope
+        node.parameter_space = node.formal_procedure_head.parameter_space
+
+        self.environment.parameter_space_stack.append(node.parameter_space)
+        self.environment.procedure_scope_stack.append(node.scope)
+        self.environment.procedure_return_stack.append(node.formal_procedure_head.offset)
+
+        self.environment.expected = node.formal_procedure_head.result_spec
+        self.environment.hasReturns = False
         if not node.statement_list is None:
             for statement in node.statement_list:
                 self.visit(statement)
-                if hasattr(statement, 'action') and isinstance(statement.action, Return_Action):
-                    hasReturns = True
-                    found_type = None
-                    if not statement.action.result is None:
-                        #if (isinstance(statement.action.result.type, ExprType)):
-                        #    found_type = statement.action.result.type
-                        #else:
-                        #    found_type = statement.action.result.type[1]
-                        found_type = statement.action.result.raw_type
 
-                    if expected is None:
-                        if not found_type is None:
-                            self.print_error(node.lineno, "Expected void return, found {}".format(found_type))
-                    else:
-                        if (found_type != expected.mode.raw_type):
-                            self.print_error(node.lineno, "Expected {} return, found {}".format(expected.mode.raw_type,found_type))
-        if not hasReturns and expected is not None:
+        if not self.environment.hasReturns and self.environment.expected is not None:
             proc_name = self.environment.peek().return_type().replace("PROCEDURE DECLARATION ", "")
             self.print_error(node.lineno, "Procedure {} has no return".format(proc_name))
 
     def visit_Formal_Procedure_Head(self, node):
         node.param_types = []
+        node.scope = self.environment.get_current_scope()
         self.environment.offset = -2
-        offset = -2
+        node.offset = -2
         if not node.formal_parameter_list is None:
             for formal_param in node.formal_parameter_list:
                 self.visit(formal_param)
@@ -1012,7 +1037,9 @@ class Visitor(NodeVisitor):
             self.visit(node.result_spec)
             result_type = node.result_spec.mode.raw_type
             result_loc = node.result_spec.loc
-            offset = self.environment.offset - node.result_spec.mode.size
+            node.offset = self.environment.offset - node.result_spec.mode.size
+
+        node.parameter_space = (-2) - self.environment.offset
 
         proc_name = self.environment.peek().return_type().replace("PROCEDURE DECLARATION ","")
         print("Procedure declaration: {}".format(proc_name))
@@ -1023,7 +1050,7 @@ class Visitor(NodeVisitor):
                              "Identifier " + str(proc_name) + " already declared as {} {}".format(aux_type[0],
                                                                                                   aux_type[1]))
         else:
-            self.environment.add_parent(proc_name, ['proc', result_type, result_loc, node.param_types, offset, self.environment.get_current_scope()])
+            self.environment.add_parent(proc_name, ['proc', result_type, result_loc, node.param_types, node.offset, node.scope])
 
         self.environment.offset = 0
 

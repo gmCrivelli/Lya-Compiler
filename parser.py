@@ -1040,8 +1040,9 @@ def main():
         print(bla)
     print(']')
 
-
-    VirtualMachine.execute(AST.code, [], False)
+    H = nv.string_literals
+    print(H)
+    VirtualMachine.execute(AST.code, H, False)
 
 
 

@@ -69,6 +69,8 @@ class AST(object):
     variables = {}
     label_counter = 0
     label_dict = dict()
+    offset = 0
+    scope = 0
 
     def __init__(self, *args, **kwargs):
         assert len(args) == len(self._fields)
@@ -137,7 +139,7 @@ class Declaration(AST):
                 AST.code.append(("stv", 0, ident.offset))
 
                 if i != len(self.identifier_list) - 1:
-                    AST.code.append(("ldv", 0, ident.offset))
+                    AST.code.append(("ldv", ident.scope, ident.offset))
 
 
 class Initialization(AST):
@@ -151,7 +153,7 @@ class Identifier(AST):
     def generate_code(self):
         #print("ID={}, raw_type={}, dcl_type={}, loc={}".format(self.ID, self.raw_type, self.dcl_type, self.loc))
         print(self.__dict__)
-        AST.code.append(('ldv', 0, self.offset))
+        AST.code.append(('ldv', self.scope, self.offset))
 
 class Synonym_Statement(AST):
     _fields = ['synonym_list']
@@ -413,32 +415,32 @@ class Assignment_Action(AST):
         # super(Assignment_Action, self).generate_code()
         if self.assigning_operator == '=':
             self.expression.generate_code()
-            AST.code.append(("stv", 0, self.location.offset))
+            AST.code.append(("stv", self.location.scope, self.location.offset))
         elif self.assigning_operator == '+=':
-            AST.code.append(("ldv", 0, self.location.offset))
+            AST.code.append(("ldv", self.location.scope, self.location.offset))
             self.expression.generate_code()
             AST.code.append(("add",))
-            AST.code.append(("stv", 0, self.location.offset))
+            AST.code.append(("stv", self.location.scope, self.location.offset))
         elif self.assigning_operator == '-=':
-            AST.code.append(("ldv", 0, self.location.offset))
+            AST.code.append(("ldv", self.location.scope, self.location.offset))
             self.expression.generate_code()
             AST.code.append(("sub",))
-            AST.code.append(("stv", 0, self.location.offset))
+            AST.code.append(("stv", self.location.scope, self.location.offset))
         elif self.assigning_operator == '*=':
-            AST.code.append(("ldv", 0, self.location.offset))
+            AST.code.append(("ldv", self.location.scope, self.location.offset))
             self.expression.generate_code()
             AST.code.append(("mul",))
-            AST.code.append(("stv", 0, self.location.offset))
+            AST.code.append(("stv", self.location.scope, self.location.offset))
         elif self.assigning_operator == '/=':
-            AST.code.append(("ldv", 0, self.location.offset))
+            AST.code.append(("ldv", self.location.scope, self.location.offset))
             self.expression.generate_code()
             AST.code.append(("div",))
-            AST.code.append(("stv", 0, self.location.offset))
+            AST.code.append(("stv", self.location.scope, self.location.offset))
         elif self.assigning_operator == '%=':
-            AST.code.append(("ldv", 0, self.location.offset))
+            AST.code.append(("ldv", self.location.scope, self.location.offset))
             self.expression.generate_code()
             AST.code.append(("mod",))
-            AST.code.append(("stv", 0, self.location.offset))
+            AST.code.append(("stv", self.location.scope, self.location.offset))
 
 # assigning_operator
 
@@ -547,9 +549,10 @@ class Step_Enumeration(AST):
 
     def generate_code(self, control_label, end_label):
         offset = self.loop_counter.identifier.offset
+        scope = self.loop_counter.identifier.scope
 
         self.start_value.generate_code()
-        AST.code.append(("stv", 0, offset))
+        AST.code.append(("stv", scope, offset))
         AST.code.append(("lbl", control_label))
         self.loop_counter.generate_code()
         loop_counter_code = AST.code[-1]
@@ -574,7 +577,7 @@ class Step_Enumeration(AST):
 
         control_instructions.append(loop_counter_code)
         control_instructions.append(("add",))
-        control_instructions.append(("stv", 0, offset))
+        control_instructions.append(("stv", scope, offset))
         print(control_instructions)
         return control_instructions
 
@@ -603,7 +606,17 @@ class While_Control(AST):
 class Procedure_Call(AST):
     _fields = ['identifier', 'parameter_list']
 
-    #def generate_code(self):
+    def generate_code(self):
+
+        if self.identifier.type[1] != 'void':
+            AST.code.append(("alc",1))
+
+        for parameter in reversed(self.parameter_list):
+            parameter.generate_code()
+
+        AST.code.append(("cfu", self.identifier.scope))
+
+
 
 
 #parameter_list
@@ -620,6 +633,12 @@ class Exit_Label_Id(AST):
 class Return_Action(AST):
     _fields = ['result']
 
+    def generate_code(self):
+        if self.result != None:
+            self.result.generate_code()
+            AST.code.append(("stv", self.scope, self.offset))
+        AST.code.append(("ret", self.scope, self.parameter_space))
+
 class Result_Action(AST):
     _fields = ['result']
 
@@ -635,15 +654,18 @@ class Builtin_Call(AST):
 
         if self.builtin_name.name == 'print':
             for param in self.parameter_list:
-                param.expression.generate_code()
-                if param.expression.raw_type == 'char':
-                    AST.code.append(('prv', 1))
+                if param.expression.raw_type == "string":
+                    AST.code.append(('prc', param.expression.heap_index))
                 else:
-                    AST.code.append(('prv', 0))
+                    param.expression.generate_code()
+                    if param.expression.raw_type == 'char':
+                        AST.code.append(('prv', 1))
+                    else:
+                        AST.code.append(('prv', 0))
         elif self.builtin_name.name == 'read':
             for param in self.parameter_list:
                 AST.code.append(('rdv',))
-                AST.code.append(('stv', 0, param.expression.offset))
+                AST.code.append(('stv', param.expression.scope, param.expression.offset))
 
 
         # super(Builtin_Call, self).generate_code()
@@ -654,26 +676,35 @@ class Builtin_Name(AST):
 class Procedure_Statement(AST):
     _fields = ['label_id', 'procedure_definition']
 
+    # Things are about to get tricky
+    # Pass label_id object as parameter, since we must first write the "jmp" to
+    # the end of the procedure, and only then write the "lbl"
+    def generate_code(self):
+        self.procedure_definition.generate_code(self.label_id)
+
 class Procedure_Definition(AST):
     _fields = ['formal_procedure_head', 'statement_list']
 
-    #TODO: this here
-    def generate_code(self):
-        leng = len(AST.code)
-
-        for statement in self.statement_list:
-            statement.generate_code()
-        procedure_instructions = AST.code[leng:]
-        del AST.code[leng:]
+    def generate_code(self, label_id):
 
         end_label = AST.label_counter
         AST.label_counter += 1
         AST.code.append(("jmp", end_label))
-        AST.code += procedure_instructions
+
+        label_id.generate_code()
+        self.formal_procedure_head.generate_code()
+
+        for statement in self.statement_list:
+            statement.generate_code()
+
         AST.code.append(("lbl", end_label))
 
 class Formal_Procedure_Head(AST):
     _fields = ['formal_parameter_list', 'result_spec']
+
+    def generate_code(self):
+        AST.code.append(("enf", self.scope))
+
 
 #formal_parameter_list
 
