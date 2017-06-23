@@ -68,6 +68,7 @@ class AST(object):
     code = []
     variables = {}
     label_counter = 0
+    label_dict = dict()
 
     def __init__(self, *args, **kwargs):
         assert len(args) == len(self._fields)
@@ -148,8 +149,8 @@ class Identifier(AST):
     _fields = ['ID']
 
     def generate_code(self):
-        # print("ID={}, raw_type={}, dcl_type={}, loc={}".format(self.ID, self.raw_type, self.dcl_type, self.loc))
-        # print(self.__dict__)
+        #print("ID={}, raw_type={}, dcl_type={}, loc={}".format(self.ID, self.raw_type, self.dcl_type, self.loc))
+        print(self.__dict__)
         AST.code.append(('ldv', 0, self.offset))
 
 class Synonym_Statement(AST):
@@ -396,6 +397,11 @@ class Action_Statement(AST):
 class Label_Id(AST):
     _fields = ['identifier']
 
+    def generate_code(self):
+        AST.label_dict[self.identifier.ID] = AST.label_counter
+        AST.code.append(("lbl",AST.label_counter))
+        AST.label_counter += 1
+
 # action
 
 # bracketed_action
@@ -597,13 +603,19 @@ class While_Control(AST):
 class Procedure_Call(AST):
     _fields = ['identifier', 'parameter_list']
 
+    #def generate_code(self):
+
+
 #parameter_list
 
 class Parameter(AST):
     _fields = ['expression']
 
 class Exit_Action(AST):
-    _fields = ['label_id']
+    _fields = ['exit_label_id']
+
+class Exit_Label_Id(AST):
+    _fields = ['identifier']
 
 class Return_Action(AST):
     _fields = ['result']
@@ -644,6 +656,21 @@ class Procedure_Statement(AST):
 
 class Procedure_Definition(AST):
     _fields = ['formal_procedure_head', 'statement_list']
+
+    #TODO: this here
+    def generate_code(self):
+        leng = len(AST.code)
+
+        for statement in self.statement_list:
+            statement.generate_code()
+        procedure_instructions = AST.code[leng:]
+        del AST.code[leng:]
+
+        end_label = AST.label_counter
+        AST.label_counter += 1
+        AST.code.append(("jmp", end_label))
+        AST.code += procedure_instructions
+        AST.code.append(("lbl", end_label))
 
 class Formal_Procedure_Head(AST):
     _fields = ['formal_parameter_list', 'result_spec']

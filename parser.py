@@ -787,8 +787,12 @@ class Parser:
 #        p[0] = ("procedure_name", p[1], p.lineno(1))
 
     def p_exit_action(self, p):
-        '''exit_action :  EXIT label_id'''
+        '''exit_action :  EXIT exit_label_id'''
         p[0] = Exit_Action(p[2], lineno = p.lineno(1))
+
+    def p_exit_label_id(self, p):
+        '''exit_label_id :  identifier'''
+        p[0] = Exit_Label_Id(p[1], lineno = p[1].lineno)
 
     def p_return_action(self, p):
         '''return_action :  RETURN
