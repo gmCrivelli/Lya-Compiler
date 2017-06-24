@@ -2,14 +2,13 @@
 
 dcl z,t int;
 
-g: proc (a int);
-  dcl x int;
+g: proc (t int);
   t *= 2;
-  x  = 2*t;
-  z  = x+1;
+  z += 1;
+  print(t);
 end;
 
-z = 3;
+z = 10;
 t = 4;
 g(t); print(z,t);
 g(z); print(z,t);

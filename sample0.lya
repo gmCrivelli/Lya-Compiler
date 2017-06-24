@@ -1,17 +1,14 @@
-
 dcl a, b, c int;
-a = 15;
-b = 20;
-c = 30;
-if a == 10 then
+read(a,b,c);
+if a <= 10 then
 print(a);
 print(b);
 print(c);
-elsif a == 20 then
+elsif a <= 20 then
 print(c);
 print(a);
 print(b);
-elsif a == 30 then
+elsif a > 25 && a <= 30 then
 print(b);
 print(c);
 print(a);

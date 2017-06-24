@@ -136,7 +136,7 @@ class Lexer:
 
 
     def t_SCONST(self, t):
-        r'\"(\\\"|\\\'|[^\'\"(\n)])*\"'
+        r'\"(\\\"|\\\'|[^\'\"\n])*\"'
         t.value = str(t.value)
         return t
 

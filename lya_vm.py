@@ -156,7 +156,6 @@ class VirtualMachine:
 
             if t[0] == 'ldc':
                 k = t[1]
-
                 sp += 1
                 memory[sp] = k
 
@@ -208,7 +207,7 @@ class VirtualMachine:
                 sp -= 1
 
             elif t[0] == 'div':
-                memory[sp - 1] = memory[sp - 1] / memory[sp]
+                memory[sp - 1] = int(memory[sp - 1] / memory[sp])
                 sp -= 1
 
             elif t[0] == 'mod':
@@ -264,7 +263,7 @@ class VirtualMachine:
             elif t[0] == 'jof':
                 p = t[1]
 
-                if not memory[sp]:
+                if not memory[sp] or memory[sp] == 'false':
                     pc = labels.get(p, pc)
 
                 sp -= 1
@@ -277,23 +276,22 @@ class VirtualMachine:
 
             elif t[0] == 'dlc':
                 n = t[1]
-
                 #memory.pop(3)
                 sp -= n
 
             elif t[0] == 'cfu':
                 p = t[1]
-
+                #print("jumping into function", memory)
                 sp += 1
                 memory[sp] = pc
                 pc = labels.get(p, pc)
 
             elif t[0] == 'enf':
+                #print("entering function, memory = ", memory)
+                #print("sp is now", sp)
                 k = t[1]
                 sp += 1
                 memory[sp] = display[k]
-                #print("entering function, memory = ", memory)
-                #print("sp is now", sp)
                 display[k] = sp + 1
 
             elif t[0] == 'ret':

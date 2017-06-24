@@ -386,6 +386,7 @@ class Parser:
         '''character_string_literal : SCONST'''
         # p[0] = ('character_string_literal', p[1], p.lineno(1))
 
+        print("PARSING",p[1])
         p[0] = Character_String_Literal(p[1], lineno = p.lineno(1))
 
     def p_value_array_element(self, p):

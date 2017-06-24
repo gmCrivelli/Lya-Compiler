@@ -243,8 +243,8 @@ class Visitor(NodeVisitor):
         if not node.identifier_list is None:
             for ident in node.identifier_list:
                 aux_type = self.environment.lookup(ident.ID)
-                if not aux_type is None:
-                    self.print_error(node.lineno,
+                if not aux_type is None and aux_type[0] == 'var' and aux_type[4] == self.environment.get_current_scope():
+                            self.print_error(node.lineno,
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
@@ -555,7 +555,6 @@ class Visitor(NodeVisitor):
         node.loc = False
         node.heap_index = len(self.string_literals)
         self.string_literals.append(node.value[1:-1])
-
 
     def visit_Value_Array_Element(self, node):
         self.visit(node.array_primitive_value)
@@ -903,6 +902,7 @@ class Visitor(NodeVisitor):
             elif not node.parameter_list is None:
                 for i, param in enumerate(node.parameter_list, start=0):
                     self.visit(param)
+                    param.is_reference = False
                     if (param.raw_type != type[3][i][0]):
                         self.print_error(node.lineno,
                                          "Incorrect parameter type at position i={}; Expected {}, found {}".format(
@@ -916,6 +916,8 @@ class Visitor(NodeVisitor):
                             self.print_error(node.lineno,
                                          "Expected location at position i={}; Found {} instead".format(
                                              i, param.dcl_type))
+                        else:
+                            param.is_reference = True
 
 
 
@@ -969,7 +971,20 @@ class Visitor(NodeVisitor):
                 self.print_error(node.lineno, "Expected {} return, found {}".format(self.environment.expected.mode.raw_type, found_type))
 
     def visit_Result_Action(self, node):
+        self.environment.hasReturns = True
+        node.scope = self.environment.procedure_scope_stack[-1]
+        node.parameter_space = self.environment.parameter_space_stack[-1]
+        node.offset = self.environment.procedure_return_stack[-1]
+
         self.visit(node.result)
+        found_type = node.result.raw_type
+
+        if self.environment.expected is None:
+            self.print_error(node.lineno, "Expected void result, found {}".format(found_type))
+        else:
+            if (found_type != self.environment.expected.mode.raw_type):
+                self.print_error(node.lineno, "Expected {} result, found {}".format(self.environment.expected.mode.raw_type, found_type))
+
 
     # def visit_Result(self, node):
     #    self.visit(node.expression)
@@ -1070,22 +1085,22 @@ class Visitor(NodeVisitor):
 
         if not node.identifier_list is None:
             for ident in node.identifier_list:
+
+                print(ident.ID, node.loc)
                 aux_type = self.environment.lookup(ident.ID)
 
-                if not aux_type is None:
-                    self.print_error(node.lineno,
-                                     "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
-                                                                                                         aux_type[1]))
+                if not aux_type is None and aux_type[0] == 'var' and aux_type[4] == self.environment.get_current_scope():
+                            self.print_error(node.lineno,
+                                     "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],                                                                                         aux_type[1]))
                 else:
                     self.environment.offset -= node.mode.size
                     offset = self.environment.offset
-                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type, False, offset, self.environment.get_current_scope()])
+                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type, node.loc, offset, self.environment.get_current_scope()])
                     node.param_list.append([node.raw_type, node.mode.size, node.loc])
-
-
 
     def visit_Parameter_Spec(self, node):
         self.visit(node.mode)
+
         #if (node.loc != None):
         #    node.mode.dcl_type = self.loc_symbol + node.mode.dcl_type
     # parameter_attribute

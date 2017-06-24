@@ -69,6 +69,7 @@ class AST(object):
     variables = {}
     label_counter = 0
     label_dict = dict()
+    end_label_dict = dict()
     offset = 0
     scope = 0
     scope_offset = []
@@ -119,6 +120,8 @@ class Program(AST):
         if AST.scope_offset[0] > 0:
             AST.code.append(("dlc", AST.scope_offset[0]))
         AST.code.append(("end", ))
+        print(AST.label_dict)
+        print(AST.end_label_dict)
 
 # statement_list
 # statement
@@ -158,7 +161,10 @@ class Identifier(AST):
     def generate_code(self):
         #print("ID={}, raw_type={}, dcl_type={}, loc={}".format(self.ID, self.raw_type, self.dcl_type, self.loc))
         print(self.__dict__)
-        AST.code.append(('ldv', self.scope, self.offset))
+        if self.loc:
+            AST.code.append(('lrv', self.scope, self.offset))
+        else:
+            AST.code.append(('ldv', self.scope, self.offset))
 
 class Synonym_Statement(AST):
     _fields = ['synonym_list']
@@ -401,6 +407,13 @@ class Referenced_Location(AST):
 class Action_Statement(AST):
     _fields = ['label_id', 'action']
 
+    def generate_code(self):
+        if self.action.__class__ in [Do_Action, If_Action] and self.label_id != None:
+            print("DO ACTION END LABEL PREDICTED: ", AST.label_counter)
+            AST.end_label_dict[self.label_id.identifier.ID] = AST.label_counter + 1
+        super(Action_Statement, self).generate_code()
+
+
 class Label_Id(AST):
     _fields = ['identifier']
 
@@ -418,34 +431,38 @@ class Assignment_Action(AST):
 
     def generate_code(self):
         # super(Assignment_Action, self).generate_code()
+        store = "stv"
+        if self.location.loc:
+            store = "srv"
+
         if self.assigning_operator == '=':
             self.expression.generate_code()
-            AST.code.append(("stv", self.location.scope, self.location.offset))
+            AST.code.append((store, self.location.scope, self.location.offset))
         elif self.assigning_operator == '+=':
-            AST.code.append(("ldv", self.location.scope, self.location.offset))
+            self.location.generate_code()
             self.expression.generate_code()
             AST.code.append(("add",))
-            AST.code.append(("stv", self.location.scope, self.location.offset))
+            AST.code.append((store, self.location.scope, self.location.offset))
         elif self.assigning_operator == '-=':
-            AST.code.append(("ldv", self.location.scope, self.location.offset))
+            self.location.generate_code()
             self.expression.generate_code()
             AST.code.append(("sub",))
-            AST.code.append(("stv", self.location.scope, self.location.offset))
+            AST.code.append((store, self.location.scope, self.location.offset))
         elif self.assigning_operator == '*=':
-            AST.code.append(("ldv", self.location.scope, self.location.offset))
+            self.location.generate_code()
             self.expression.generate_code()
             AST.code.append(("mul",))
-            AST.code.append(("stv", self.location.scope, self.location.offset))
+            AST.code.append((store, self.location.scope, self.location.offset))
         elif self.assigning_operator == '/=':
-            AST.code.append(("ldv", self.location.scope, self.location.offset))
+            self.location.generate_code()
             self.expression.generate_code()
             AST.code.append(("div",))
-            AST.code.append(("stv", self.location.scope, self.location.offset))
+            AST.code.append((store, self.location.scope, self.location.offset))
         elif self.assigning_operator == '%=':
-            AST.code.append(("ldv", self.location.scope, self.location.offset))
+            self.location.generate_code()
             self.expression.generate_code()
             AST.code.append(("mod",))
-            AST.code.append(("stv", self.location.scope, self.location.offset))
+            AST.code.append((store, self.location.scope, self.location.offset))
 
 # assigning_operator
 
@@ -455,6 +472,8 @@ class If_Action(AST):
     _fields = ['boolean_expression', 'then_clause', 'else_clause']
 
     def generate_code(self):
+        # WARNING: end_label MUST be the first label declared.
+        # Take a look at class Action_Statement and you will understand
         end_label = AST.label_counter
         AST.label_counter += 1
         else_label = end_label
@@ -471,7 +490,8 @@ class If_Action(AST):
             AST.code.append(("jmp", end_label))
             AST.code.append(("lbl", else_label))
             self.else_clause.generate_code(end_label)
-            AST.code.append(("lbl", end_label))
+
+        AST.code.append(("lbl", end_label))
 
 class Then_Clause(AST):
     _fields = ['action_statement_list']
@@ -507,10 +527,14 @@ class Do_Action(AST):
     _fields = ['control_part', 'action_statement_list']
 
     def generate_code(self):
+        # WARNING: end_label MUST be the first label declared.
+        # Take a look at class Action_Statement and you will understand
+        end_label = AST.label_counter
+        AST.label_counter += 1
+
         if self.control_part != None:
+            # Also you probably shouldn't mess with this here
             control_label = AST.label_counter
-            AST.label_counter += 1
-            end_label = AST.label_counter
             AST.label_counter += 1
 
             control_instructions = self.control_part.generate_code(control_label, end_label)
@@ -521,10 +545,14 @@ class Do_Action(AST):
             for instruction in control_instructions:
                 AST.code.append(instruction)
             AST.code.append(("jmp", control_label))
+            print("APPENDING DO ACTION END LABEL: ", end_label)
             AST.code.append(("lbl", end_label))
 
         else:
-            super(Do_Action, self).generate_code()
+            for action_statement in self.action_statement_list:
+                action_statement.generate_code()
+            print("APPENDING DO ACTION END LABEL: ", end_label)
+            AST.code.append(("lbl", end_label))
 
 
 # TODO: FOR_CONTROL
@@ -612,14 +640,13 @@ class Procedure_Call(AST):
     _fields = ['identifier', 'parameter_list']
 
     def generate_code(self):
-
         if self.identifier.type[1] != 'void':
             AST.code.append(("alc",1))
 
         for parameter in reversed(self.parameter_list):
             parameter.generate_code()
 
-        AST.code.append(("cfu", self.identifier.scope))
+        AST.code.append(("cfu", self.label_dict[self.identifier.ID]))
 
 
 
@@ -629,11 +656,24 @@ class Procedure_Call(AST):
 class Parameter(AST):
     _fields = ['expression']
 
+    def generate_code(self):
+        if self.is_reference:
+            if self.expression.loc:
+                AST.code.append(("ldv", self.expression.scope, self.expression.offset))
+            else:
+                AST.code.append(("ldr", self.expression.scope, self.expression.offset))
+        else:
+            self.expression.generate_code()
+
+
 class Exit_Action(AST):
     _fields = ['exit_label_id']
 
 class Exit_Label_Id(AST):
     _fields = ['identifier']
+
+    def generate_code(self):
+        AST.code.append(("jmp",self.end_label_dict[self.identifier.ID]))
 
 class Return_Action(AST):
     _fields = ['result']
@@ -649,6 +689,10 @@ class Return_Action(AST):
 
 class Result_Action(AST):
     _fields = ['result']
+
+    def generate_code(self):
+        self.result.generate_code()
+        AST.code.append(("stv", self.scope, self.offset))
 
 #class Result(AST):
 #    _fields = ['expression']
@@ -710,6 +754,7 @@ class Procedure_Definition(AST):
 
         AST.code.append(("ret", self.scope, self.parameter_space))
         AST.code.append(("lbl", end_label))
+        AST.end_label_dict[label_id.identifier.ID] = end_label
 
 class Formal_Procedure_Head(AST):
     _fields = ['formal_parameter_list', 'result_spec']
