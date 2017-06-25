@@ -292,7 +292,22 @@ class Visitor(NodeVisitor):
                     node.scope = self.environment.get_current_scope()
                     node.offset = self.environment.scope_offset[node.scope]
                     self.environment.scope_offset[node.scope] += node.mode.size
-                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type, False, node.offset, node.scope])
+                    #if node.mode.raw_type[0] == '$': # this is an array
+                    print("something hereeeeee", node.mode.size)
+                    self.environment.add_local(ident.ID, ['var',
+                                                          node.mode.raw_type,
+                                                          False,
+                                                          node.mode.size,
+                                                          node.offset,
+                                                          node.scope,
+                                                          node.mode.lower_bound_value])
+                    #else:
+                    #    self.environment.add_local(ident.ID, ['var',
+                    #                                          node.mode.raw_type,
+                    #                                          False,
+                    #                                          node.offset,
+                    #                                          node.scope,
+                    #                                          0])
                     self.visit(ident)
 
 #    def visit_Initialization(self, node):
@@ -305,19 +320,29 @@ class Visitor(NodeVisitor):
         node.loc = False
         node.offset = 0
         node.scope = 0
+        node.lower_bound_value = 0
         #self.visit(node.ID)
         if(node.type != None):
             print("Identifier: ID \"" + str(node.ID) + "\" type \"{} {}\"".format(node.type[0], node.type[1]))
-            node.dcl_type = node.type[0]
-            node.raw_type = node.type[1]
-            node.loc = node.type[2]
+            node.dcl_type = node.type[0] # declaration type (var, proc, synonym, label, etc.)
+            node.raw_type = node.type[1] # raw type (int, bool, char, etc.)
+            node.loc = node.type[2] # loc
             if node.dcl_type != 'proc':
-                node.offset = node.type[3]
-                node.scope = node.type[4]
+                node.size = node.type[3]
+                node.offset = node.type[4]
+                node.scope = node.type[5]
+
+
+                if node.dcl_type == 'synonym':
+                    node.value = node.type[6]
+
             else:
                 node.offset = node.type[4]
                 node.scope = node.type[5]
-            node.size = node.offset
+
+            if node.raw_type[0] == '$': # this is an array
+                node.lower_bound_value = node.type[-1]
+
 
             #while(not isinstance(node.type, ExprType) and node.type[0] == "type"):
             #    node.type = node.type[1]
@@ -331,10 +356,10 @@ class Visitor(NodeVisitor):
             for syn in node.synonym_list: self.visit(syn)
 
     def visit_Synonym_Definition(self, node):
-        self.visit(node.initialization)
+        self.visit(node.constant_expression)
         if not node.mode is None:
             self.visit(node.mode)
-            if (node.mode.raw_type != node.initialization.raw_type):
+            if (node.mode.raw_type != node.constant_expression.raw_type):
                 self.print_error(node.lineno,
                                  "Mismatched type initialization, expected " + node.mode.raw_type + ", found " + node.initialization.type)
         for ident in node.identifier_list:
@@ -343,7 +368,24 @@ class Visitor(NodeVisitor):
                 self.print_error(node.lineno,
                                 "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0], aux_type[1]))
             else:
-                self.environment.add_local(ident.ID, ['synonym', node.initialization.raw_type, False, node.initialization.size, self.environment.get_current_scope()])
+                self.environment.add_local(ident.ID, ['synonym',
+                                                      node.constant_expression.raw_type,
+                                                      False,
+                                                      node.constant_expression.size,
+                                                      node.constant_expression.size,
+                                                      self.environment.get_current_scope(),
+                                                      node.constant_expression.value,
+                                                      node.constant_expression.lower_bound_value])
+
+    def visit_Constant_Expression(self, node):
+        self.visit(node.expression)
+        if node.expression.value == None:
+            self.print_error(node.lineno,
+                             "Expression in synonym declaration is not constant")
+        node.value = node.expression.value
+        node.raw_type = node.expression.raw_type
+        node.size = node.expression.size
+        node.lower_bound_value = 0
 
     def visit_Newmode_Statement(self, node):
         if not node.newmode_list is None:
@@ -359,28 +401,38 @@ class Visitor(NodeVisitor):
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
-                    self.environment.add_local(ident.ID, ['mode', node.mode.raw_type, False, node.mode.size, self.environment.get_current_scope()])
+                    self.environment.add_local(ident.ID, ['mode',
+                                                          node.mode.raw_type,
+                                                          False,
+                                                          node.mode.size,
+                                                          node.mode.size,
+                                                          self.environment.get_current_scope(),
+                                                          node.mode.lower_bound_value])
 
     def visit_Integer_Mode(self, node):
         #self.visit(node.INT)
         print("Integer Mode: " + str(node.INT))
         node.raw_type = 'int' #self.typemap[node.INT]
         node.size = 1
+        node.lower_bound_value = 0
 
     def visit_Boolean_Mode(self, node):
         #self.visit(node.BOOL)
         print("Boolean Mode: " + str(node.BOOL))
         node.raw_type = 'bool' #self.typemap[node.BOOL]
         node.size = 1
+        node.lower_bound_value = 0
 
     def visit_Character_Mode(self, node):
         #self.visit(node.CHAR)
         print("Character Mode: " + str(node.CHAR))
         node.raw_type = 'char' #self.typemap[node.CHAR]
         node.size = 1
+        node.lower_bound_value = 0
 
     def visit_Discrete_Range_Mode(self, node):
         self.visit(node.literal_range)
+        node.lower_bound_value = 25
         raw_type = None
         params = []
         if node.identifier is not None:
@@ -402,23 +454,31 @@ class Visitor(NodeVisitor):
         if node.identifier.type is None or (node.identifier.type is not None and node.identifier.type[0] != 'mode'):
             self.print_error(node.lineno, "{} is not a valid mode.".format(node.identifier.ID))
         node.raw_type = node.identifier.raw_type
-        node.size = node.identifier.offset
+        node.size = node.identifier.size
+        node.lower_bound_value = node.identifier.lower_bound_value
 
     def visit_Literal_Range(self, node):
         self.visit(node.lower_bound.expression)
         self.visit(node.upper_bound.expression)
-        node.size = 10
+        node.size = 1
         if node.lower_bound.expression.raw_type != None and node.upper_bound.expression.raw_type != None:
             if node.lower_bound.expression.raw_type != node.upper_bound.expression.raw_type:
                 self.print_error(node.lineno, "Mismatching bound types in literal range")
-            #else:
-            #    node.size = node.upper_bound.value - node.upper_bound.value
-        #node.raw_type = node.lower_bound.expression.raw_type
+            else:
+                node.size = node.upper_bound.expression.value - node.lower_bound.expression.value + 1
+                if node.size < 0:
+                    self.print_error(node.lineno, "Upper bound must be greater than lower bound")
+        else:
+            self.print_error(node.lineno, "Improper literal range")
+        node.raw_type = node.lower_bound.expression.raw_type
+        node.lower_bound_value = node.lower_bound.expression.value
+        print("AQUI",node.lower_bound_value)
 
     def visit_Reference_Mode(self, node):
         self.visit(node.mode)
         node.raw_type = self.ref_symbol + node.mode.raw_type
         node.size = node.mode.size
+        node.lower_bound_value = node.mode.lower_bound_value
 
     def visit_String_Mode(self, node):
         print("String Mode")
@@ -436,9 +496,12 @@ class Visitor(NodeVisitor):
                 #print(index_mode)
                 self.visit(index_mode)
                 node.size *= index_mode.size
+        print("array size:", node.size)
         self.visit(node.element_mode)
         node.raw_type = self.array_symbol + node.element_mode.raw_type
         node.size *= node.element_mode.size
+        node.lower_bound_value = node.index_mode_list[0].lower_bound_value
+        print("EI AQUI", node.lower_bound_value)
 
     def visit_Element_Mode(self, node):
         self.visit(node.mode)
@@ -531,6 +594,8 @@ class Visitor(NodeVisitor):
         node.dcl_type = node.array_location.dcl_type
         node.ID = node.array_location.ID
         node.loc = node.array_location.loc
+        node.lower_bound_value = node.array_location.lower_bound_value
+        print("ARRAY",node.lower_bound_value)
 
     def visit_Array_Slice(self, node):
         self.visit(node.array_location)
@@ -552,6 +617,11 @@ class Visitor(NodeVisitor):
         node.dcl_type = node.location.dcl_type
         node.ID = node.location.ID
         node.loc = node.location.loc
+        node.lower_bound_value = None
+        if hasattr(node.location, "lower_bound_value"):
+            node.lower_bound_value = node.location.lower_bound_value
+        else:
+            self.print_error(node.lineno, "Array must have a lower bound")
 
     # primitive_value
 
@@ -818,7 +888,13 @@ class Visitor(NodeVisitor):
                              "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                  aux_type[1]))
         else:
-            self.environment.add_local(ident.ID, ['label', 'void', False, 0, self.environment.get_current_scope()])
+            self.environment.add_local(ident.ID, ['label',
+                                                  'void',
+                                                  False,
+                                                  0,
+                                                  0,
+                                                  self.environment.get_current_scope(),
+                                                  0])
 
     # action
 
@@ -1155,7 +1231,12 @@ class Visitor(NodeVisitor):
                              "Identifier " + str(proc_name) + " already declared as {} {}".format(aux_type[0],
                                                                                                   aux_type[1]))
         else:
-            self.environment.add_parent(proc_name, ['proc', result_type, result_loc, node.param_types, node.offset, node.scope])
+            self.environment.add_parent(proc_name, ['proc',
+                                                    result_type,
+                                                    result_loc,
+                                                    node.param_types,
+                                                    node.offset,
+                                                    node.scope])
 
         self.environment.offset = 0
 
@@ -1181,7 +1262,13 @@ class Visitor(NodeVisitor):
                 else:
                     self.environment.offset -= node.mode.size
                     offset = self.environment.offset
-                    self.environment.add_local(ident.ID, ['var', node.mode.raw_type, node.loc, offset, self.environment.get_current_scope()])
+                    self.environment.add_local(ident.ID, ['var',
+                                                          node.mode.raw_type,
+                                                          node.loc,
+                                                          node.mode.size,
+                                                          offset,
+                                                          self.environment.get_current_scope(),
+                                                          node.mode.lower_bound_value])
                     node.param_list.append([node.raw_type, node.mode.size, node.loc])
 
     def visit_Parameter_Spec(self, node):

@@ -1,2 +1,2 @@
-syn a int = 10;
-dcl b int = a;
+dcl a int;
+read(a);

@@ -138,7 +138,7 @@ class Declaration(AST):
     _fields = ['identifier_list', 'mode', 'initialization']
 
     def generate_code(self):
-        size = 1
+        size = self.mode.size
         n = len(self.identifier_list)
 
         AST.code.append(("alc", size * n))
@@ -166,35 +166,38 @@ class Identifier(AST):
         print(self.__dict__)
         if self.loc:
             AST.code.append(('lrv', self.scope, self.offset))
+        elif self.value != None:
+            AST.code.append(('ldc', self.value))
         else:
             AST.code.append(('ldv', self.scope, self.offset))
 
 class Synonym_Statement(AST):
     _fields = ['synonym_list']
 
+    # All synonyms are constants, therefore they can be resolved
+    # during compilation. There is no code to generate.
+
+    def generate_code(self):
+        return #of the jedi
+
 # synonym_list
 
 class Synonym_Definition(AST):
-    _fields = ['identifier_list', 'mode', 'initialization']
+    _fields = ['identifier_list', 'mode', 'constant_expression']
 
     #def generate_code(self):
-    #    size = 1
+    #    size = self.constant_expression.size
     #    n = len(self.identifier_list)
-
     #    AST.code.append(("alc", size * n))
 
-    #    if self.initialization != None:
-    #        self.initialization.generate_code()
+    #    self.constant_expression.generate_code()
+    #    for i, ident in enumerate(self.identifier_list):
+    #        AST.code.append(("stv", ident.scope, ident.offset))
+    #        if i != len(self.identifier_list) - 1:
+    #            self.constant_expression.generate_code()
 
-    #        for i, ident in enumerate(self.identifier_list):
-
-     #           AST.code.append((store, ident.scope, ident.offset))
-
-      #          if i != len(self.identifier_list) - 1:
-       #             ident.generate_code() #AST.code.append(("ldv", ident.scope, ident.offset))
-
-#class Constant_Expression(AST):
-#    _fields = ['expression']
+class Constant_Expression(AST):
+    _fields = ['expression']
 
 class Newmode_Statement(AST):
     _fields = ['newmode_list']
@@ -203,6 +206,9 @@ class Newmode_Statement(AST):
 
 class Mode_Definition(AST):
     _fields = ['identifier_list', 'mode']
+
+    def generate_code(self):
+        return #to castle wolfenstein
 
 # mode
 
@@ -261,6 +267,10 @@ class Integer_Expression(AST):
 class Dereferenced_Reference(AST):
     _fields = ['location']
 
+    def generate_code(self):
+        self.location.generate_code()
+        AST.code.append(("grc",))
+
 class String_Element(AST):
     _fields = ['identifier', 'start_element']
 
@@ -279,6 +289,18 @@ class Right_Element(AST):
 class Array_Element(AST):
     _fields = ['array_location', 'expression_list']
 
+    def generate_code(self):
+        if len(self.expression_list) != 1:
+            raise("Array currently limited at 1 expression")
+        else:
+            self.array_location.generate_code()
+            self.expression_list[0].generate_code()
+            if self.lower_bound_value != 0:
+                AST.code.append(("ldc", self.lower_bound_value))
+                AST.code.append(("sub",))
+            AST.code.append(("idx",self.expression_list[0].size))
+            AST.code.append(("grc",))
+
 # expression_list
 
 class Array_Slice(AST):
@@ -286,6 +308,9 @@ class Array_Slice(AST):
 
 class Array_Location(AST):
     _fields = ['location']
+
+    def generate_code(self):
+        AST.code.append(("ldr",self.location.scope, self.location.offset))
 
 # primitive_value
 
@@ -517,6 +542,9 @@ class Unary_Expression(AST):
 class Referenced_Location(AST):
     _fields = ['location']
 
+    def generate_code(self):
+        AST.code.append(("ldr", self.location.scope, self.location.offset))
+
 class Action_Statement(AST):
     _fields = ['label_id', 'action']
 
@@ -543,39 +571,46 @@ class Assignment_Action(AST):
     _fields = ['location', 'assigning_operator', 'expression']
 
     def generate_code(self):
-        # super(Assignment_Action, self).generate_code()
-        store = "stv"
-        if self.location.loc:
-            store = "srv"
+        store = 'Something unexpected happened'
+
+        if self.location.__class__ == Array_Element:
+            self.location.generate_code()
+            del AST.code[-1]
+            store = ("smv", self.expression.size)
+
+        else:
+            store = ("stv", self.location.scope, self.location.offset)
+            if self.location.loc:
+                store = ("srv", self.location.scope, self.location.offset)
 
         if self.assigning_operator == '=':
             self.expression.generate_code()
-            AST.code.append((store, self.location.scope, self.location.offset))
+            AST.code.append(store)
         elif self.assigning_operator == '+=':
             self.location.generate_code()
             self.expression.generate_code()
             AST.code.append(("add",))
-            AST.code.append((store, self.location.scope, self.location.offset))
+            AST.code.append(store)
         elif self.assigning_operator == '-=':
             self.location.generate_code()
             self.expression.generate_code()
             AST.code.append(("sub",))
-            AST.code.append((store, self.location.scope, self.location.offset))
+            AST.code.append(store)
         elif self.assigning_operator == '*=':
             self.location.generate_code()
             self.expression.generate_code()
             AST.code.append(("mul",))
-            AST.code.append((store, self.location.scope, self.location.offset))
+            AST.code.append(store)
         elif self.assigning_operator == '/=':
             self.location.generate_code()
             self.expression.generate_code()
             AST.code.append(("div",))
-            AST.code.append((store, self.location.scope, self.location.offset))
+            AST.code.append(store)
         elif self.assigning_operator == '%=':
             self.location.generate_code()
             self.expression.generate_code()
             AST.code.append(("mod",))
-            AST.code.append((store, self.location.scope, self.location.offset))
+            AST.code.append(store)
 
 # assigning_operator
 
@@ -835,8 +870,13 @@ class Builtin_Call(AST):
                         AST.code.append(('prv', 0))
         elif self.builtin_name.name == 'read':
             for param in self.parameter_list:
+                store = ('stv', param.expression.scope, param.expression.offset)
+                if param.expression.__class__ == Array_Element:
+                    param.expression.generate_code()
+                    del AST.code[-1]
+                    store = ("smv", param.expression.size)
                 AST.code.append(('rdv',))
-                AST.code.append(('stv', param.expression.scope, param.expression.offset))
+                AST.code.append(store)
 
 
         # super(Builtin_Call, self).generate_code()
