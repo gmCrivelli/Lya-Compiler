@@ -145,6 +145,47 @@ class Visitor(NodeVisitor):
         self.semantic_error = False
         self.string_literals = []
 
+    def executeBinaryOperation(self, a, b, operation, lineno):
+        try:
+            if operation == '+':
+                return a+b
+            elif operation == '-':
+                return a-b
+            elif operation == '*':
+                return a*b
+            elif operation == '/':
+                return int(a/b)
+            elif operation == '%':
+                return a%b
+            elif operation == '>':
+                return a > b
+            elif operation == '>=':
+                return a >= b
+            elif operation == '<':
+                return a < b
+            elif operation == '<=':
+                return a <= b
+            elif operation == '==':
+                return a == b
+            elif operation == '!=':
+                return a != b
+            elif operation == '&&':
+                return a and b
+            elif operation == '||':
+                return a or b
+        except:
+            self.print_error(lineno, "Attempted binary operation on mismatching types ({}{}{})".format(a, operation, b))
+
+    def executeUnaryOperation(self, a, operation, lineno):
+        try:
+            if operation == '-':
+                return -a
+            elif operation == '!':
+                return not a
+        except:
+            self.print_error(lineno, "Attempted binary operation on mismatching types ({}{})".format(operation, a))
+
+
     def print_error(self, lineno, text):
         if lineno is None:
             e = "ERROR: "
@@ -415,6 +456,8 @@ class Visitor(NodeVisitor):
 
         if (exp_type != 'int'):
             self.print_error(node.lineno, "Expected integer expression, found {}".format(exp_type))
+        else:
+            node.value = node.expression.value
 
         node.raw_type = exp_type
 
@@ -589,7 +632,6 @@ class Visitor(NodeVisitor):
     def visit_Conditional_Expression(self, node):
         print("Conditional expression")
         self.visit(node.boolean_expression)
-
         self.visit(node.then_expression)
         then_type = node.then_expression.raw_type
         elsif_type = then_type
@@ -607,6 +649,22 @@ class Visitor(NodeVisitor):
                 aux_msg += ", {}".format(elsif_type)
             aux_msg += " and {}".format(else_type)
             self.print_error(node.lineno, aux_msg)
+        else:
+            if node.boolean_expression.value != None:
+                print("aruahruhr")
+                if node.boolean_expression.value:
+                    node.value = node.then_expression.value
+                    print("heyeyeyeyyeye")
+                elif node.elsif_expression != None:
+                    print("alskalskalsalskaslklkkkk")
+                    choice = node.elsif_expression.was_chosen
+                    if choice != None:
+                        if choice:
+                            node.value = node.elsif_expression.value
+                            print("howowowowowoow")
+                        else:
+                            node.value = node.else_expression.value
+                            print("lets goooooooooooo")
 
         node.raw_type = then_type
         node.dcl_type = 'conditional expression'
@@ -627,6 +685,8 @@ class Visitor(NodeVisitor):
 
         if (exp_type != 'bool'):
             self.print_error(node.lineno, "Expected boolean expression, found {}".format(exp_type))
+        else:
+            node.value = node.expression.value
         node.raw_type = exp_type
 
     def visit_Then_Expression(self, node):
@@ -639,6 +699,7 @@ class Visitor(NodeVisitor):
         #    exp_type = node.expression.type
         exp_type = node.expression.raw_type
         node.raw_type = exp_type
+        node.value = node.expression.value
 
     def visit_Else_Expression(self, node):
         print("Else expression")
@@ -650,18 +711,37 @@ class Visitor(NodeVisitor):
         #    exp_type = node.expression.type
         exp_type = node.expression.raw_type
         node.raw_type = exp_type
+        node.value = node.expression.value
 
     def visit_Elsif_Expression(self, node):
         print("Elsif expression")
-
-        self.visit(node.boolean_expresson)
+        node.was_chosen = None
+        self.visit(node.boolean_expression)
         self.visit(node.then_expression)
         then_type = node.then_expression.raw_type
-        if not node.elsif_expression is None:
+
+        if node.elsif_expression == None:
+            if node.boolean_expression.value != None:
+                if node.boolean_expression.value:
+                    node.value = node.then_expression.value
+                    print("I dont have children and was chosen")
+                node.was_chosen = node.boolean_expression.value
+                print("I dont have children and was looked at")
+        else:
             self.visit(node.elsif_expression)
             elsif_type = node.elsif_expression.raw_type
             if(then_type != elsif_type):
                 self.print_error(node.lineno, "Mismatching types in Elsif expression {} and {}".format(then_type, elsif_type))
+            else:
+                if node.elsif_expression.was_chosen:
+                    print("my child was chosen, so I was too!!")
+                    node.value = node.elsif_expression.value
+                    node.was_chosen = True
+                elif node.elsif_expression.was_chosen == False:
+                    node.was_chosen = node.boolean_expression.value
+                    if node.was_chosen:
+                        node.value = node.then_expression.value
+
         node.raw_type = then_type
 
     def visit_Rel_Mem_Expression(self, node):
@@ -670,6 +750,8 @@ class Visitor(NodeVisitor):
         # self.visit(node.operator1)
         print("Relational or Membership operator: " + str(node.operator1))
         node.raw_type = self.raw_type_binary(node, node.operator1, node.operand0, node.operand1)
+        if node.operand0.value != None and node.operand1.value != None and not self.semantic_error:
+            node.value = self.executeBinaryOperation(node.operand0.value, node.operand1.value, node.operator1, node.lineno)
         node.dcl_type = 'relational expression'
         node.ID = None
         node.loc = False
@@ -686,6 +768,8 @@ class Visitor(NodeVisitor):
         #self.visit(node.operator2)
         print("Binary operator: " + str(node.operator2))
         node.raw_type = self.raw_type_binary(node, node.operator2, node.operand1, node.operand2)
+        if node.operand1.value != None and node.operand2.value != None and not self.semantic_error:
+            node.value = self.executeBinaryOperation(node.operand1.value, node.operand2.value, node.operator2, node.lineno)
         node.dcl_type = 'binary expression'
         node.ID = None
         node.loc = False
@@ -705,6 +789,8 @@ class Visitor(NodeVisitor):
         print("Monadic operator: " + str(node.monadic_operator))
         self.visit(node.operand4)
         node.raw_type = self.raw_type_unary(node, node.monadic_operator, node.operand4)
+        if node.operand4.value != None and not self.semantic_error:
+            node.value = self.executeUnaryOperation(node.operand4.value, node.monadic_operator, node.lineno)
         node.dcl_type = 'unary expression'
         node.ID = None
         node.loc = False

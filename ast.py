@@ -70,9 +70,12 @@ class AST(object):
     label_counter = 0
     label_dict = dict()
     end_label_dict = dict()
+
     offset = 0
     scope = 0
     scope_offset = []
+    value = None
+    size = 1
 
     def __init__(self, *args, **kwargs):
         assert len(args) == len(self._fields)
@@ -173,6 +176,22 @@ class Synonym_Statement(AST):
 
 class Synonym_Definition(AST):
     _fields = ['identifier_list', 'mode', 'initialization']
+
+    #def generate_code(self):
+    #    size = 1
+    #    n = len(self.identifier_list)
+
+    #    AST.code.append(("alc", size * n))
+
+    #    if self.initialization != None:
+    #        self.initialization.generate_code()
+
+    #        for i, ident in enumerate(self.identifier_list):
+
+     #           AST.code.append((store, ident.scope, ident.offset))
+
+      #          if i != len(self.identifier_list) - 1:
+       #             ident.generate_code() #AST.code.append(("ldv", ident.scope, ident.offset))
 
 #class Constant_Expression(AST):
 #    _fields = ['expression']
@@ -316,39 +335,126 @@ class Parenthesized_Expression(AST):
 class Conditional_Expression(AST):
     _fields = ['boolean_expression', 'then_expression', 'elsif_expression', 'else_expression']
 
+    def generate_code(self):
+        if self.value != None:
+            AST.code.append(("ldc", self.value))
+        else:
+            if self.boolean_expression.value == None:
+
+                self.boolean_expression.generate_code()
+
+                end_label = AST.label_counter
+                AST.label_counter += 1
+                else_label = AST.label_counter
+                AST.label_counter += 1
+
+                if self.elsif_expression != None:
+                    elsif_label = AST.label_counter
+                    AST.label_counter += 1
+
+                    AST.code.append(("jof", elsif_label))
+                    self.then_expression.generate_code(end_label)
+                    AST.code.append(("lbl",elsif_label))
+                    self.elsif_expression.generate_code(else_label, end_label)
+
+                else:
+                    AST.code.append(("jof", else_label))
+                    self.then_expression.generate_code(end_label)
+
+                AST.code.append(("lbl",else_label))
+                self.else_expression.generate_code()
+                AST.code.append(("lbl",end_label))
+
+            # self.then_expression.value is ALWAYS None ahead.
+            # Otherwise self.value would already be defined.
+            # Same goes for elsif and else expressions.
+            elif self.boolean_expression.value:
+                #if self.then_expression.value != None:
+                #    self.value = self.then_expression.value
+                #else:
+                self.then_expression.generate_code()
+            else:
+                if self.elsif_expression != None and self.elsif_expression.was_chosen:
+                    #if self.elsif_expression.value != None:
+                    #    self.value = self.elsif_expression.value
+                    #else:
+                    self.elsif_expression.generate_code()
+                else:
+                    #if self.else_expression.value != None:
+                    #    self.value = self.else_expression.value
+                    #else:
+                    self.else_expression.generate_code()
+
+
 class Boolean_Expression(AST):
     _fields = ['expression']
 
 class Then_Expression(AST):
     _fields = ['expression']
 
+    def generate_code(self, end_label):
+        self.expression.generate_code()
+        AST.code.append(("jmp", end_label))
+
 class Else_Expression(AST):
     _fields = ['expression']
 
 class Elsif_Expression(AST):
-    _fields = ['elsif_expression', 'boolean_expresson', 'then_expression']
+    _fields = ['elsif_expression', 'boolean_expression', 'then_expression']
+
+    def generate_code(self, else_label, end_label):
+        if self.value != None:
+            AST.code.append(("ldc", self.value))
+            AST.code.append(("jmp", end_label))
+        else:
+            if self.elsif_expression == None:
+                if self.boolean_expression.value != None:
+                    if self.boolean_expression.value:
+                        self.then_expression.generate_code(end_label)
+                else:
+                    self.boolean_expression.generate_code()
+                    AST.code.append(("jof", else_label))
+                    self.then_expression.generate_code(end_label)
+            else:
+                if self.elsif_expression.was_chosen != None:
+                    if self.elsif_expression.was_chosen:
+                        self.elsif_expression.generate_code(else_label, end_label)
+                    elif self.boolean_expression.value != None and self.boolean_expression.value:
+                        self.then_expression.generate_code(end_label)
+                else:
+                    elsif_label = AST.label_counter
+                    AST.label_counter += 1
+                    self.elsif_expression.generate_code(elsif_label, end_label)
+                    AST.code.append(("lbl",elsif_label))
+                    self.boolean_expression.generate_code()
+                    AST.code.append(("jof", else_label))
+                    self.then_expression.generate_code(end_label)
 
 class Rel_Mem_Expression(AST):
     _fields = ['operand0', 'operator1', 'operand1']
 
     def generate_code(self):
-        super(Rel_Mem_Expression, self).generate_code()
-        if self.operator1 == '>':
-            AST.code.append(("grt",))
-        elif self.operator1 == '>=':
-            AST.code.append(("gre",))
-        elif self.operator1 == '<':
-            AST.code.append(("les",))
-        elif self.operator1 == '<=':
-            AST.code.append(("leq",))
-        elif self.operator1 == '==':
-            AST.code.append(("equ",))
-        elif self.operator1 == '!=':
-            AST.code.append(("neq",))
-        elif self.operator1 == '&&':
-            AST.code.append(("and",))
-        elif self.operator1 == '||':
-            AST.code.append(("lor",))
+        if self.value == None:
+            super(Rel_Mem_Expression, self).generate_code()
+            if self.operator1 == '>':
+                AST.code.append(("grt",))
+            elif self.operator1 == '>=':
+                AST.code.append(("gre",))
+            elif self.operator1 == '<':
+                AST.code.append(("les",))
+            elif self.operator1 == '<=':
+                AST.code.append(("leq",))
+            elif self.operator1 == '==':
+                AST.code.append(("equ",))
+            elif self.operator1 == '!=':
+                AST.code.append(("neq",))
+            elif self.operator1 == '&&':
+                AST.code.append(("and",))
+            elif self.operator1 == '||':
+                AST.code.append(("lor",))
+        else:
+            AST.code.append(("ldc", self.value))
+
 
 # operator1
 
@@ -360,19 +466,23 @@ class Binary_Expression(AST):
     _fields = ['operand1', 'operator2', 'operand2']
 
     def generate_code(self):
-        super(Binary_Expression, self).generate_code()
-        if self.operator2 == '+' :
-            AST.code.append(("add",))
-        elif self.operator2 == '-':
-            AST.code.append(("sub",))
-        elif self.operator2 == '*':
-            AST.code.append(("mul",))
-        elif self.operator2 == '/':
-            AST.code.append(("div",))
-        elif self.operator2 == '%':
-            AST.code.append(("mod",))
+        print(self.value)
+        if self.value == None:
+            super(Binary_Expression, self).generate_code()
+            if self.operator2 == '+' :
+                AST.code.append(("add",))
+            elif self.operator2 == '-':
+                AST.code.append(("sub",))
+            elif self.operator2 == '*':
+                AST.code.append(("mul",))
+            elif self.operator2 == '/':
+                AST.code.append(("div",))
+            elif self.operator2 == '%':
+                AST.code.append(("mod",))
+            else:
+                raise Exception("Not implemented yet")
         else:
-            raise Exception("Not implemented yet")
+            AST.code.append(("ldc", self.value))
 
 # operator2
 
@@ -388,14 +498,17 @@ class Unary_Expression(AST):
     _fields = ['monadic_operator', 'operand4']
 
     def generate_code(self):
-        super(Unary_Expression, self).generate_code()
+        if self.value == None:
+            super(Unary_Expression, self).generate_code()
 
-        if self.monadic_operator == '-':
-            AST.code.append(("neg",))
-        elif self.monadic_operator == '!':
-            AST.code.append(("not"))
+            if self.monadic_operator == '-':
+                AST.code.append(("neg",))
+            elif self.monadic_operator == '!':
+                AST.code.append(("not"))
+            else:
+                raise Exception("Not implemented yet")
         else:
-            raise Exception("Not implemented yet")
+            AST.code.append(("ldc", self.value))
 
 # monadic_operator
 
@@ -478,18 +591,24 @@ class If_Action(AST):
         AST.label_counter += 1
         else_label = end_label
 
-        if self.else_clause != None:
-            else_label = AST.label_counter
-            AST.label_counter += 1
+        if self.boolean_expression.value != None:
+            if self.boolean_expression.value:
+                self.then_clause.generate_code()
+            elif self.else_clause != None:
+                self.else_clause.generate_code(end_label)
+        else:
+            if self.else_clause != None:
+                else_label = AST.label_counter
+                AST.label_counter += 1
 
-        self.boolean_expression.generate_code()
-        AST.code.append(("jof", else_label))
-        self.then_clause.generate_code()
+            self.boolean_expression.generate_code()
+            AST.code.append(("jof", else_label))
+            self.then_clause.generate_code()
 
-        if self.else_clause != None:
-            AST.code.append(("jmp", end_label))
-            AST.code.append(("lbl", else_label))
-            self.else_clause.generate_code(end_label)
+            if self.else_clause != None:
+                AST.code.append(("jmp", end_label))
+                AST.code.append(("lbl", else_label))
+                self.else_clause.generate_code(end_label)
 
         AST.code.append(("lbl", end_label))
 
@@ -504,7 +623,7 @@ class Else_Clause(AST):
     def generate_code(self, end_label):
         if self.action_statement_list != None:
             super(Else_Clause, self).generate_code()
-        else:
+        elif self.boolean_expression != None:
             #end_label = AST.label_counter
             #AST.label_counter += 1
             else_label = end_label

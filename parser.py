@@ -103,17 +103,17 @@ class Parser:
             p[0] = p[1] + [p[2]]
 
     def p_synonym_definition(self, p):
-        '''synonym_definition : identifier_list initialization
-                              | identifier_list mode initialization'''
+        '''synonym_definition : identifier_list constant_expression
+                              | identifier_list mode constant_expression'''
         if (len(p) == 3):
             p[0] = Synonym_Definition(p[1], None, p[2], lineno = p[1][0].lineno)
         elif (len(p) == 4):
             p[0] = Synonym_Definition(p[1], p[2], p[3], lineno = p[1][0].lineno)
 
-    #def p_constant_expression(self, p):
-    #    'constant_expression : expression'
-    #    # p[0] = ('Constant Expression', p[1], p.lineno(1))
-    #   p[0] = Constant_Expression(p[1], lineno = p[1].lineno)
+    def p_constant_expression(self, p):
+        'constant_expression : expression'
+        # p[0] = ('Constant Expression', p[1], p.lineno(1))
+       p[0] = Constant_Expression(p[1], lineno = p[1].lineno)
 
     def p_newmode_statement(self, p):
         'newmode_statement : TYPE newmode_list SEMI'
