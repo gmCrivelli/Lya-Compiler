@@ -1,3 +1,5 @@
+#TODO: String operations
+
 class NodeVisitor(object):
     """
     Class for visiting nodes of the parse tree.  This is modeled after
