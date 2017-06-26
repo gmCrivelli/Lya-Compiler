@@ -1,11 +1,22 @@
-dcl a int = 10;
-dcl b int = 20;
-dcl c int = 30;
+/* Display all prime numbers between two given
+  intervals (greater than 2): */
 
-c = if a+b != c then 40
- elsif 2*b == 20 then 51
- elsif 20 == 20 then 52
- elsif 21 == 21 then 53
- else 90 fi;
-print(c);
+dcl n1, n2, i, j int, flag bool;
 
+print("Enter 2 numbers (intervals) separated by space: ");
+read(n1, n2);
+print("Prime numbers between ", n1, " and ", n2, " are:\n");
+do
+  for i = n1 to n2;
+    flag = true;
+    loop: do
+      for j = 2 to i/2;
+        if i % j == 0 then
+          flag = false;
+          exit loop;
+        fi;
+    od;
+    if flag then
+      print(i, "  ");
+    fi;
+od;

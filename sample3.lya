@@ -6,16 +6,12 @@ f: proc (n int, k int loc) returns (int);
   dcl p,q,t int;
   if n<2 then
     k = 0;
-    return n;
+    result n;
   else
     t = f(n-1,p) + f(n-2,q);
     k = p + q + 1;
-    return t;
+    result t;
   fi;
 end;
 
-dcl i int;
-do while i < 10;
-print(f(i,m), m);
-i += 1;
-od;
+print(f(3,m), m);

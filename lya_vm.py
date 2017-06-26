@@ -172,6 +172,9 @@ class VirtualMachine:
 
                 sp += 1
                 memory[sp] = display[i] + j
+                #print("setting location {} to {}".format(sp, memory[sp]))
+                #print("memory = ", memory, "\ndisplay = ", display)
+                #print("sp is now", sp)
 
             elif t[0] == 'stv':
                 i = t[1]
@@ -232,6 +235,8 @@ class VirtualMachine:
                 memory[sp] = not memory[sp]
 
             elif t[0] == 'les':
+                #print("comparing {} < {}".format(memory[sp - 1], memory[sp]))
+                #print("memory:", memory)
                 memory[sp - 1] = memory[sp - 1] < memory[sp]
                 sp -= 1
 
@@ -287,12 +292,13 @@ class VirtualMachine:
                 pc = labels.get(p, pc)
 
             elif t[0] == 'enf':
-                #print("entering function, memory = ", memory)
-                #print("sp is now", sp)
+
                 k = t[1]
                 sp += 1
                 memory[sp] = display[k]
                 display[k] = sp + 1
+                #print("entering function, memory = ", memory, "\ndisplay = ", display)
+                #print("sp is now", sp)
 
             elif t[0] == 'ret':
                 k = t[1]
@@ -311,6 +317,7 @@ class VirtualMachine:
                 sp -= 1
 
             elif t[0] == 'grc':
+                #print("content of {} : {}".format(memory[sp], memory[memory[sp]]))
                 memory[sp] = memory[memory[sp]]
 
             elif t[0] == 'lmv':
@@ -326,6 +333,7 @@ class VirtualMachine:
                 t = memory[sp - k]
                 memory[t : t + k] = memory[sp - k + 1 : sp + 1]
                 sp -= (k + 1)
+               # print("stored values on {}:{}".format(t, t+k))
 
             elif t[0] == 'smr':
                 k = t[1]

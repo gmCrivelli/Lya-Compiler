@@ -310,7 +310,11 @@ class Array_Location(AST):
     _fields = ['location']
 
     def generate_code(self):
-        AST.code.append(("ldr",self.location.scope, self.location.offset))
+        if self.location.loc:
+            AST.code.append(("ldv",self.location.scope, self.location.offset))
+        else:
+            print("MY OFFSET IS ", self.location.offset)
+            AST.code.append(("ldr",self.location.scope, self.location.offset))
 
 # primitive_value
 

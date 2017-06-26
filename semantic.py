@@ -284,13 +284,14 @@ class Visitor(NodeVisitor):
         if not node.identifier_list is None:
             for ident in node.identifier_list:
                 aux_type = self.environment.lookup(ident.ID)
-                if not aux_type is None and aux_type[0] == 'var' and aux_type[4] == self.environment.get_current_scope():
+                if not aux_type is None and aux_type[0] == 'var' and aux_type[5] == self.environment.get_current_scope():
                             self.print_error(node.lineno,
                                      "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
                                                                                                          aux_type[1]))
                 else:
                     node.scope = self.environment.get_current_scope()
                     node.offset = self.environment.scope_offset[node.scope]
+                    print("SETTING OFFSET FOR IDENTIFIER ", ident.ID ," TO ", node.offset)
                     self.environment.scope_offset[node.scope] += node.mode.size
                     #if node.mode.raw_type[0] == '$': # this is an array
                     print("something hereeeeee", node.mode.size)
@@ -349,6 +350,8 @@ class Visitor(NodeVisitor):
         else:
             self.print_error(node.lineno,
             "Identifier {} was not defined".format(node.ID))
+
+        print("MY LOWER BOUND IS", node.lower_bound_value)
 
     def visit_Synonym_Statement(self, node):
         # Visit all of the synonyms
@@ -617,7 +620,7 @@ class Visitor(NodeVisitor):
         node.dcl_type = node.location.dcl_type
         node.ID = node.location.ID
         node.loc = node.location.loc
-        node.lower_bound_value = None
+        node.lower_bound_value = 0
         if hasattr(node.location, "lower_bound_value"):
             node.lower_bound_value = node.location.lower_bound_value
         else:
@@ -1256,11 +1259,11 @@ class Visitor(NodeVisitor):
                 print(ident.ID, node.loc)
                 aux_type = self.environment.lookup(ident.ID)
 
-                if not aux_type is None and aux_type[0] == 'var' and aux_type[4] == self.environment.get_current_scope():
+                if not aux_type is None and aux_type[0] == 'var' and aux_type[5] == self.environment.get_current_scope():
                             self.print_error(node.lineno,
-                                     "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],                                                                                         aux_type[1]))
+                                     "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],aux_type[1]))
                 else:
-                    self.environment.offset -= node.mode.size
+                    self.environment.offset -= 1 #node.mode.size
                     offset = self.environment.offset
                     self.environment.add_local(ident.ID, ['var',
                                                           node.mode.raw_type,

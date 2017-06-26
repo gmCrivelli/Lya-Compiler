@@ -37,14 +37,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3976041">
+    <splitter split-orientation="horizontal" split-proportion="0.45833334">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/parser.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="84">
-                  <caret line="261" column="31" lean-forward="false" selection-start-line="261" selection-start-column="22" selection-end-line="261" selection-end-column="31" />
+                <state relative-caret-position="305">
+                  <caret line="1045" column="45" lean-forward="false" selection-start-line="1045" selection-start-column="45" selection-end-line="1045" selection-end-column="45" />
                   <folding>
                     <element signature="e#15#38#0" expanded="true" />
                   </folding>
@@ -55,19 +55,31 @@
           <file leaf-file-name="lya_vm.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lya_vm.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="807">
-                  <caret line="206" column="23" lean-forward="false" selection-start-line="206" selection-start-column="23" selection-end-line="206" selection-end-column="23" />
+                <state relative-caret-position="368">
+                  <caret line="237" column="17" lean-forward="false" selection-start-line="237" selection-start-column="17" selection-end-line="237" selection-end-column="17" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ast.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ast.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="84">
-                  <caret line="545" column="29" lean-forward="false" selection-start-line="545" selection-start-column="29" selection-end-line="545" selection-end-column="29" />
+                <state relative-caret-position="457">
+                  <caret line="315" column="55" lean-forward="false" selection-start-line="315" selection-start-column="55" selection-end-line="315" selection-end-column="55" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/semantic.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="232">
+                  <caret line="1122" column="8" lean-forward="false" selection-start-line="1122" selection-start-column="8" selection-end-line="1122" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#0#10#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -75,165 +87,42 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.710828">
-          <split-first>
-            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/parser.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="186">
-                      <caret line="118" column="33" lean-forward="false" selection-start-line="118" selection-start-column="29" selection-end-line="118" selection-end-column="33" />
-                      <folding>
-                        <element signature="e#15#38#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="lexer.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/lexer.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-1499">
-                      <caret line="73" column="54" lean-forward="false" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="54" />
-                      <folding>
-                        <element signature="e#1#11#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/ast.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="390">
-                      <caret line="267" column="26" lean-forward="false" selection-start-line="267" selection-start-column="26" selection-end-line="267" selection-end-column="26" />
-                      <folding>
-                        <marker date="1498420445616" expanded="true" signature="7284:7311" ph="..." />
-                        <marker date="1498420445616" expanded="true" signature="16192:16219" ph="..." />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/semantic.py">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="153">
-                      <caret line="322" column="34" lean-forward="false" selection-start-line="322" selection-start-column="34" selection-end-line="322" selection-end-column="34" />
-                      <folding>
-                        <element signature="e#0#10#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-first>
-          <split-second>
-            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="sample3.lya" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/sample3.lya">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="187">
-                      <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="sample4.lya" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/sample4.lya">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="102">
-                      <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="sample5.lya" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/sample5.lya">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="34">
-                      <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="sample6.lya" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/sample6.lya">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="204">
-                      <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="sample7.lya" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/sample7.lya">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="306">
-                      <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="sample8.lya" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/sample8.lya">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="17">
-                      <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="sample10.lya" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/sample10.lya">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-85">
-                      <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="sample12.lya" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/sample12.lya">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="136">
-                      <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="sample11.lya" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/sample11.lya">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="119">
-                      <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="sample9.lya" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/sample9.lya">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="289">
-                      <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-            </leaf>
-          </split-second>
-        </splitter>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/parser.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="328">
+                  <caret line="1045" column="40" lean-forward="false" selection-start-line="1045" selection-start-column="40" selection-end-line="1045" selection-end-column="40" />
+                  <folding>
+                    <element signature="e#15#38#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="lexer.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lexer.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="17">
+                  <caret line="73" column="54" lean-forward="false" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="54" />
+                  <folding>
+                    <element signature="e#1#11#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ast.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/ast.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="249">
+                  <caret line="850" column="14" lean-forward="false" selection-start-line="850" selection-start-column="14" selection-end-line="850" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
       </split-second>
     </splitter>
   </component>
@@ -246,23 +135,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lower_bound</find>
-      <find>discrete_range_mode</find>
-      <find>literal_range</find>
-      <find>array_element</find>
-      <find>index_mode</find>
-      <find>&quot;type&quot;</find>
-      <find>.size</find>
-      <find>type[0]</find>
-      <find>type[</find>
-      <find>type[2</find>
-      <find>type[3</find>
-      <find>lower_bound_value</find>
-      <find>add_local</find>
-      <find>add_parent</find>
-      <find>visit_iden</find>
-      <find>smv</find>
-      <find>array_eleme</find>
       <find>mode_name</find>
       <find>ref_sy</find>
       <find>visit_mode_name</find>
@@ -270,12 +142,29 @@
       <find>derefere</find>
       <find>read</find>
       <find>dereferen</find>
-      <find>reference</find>
       <find>referen</find>
       <find>reference_mode</find>
       <find>ARROW</find>
       <find>lrv</find>
       <find>type</find>
+      <find>reference</find>
+      <find>enf</find>
+      <find>ldr</find>
+      <find>procedure_def</find>
+      <find>smv</find>
+      <find>loc</find>
+      <find>array_loc</find>
+      <find>identi</find>
+      <find>self.environment.scope_offset</find>
+      <find>array_element</find>
+      <find>identifier &quot; +</find>
+      <find>== self.environment.get_current_scope()</find>
+      <find>error</find>
+      <find>self.environment.get_current_scope()</find>
+      <find>compari</find>
+      <find>print</find>
+      <find>ret&quot;</find>
+      <find>les</find>
     </findStrings>
     <replaceStrings>
       <replace>def visit_</replace>
@@ -302,8 +191,8 @@
       <replace>store</replace>
       <replace>load</replace>
       <replace>self.location.generate_code()</replace>
-      <replace>lower_bound_value</replace>
       <replace>boolean_expression</replace>
+      <replace>lower_bound_value</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -323,22 +212,21 @@
         <option value="$PROJECT_DIR$/sample6.lya" />
         <option value="$PROJECT_DIR$/sample7.lya" />
         <option value="$PROJECT_DIR$/lexer.py" />
-        <option value="$PROJECT_DIR$/lya_vm.py" />
         <option value="$PROJECT_DIR$/sample11.lya" />
         <option value="$PROJECT_DIR$/sample5.lya" />
         <option value="$PROJECT_DIR$/sample9.lya" />
-        <option value="$PROJECT_DIR$/ast.py" />
-        <option value="$PROJECT_DIR$/parser.py" />
-        <option value="$PROJECT_DIR$/semantic.py" />
         <option value="$PROJECT_DIR$/sample12.lya" />
+        <option value="$PROJECT_DIR$/semantic.py" />
+        <option value="$PROJECT_DIR$/lya_vm.py" />
+        <option value="$PROJECT_DIR$/parser.py" />
+        <option value="$PROJECT_DIR$/ast.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="545" />
+    <option name="width" value="1381" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -355,6 +243,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -369,7 +258,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -631,13 +519,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="545" y="0" width="1381" height="1047" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.076396205" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10722264" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33076924" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33407572" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31514478" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="14" y="341" width="1892" height="398" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38020247" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="14" y="341" width="1892" height="398" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -836,17 +724,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample11.lya">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample10.lya">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
+        <state relative-caret-position="68">
           <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
           <folding />
         </state>
@@ -892,17 +772,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sample12.lya">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample11.lya">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sample9.lya">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <caret line="17" column="21" lean-forward="false" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lexer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1499">
+        <state relative-caret-position="17">
           <caret line="73" column="54" lean-forward="false" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="54" />
           <folding>
             <element signature="e#1#11#0" expanded="true" />
@@ -912,24 +808,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lya_vm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="807">
-          <caret line="206" column="23" lean-forward="false" selection-start-line="206" selection-start-column="23" selection-end-line="206" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="545" column="29" lean-forward="false" selection-start-line="545" selection-start-column="29" selection-end-line="545" selection-end-column="29" />
+        <state relative-caret-position="368">
+          <caret line="237" column="17" lean-forward="false" selection-start-line="237" selection-start-column="17" selection-end-line="237" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="261" column="31" lean-forward="false" selection-start-line="261" selection-start-column="22" selection-end-line="261" selection-end-column="31" />
+        <state relative-caret-position="328">
+          <caret line="1045" column="40" lean-forward="false" selection-start-line="1045" selection-start-column="40" selection-end-line="1045" selection-end-column="40" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
           </folding>
@@ -938,18 +826,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/semantic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="322" column="34" lean-forward="false" selection-start-line="322" selection-start-column="34" selection-end-line="322" selection-end-column="34" />
+        <state relative-caret-position="232">
+          <caret line="1122" column="8" lean-forward="false" selection-start-line="1122" selection-start-column="8" selection-end-line="1122" selection-end-column="8" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample12.lya">
+    <entry file="file://$PROJECT_DIR$/ast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        <state relative-caret-position="249">
+          <caret line="850" column="14" lean-forward="false" selection-start-line="850" selection-start-column="14" selection-end-line="850" selection-end-column="14" />
           <folding />
         </state>
       </provider>
