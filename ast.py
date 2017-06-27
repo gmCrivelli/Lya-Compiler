@@ -79,6 +79,8 @@ class AST(object):
     value = None
     size = 1
 
+    is_returning_from_loc_procedure_stack = [False]
+
     def __init__(self, *args, **kwargs):
         assert len(args) == len(self._fields)
         for name,value in zip(self._fields, args):
@@ -271,7 +273,11 @@ class Dereferenced_Reference(AST):
 
     def generate_code(self):
         self.location.generate_code()
-        AST.code.append(("grc",))
+        if AST.is_returning_from_loc_procedure_stack[-1]:
+            AST.is_returning_from_loc_procedure_stack[-1] = False
+        else:
+            AST.code.append(("grc",))
+
 
 class String_Element(AST):
     _fields = ['identifier', 'start_element']
@@ -549,7 +555,10 @@ class Referenced_Location(AST):
     _fields = ['location']
 
     def generate_code(self):
-        AST.code.append(("ldr", self.location.scope, self.location.offset))
+        if self.location.dcl_type == 'proc' and self.location.loc:
+            self.location.generate_referenced()
+        else:
+            AST.code.append(("ldr", self.location.scope, self.location.offset))
 
 class Action_Statement(AST):
     _fields = ['label_id', 'action']
@@ -583,6 +592,10 @@ class Assignment_Action(AST):
             self.location.generate_code()
             del AST.code[-1]
             store = ("smv", self.expression.size)
+
+        elif self.location.__class__ == Procedure_Call:
+                self.location.generate_code()
+                store = ("smv", 1)
 
         else:
             store = ("stv", self.location.scope, self.location.offset)
@@ -800,13 +813,30 @@ class Procedure_Call(AST):
     _fields = ['identifier', 'parameter_list']
 
     def generate_code(self):
+
         if self.identifier.type[1] != 'void':
             AST.code.append(("alc",1))
 
-        for parameter in reversed(self.parameter_list):
-            parameter.generate_code()
+        if self.parameter_list != None:
+            for parameter in reversed(self.parameter_list):
+                parameter.generate_code()
 
         AST.code.append(("cfu", self.label_dict[self.identifier.ID]))
+
+        if self.loc:
+            AST.code.append(("lmv",1))
+
+    def generate_referenced(self):
+
+        if self.identifier.type[1] != 'void':
+            AST.code.append(("alc",1))
+
+        if self.parameter_list != None:
+            for parameter in reversed(self.parameter_list):
+                parameter.generate_code()
+
+        AST.code.append(("cfu", self.label_dict[self.identifier.ID]))
+
 
 
 
@@ -840,7 +870,12 @@ class Return_Action(AST):
 
     def generate_code(self):
         if self.result != None:
-            self.result.generate_code()
+            if self.loc:
+                AST.is_returning_from_loc_procedure_stack.append(True)
+                self.result.location.generate_code()
+                AST.is_returning_from_loc_procedure_stack.pop()
+            else:
+                self.result.generate_code()
             AST.code.append(("stv", self.scope, self.offset))
 
         if AST.scope_offset[self.scope] > 0:

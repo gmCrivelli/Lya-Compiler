@@ -1,20 +1,13 @@
-dcl a, b, c int;
-read(a,b,c);
-if a <= 10 then
-print(a);
-print(b);
-print(c);
-elsif a <= 20 then
-print(c);
-print(a);
-print(b);
-elsif a > 25 && a <= 30 then
-print(b);
-print(c);
-print(a);
-else
-a = b + c;
-c *= 3;
-print(a);
-print(c);
-fi;
+type ptr = ref int;
+dcl x, y int, p, k ptr = ->x;
+q: proc () returns (int loc);
+  k = ->y;
+  return y;
+end;
+x = 10;
+y = 20;
+print (p->);
+p = q();
+print (p->);
+q() = q();
+print(y);
