@@ -1129,9 +1129,6 @@ class Visitor(NodeVisitor):
         node.offset = self.environment.procedure_offset_stack[-1]
         node.loc = False
 
-        if node.loc and node.result != None:
-            node.result = Referenced_Location(node.result, lineno = node.lineno)
-
         found_type = 'void'
 
         if not node.result is None:

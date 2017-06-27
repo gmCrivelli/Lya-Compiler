@@ -170,6 +170,9 @@ class Identifier(AST):
         print(self.__dict__)
         if self.loc:
             AST.code.append(('lrv', self.scope, self.offset))
+        elif AST.is_returning_from_loc_procedure_stack[-1]:
+            AST.code.append(('ldr', self.scope, self.offset))
+            AST.is_returning_from_loc_procedure_stack[-1] = False
         elif self.value != None:
             AST.code.append(('ldc', self.value))
         else:
@@ -594,7 +597,7 @@ class Assignment_Action(AST):
             store = ("smv", self.expression.size)
 
         elif self.location.__class__ == Procedure_Call:
-                self.location.generate_code()
+                self.location.generate_referenced()
                 store = ("smv", 1)
 
         else:
@@ -872,7 +875,8 @@ class Return_Action(AST):
         if self.result != None:
             if self.loc:
                 AST.is_returning_from_loc_procedure_stack.append(True)
-                self.result.location.generate_code()
+                print("this si return loc", self.result.__class__)
+                self.result.generate_code()
                 AST.is_returning_from_loc_procedure_stack.pop()
             else:
                 self.result.generate_code()
