@@ -34,11 +34,11 @@ class NodeVisitor(object):
             return None
 
     def generic_visit(self,node):
-        if not isinstance(node, AST):
-            print(node)
-            return
+        #if not isinstance(node, AST):
+        #    print(node)
+        #    return
 
-        node.print()
+        #node.print()
 
         """
         Method executed if no applicable visit_ method can be found.
@@ -91,17 +91,29 @@ class AST(object):
             setattr(self,name,value)
 
     def print(self):
-        for field in self._fields:
-            if isinstance(field, list):
-                for item in field:
-                    if isinstance(item,AST):
-                        item.print()
+        print(self.__class__)
+        for attr in dir(self):
+            if not callable(getattr(self, attr)) and not attr.startswith("__"):
+                if not isinstance(attr, AST):
+                    param = getattr(self, attr)
+                    if isinstance(param,list):
+                        for item in param:
+                            if not isinstance(item,AST):
+                                print(item, "= list of something else", end="; ")
                     else:
-                        print(item)
-            elif isinstance(field, AST):
-                field.print()
-            else:
-                print(field)
+                        print(attr,'=',getattr(self, attr),end="; ")
+        print("")
+
+        for attr in dir(self):
+            if not callable(getattr(self, attr)) and not attr.startswith("__"):
+                if not isinstance(attr, AST):
+                    param = getattr(self, attr)
+                    if isinstance(param,list):
+                        for item in param:
+                            if isinstance(item,AST):
+                                item.print()
+                else:
+                    attr.print()
 
     def generate_code(self):
         for field in self._fields:

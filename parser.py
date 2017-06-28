@@ -1030,6 +1030,8 @@ def main():
     result = Parser()
     ast = result.parse(s)
 
+    ast.print()
+
     nv = Visitor()
     nv.visit(ast)
 
@@ -1042,7 +1044,7 @@ def main():
 
     H = nv.string_literals
     print("String literals: ", H)
-    VirtualMachine.execute(AST.code, H, True)
+    VirtualMachine.execute(AST.code, H, False)
 
 
 
