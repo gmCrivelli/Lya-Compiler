@@ -56,8 +56,6 @@ class NodeVisitor(object):
                 #value.print()
                 self.visit(value)
 
-
-
 class AST(object):
     """
     Base class example for the AST nodes.  Each node is expected to
@@ -90,30 +88,26 @@ class AST(object):
         for name,value in kwargs.items():
             setattr(self,name,value)
 
-    def print(self):
-        print(self.__class__)
-        for attr in dir(self):
-            if not callable(getattr(self, attr)) and not attr.startswith("__"):
-                if not isinstance(attr, AST):
-                    param = getattr(self, attr)
-                    if isinstance(param,list):
-                        for item in param:
-                            if not isinstance(item,AST):
-                                print(item, "= list of something else", end="; ")
-                    else:
-                        print(attr,'=',getattr(self, attr),end="; ")
+    def print(self, show_values, tabbing):
+        print(tabbing, end='')
+        print(self.__class__.__name__, end='')
+        if show_values:
+            print(" {",end='')
+            for attr in ['ID','raw_type','scope','offset','value','lower_bound_value','upper_bound_value']:
+                if hasattr(self, attr):
+                    field = getattr(self,attr)
+                    print(attr,'=',field, end=', ')
+            print("}", end='')
         print("")
 
-        for attr in dir(self):
-            if not callable(getattr(self, attr)) and not attr.startswith("__"):
-                if not isinstance(attr, AST):
-                    param = getattr(self, attr)
-                    if isinstance(param,list):
-                        for item in param:
-                            if isinstance(item,AST):
-                                item.print()
-                else:
-                    attr.print()
+        for field in self._fields:
+            aux = getattr(self, field)
+            if isinstance(aux, list):
+                for item in aux:
+                    if isinstance(item, AST):
+                        item.print(show_values, tabbing + '  ')
+            elif isinstance(aux, AST):
+                aux.print(show_values, tabbing + '  ')
 
     def generate_code(self):
         for field in self._fields:

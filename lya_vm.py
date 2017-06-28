@@ -419,8 +419,8 @@ class VirtualMachine:
 
             elif t[0] == 'prc':
                 i = t[1]
-
-                print(heap[i],end="")
+                for c in heap[i]:
+                    print(chr(c),end="")
 
             elif t[0] == 'prs':
                 adr = memory[sp]
