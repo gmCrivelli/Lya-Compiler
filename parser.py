@@ -1042,7 +1042,7 @@ def main():
 
     H = nv.string_literals
     print("String literals: ", H)
-    VirtualMachine.execute(AST.code, H, False)
+    VirtualMachine.execute(AST.code, H, True)
 
 
 

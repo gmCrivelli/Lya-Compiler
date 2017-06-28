@@ -1,4 +1,3 @@
 dcl t int = 15;
-dcl x chars[10];
-read(x);
+dcl x chars[10] = "teste";
 print(x);

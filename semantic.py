@@ -507,6 +507,7 @@ class Visitor(NodeVisitor):
         node.raw_type = 'string' #self.typemap["string"]
         # self.visit(node.string_length)
         #node.size = node.string_length
+        node.size += 1
         node.lower_bound_value = 0
         node.upper_bound_value = node.size
 

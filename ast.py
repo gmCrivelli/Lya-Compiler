@@ -150,11 +150,17 @@ class Declaration(AST):
 
         if self.initialization != None:
             self.initialization.generate_code()
-            for i, ident in enumerate(self.identifier_list):
-                AST.code.append(("stv", ident.scope, ident.offset))
+            if self.mode.raw_type == 'string':
+                if self.initialization.heap_index != -1:
+                    for i, ident in enumerate(self.identifier_list):
+                        AST.code.append(("ldr", ident.scope, ident.offset))
+                        AST.code.append(("sts", self.initialization.heap_index))
+            else:
+                for i, ident in enumerate(self.identifier_list):
+                    AST.code.append(("stv", ident.scope, ident.offset))
 
-                if i != len(self.identifier_list) - 1:
-                    AST.code.append(("ldv", ident.scope, ident.offset))
+                    if i != len(self.identifier_list) - 1:
+                        AST.code.append(("ldv", ident.scope, ident.offset))
 
 
 class Initialization(AST):
