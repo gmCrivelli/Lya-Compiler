@@ -705,7 +705,23 @@ class Visitor(NodeVisitor):
         node.ID = None
         node.loc = False
         node.heap_index = len(self.string_literals)
-        self.string_literals.append(node.value[1:-1])
+        st = node.value[1:-1]
+        nt = []
+        f = True
+        for i in range(len(st)):
+            if(st[i] == ord('\\') and st[i + 1] == ord('n')):
+                nt = nt + [ord('\n')]
+                i += 1
+                f = False
+                print(chr(st[i]))
+            elif f:
+                nt = nt + [st[i]]
+                print(chr(st[i]))                
+            else:
+                f = True
+        print(list(map(chr, nt)))
+
+        self.string_literals.append(nt)
 
     def visit_Value_Array_Element(self, node):
         self.visit(node.array_primitive_value)
