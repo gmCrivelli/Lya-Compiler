@@ -419,7 +419,7 @@ class VirtualMachine:
                 if ischar:
                     print(chr(memory[sp]),end='')
                 else:
-                    print(memory[sp],end='')
+                    print(memory[sp],end=' ')
                 sp -= 1
 
             elif t[0] == 'prt':

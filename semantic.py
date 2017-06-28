@@ -720,7 +720,7 @@ class Visitor(NodeVisitor):
                 f = True
 
         self.string_literals.append(nt)
-        #node.value = nt
+        node.value = nt
 
     def visit_Value_Array_Element(self, node):
         self.visit(node.array_primitive_value)
@@ -888,9 +888,12 @@ class Visitor(NodeVisitor):
         node.raw_type = self.raw_type_binary(node, node.operator2, node.operand1, node.operand2)
         #print("BINOP", node.operand1.value , node.operand2.value ,self.semantic_error)
         if node.operand1.value != None and node.operand2.value != None and not self.semantic_error:
-            #if node.operand1.raw_type != 'string':
-
-            node.value = self.executeBinaryOperation(node.operand1.value, node.operand2.value, node.operator2, node.lineno)
+            if node.operand1.raw_type != 'string':
+                node.value = self.executeBinaryOperation(node.operand1.value, node.operand2.value, node.operator2, node.lineno)
+            else:
+                node.value = node.operand1.value + node.operand2.value
+                node.heap_index = len(self.string_literals)
+                self.string_literals.append(node.value)
         node.dcl_type = 'binary expression'
         node.ID = None
         node.loc = False

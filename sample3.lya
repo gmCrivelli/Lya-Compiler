@@ -14,4 +14,8 @@ f: proc (n int, k int loc) returns (int);
   fi;
 end;
 
-print(f(3,m), m);
+dcl i int;
+do for i = 0 to 10;
+print(i, f(i,m), m, "\n");
+od;
+

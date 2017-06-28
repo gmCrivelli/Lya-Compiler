@@ -1034,17 +1034,17 @@ def main():
     nv = Visitor()
     nv.visit(ast)
 
-    #ast.print(False,'')
+    #ast.print(True,'')
 
     ast.generate_code()
 
-    # print('[')
-    # for bla in AST.code:
-    #     print(bla)
-    # print(']')
+    print('[')
+    for bla in AST.code:
+        print(bla)
+    print(']')
 
     H = nv.string_literals
-    # print("String literals: ", nv.string_literals_ascii)
+    print("String literals: ", nv.string_literals_ascii)
     VirtualMachine.execute(AST.code, H, False)
 
 if __name__ == "__main__": main()

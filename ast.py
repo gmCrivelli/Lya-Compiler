@@ -986,16 +986,12 @@ class Builtin_Call(AST):
                 if param.expression.raw_type == 'char' or param.expression.raw_type == 'string':
                     if param.expression.raw_type == 'char':
                         AST.code.append(('ldv',param.expression.scope, param.expression.offset))
-                        AST.code.append(('low',))
-                    else:
-                        AST.code.append(('ldr',param.expression.scope, param.expression.offset))
-                        AST.code.append(('ldc',1))
-                        AST.code.append(('add',1))
-                        AST.code.append(('grc',1))
-                        AST.code.append(('low',))
-
-
-
+                    # else:
+                        # AST.code.append(('ldr',param.expression.scope, param.expression.offset))
+                        # AST.code.append(('ldc',1))
+                        # AST.code.append(('add',1))
+                        # AST.code.append(('grc',1))
+                    AST.code.append(('low',))
 
         elif self.builtin_name.name == 'upper':
             for param in self.parameter_list:

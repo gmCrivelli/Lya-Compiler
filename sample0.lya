@@ -1,2 +1,82 @@
-dcl t chars[10] = "teste" + " novo";
-print(lower(t), upper(t), "\n");
+fat1: proc();
+dcl x int;
+x = 1;
+print(x);
+end;
+
+fat2: proc(a,b int);
+dcl x int;
+x = a + b;
+print(x);
+end;
+
+fat3: proc(a,b int, flag bool) returns (int);
+if flag then
+return a + b;
+else
+return a * b;
+fi;
+end;
+
+fat1();
+fat2(2, 10);
+print(fat3(5, 5, true));
+
+[
+('stp',)
+('jmp', 0)
+('lbl', 1)
+('enf', 1)
+('alc', 1)
+('ldc', 1)
+('stv', 1, 0)
+('ldv', 1, 0)
+('prv', 0)
+('dlc', 1)
+('ret', 1, 0)
+('lbl', 0)
+('jmp', 2)
+('lbl', 3)
+('enf', 2)
+('alc', 1)
+('ldv', 2, -3)
+('ldv', 2, -4)
+('add',)
+('stv', 2, 0)
+('ldv', 2, 0)
+('prv', 0)
+('dlc', 1)
+('ret', 2, 2)
+('lbl', 2)
+('jmp', 4)
+('lbl', 5)
+('enf', 3)
+('ldv', 3, -5)
+('jof', 7)
+('ldv', 3, -3)
+('ldv', 3, -4)
+('add',)
+('stv', 3, -6)
+('ret', 3, 3)
+('jmp', 6)
+('lbl', 7)
+('ldv', 3, -3)
+('ldv', 3, -4)
+('mul',)
+('stv', 3, -6)
+('ret', 3, 3)
+('lbl', 6)
+('ret', 3, 3)
+('lbl', 4)
+('cfu', 1)
+('ldc', 10)
+('ldc', 2)
+('cfu', 3)
+('alc', 1)
+('ldc', 'true')
+('ldc', 5)
+('ldc', 5)
+('cfu', 5)
+('prv', 0)
+('end',)
+]
