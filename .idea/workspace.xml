@@ -53,21 +53,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="lya_vm.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="lya_vm.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lya_vm.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="434">
-                  <caret line="375" column="26" lean-forward="true" selection-start-line="375" selection-start-column="26" selection-end-line="375" selection-end-column="26" />
+                <state relative-caret-position="105">
+                  <caret line="382" column="23" lean-forward="true" selection-start-line="382" selection-start-column="23" selection-end-line="382" selection-end-column="23" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ast.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ast.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ast.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="292">
-                  <caret line="953" column="29" lean-forward="false" selection-start-line="953" selection-start-column="29" selection-end-line="953" selection-end-column="29" />
+                <state relative-caret-position="309">
+                  <caret line="987" column="43" lean-forward="false" selection-start-line="987" selection-start-column="43" selection-end-line="987" selection-end-column="43" />
                   <folding />
                 </state>
               </provider>
@@ -119,8 +119,9 @@
                     <state relative-caret-position="213">
                       <caret line="103" column="68" lean-forward="false" selection-start-line="103" selection-start-column="68" selection-end-line="103" selection-end-column="68" />
                       <folding>
-                        <marker date="1498657549008" expanded="true" signature="31631:31826" ph="..." />
-                        <marker date="1498657549008" expanded="true" signature="31838:31970" ph="..." />
+                        <marker date="1498658498987" expanded="true" signature="31043:31135" ph="..." />
+                        <marker date="1498658498987" expanded="true" signature="31267:31462" ph="..." />
+                        <marker date="1498658498987" expanded="true" signature="31474:31606" ph="..." />
                       </folding>
                     </state>
                   </provider>
@@ -145,8 +146,8 @@
               <file leaf-file-name="sample0.lya" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/sample0.lya">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="119">
-                      <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+                    <state relative-caret-position="17">
+                      <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
                       <folding />
                     </state>
                   </provider>
@@ -167,11 +168,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>builtin</find>
-      <find>lower_bound_</find>
       <find>upper_bound_value = 1</find>
       <find>builti</find>
-      <find>read</find>
       <find>string_le</find>
       <find>my lowe</find>
       <find>heap_index</find>
@@ -196,7 +194,10 @@
       <find>'print'</find>
       <find>jmp</find>
       <find>rdv</find>
+      <find>lmv</find>
       <find>string_len</find>
+      <find>read</find>
+      <find>rds</find>
     </findStrings>
     <replaceStrings>
       <replace>def visit_</replace>
@@ -253,8 +254,8 @@
         <option value="$PROJECT_DIR$/semantic.py" />
         <option value="$PROJECT_DIR$/parser.py" />
         <option value="$PROJECT_DIR$/lexer.py" />
-        <option value="$PROJECT_DIR$/lya_vm.py" />
         <option value="$PROJECT_DIR$/ast.py" />
+        <option value="$PROJECT_DIR$/lya_vm.py" />
         <option value="$PROJECT_DIR$/sample0.lya" />
       </list>
     </option>
@@ -558,13 +559,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.05321391" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33076924" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33407572" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41536748" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="14" y="341" width="1892" height="398" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41536748" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="14" y="341" width="1892" height="398" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -810,14 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample6.lya">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/semantic.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -838,10 +831,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lya_vm.py">
+    <entry file="file://$PROJECT_DIR$/sample6.lya">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="375" column="26" lean-forward="true" selection-start-line="375" selection-start-column="26" selection-end-line="375" selection-end-column="26" />
+        <state relative-caret-position="204">
+          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -858,16 +851,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="953" column="29" lean-forward="false" selection-start-line="953" selection-start-column="29" selection-end-line="953" selection-end-column="29" />
+        <state relative-caret-position="309">
+          <caret line="987" column="43" lean-forward="false" selection-start-line="987" selection-start-column="43" selection-end-line="987" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample0.lya">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+        <state relative-caret-position="17">
+          <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lya_vm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="382" column="23" lean-forward="true" selection-start-line="382" selection-start-column="23" selection-end-line="382" selection-end-column="23" />
           <folding />
         </state>
       </provider>

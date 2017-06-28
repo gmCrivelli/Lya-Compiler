@@ -963,15 +963,8 @@ class Builtin_Call(AST):
         elif self.builtin_name.name == 'abs':
             for param in self.parameter_list:
                 param.expression.generate_code()
-                AST.code.append(('ldc',0))
-                AST.code.append(('les',))
-                abs_label = AST.label_counter
-                AST.label_counter += 1
-                AST.code.append(('jof',abs_label))
-                param.expression.generate_code()
-                AST.code.append(('ldc',-1))
-                AST.code.append(('mul',))
-                AST.code.append(('lbl',abs_label))
+                AST.code.append(('abs',))
+
             else:
                 print("Invalid abs call on line ", self.lineno)
 
@@ -988,7 +981,12 @@ class Builtin_Call(AST):
             for param in self.parameter_list:
                 if param.expression.raw_type == 'char':
                     AST.code.append(('ldv',param.expression.scope, param.expression.offset))
-                    AST.code.append(('ldc',ord))
+                    AST.code.append(('ldc',ord(0)))
+                    AST.code.append(('sub',))
+                elif param.expression.raw_type == 'string':
+                    AST.code.append(('ldr',param.expression.scope, param.expression.offset))
+                    AST.code.append(('num',))
+
         else:
             print("Builtin Call {} not implemented".format(self.builtin_name.name))
 
