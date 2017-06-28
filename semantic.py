@@ -712,15 +712,15 @@ class Visitor(NodeVisitor):
                 nt = nt + [ord('\n')]
                 i += 1
                 f = False
-                print(chr(st[i]))
+
             elif f:
                 nt = nt + [st[i]]
-                print(chr(st[i]))                
+
             else:
                 f = True
-        print(list(map(chr, nt)))
 
         self.string_literals.append(nt)
+        #node.value = nt
 
     def visit_Value_Array_Element(self, node):
         self.visit(node.array_primitive_value)
@@ -886,7 +886,7 @@ class Visitor(NodeVisitor):
         #self.visit(node.operator2)
         #print("Binary operator: " + str(node.operator2))
         node.raw_type = self.raw_type_binary(node, node.operator2, node.operand1, node.operand2)
-        print("BINOP", node.operand1.value , node.operand2.value ,self.semantic_error)
+        #print("BINOP", node.operand1.value , node.operand2.value ,self.semantic_error)
         if node.operand1.value != None and node.operand2.value != None and not self.semantic_error:
             #if node.operand1.raw_type != 'string':
 
