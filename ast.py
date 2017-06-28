@@ -1,4 +1,3 @@
-#TODO: String operations
 
 class NodeVisitor(object):
     """
@@ -34,12 +33,6 @@ class NodeVisitor(object):
             return None
 
     def generic_visit(self,node):
-        #if not isinstance(node, AST):
-        #    print(node)
-        #    return
-
-        #node.print()
-
         """
         Method executed if no applicable visit_ method can be found.
         This examines the node to see if it has _fields, is a list,
@@ -50,10 +43,8 @@ class NodeVisitor(object):
             if isinstance(value, list):
                 for item in value:
                     if isinstance(item,AST):
-                        #item.print()
                         self.visit(item)
             elif isinstance(value, AST):
-                #value.print()
                 self.visit(value)
 
 class AST(object):
@@ -128,14 +119,11 @@ class Program(AST):
         AST.code = []
         AST.label_counter = 0
 
-        #print("Program")
         AST.code.append(("stp", ))
         super(Program, self).generate_code()
         if AST.scope_offset[0] > 0:
             AST.code.append(("dlc", AST.scope_offset[0]))
         AST.code.append(("end", ))
-        #print(AST.label_dict)
-        #print(AST.end_label_dict)
 
 # statement_list
 # statement
@@ -178,8 +166,6 @@ class Identifier(AST):
     _fields = ['ID']
 
     def generate_code(self):
-        #print("ID={}, raw_type={}, dcl_type={}, loc={}".format(self.ID, self.raw_type, self.dcl_type, self.loc))
-        #print(self.__dict__)
         if self.loc:
             AST.code.append(('lrv', self.scope, self.offset))
         elif AST.is_returning_from_loc_procedure_stack[-1]:
@@ -203,17 +189,6 @@ class Synonym_Statement(AST):
 
 class Synonym_Definition(AST):
     _fields = ['identifier_list', 'mode', 'constant_expression']
-
-    #def generate_code(self):
-    #    size = self.constant_expression.size
-    #    n = len(self.identifier_list)
-    #    AST.code.append(("alc", size * n))
-
-    #    self.constant_expression.generate_code()
-    #    for i, ident in enumerate(self.identifier_list):
-    #        AST.code.append(("stv", ident.scope, ident.offset))
-    #        if i != len(self.identifier_list) - 1:
-    #            self.constant_expression.generate_code()
 
 class Constant_Expression(AST):
     _fields = ['expression']
@@ -264,9 +239,6 @@ class Reference_Mode(AST):
 
 class String_Mode(AST):
     _fields = ['size']
-
-#class String_Length(AST):
-#    _fields = ['integer_literal']
 
 class Array_Mode(AST):
     _fields = ['index_mode_list', 'element_mode']
@@ -340,7 +312,6 @@ class Array_Location(AST):
         if self.location.loc:
             AST.code.append(("ldv",self.location.scope, self.location.offset))
         else:
-            #print("MY OFFSET IS ", self.location.offset)
             AST.code.append(("ldr",self.location.scope, self.location.offset))
 
 # primitive_value
@@ -425,20 +396,11 @@ class Conditional_Expression(AST):
             # Otherwise self.value would already be defined.
             # Same goes for elsif and else expressions.
             elif self.boolean_expression.value:
-                #if self.then_expression.value != None:
-                #    self.value = self.then_expression.value
-                #else:
                 self.then_expression.generate_code()
             else:
                 if self.elsif_expression != None and self.elsif_expression.was_chosen:
-                    #if self.elsif_expression.value != None:
-                    #    self.value = self.elsif_expression.value
-                    #else:
                     self.elsif_expression.generate_code()
                 else:
-                    #if self.else_expression.value != None:
-                    #    self.value = self.else_expression.value
-                    #else:
                     self.else_expression.generate_code()
 
 
@@ -511,7 +473,6 @@ class Rel_Mem_Expression(AST):
         else:
             AST.code.append(("ldc", self.value))
 
-
 # operator1
 
 # relational_operator
@@ -522,7 +483,6 @@ class Binary_Expression(AST):
     _fields = ['operand1', 'operator2', 'operand2']
 
     def generate_code(self):
-        #print(self.value)
         if self.value == None:
             super(Binary_Expression, self).generate_code()
             if self.operator2 == '+' :
@@ -549,7 +509,7 @@ class Binary_Expression(AST):
 
 # string_concatenation_operator
 
-#operand2
+# operand2
 
 # arithmetic_multiplicative_operator
 
@@ -587,7 +547,6 @@ class Action_Statement(AST):
 
     def generate_code(self):
         if self.action.__class__ in [Do_Action, If_Action] and self.label_id != None:
-            #print("DO ACTION END LABEL PREDICTED: ", AST.label_counter)
             AST.end_label_dict[self.label_id.identifier.ID] = AST.label_counter + 1
         super(Action_Statement, self).generate_code()
 
@@ -700,8 +659,6 @@ class Else_Clause(AST):
         if self.action_statement_list != None:
             super(Else_Clause, self).generate_code()
         elif self.boolean_expression != None:
-            #end_label = AST.label_counter
-            #AST.label_counter += 1
             else_label = end_label
 
             if self.else_clause != None:
@@ -716,7 +673,6 @@ class Else_Clause(AST):
                 AST.code.append(("jmp", end_label))
                 AST.code.append(("lbl", else_label))
                 self.else_clause.generate_code(end_label)
-                #AST.code.append(("lbl", end_label))
 
 class Do_Action(AST):
     _fields = ['control_part', 'action_statement_list']
@@ -740,17 +696,14 @@ class Do_Action(AST):
             for instruction in control_instructions:
                 AST.code.append(instruction)
             AST.code.append(("jmp", control_label))
-            #print("APPENDING DO ACTION END LABEL: ", end_label)
             AST.code.append(("lbl", end_label))
 
         else:
             for action_statement in self.action_statement_list:
                 action_statement.generate_code()
-            #print("APPENDING DO ACTION END LABEL: ", end_label)
             AST.code.append(("lbl", end_label))
 
 
-# TODO: FOR_CONTROL
 class Control_Part(AST):
     _fields = ['for_control','while_control']
 
@@ -770,7 +723,7 @@ class For_Control(AST):
     def generate_code(self, control_label, end_label):
         return self.iteration.generate_code(control_label, end_label)
 
-#iteration
+# iteration
 
 class Step_Enumeration(AST):
     _fields = ['loop_counter', 'start_value', 'step_value', 'end_value']
@@ -789,34 +742,29 @@ class Step_Enumeration(AST):
         AST.code.append(("leq",))
         AST.code.append(("jof", end_label))
 
-        #print("WRITING THE CONTROL INSTRUCTIONS!")
         control_instructions = []
 
         if self.step_value != None:
-            #print("OOOOH BOY HERE WE GO AGAIN")
             leng = len(AST.code)
             self.step_value.generate_code()
-            #print(AST.code)
             control_instructions = AST.code[leng:]
             del AST.code[leng:]
-            #print(AST.code)
         else:
             control_instructions.append(("ldc", 1))
 
         control_instructions.append(loop_counter_code)
         control_instructions.append(("add",))
         control_instructions.append(("stv", scope, offset))
-        #print(control_instructions)
         return control_instructions
 
 class Loop_Counter(AST):
     _fields = ['identifier']
 
-#start_value
-#step_value
-#end_value
+# start_value
+# step_value
+# end_value
 
-#discrete_expression
+# discrete_expression
 
 class Range_Enumeration(AST):
     _fields = ['loop_counter', 'discrete_mode']
@@ -827,9 +775,6 @@ class While_Control(AST):
     def generate_code(self, end_label):
         self.boolean_expression.generate_code()
         AST.code.append(("jof", end_label))
-
-#class Call_Action(AST):
-#    _fields = ['label_id']
 
 class Procedure_Call(AST):
     _fields = ['identifier', 'parameter_list']
@@ -858,10 +803,6 @@ class Procedure_Call(AST):
                 parameter.generate_code()
 
         AST.code.append(("cfu", self.label_dict[self.identifier.ID]))
-
-
-
-
 
 #parameter_list
 
@@ -894,7 +835,6 @@ class Return_Action(AST):
         if self.result != None:
             if self.loc:
                 AST.is_returning_from_loc_procedure_stack.append(True)
-                #print("this si return loc", self.result.__class__)
                 self.result.generate_code()
                 AST.is_returning_from_loc_procedure_stack.pop()
             else:
@@ -912,16 +852,10 @@ class Result_Action(AST):
         self.result.generate_code()
         AST.code.append(("stv", self.scope, self.offset))
 
-#class Result(AST):
-#    _fields = ['expression']
-
 class Builtin_Call(AST):
     _fields = ['builtin_name', 'parameter_list']
 
     def generate_code(self):
-        #parameter = self.parameter_list[0].expression
-        #AST.code.append(('ldv', 0, parameter.offset))
-
         if self.builtin_name.name == 'print':
             for param in self.parameter_list:
                 if param.expression.raw_type == 'string':
@@ -983,42 +917,19 @@ class Builtin_Call(AST):
 
         elif self.builtin_name.name == 'lower':
             for param in self.parameter_list:
-                if param.expression.raw_type == 'char' or param.expression.raw_type == 'string':
-                    if param.expression.raw_type == 'char':
-                        AST.code.append(('ldv',param.expression.scope, param.expression.offset))
-                        AST.code.append(('low',))
-                    else:
-                        AST.code.append(('ldr',param.expression.scope, param.expression.offset))
-                        AST.code.append(('ldc',1))
-                        AST.code.append(('add',1))
-                        AST.code.append(('grc',1))
-                        AST.code.append(('low',))
-
-
-
+                if param.expression.raw_type == 'char':
+                    AST.code.append(('ldv',param.expression.scope, param.expression.offset))
+                    AST.code.append(('low',))
 
         elif self.builtin_name.name == 'upper':
             for param in self.parameter_list:
-                if param.expression.raw_type == 'char' or param.expression.raw_type == 'string':
-                    if param.expression.raw_type == 'char':
-                        AST.code.append(('ldv',param.expression.scope, param.expression.offset))
-                    else:
-                        AST.code.append(('ldr',param.expression.scope, param.expression.offset))
-                        AST.code.append(('ldc',1))
-                        AST.code.append(('add',1))
-                        AST.code.append(('grc',1))
+                if param.expression.raw_type == 'char':
+                    AST.code.append(('ldv',param.expression.scope, param.expression.offset))
                     AST.code.append(('upp',))
-
-
-
-
 
         else:
             print("Builtin Call {} not implemented".format(self.builtin_name.name))
 
-
-
-        # super(Builtin_Call, self).generate_code()
 
 class Builtin_Name(AST):
     _fields = ['name']
@@ -1059,7 +970,6 @@ class Formal_Procedure_Head(AST):
 
     def generate_code(self):
         AST.code.append(("enf", self.scope))
-
 
 #formal_parameter_list
 

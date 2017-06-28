@@ -5,9 +5,17 @@ from parser import Parser
 from semantic import *
 import sys
 
-# Run parser on given file
 def main():
+    if len(sys.argv) < 2 or len(sys.argv) > 4:
+        print("Usage: python3 compile.py file.lya <-d> <-o>")
+        print("-d: debug mode")
+        print("-o: generate lvm code only")
+        return 1
+
     file_name = sys.argv[1]
+
+    debug = '-d' in sys.argv
+    code = '-o' in sys.argv
 
     # Read given file
     file = open(file_name, "r")
@@ -20,17 +28,28 @@ def main():
     nv = Visitor()
     nv.visit(ast)
 
-    #ast.print(False,'')
+    if nv.semantic_error:
+        print("Error found. Terminating execution")
+        exit(1)
 
     ast.generate_code()
 
-    # print('[')
-    # for bla in AST.code:
-    #     print(bla)
-    # print(']')
+    if debug:
+        # Print undecorated AST
+        print("Printing Undecorated AST")
+        ast.print(False,'')
+        print("Printing Decorated AST")
+        ast.print(True,'')
+        print("Printing LVM Code")
+
+    if code or debug:
+        print('[')
+        for st in AST.code:
+            print(st)
+        print(']')
 
     H = nv.string_literals
-    # print("String literals: ", nv.string_literals_ascii)
-    VirtualMachine.execute(AST.code, H, False)
+    if not code:
+        VirtualMachine.execute(AST.code, H, False)
 
 if __name__ == "__main__": main()

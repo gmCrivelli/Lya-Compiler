@@ -5,123 +5,6 @@ MEMORY_SIZE = 64
 DISPLAY_SIZE = 8
 
 class VirtualMachine:
-
-    def main():
-        # dcl a, b int;
-        # a = 10;
-        # b = 20;
-        # a = a + b - 30;
-        # print(a);
-
-        program = [
-            ('stp',),
-            ('alc', 2),
-            ('ldc', 10),
-            ('stv', 0, 0),
-            ('ldc', 20),
-            ('stv', 0, 1),
-            ('ldv', 0, 0),
-            ('ldv', 0, 1),
-            ('add',),
-            ('ldc', 30),
-            ('sub',),
-            ('stv', 0, 0),
-            ('ldv', 0, 0),
-            ('prv', 0),
-            ('dlc', 2),
-            ('end',)
-        ]
-
-        # program =  [
-        #     ('stp',),
-        #     ('alc', 2),      # dcl i,k int;
-        #     ('rdv',),
-        #     ('stv', 0, 1),   # read(k);
-        #     ('ldc', 1),
-        #     ('stv', 0, 0),   # i=1;
-        #     ('lbl', 1),      # do
-        #     ('ldv', 0, 0),
-        #     ('ldv', 0, 1),
-        #     ('leq',),
-        #     ('jof', 2),      #   while i<=k;
-        #     ('ldv', 0, 0),
-        #     ('ldv', 0, 0),
-        #     ('mul',),
-        #     ('prv', 0),      #      print(i*i);
-        #     ('ldv', 0, 0),
-        #     ('ldc', 1),
-        #     ('add',),
-        #     ('stv', 0, 0),   #      i=i+1;
-        #     ('jmp', 1),      # od;
-        #     ('lbl', 2),
-        #     ('dlc', 2),
-        #     ('end',)
-        #     ]
-
-        # H = ["Welcome.\n", "What’s you name?", "Nice to meet you "]
-        #
-        # program = [
-        #     ('stp',),
-        #     ('alc', 11),
-        #     ('ldc', 0),
-        #     ('stv', 0, 0),    # dcl name chars[10];
-        #     ('prc', 0),      # print("Welcome.\n");
-        #     ('prc', 1),      # print("What’s your name?");
-        #     ('ldr', 0, 0),
-        #     ('rds',),         # read(name);
-        #     ('prc', 2),
-        #     ('ldr', 0, 0),
-        #     ('prs',),         # print("Nice to meet you ", name);
-        #     ('dlc', 11),
-        #     ('end',)
-        #     ]
-
-        H = ["give-me a positive integer:", "fatorial of ", " = ", ]
-        # program = [
-        #   ('stp', ),
-        #   ('alc', 1),
-        #   ('jmp', 3),
-        #   ('lbl', 1),
-        #   ('enf', 1),
-        #   ('ldv', 1, -3),
-        #   ('ldc', 0),
-        #   ('equ', ),
-        #   ('jof', 4),
-        #   ('ldc', 1),
-        #   ('stv', 1, -4),
-        #   ('jmp', 2),
-        #   ('jmp', 5),
-        #   ('lbl', 4),
-        #   ('ldv', 1, -3),
-        #   ('alc', 1),
-        #   ('ldv', 1, -3),
-        #   ('ldc', 1),
-        #   ('sub', ),
-        #   ('cfu', 1),
-        #   ('mul', ),
-        #   ('stv', 1, -4),
-        #   ('jmp', 2),
-        #   ('lbl', 5),
-        #   ('lbl', 2),
-        #   ('ret', 1, 1),
-        #   ('lbl', 3),
-        #   ('prc', 0),
-        #   ('rdv', ),
-        #   ('stv', 0, 0),
-        #   ('prc', 1),
-        #   ('ldv', 0, 0),
-        #   ('prv', 0),
-        #   ('prc', 2),
-        #   ('alc', 1),
-        #   ('ldv', 0, 0),
-        #   ('cfu', 1),
-        #   ('prv', 0),
-        #   ('dlc', 1),
-        #   ('end',)
-        #   ]
-
-        VirtualMachine.execute(program, H, False)
-
     def execute(program, heap = [], debug = False):
         labels = {}
         memory = []
@@ -173,9 +56,6 @@ class VirtualMachine:
 
                 sp += 1
                 memory[sp] = display[i] + j
-                #print("setting location {} to {}".format(sp, memory[sp]))
-                #print("memory = ", memory, "\ndisplay = ", display)
-                #print("sp is now", sp)
 
             elif t[0] == 'stv':
                 i = t[1]
@@ -252,8 +132,6 @@ class VirtualMachine:
                 memory[sp] = not memory[sp]
 
             elif t[0] == 'les':
-                #print("comparing {} < {}".format(memory[sp - 1], memory[sp]))
-                #print("memory:", memory)
                 memory[sp - 1] = memory[sp - 1] < memory[sp]
                 sp -= 1
 
@@ -298,12 +176,10 @@ class VirtualMachine:
 
             elif t[0] == 'dlc':
                 n = t[1]
-                #memory.pop(3)
                 sp -= n
 
             elif t[0] == 'cfu':
                 p = t[1]
-                #print("jumping into function", memory)
                 sp += 1
                 memory[sp] = pc
                 pc = labels.get(p, pc)
@@ -314,17 +190,14 @@ class VirtualMachine:
                 sp += 1
                 memory[sp] = display[k]
                 display[k] = sp + 1
-                #print("entering function, memory = ", memory, "\ndisplay = ", display)
-                #print("sp is now", sp)
 
             elif t[0] == 'ret':
                 k = t[1]
                 n = t[2]
-                #print("returning, sp is", sp)
-                #print("this is memory", memory)
+
                 display[k] = memory[sp]
                 pc = memory[sp - 1]
-                #print("jumping to ", pc)
+
                 sp -= (n + 2)
 
             elif t[0] == 'idx':
@@ -334,7 +207,6 @@ class VirtualMachine:
                 sp -= 1
 
             elif t[0] == 'grc':
-                #print("content of {} : {}".format(memory[sp], memory[memory[sp]]))
                 memory[sp] = memory[memory[sp]]
 
             elif t[0] == 'lmv':
@@ -350,7 +222,6 @@ class VirtualMachine:
                 t = memory[sp - k]
                 memory[t : t + k] = memory[sp - k + 1 : sp + 1]
                 sp -= (k + 1)
-               # print("stored values on {}:{}".format(t, t+k))
 
             elif t[0] == 'smr':
                 k = t[1]
@@ -419,7 +290,7 @@ class VirtualMachine:
                 if ischar:
                     print(chr(memory[sp]),end='')
                 else:
-                    print(memory[sp],end='')
+                    print(memory[sp],end=' ')
                 sp -= 1
 
             elif t[0] == 'prt':
@@ -449,8 +320,6 @@ class VirtualMachine:
                 display[0] = 0
 
             elif t[0] == 'lbl':
-                i = t[1]
-
                 # labels were preprocessed
                 pass
 
@@ -469,7 +338,3 @@ class VirtualMachine:
                 print(display)
 
             pc += 1
-
-
-if __name__ == '__main__':
-    VirtualMachine.main()
