@@ -324,7 +324,11 @@ class Array_Element(AST):
         else:
             self.array_location.generate_code()
             self.expression_list[0].generate_code()
-            if self.lower_bound_value != 0:
+            if self.array_location.raw_type == 'string':
+                AST.code.append(("ldc", 1))
+                AST.code.append(("add",))
+
+            elif self.lower_bound_value != 0:
                 AST.code.append(("ldc", self.lower_bound_value))
                 AST.code.append(("sub",))
             AST.code.append(("idx",self.expression_list[0].size))
@@ -970,12 +974,18 @@ class Builtin_Call(AST):
 
         elif self.builtin_name.name == 'length':
             for param in self.parameter_list:
-                AST.code.append(('ldc',param.expression.upper_bound_value - param.expression.lower_bound_value + 1))
+                if param.expression.raw_type == 'string':
+                    AST.code.append(('ldv',param.expression.scope, param.expression.offset))
 
-        #elif self.builtin_name.name == 'asc':
-        #    for param in self.parameter_list:
-        #        AST.code.append(('ldc',param.expression.upper_bound_value - param.expression.lower_bound_value + 1))
+        elif self.builtin_name.name == 'asc':
+            for param in self.parameter_list:
+                param.expression.generate_code()
 
+        elif self.builtin_name.name == 'num':
+            for param in self.parameter_list:
+                if param.expression.raw_type == 'char':
+                    AST.code.append(('ldv',param.expression.scope, param.expression.offset))
+                    AST.code.append(('ldc',ord))
         else:
             print("Builtin Call {} not implemented".format(self.builtin_name.name))
 

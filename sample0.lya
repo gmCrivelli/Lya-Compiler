@@ -1,2 +1,2 @@
-dcl t char = 'n';
-print(t);
+dcl t chars[10] = "teste";
+print(t[4]);

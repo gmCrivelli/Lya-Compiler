@@ -137,7 +137,10 @@ class Lexer:
 
     def t_SCONST(self, t):
         r'\"(\\\"|\\\'|[^\'\"\n])*\"'
-        t.value = str(t.value)
+        ascii_list = []
+        for character in t.value:
+            ascii_list.append(ord(character))
+        t.value = ascii_list
         return t
 
 
