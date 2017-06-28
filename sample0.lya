@@ -1,14 +1,4 @@
-type ptr = ref int;
-dcl x, y int, p ptr = ->x;
-q: proc () returns (int loc);
-  dcl z ref int;
-  z = ->y;
-  return y;
-end;
-x = 10;
-y = 20;
-print (p->);
-p = ->q();
-print (p->);
-q() = q() + 25;
-print (p->);
+dcl t int = 15;
+dcl x chars[10];
+read(x);
+print(x);

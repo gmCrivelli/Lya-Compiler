@@ -1,0 +1,5171 @@
+e ela gosta mto de futebol msm né husahuashuashus
+kkkkkkkkkkkkkkk
+verdade
+Topo fazer isso que ela falou e que a gente já discutiu tbm
+Já que pelo visto treinar o robô pra andar pra frente envolve coisa demais
+Renato Vargas
+Renato
+a gente tinha pensado nisso tbm?
+Só fiquei com a impressão que ela entendeu que a gente vai usar o robô bipede msm, quando a gente poderia usar um robo beeeeem menos complexo
+era uma das ideias lá do começo não?
+Implementar o Robonaldo
+Renato Vargas
+Renato
+não lembrava que era só chutar
+é... ela pode ter entendido errado isso tbm
+esse "chutar" dela eu entendi como fazer a bola chegar no gol
+Só vai dar pra realmente chutar se o robô tiver pernas
+Renato Vargas
+Renato
+eu acho que é só chutar como um penalti
+que nem um vídeo que ela mostrou pra gente
+Aí o robo fica parado e chuta?
+Se cair no chão, a gente reseta
+Renato Vargas
+Renato
+foi o que eu entendi
+Isadora Sophia
+Isadora
+eu acho q a gente podia fazer um quadrupede
+JUN 10TH, 6:42PM
+
+João Pedro Ramos Lopes
+João Pedro
+não tinha acertado de fazer > 2 pernas? 😛
+Renato Vargas
+Renato
+mas será que muda tanto assim?
+por mim pode ser, mas ainda acho uma boa perguntar de novo
+João Pedro Ramos Lopes
+João Pedro
+pelo que ela falou nas aulas muda absurdo
+até por que basta o robo aprender a se equilibrar em 3 pernas
+e mover a quarta pra frente
+com duas pernas ele tem que se equilibrar com só uma perna
+e muita gente não consegue fazer isso huahuahauh
+diga lá um robo
+agora qualquer cadeira se equilibra em 3 pernas x)
+Renato Vargas
+Renato
+mas o rolê é que ainda pode ser que os estados sejam muitos e não dê tempo de conseguirmos convergir pra alguma solução bos
+João Pedro Ramos Lopes
+João Pedro
+justo
+o robô que chuta poderia ser com rodas e uma solenóide
+pelo menos eu chutaria que é isso que ela tava querendo dizer
+pq chutar bipede eu acho que seja trampo também
+Renato Vargas
+Renato
+hmmm será?
+posso mandar outro email pra ela
+JUN 12TH, 10:40AM
+
+Renato Vargas
+Renato
+
+não sei o que quer dizer essas reticências só hahaha
+João Pedro Ramos Lopes
+João Pedro
+Essa reticências também me deixaram com uma dúvida terrível hahaha
+É realmente era chutar em um robô bipede...
+Renato Vargas
+Renato
+aham
+não parece tão absurdo mesmo não
+Isadora Sophia
+Isadora
+polemico jwjdkqkeekekq
+JUN 13TH, 1:23AM
+
+Renato Vargas
+Renato
+então, temos que decidir essa semana
+amanhã a gente decide na aula?
+João Pedro Ramos Lopes
+João Pedro
+por mim tudo bem
+a gente pode até discutir com ela melhor as ideias
+Renato Vargas
+Renato
+aí fala com ela qlwr coisa
+isso
+JUN 14TH, 7:39PM
+
+Renato Vargas
+Renato
+"• T´ıtulo do projeto
+• Nome dos integrantes do grupo com os respectivos graus de forma¸c˜ao (gradua¸c˜ao/pif, mestrado, doutorado,
+aluno especial)
+• Descri¸c˜ao sucinta do problema a ser tratado e das t´ecnicas a serem empregadas"
+aqui é o que precisamos mandar pra ela
+Isadora Sophia
+Isadora
+precisa ser pdf ou é um texto?
+Renato Vargas
+Renato
+falta a gente decidir as técnicas
+eu acho que um texto só sepá
+tem que mandar no email
+até amanhã
+Isadora Sophia
+Isadora
+joga umas keyword ai
+qjenwjekqekqkekqkekqd
+quer fazer um docs?
+Renato Vargas
+Renato
+https://docs.google.com/document/d/1BVU-pyFJYbIp7jTjMvLCmfp_Ugu3u_G1IhXjTNcXzco/edit?usp=sharing
+tava fazendo sahusuah
+Isadora Sophia
+Isadora
+beleza
+Renato Vargas
+Renato
+qual é nome das coisas que a gente vai limitar msm?
+em que grau as juntas podem ficar e tal
+Isadora Sophia
+Isadora
+graus de liberdade
+os motores
+n sei qual palavra vc ta procurando
+Renato Vargas
+Renato
+também não suahhusahusahu
+Isadora Sophia
+Isadora
+neenwkekwkekqkkqkekw
+locomoção
+Renato Vargas
+Renato
+tá ficando frio
+Isadora Sophia
+Isadora
+SKDMWKDKWKDKWKDW
+to pensando
+Renato Vargas
+Renato
+suas risadas são difíceis de ler shauuhsahusauhsa
+bem, já escrevi um pouco lá
+Isadora Sophia
+Isadora
+ijwjcj2ifjwkdkwdkwk
+apêndices motores
+Renato Vargas
+Renato
+deem uma olhadinha e vão ajeitando / adicionando coisas
+dá pra ter apendicite? shuahsahuas
+ah, e coloquem nomes e ra
+Isadora Sophia
+Isadora
+apêndice significa membro
+wnenwkekqkekqkekwkewkeow
+beleza
+eu to na aula
+querwndo ter cara de pau pra vazar
+Renato Vargas
+Renato
+sahusauhsahu te entendo
+Isadora Sophia
+Isadora
+o prof fica mó bravo
+q saco
+Renato Vargas
+Renato
+sacanage
+mas bem, o que eu não sei como escrever é sobre as técnicas
+a gente definiu o aprendizado por reforço, mas ainda tem que ver se usa q-learning ou outra coisa
+Isadora Sophia
+Isadora
+provavelmente vai ser deep q learning
+alguma coisa assim
+é o q ela citou tb
+Renato Vargas
+Renato
+o que ela falou era outro eu acho
+eu que falei do deep q
+Isadora Sophia
+Isadora
+hmm
+entendi
+nao sei
+vê o slide do site dela
+Renato Vargas
+Renato
+não achei não
+vo mandar o email
+era sobre aprendizado por algoritmo genetico, né?
+Isadora Sophia
+Isadora
+acho q sim
+Estou viajando
+Renato Vargas
+Renato
+se não puder editar, me passa nome completo e ra
+Assim que chegar em casa redijo alguma coisa
+Renato Vargas
+Renato
+oks
+Meu nome é Gustavo de Mello Crivelli, RA 136008
+👍
+1
+JUN 14TH, 9:31PM
+
+João Pedro Ramos Lopes
+João Pedro
+Tava sem internet
+tl;dr?
+Sim
+Isadora Sophia
+Isadora
+abre o docs e ve qq vc acha
+João Pedro Ramos Lopes
+João Pedro
+Que docs?
+Isadora Sophia
+Isadora
+https://docs.google.com/document/d/1BVU-pyFJYbIp7jTjMvLCmfp_Ugu3u_G1IhXjTNcXzco/edit
+Isadora Sophia
+Isadora
+A PALAVR
+A PALAVRA ERA ARTICULAÇÃO
+Renato Vargas
+Renato
+ahhhhh pode cre hahahaha
+JUN 15TH, 3:44PM
+
+Renato Vargas
+Renato
+todo mundo de acordo com o escrito?
+que qualquer coisa já podemos mandar
+Isadora Sophia
+Isadora
+por mim ta ok
+João Pedro Ramos Lopes
+João Pedro
+Por mim também
+Renato Vargas
+Renato
+"Renato,
+
+Segue o link para o artigo e a dissertação de mestrado.
+
+* http://osorio.wait4.org/publications/2008/Milton-Heinen-CTDIA-2008.pdf
+* http://osorio.wait4.org/oldsite/leggen/mheinen_diss_final.pdf"
+osorio.wait4.org
+osorio.wait4.org
+ela acabou de me mandar
+João Pedro Ramos Lopes
+João Pedro
+coloca nas referências da proposta
+hahaha
+Isadora Sophia
+Isadora
+foda q é uns roles de 2008
+João Pedro Ramos Lopes
+João Pedro
+nossa, fevereiro de 2007
+Renato Vargas
+Renato
+só 10 anos atrás haha
+João Pedro Ramos Lopes
+João Pedro
+10 anos atrás eu ainda nem tinha pc em casa
+hahaha
+Isadora Sophia
+Isadora
+hahahahahahah
+Renato Vargas
+Renato
+hahahaha que triste
+João Pedro Ramos Lopes
+João Pedro
+pior que foi por volta de agosto de 2007 que a gente comprou o pc
+Renato Vargas
+Renato
+que memória
+não faço ideia desde quando tenho
+JUN 15TH, 6:15PM
+
+Por mim tbm pode mandar (se não já mandou)
+Por onde a gente começa?
+Renato Vargas
+Renato
+só tava esperando confirmação de todos
+boa pergunta hahaha
+Isadora Sophia
+Isadora
+acho q setando o robo quadrupede
+e lendo os sensores pela api
+vcs são ok em usar tensorflow?
+Btw, eu entendi a teoria
+Mas n"ao exatamente como implementar o Q learning no Vrep
+Isadora Sophia
+Isadora
+a gente precisa traduzir o vrep em input e output
+o resto fica caixa preta
+Renato Vargas
+Renato
+não manjo tensorflow, mas pode ser se vc acha uma boa
+as referências que ela passou deixa fora da proposta msm?
+Isadora Sophia
+Isadora
+acho que não precisa botar
+Concordo, mesmo que colocasse seria do tipo "Iremos investigar os métodos descritos no artigo X"
+Acho que só coloccar de referencia no trabalho msm eh o suficiente
+Bom
+A gente vai ter duas semanas pra fazer o que foi feito numa monografia
+Isadora Sophia
+Isadora
+IOJSDOISAJFOIJCDFAS
+o foda é q
+a gente precisa fazer
+uns 5 dias antes
+só pra dar o tempo de treinar
+Renato Vargas
+Renato
+kkkkk é
+Isadora Sophia
+Isadora
+e ajustando parâmetro
+Renato Vargas
+Renato
+vai ser tenso
+como tão esse fds?
+Isadora Sophia
+Isadora
+posso fazer
+enrolado
+mas se preisar arranjo tempo
+Isadora Sophia
+Isadora
+alguém pode ficar com a parte de ajustar o robô/montar api?
+Só me falem o que precisa fazer
+pq eu to meio perdido
+Renato Vargas
+Renato
+tenho bastante trabalho, mas prefiro ficar liver disso logo
+Isadora Sophia
+Isadora
+hahahaah to com 1000 coisas também
+Renato Vargas
+Renato
+ajustar o robo seria arranjar o robo?
+Isadora Sophia
+Isadora
+foda final de semestre
+seria tipo
+Renato Vargas
+Renato
+tem que fazer uma cena tbm
+Isadora Sophia
+Isadora
+botar o robo quadrupede no cenario
+com cena nova
+e testar leitura dos motores
+e tal
+Renato Vargas
+Renato
+entendeu
+vamo levantar tudo que tem pra fazer e dividimos
+vou mandar o email pra ela aqui rapidão
+Isadora Sophia
+Isadora
+uhum
+Renato Vargas
+Renato
+pronts
+vamo listar as tarefas lá no docs
+Renato Vargas
+Renato
+isadora, vc pretende pegar a parte de algoritmo?
+Isadora Sophia
+Isadora
+pode ser
+Renato Vargas
+Renato
+só que imaginei que vc ia querer haha
+dá pra fazer alguma coisa sem ter a cena e o robô?
+Isadora Sophia
+Isadora
+heheheheh
+então
+acho q dá
+só q vai mudar algumas coisas
+depois
+Renato Vargas
+Renato
+é que não sei quando vc começaria, mas eu sepá só vou fazer mais no sábado
+eu tava pensando eem fazer essa preparação da cena e do robô
+mas não sei oq vcs @João @Gustavo querem fazer
+João Pedro Ramos Lopes
+João Pedro
+eu posso ficar com a parte de montar o v-rep e a cena
+mas não sei exatamente quando vou conseguir fazer isso
+Renato Vargas
+Renato
+é que isso e o algoritmo eu acho que é o que precisa estar pronto pra esse fds, pq todo o resto depende dos dois
+se puder só mexer depois, tem os ajustes e treinamento tbm
+JUN 15TH, 10:31PM
+
+Renato Vargas
+Renato
+btw, ela confirmou recebimento da proposta
+👍
+1
+JUN 18TH, 1:49PM
+
+Renato Vargas
+Renato
+@João vc começou algo na cena?
+pq senão eu queria aproveitar que posso mexer hoje e fazer já
+João Pedro Ramos Lopes
+João Pedro
+Não fiz nada n
+Pode fazer
+Só vou conseguir a partir de terça
+Renato Vargas
+Renato
+beleza então
+Renato Vargas
+Renato
+
+conheçam robbie! haha
+Isadora Sophia
+Isadora
+heheheheheheh
+aí n tem o spot, tem?
+aquele do gif q o cara chuta
+dá mó dó
+Renato Vargas
+Renato
+no vrep só esse daí que achei
+Isadora Sophia
+Isadora
+tá bonitinho heheh
+Renato Vargas
+Renato
+sim suhahusahuas
+o que precisa deixar como input e output do robo?
+Isadora Sophia
+Isadora
+então
+a gente tem que pensar
+pq assim
+eu recebo um array de valores
+e retorno uma ação
+que no fundo é um array de ações tb
+é bem black box
+tem q pensar qq a gente precisa no problema
+vai ser assim
+eu vou receber o array de estado
+aí eu vou jogar uma açào pro robô
+o robô vai falar qual o novo estado dele
+e o reward q essa ação me deu
+Renato Vargas
+Renato
+beleza
+eu acho que os estados podem ser as 8 juntas de todas as pernas
+será que precisa de mais?
+a rotação?
+pq tem umas pequenas variações de angulo
+eu penso que talvez possa ser só as juntas, pq tecnicamente cada passo tem que ser igual passando pelos mesmos estados
+Isadora Sophia
+Isadora
+to tentando descobrir
+olha
+https://github.com/openai/gym/blob/master/gym/envs/mujoco/ant.py
+https://github.com/openai/gym/blob/master/gym/envs/mujoco/assets/ant.xml
+é um environment de um robô q anda em 4 patas tb
+pra gente ter ideia
+sei lá
+ele dá a velocidade como input tb
+Renato Vargas
+Renato
+mas não tá mostrando a array de estados né
+só fala self.state_vector()
+Isadora Sophia
+Isadora
+então
+vc tem q fuçar
+tá meio dark
+hahaha
+entra no xml
+tem a classe mujoco_env que ele pega do xml esses dados
+Renato Vargas
+Renato
+mas parece que o estado é só a posição e velocidade
+Isadora Sophia
+Isadora
+é que a posição tem a posição de cada joint
+eu acho
+a gente tem que devolver ação q diz q pernas a gente vai mexer e tal
+Renato Vargas
+Renato
+verdade
+isso, e anti-horario ou horario
+poderia ser 8 estados das juntas, e 16 ações, 2 para da junta
+eu acho né hsahusauh
+velocidade acho que não precisa
+Isadora Sophia
+Isadora
+cara dssaiofjxzoivjdad eu tenterai tipo
+pesquisar paper ou algum programa rodando
+q tenha um role quadrupede andando
+e vendo qq eles fazem
+é mais safe
+Renato Vargas
+Renato
+pode ser shuahusauhsa
+JUN 18TH, 3:44PM
+
+Renato Vargas
+Renato
+gato maldito
+se solta ele na cena parado ele fica tremendo e girando sozinho
+João Pedro Ramos Lopes
+João Pedro
+tremendo e girando???
+Renato Vargas
+Renato
+isso, parece que tá tendo um treco uhsahusahusa
+mas parece que é por causa do pescoço que tá pra mexer com torque
+vo ver se dá pra fixar o pescoço e o rabo
+João Pedro Ramos Lopes
+João Pedro
+qlqr coisa só rancar a cabeça
+hahahaha
+Renato Vargas
+Renato
+sahusahushuauhsa fiz isso sem querer já
+Isadora Sophia
+Isadora
+hahahahahahaah wtff
+Renato Vargas
+Renato
+
+João Pedro Ramos Lopes
+João Pedro
+se tirar o rabo ele fica igual o spot
+hahaha
+Renato Vargas
+Renato
+sahusahushuahusa verdade
+dá pra remover as juntas e deixar só o modelo da cabeça e rabo
+Isadora Sophia
+Isadora
+o rabo e a cabeça tao fudendo?
+Renato Vargas
+Renato
+só a cabeça que fazia ele tremer quando tá parado
+mas tecnicamente dá pra robo aprender a andar com isso né
+Isadora Sophia
+Isadora
+hahaha dá
+Renato Vargas
+Renato
+mas aí tem que colocar o estado do pescoço junto
+Isadora Sophia
+Isadora
+só achei estrango msm
+João Pedro Ramos Lopes
+João Pedro
+deve ser a ideia
+Renato Vargas
+Renato
+e do rabo
+João Pedro Ramos Lopes
+João Pedro
+mas se ele treme parado, imagina andando
+qual o nome do robo
+?
+Renato Vargas
+Renato
+robbie
+Isadora Sophia
+Isadora
+ele mexe a cabeça e o rabo entao?
+João Pedro Ramos Lopes
+João Pedro
+esse é o nome mesmo ou o apelido?
+Renato Vargas
+Renato
+nome msm
+tem no vrep ja
+ele mexe a cabeça por torque
+e mexe o rabo sozinho tipo abanando
+pra cima e pra baixo
+vendo bem o pescoço nem mexe praticamente, mas dá essa bugada, então acho que podemos deixar desativado msm
+se quiserem o rabo, eu acho que é de boa
+Renato Vargas
+Renato
+será que vamos poder usar ground true?
+meio difícil calcular
+Isadora Sophia
+Isadora
+não sei, acho que sim?
+hahaha to chutando msm
+Renato Vargas
+Renato
+tbm acho que sim hahaha
+acho meio impossível calcular a posição na vdd
+por enquanto vamo assim msm e confirmamos com ela qlqr coisa
+Isadora Sophia
+Isadora
+uhum
+Renato Vargas
+Renato
+o robo pode retornar os valores continuos?
+Isadora Sophia
+Isadora
+isso
+uns float
+Renato Vargas
+Renato
+beleza
+Renato Vargas
+Renato
+to implementando as ações agora
+esse robo a gente controla as justas diretamente, e não a velocidade, mas aí dá pra simular isso do lado do cliente
+mas o que uma ação faria?
+setaria a velocidade?
+Isadora Sophia
+Isadora
+hmmmm tem que pensar
+por exemplo
+Renato Vargas
+Renato
+aí poderia passar a velocidade da junta como estado
+Isadora Sophia
+Isadora
+mas ele tb diria a posiçao dos joints
+ou something
+n tem nenhum codigo demo q faz o gatinho andar na internet?
+wjenwkekqekqiekwneqj acho q n ne
+seria bom pra ter ideia
+sei la
+Renato Vargas
+Renato
+ele já vem com um código
+Isadora Sophia
+Isadora
+ah
+qq ele mexe?
+Renato Vargas
+Renato
+direto na posição da junta
+no angulo no caso
+Isadora Sophia
+Isadora
+entao deve ser isso
+nao?
+Renato Vargas
+Renato
+sim sim
+a gente tem que mudar a posição direto msm
+mas aí seriam ações demais
+Isadora Sophia
+Isadora
+quantas ficam?
+tipo, no script?
+Renato Vargas
+Renato
+então, se for por posição não sei
+o que eu tava pensando era em deixar só as ações de rotacionar de um lado ou pro outro e de não fazer nada
+e rotacionar teria uma velocidade pré-definida
+e a gente atualiza a posição usando um delta time
+Isadora Sophia
+Isadora
+hmm eu tava perguntando no script q ja vem com o robo mesmo
+Renato Vargas
+Renato
+ah, lá não é por estados, é calculado por equações
+mas vai de -90 a 90
+Isadora Sophia
+Isadora
+e são quantos valores q ele calcula?
+Renato Vargas
+Renato
+-90 a 90 pra 16 juntas
+Isadora Sophia
+Isadora
+você acha too much?
+eu acho ok
+Renato Vargas
+Renato
+é que a gente já vai ter isso de possíveis estados
+aí as combinações vão ser bem grandes, imagino
+Isadora Sophia
+Isadora
+ah
+entendi
+Renato Vargas
+Renato
+a gente basicamente tá mapeando um estado a um estado
+não que eu entenda as implicações disso sahusahuhsua
+Isadora Sophia
+Isadora
+eu também não entendo muito bem não hahahah
+sei lá por mim tem só o output da neural net e pronto adsfiojcxzvojadsf
+pera
+achei algo bom
+Renato Vargas
+Renato
+e eu acho que não faz muito sentido a gente mudar pra qualquer posição direto, sem ser por velocidade, pq não é natural mudar de -90 pra -80 em 1ms por exmeplo
+Isadora Sophia
+Isadora
+
+no algoritmo q usei
+eles falam a dimiensão de estado (s) e de ações (s)
+eu n entendi oqq é o o mas tá
+Renato Vargas
+Renato
+não entendi muito não sauhsauhhsua
+Isadora Sophia
+Isadora
+tem o problema da cheetah
+que é um robô 2d
+ele tem 18 estados
+recebe 18 floats pro vetor
+e tem dimensão 6 pra ação
+volta 6 floats no vetor output de ação
+aí tem dimensão o
+q n sei qq isso
+é um robô com duas patas 3d*
+a minha teoria é que eles tinham uma dimensão de observação grande e limitam pra um número menor na dimensão de estado
+que usam pro algoritmo
+Renato Vargas
+Renato
+acho que é isso mesmo
+Isadora Sophia
+Isadora
+https://arxiv.org/pdf/1509.02971.pdf
+arxiv.org
+arxiv.org
+tá na página 12
+Renato Vargas
+Renato
+igual usar vários sensores pra setar uma flag ser está tombado ou não
+tá disponível essa task aí?
+Isadora Sophia
+Isadora
+que task?
+Renato Vargas
+Renato
+esse problema*
+Isadora Sophia
+Isadora
+então
+Renato Vargas
+Renato
+tem o código dele?
+Isadora Sophia
+Isadora
+é do mujoco
+aí tem a api pra usar o mujoco nesse problema naquele código do github que eu passei
+q é meio q uma api já facilitando a api do mujoco hahah
+o algoritmo do paper n tem (eles só dao pseudocodigo etc)
+Renato Vargas
+Renato
+hmmm tendi
+por enquanto eu vou fazer o rolê de setar a velocidade só pra ter como rodar o algoritmo
+Isadora Sophia
+Isadora
+beleza
+Renato Vargas
+Renato
+e é o mais fácil de fazer
+Isadora Sophia
+Isadora
+acho q a gente poderia ter tipo
+4 de output pra ação
+um pra cada joint faz algo
+Renato Vargas
+Renato
+pq 4?
+ah, tinha falado errado antes o numero de juntos, não são 16, são 8
+Isadora Sophia
+Isadora
+eu tava vendo a tabela é 4 parece um valor razoável haha
+sei lá
+pega ela de referência
+estado e ação
+Renato Vargas
+Renato
+mas não somos nós que definimos quais são as açoes?
+Isadora Sophia
+Isadora
+sim
+eu sugeri que a gente tivesse um valor pra cada 2 joints
+sei lá
+se tivr outra ideia 😛
+nossa sorry o emoticon foi
+dsfiodsajfioczxjvdf
+anyway
+eu acho q 8 fica mt
+tipo
+dá pra ir
+mas eu to com medo
+mas a gente não pode ter tipo uma ação
+sendo q a gente tem 4 pernas
+não entendi mt bem
+tipo, a tabela é boa pra gente definir uma relação boa de input vs output
+Renato Vargas
+Renato
+mas não entendi como aproveitaria um valor pra duas joints
+pq elas mexem independentes
+Isadora Sophia
+Isadora
+a gente tem quatro membros num quadrúpede
+às vezes tirar algo disso
+Renato Vargas
+Renato
+eu acho que a gente vai ficar quebrando a cabeça pra fazer algo que o algoritmo vai ser melhor que a gente shuahusahusahu
+mas vamo ir pensando
+Isadora Sophia
+Isadora
+D:
+eu não sei
+oq vc quer sugerir?
+Renato Vargas
+Renato
+manter as 8 mesmo por enquanto
+Isadora Sophia
+Isadora
+tá
+mas e de estado?
+qual a dimensão de estado?
+Renato Vargas
+Renato
+pelo menos 9, 8 pras juntas e 1 pro rabo
+mas aí não sei o que mais precisa
+Isadora Sophia
+Isadora
+não dá pra extrair mais informação das juntas?
+x e y?
+ângulo?
+Renato Vargas
+Renato
+é só angulo que é importante msm, o resto não tem nada de importante eu acho
+Isadora Sophia
+Isadora
+eu botaria
+a gente vai ter mt parâmetro na rede
+e olha a tabela
+Renato Vargas
+Renato
+é que se a junta está num angulo, essas outras informações são sempre as mesmas
+Isadora Sophia
+Isadora
+o pessoal que faz mais de 8 ações recebe uns 20 estados
+Renato Vargas
+Renato
+é redundante
+Isadora Sophia
+Isadora
+ue
+Renato Vargas
+Renato
+no paper fala que essa relação é importante?
+Isadora Sophia
+Isadora
+o ângulo e x, y tão relacionados?
+achei q n tinha nd a ver
+Renato Vargas
+Renato
+x, y locais,
+vc tá falando de x e y global?
+Isadora Sophia
+Isadora
+cara... isso é meio q pra machine learning em geral, a gente precisa de vários inputs pra um problema complicado q nem esse
+mas a gente pode tentar...
+eu só acho risky
+x, y relativos ao robô ou algo do tipo
+Renato Vargas
+Renato
+o relativo eu acho que tá diretamente relacionado com o angulo sim
+o y e orientação do próprio robo eu acho que faz sentido colocar
+pq tem que diferenciar o estado que ele tá certinho reto  de outros estados
+pode colocar os 3 angulos da rotação do robo tbm
+pq todos eles mudam um pouco enquanto ele anda
+Isadora Sophia
+Isadora
+entendi
+Renato Vargas
+Renato
+e muda bastante quando cai
+Isadora Sophia
+Isadora
+ahh
+outra coisa
+eu preciso de um feedback
+se o robô caiu
+e de uma função que reinicia a cena
+hahah
+pra recomeçar
+Renato Vargas
+Renato
+testar se o robo caiu é meio difícil eu acho...
+Isadora Sophia
+Isadora
+seria algo estilo stuck()
+Renato Vargas
+Renato
+não dá pra só esperar o timeout?
+Isadora Sophia
+Isadora
+pode ser tb...
+mas aí vai demorar mais o treinamento
+pq vai ser uma iteraçào meio pointless :b
+Renato Vargas
+Renato
+é que ele pode só estar parado também e pensar que está stuck
+nesse caso pode finalizar a execução tbm?
+Isadora Sophia
+Isadora
+hmmmmm
+acho q sim
+Renato Vargas
+Renato
+algo do tipo se não mexer em 5 segundos, para
+Isadora Sophia
+Isadora
+é tipo uma flag q vc me devolve
+new_state_input, reward, done = self.robot.act(a_t)
+seria tipo isso
+Renato Vargas
+Renato
+done seria?
+se completou com sucesso?
+Isadora Sophia
+Isadora
+se ele caiu
+Renato Vargas
+Renato
+false se caiu?
+Isadora Sophia
+Isadora
+hmmm true se caiu hahah
+quer dizer q a iteração tá done
+e n tem mais oq fazer
+e reinicia
+Renato Vargas
+Renato
+ah tá tá
+o timeout vai fazer onde?
+Isadora Sophia
+Isadora
+então
+eu q faço
+Renato Vargas
+Renato
+okay
+ah, tem mais 4 juntas que mexem automaticamente na perna
+não sei qual a função delas, mas pelo jeito que mexem, talvez seja interessantes colocar também
+12 juntas das pernas + 1 rabo + 1 do y + 3 da orientação
+17 tá bom já? sauhsuhahusa
+Isadora Sophia
+Isadora
+tá ok mas se conseguir pegar mais input seria mt bom hahaahah
+Renato Vargas
+Renato
+se for fazer o output sendo velocidades, a gente pode colocar as 8 velocidades no estado também
+ficariam 25
+a propósito, eu acho melhor fazer esse act() não retornar as coisas
+e pegar numa função separada
+pq a ação enviada não vai ter efeito imediato
+não sei se isso tem problema ou não
+Isadora Sophia
+Isadora
+hmm
+ahahahah eu meio q preciso na hora
+pode demorar 1 segundo pra responder
+eu não sei
+Renato Vargas
+Renato
+depois a gente ve certinho como faz, to retornando na hora mesmo
+commitei agora já com o robo, a main e a cena
+só que não tá rodando ainda, por um bug estranho
+Isadora Sophia
+Isadora
+beleza
+o importante é a gente tentar fechar até uma semana antes
+hahaha
+Renato Vargas
+Renato
+assim espero sauhhusa
+Isadora Sophia
+Isadora
+DOFIASDFJIOCZXJVADF
+tentar fechar = o negocio rodar
+Renato Vargas
+Renato
+sim sim sahuuhsa
+Renato Vargas
+Renato
+caralho, olha o que tava causando o bug
+eu tenho duas arrays active_joints e passive_joints
+ai pra montar o estado eu faço
+"
+state = self.active_joints
+state += self.passive_joints
+"
+o resultado tava sendo basicamente 
+self.active_joints += self.passive_joints
+pq o primeiro assingment é por referência
+Renato Vargas
+Renato
+Renato Vargas
+Renato
+
+Renato Vargas
+Renato
+shasuhusahusauhsahsuahusa
+to tocando velocidades random em todas as juntas
+Isadora Sophia
+Isadora
+aQorkwkrkqkrkwkek2wkwkqkwkqpwqkeoq
+Renato Vargas
+Renato
+o output poderia ser uma velocidade continua ou só pode ser valor discreto?
+Isadora Sophia
+Isadora
+que output vc diz?
+tem o estado, ação e reward
+Renato Vargas
+Renato
+output do algoritmo
+input pro robo, no caso
+as ações, no caso
+tpo, a ação poderia vai pra uma velocidade x
+sendo x continuo
+?
+Isadora Sophia
+Isadora
+uhum
+pode ser continuo
+Renato Vargas
+Renato
+hmmm talvez seja interessante
+Renato Vargas
+Renato
+eu juro que to começando ver o rosto do nicholas cage nesse gato
+Renato Vargas
+Renato
+commitei funfando agora
+Renato Vargas
+Renato
+
+Isadora Sophia
+Isadora
+WKFKWKEKWKEKQKWQKEKQKWKQKEKQKEKQKEKQKQKEKQKWKEKQOE
+mano que medo
+parece um episodio de dont hug me im scared
+Renato Vargas
+Renato
+sauhsahuhsauhusahuasuhsa
+Que
+O que tá acontecendo nesse gif???
+Vcs explodiram o cachorro
+Renato Vargas
+Renato
+é a melhor geração do nosso robo até agora
+Isadora Sophia
+Isadora
+imagina a reaçao da esther
+abrindo nosso programa
+e vendo isso
+Renato Vargas
+Renato
+sahusahuhusahushusahuhsauhusa
+fiz coisa agora que nem quero mostrar
+Isadora Sophia
+Isadora
+mqkekqkekqmwqmdkskclwldkwkdwkekwkdow0
+Renato Vargas
+Renato
+mas relaxem que tá funfando quase tudo
+isso aí é fruto do reset
+Renato Vargas
+Renato
+Play	
+-0:42
+Additional Visual SettingsEnter Fullscreen	Unmute
+wait for it
+Isadora Sophia
+Isadora
+cyigcxfggy7ikvcddtikvxfyikvdyiovxruicd7
+Renato Vargas
+Renato
+btw, fica aqui o programa que to usando pra gravar a tela no linux: https://github.com/phw/peek
+phw/peek
+peek - Simple animated GIF screen recorder with an easy to use interface
+github.com
+muito bom, podemos usar ele
+Isadora Sophia
+Isadora
+ahhh nossa brigada
+tava usando uns mais ou menos
+do xfce
+Renato Vargas
+Renato
+esse foi bem sucessão
+MON 2:19PM
+
+Renato Vargas
+Renato
+fiz o reset da cena agora e também to detectando o stuck
+não precisa nunca mais dar reset manual na cena, pq o robo já faz isso quando conecta 😛
+mais rápido pra testar agora
+@Isadora na main eu já meio que fiz o timeout pra resetar a cena e tal pra ficar lá como tem que ser feito
+acho que única coisa que pode precisar ajustar no robo são mesmo, os estados, ações e rewards
+TUE 7:14PM
+
+Isadora Sophia
+Isadora
+gente como ta a aula?
+eu to resolvendo uns pepinos
+mas se precisar eu apareco
+Renato Vargas
+Renato
+tendo avaliação de curso
+e vai ter matéria normal
+só eu vim do grupo haha
+alguma coisa pra perguntar?
+perguntei do ground truth e podemos usar sin
+Isadora Sophia
+Isadora
+pergunta sobre a dimensao das acoes talvez?
+do negocio de estado vs açao
+Renato Vargas
+Renato
+ele tá perguntando de preferência de dia de apresentação, terça ou quinta
+eu preferiria quinta
+Isadora Sophia
+Isadora
+a data de entrega muda?
+eu rb
+tb*
+Renato Vargas
+Renato
+nops
+Isadora Sophia
+Isadora
+pera ai a entrega é q dia
+Renato Vargas
+Renato
+segunda acho
+Isadora Sophia
+Isadora
+mds... achei q era sexta q vem
+dia 28
+Renato Vargas
+Renato
+nem
+apresentação é terça ou quinta já
+TUE 9:05PM
+
+João Pedro Ramos Lopes
+João Pedro
+Vish
+Onde a gente tá com o algoritmo?
+Isadora Sophia
+Isadora
+eu implementei
+falta rodar
+ver os mil bugs
+consertar os mil bugs
+e fazer serializaçao do treinamento
+Isadora Sophia
+Isadora
+se quiserem dar o setup do tensorflow (se tiver gpu instala com suporte a gpu)
+e o keras
+eu vou tentar terminar isso até quinta........ tá foda fodíssima essa semana D:
+WED 12:54AM
+
+Renato Vargas
+Renato
+acha que daria pra dividir o trabalho em outras pessoas tbm?
+barney e jobs tão como de tempo?
+Eu arranjo tempo de alguma forma
+Renato Vargas
+Renato
+eu só não sei o que mais dividir até o algoritmo estar pronto
+Tipo, a gente precisa do algoritmo, da cena, do treinamento e do relatório
+Renato Vargas
+Renato
+cena tá pronta e robô quase pronto, esperando o algoritmo pra ajustes
+Isadora Sophia
+Isadora
+então
+o negócio é deixar o algoritmo funcionando
+pra gente ficar treinando
+e mudando parâmetro
+n sei mt alé;m disso
+D:
+O que falta no algoritmo?
+Isadora Sophia
+Isadora
+falta rodar
+ver as coisas dando pau
+pq o input (x) não tá no formato (x, )
+coisas de python
+vai levar 1 dia
+a api do keras mudou bastante tb etc por isso acho q tem q ajustar coisa
+e tem que ajustar o estado e ação
+q ainda não sei qual vai ser a dimensão
+ou como a gente vai devolver a ação
+se vai ser intervalo de 90 a -90 ou oq
+Renato Vargas
+Renato
+eu acho que a ação poderia ser uma velocidade de rotação de 2 a 2, ou algo assim
+quando for fazer essa parte, me fala pra fazer a parte do robo
+Isadora Sophia
+Isadora
+tipo seria bom a gente já ir decidindo
+pq assim
+essa parte é só escrever uma linha
+na real
+que é literalmente definir o output\
+No último trabalho a Esther tinha falado pra usar velocidade angular e velocidade linear no fuzzy, e depois converter
+Faz sentido pras patas do robô isso?
+Renato Vargas
+Renato
+então, por mim fecha na velocidade angular msm
+Isadora Sophia
+Isadora
+eu preciso:
+Renato Vargas
+Renato
+velocidade linear não faz muito
+Isadora Sophia
+Isadora
+dimensão do output e intervalos
+Renato Vargas
+Renato
+e mexer com fuzzy melhor não hahaha
+Isadora Sophia
+Isadora
+nossa fuzzy is ded
+só tem paper de 1990 de fuzzy
+siofdjssxcoizvjaodifj
+to zoando
+eles usam
+mas
+iodfjsaoifjxzcoivj
+Renato Vargas
+Renato
+output é de dimensão 8
+Não tô sugerindo de usar fuzzy kkkkkkk
+Renato Vargas
+Renato
+com valores de -X a X
+Isadora Sophia
+Isadora
+hmmm
+Pq 8?
+Renato Vargas
+Renato
+sendo que X a gente ajustaria, mas eu chutaria uns 3
+8 juntas
+Isadora Sophia
+Isadora
+to com medo dessas dimensões
+mas vamo q vamo
+fazer oq
+oifdjasoifjxovja
+Renato Vargas
+Renato
+precisa de uma velocidade para cada junta
+vamo deixar como primeira tentativa
+o outro grupo que tá usanod o msm algoritmo conseguiu convergencia em 10 min
+em 170 iterações
+Promissor
+Renato Vargas
+Renato
+então, de input acho que temos dimensão 25, então eu acho que a proporção tá aceitável
+Isadora Sophia
+Isadora
+oloco
+eles tão usando o ddpg?
+pra qual problema?
+25 tá bom
+Renato Vargas
+Renato
+eu tive que sair antes da aula acabar, aí não deu pra discutir
+mas eles falaram algo de ficar em pé
+Isadora Sophia
+Isadora
+entenid
+Renato Vargas
+Renato
+pelo que a professora falou, era o mesmo que vc falou pra ela aula passada
+se vc não mudou, deve ser o msm
+Isadora Sophia
+Isadora
+eu escolhi um outro
+mas é tipo
+uma branch da mesma ideia
+Renato Vargas
+Renato
+hmmmm
+Isadora Sophia
+Isadora
+teoricamente deveria otimizar
+sdaijfosjfoixcjvoiadjf
+Renato Vargas
+Renato
+tem um D a mais?
+sauhsahuhusahu
+Isadora Sophia
+Isadora
+´e tipo isso
+fijfoidsajfoiasjfoiasf
+eles botam uma brisa
+de atualizar a q function
+Renato Vargas
+Renato
+brisa deep suhauhsauhsa
+Isadora Sophia
+Isadora
+iojsdfoiasjfoiasjf
+Renato Vargas
+Renato
+(off topic, mas saiu nota do t6 de 558)
+Isadora Sophia
+Isadora
+FUC
+BOA
+Renato Vargas
+Renato
+paseei carai
+Isadora Sophia
+Isadora
+fodse
+tá bom
+IOJDFSIOASJFKXCZVMKADKF
+Renato Vargas
+Renato
+dshhusahuashusahu
+justo
+Isadora Sophia
+Isadora
+n passei
+ainda
+pq zerei um teste
+vou ter q falar com ele na quinta
+q saco
+Quero ver como ele vai fazer pra ver as notas de todo mundo em uma hora
+Renato Vargas
+Renato
+shahusahushuahu verdade
+a revisão de nota vai ser quando?
+Isadora Sophia
+Isadora
+não sei
+na quinta?
+difjaoivjzcoxijafad
+Ele disse que sim
+Vai ser tudo na quinta
+Renato Vargas
+Renato
+paulera
+THU 6:42PM
+
+Renato Vargas
+Renato
+alguém vai hoje?
+tava pensando em não ir pra estudar
+Isadora Sophia
+Isadora
+eu ia
+Renato Vargas
+Renato
+ia? hahaha
+Isadora Sophia
+Isadora
+hahaha vou
+Renato Vargas
+Renato
+se ela perguntar da data da apresentação, vc pode falar que seria melhor quinta então?
+Isadora Sophia
+Isadora
+ok
+Renato Vargas
+Renato
+Isadora Sophia
+Isadora
+ok gente
+terminei de codar a ai
+D:
+falta integrar com input//output do robo
+Renato Vargas
+Renato
+aeeee valeu!
+ele ainda não tá usando os estados do robo então?
+Isadora Sophia
+Isadora
+nopee
+mas assim
+era pra estar bala
+em ddpg.py tem uma pseudo api de robot
+e mostra oq ela devolve
+tá bem parecido
+acho que tem uns detalhezinhos só
+tipo definir a dimensao do estado e ações no objeto do robo
+Renato Vargas
+Renato
+saqueei
+se for de boa, posso fazer agora
+Isadora Sophia
+Isadora
+uhum
+se estiver algo confuso me avisa
+a ideia é q o main.py só chama ai.train() e depois ai.tick()
+na real ai.run() faria mais sentido haha
+Renato Vargas
+Renato
+não sei se entendi o problema hahah
+Isadora Sophia
+Isadora
+falta: fazer ela ter a função get_state
+e eu preciso saber qual a dimensão da minha ação e do meu estado, pra passar de parâmetro pra minha instância de ai
+Renato Vargas
+Renato
+eu vou colocar numa constante então as coisas
+e o domínio dos valores tbm?
+angulo minimo e máximo
+e velocidade mínima e máxima
+Isadora Sophia
+Isadora
+então
+ela tá devolvendo uma açao com valores de -1 a 1
+eu pensei da gente escalar isso depois pros intervalos
+Renato Vargas
+Renato
+e se criar uma constante com esse valor 1 então e usar ela por enquanto?
+aí fica fácil mudsr
+Isadora Sophia
+Isadora
+hmm
+nao entendi
+haha
+ela devolve um vetor de açoes
+de tamanho ACTION_DIM
+com valores -1 a 1
+e passa de input pro robo agir
+em act ()
+Renato Vargas
+Renato
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaah, agora entendi
+eu acho
+sauhsahusahusuahusa
+Isadora Sophia
+Isadora
+hehehehehehehe
+Renato Vargas
+Renato
+o proprio robo vai lá e escala esse valor pra sua velocidade?
+Isadora Sophia
+Isadora
+issoo
+Renato Vargas
+Renato
+genial sahuhsuahusahusa
+Isadora Sophia
+Isadora
+heheheheheeheheh
+Renato Vargas
+Renato
+mas não entendi isso do train, tick e run que vc falou
+só tem o train e run aqui
+Isadora Sophia
+Isadora
+eu acabei de mudar tick pra run
+hahahah
+vc chama ai.train e dps ai.run
+e n tem loop
+o loop fica em run
+Renato Vargas
+Renato
+shahsuahusauh lol
+Isadora Sophia
+Isadora
+vc especifica quantos episodios quer rodar e por quantas iteraçoes
+Renato Vargas
+Renato
+beleza, beleza
+vo mudar pra função certa de reiniciar a cena aqui tbm
+Isadora Sophia
+Isadora
+uhum
+eu n lembro como vc deixou setado pra reiniciar a cena
+eu rpeciso reiniciar a cena no script
+Renato Vargas
+Renato
+isso, é o robo que faz isso
+Isadora Sophia
+Isadora
+ah ta
+Renato Vargas
+Renato
+pq ele precisa se reconectar tbm
+Isadora Sophia
+Isadora
+saquei
+reset robot?
+Renato Vargas
+Renato
+isso
+vc vai trocar ai ja?
+Isadora Sophia
+Isadora
+posso arrumar
+Renato Vargas
+Renato
+tava trocando já, mas tanto faz haha
+tem que instalar oq pra rodar?
+tensorflow, numpy e que mais?
+Isadora Sophia
+Isadora
+tensorflow, keras e numpy
+dá pra pegar tudo com pip
+to no tensorflow 1.2.0
+keras 2.0.2
+Renato Vargas
+Renato
+okay
+python 2.7?
+Isadora Sophia
+Isadora
+yep
+Renato Vargas
+Renato
+tenho gpu aqui, mas parece mó trampo instalar pra gpu
+foi de boa?
+Isadora Sophia
+Isadora
+aaa dá uma tretinha
+tipo
+as vezes é super rapido e de boa
+as vezes n
+hahaha
+vc tem cuda instalado?
+Renato Vargas
+Renato
+sahusahusahu
+tenho não
+Isadora Sophia
+Isadora
+entao deixa pra depois
+hahaha
+Renato Vargas
+Renato
+tenho instalado o driver proprietário da nvidia só
+Isadora Sophia
+Isadora
+precisa do cuda pra developar na gpu
+tem as apis pra falar com o driver lá
+basicamente
+Renato Vargas
+Renato
+hmmm entendi
+Isadora Sophia
+Isadora
+tipo, levaria uns 20min pra setar
+com o tensorflow
+acho q pra baixar o cuda tem q se cadastrar etc
+Renato Vargas
+Renato
+mas o pc continua com o driver normal tbm?
+Isadora Sophia
+Isadora
+uhum
+n afeta
+Renato Vargas
+Renato
+pro ubuntu 17.04 parece que tem o cuda no repositório oficial 😀
+Isadora Sophia
+Isadora
+olocoooo
+legal
+17.04 ta estavel?
+Renato Vargas
+Renato
+eu acho que sim hahaha
+só não é LTS
+João Pedro Ramos Lopes
+João Pedro
+Deu errado umas 3 vezes última vez que eu fui instalar no ubuntu
+Renato Vargas
+Renato
+no 17?
+João Pedro Ramos Lopes
+João Pedro
+No mint tambem deu trampo daí eu desisti
+Sim
+Renato Vargas
+Renato
+"sudo apt-get install nvidia-cuda-dev nvidia-cuda-toolkit"
+direto do repo assim?
+João Pedro Ramos Lopes
+João Pedro
+Ah, n lembro
+Adicionei um repo e dei APT get
+mas eu to bem perdido
+dá pra ajudar em que aí
+?
+Renato Vargas
+Renato
+ah, no 17.04 vc instala direto do repo oficial
+João Pedro Ramos Lopes
+João Pedro
+eh, certamente não foi do oficial
+Renato Vargas
+Renato
+a gente acabando aqui, acho que dá começar a tentar rodar e achar problema
+João Pedro Ramos Lopes
+João Pedro
+talvez realmente tenham estabilizado
+Isadora Sophia
+Isadora
+aaa btw
+a gente apresenta dia 29
+hahaha
+João Pedro Ramos Lopes
+João Pedro
+mas tem que entregar dia 27 de qlqr forma né?
+Isadora Sophia
+Isadora
+é
+mas o individual é ate o dia 28
+João Pedro Ramos Lopes
+João Pedro
+vcs vão fazer o que no individual?
+Isadora Sophia
+Isadora
+to fazendo reinforcement learning com multiagentes
+Renato Vargas
+Renato
+entrega dia 26 afaik
+vo fazer de deep learning em jogos
+João Pedro Ramos Lopes
+João Pedro
+saquei
+Renato Vargas
+Renato
+e vc_
+?
+João Pedro Ramos Lopes
+João Pedro
+tenho um trabalho pesadíssimo pro dia 26 também
+vou ver isso só depois 😕
+passar dia 27 e parte do 28 nisso
+pq dia 28 tem outro
+ainda não faço ideia do que falar na vdd
+Isadora Sophia
+Isadora
+calma
+João Pedro Ramos Lopes
+João Pedro
+mandar email pra ela no fds
+Isadora Sophia
+Isadora
+o trabalho é pro dia 26
+e o relatório dia 28
+e a gente apresenta dia 29
+João Pedro Ramos Lopes
+João Pedro
+sim, mas tem que ter tudo pronto
+o relatório do individual, não?
+em grupo é pro dia 26 mesmo pelo que eu entendi do email
+Isadora Sophia
+Isadora
+o relatório individual é dia 28
+o trabalho, que inclui o relatório, dia 26
+Renato Vargas
+Renato
+no run() só tá executando o que temos atualmente sem treinar mais né?
+Isadora Sophia
+Isadora
+yep
+Renato Vargas
+Renato
+commitei agora os scripts já pegando as dimensões e o robo certrinho
+só não consegui rodar ainda, pq não parei pra instalar as dependencias tudo ainda
+Isadora Sophia
+Isadora
+ok
+Renato Vargas
+Renato
+tem 3 scripts
+test_robot.py que roda sem a AI
+train_robot.py que treina alguns episódios e roda uma vez
+run_robot.py que só roda o robô algumas vezes
+Isadora Sophia
+Isadora
+barney, vc consegue mexer já?
+João Pedro Ramos Lopes
+João Pedro
+consigo sim
+começar a treinar o robo?
+Isadora Sophia
+Isadora
+é
+João Pedro Ramos Lopes
+João Pedro
+arg
+esqueci de instalar de niovo (formatei o pc fds passado)
+vou instalar aqui rapidao
+daí eu basta rodar o script train_robot.py então?
+Isadora Sophia
+Isadora
+hmmm é hahah
+tem q investigar os parametros etc
+Renato Vargas
+Renato
+se eu não tiver feito alguma besterinha shuahsuau
+to tentando instalar os roles pra testar aqui
+João Pedro Ramos Lopes
+João Pedro
+os parâmetros são 
+
+        batch_size=32, wd=.01, gamma=.99, tau=.001, lra=.0001, lrc=.001,
+Isadora Sophia
+Isadora
+o robô não se mexe x_x mas acertei umas coisinhas tb
+alem desses tem o numero de episodios, steps
+João Pedro Ramos Lopes
+João Pedro
+ok
+e como eu vejo quão bem ele está indo?
+Isadora Sophia
+Isadora
+episolon, decay
+João Pedro Ramos Lopes
+João Pedro
+tem um valor numérico?
+Isadora Sophia
+Isadora
+buffer size
+os valores q eu botei tao todos com o paper
+a primeira coisa q eu tentaria é rodar ever como ta progredindo
+pq o robo nem ta se mexendo so far
+hahah
+ai bota uns log
+João Pedro Ramos Lopes
+João Pedro
+mas tem um valor numérico de saída que diz quão bem o robo ta indo?
+Isadora Sophia
+Isadora
+tem o reward
+q é impresso a cada episodio
+e deveria melhorar
+João Pedro Ramos Lopes
+João Pedro
+pq dependendo posso fazer um algoritmo genético em cima pras definir os parâmetro
+Renato Vargas
+Renato
+dá pra tentar aumentar a velocidade máxima
+tá 1 ainda
+manda um 10 só pra ver por enquanto shausuhahsua
+Isadora Sophia
+Isadora
+yep hahahah
+bom
+acho q tem q experimentar bastante ainda
+tinha a loss function
+que via se a network ta convergindo
+mas eu n sei se isso é uma metrica relevante em reinforcement
+eu sugiro dar uma lida no paper
+o link ta no codigo
+João Pedro Ramos Lopes
+João Pedro
+ok
+Uh oh! Couldn't load weights for actor network.
+Uh oh! Couldn't load weights for critic network.
+Isadora Sophia
+Isadora
+tudo bem
+é pq vc n tem salvo
+pq n rodou
+os arquivos de pesos
+.h5
+em aidata/
+João Pedro Ramos Lopes
+João Pedro
+o v-rep ta recebendo dados
+mas mais nada acontece
+o robo continua balançando o rabo apenas
+e o terminal não imprime nada
+Isadora Sophia
+Isadora
+sim
+pq ele ta executando steps
+do episodio
+e n imprime nada la dentro
+ai vc tem q acrescentar log
+pras açoes q ele faz
+ou algo do tipo
+e acho q tem mt step
+por episodio
+ai tenta diminuir
+João Pedro Ramos Lopes
+João Pedro
+em qual parte do código eu anexo o log?
+actor?
+ou robbie mesmo
+Isadora Sophia
+Isadora
+eu faria no ddpg
+João Pedro Ramos Lopes
+João Pedro
+ok
+Renato Vargas
+Renato
+aeeeee consegui instalar carai
+ou n:ao
+Renato Vargas
+Renato
+"Uh oh! Couldn't load weights for actor network.
+Uh oh! Couldn't load weights for critic network.
+Traceback (most recent call last):
+  File "train_robot.py", line 35, in <module>
+    train_robot()
+  File "train_robot.py", line 26, in train_robot
+    robbie_ai.train(MAX_EPISODES, MAX_STEPS)
+  File "/home/nestor/unicamp/mc959/final/ddpg.py", line 101, in train
+    a_t_raw = actor.helper.predict(s_t)
+  File "/home/nestor/.local/lib/python2.7/site-packages/keras/engine/training.py", line 1576, in predict
+    check_batch_axis=False)
+  File "/home/nestor/.local/lib/python2.7/site-packages/keras/engine/training.py", line 139, in _standardize_input_data
+    str(array.shape))
+ValueError: Error when checking : expected input_1 to have shape (None, 😎 but got array with shape (1, 25)
+"
+Isadora Sophia
+Isadora
+tenta dar pull
+vc tava trocando as dimensoes de acoes e estado
+Renato Vargas
+Renato
+ahhhhh
+Isadora Sophia
+Isadora
+hahah
+Renato Vargas
+Renato
+aeee foi
+quanto tempo leva um epi?:
+Isadora Sophia
+Isadora
+depende da quantidade de episodios
+tem q ir testando
+tava com 10 e acabando mt rapido
+ai mudei pra 10000 e ta demorando mt
+Renato Vargas
+Renato
+agora é só ficar alterando parametro até começar a mexer? hahaha
+Isadora Sophia
+Isadora
+i guess x_x hahaha
+João Pedro Ramos Lopes
+João Pedro
+rodando o train_robot, vai começar a treinar o robô com os parâmetros dados
+daí pra onde vai o resultado?
+Isadora Sophia
+Isadora
+ele vai atualizando valores na network
+e salvando no arquivo dentro de aidata
+pra recuperar depois
+João Pedro Ramos Lopes
+João Pedro
+dai depois basta rodar com run_robot?
+Isadora Sophia
+Isadora
+hmmm
+entao
+eu rodaria o run robot só quando ele tivesse andando
+pq da pra ver como ele ta se saindo em cada episodio
+dentro do vrep
+João Pedro Ramos Lopes
+João Pedro
+ah sim
+Renato Vargas
+Renato
+aaaaaaaaaaaaaaaaah calma
+não vai funfar msm
+João Pedro Ramos Lopes
+João Pedro
+mas o que eu tava querendo dizer é, o run_robot roda a melhor até agora, certo?
+Renato Vargas
+Renato
+o uipdate do robo não tá sendo chamado shaushuahusa
+eu tinha feito como coisa separada
+Isadora Sophia
+Isadora
+acho que sim, nao sei haha ele só roda o modelo que ta salvo sem treinar
+tem como botar o update pra rolar dentro do act?
+Renato Vargas
+Renato
+acho que tem sim
+João Pedro Ramos Lopes
+João Pedro
+ow, eu dei um push
+se puderem dar pull
+é simplesmente mudando de print pra print() (permitindo rodar em python3)
+Isadora Sophia
+Isadora
+tudo bem
+Renato Vargas
+Renato
+aeeeeee
+tá mexendo
+commitei
+João Pedro Ramos Lopes
+João Pedro
+ahuhauahauha
+Renato Vargas
+Renato
+opa, commitei de novo removendo um print infeliz
+olha só, reward 11 já shauhsuahsua
+João Pedro Ramos Lopes
+João Pedro
+mó bugado
+to vendo que ele vai aprender a andar na base da tremida no final
+Renato Vargas
+Renato
+tá piorando saushauhsuahusa
+João Pedro Ramos Lopes
+João Pedro
+hahahah
+Renato Vargas
+Renato
+sepá
+um problema que pode dar é que eu não to dando reward pelo delta na posição, mas pela posição absoluta em cada frame
+então pequenas variações fora da reta podem não pesar tanto negativamente se ele já tiver andado bastante
+acham melhor fazer por um delta?
+João Pedro Ramos Lopes
+João Pedro
+não sei...
+teve uma cena que deu reward 25
+Renato Vargas
+Renato
+hmmmmmm na tremidinha? sahuhsuahusa
+João Pedro Ramos Lopes
+João Pedro
+daí minha dúvida era, se eu rodar o run_robot ficou salvo o 25 ou ele foi sobreescrito?
+não tava olhando pro robo na hora, só vi o valor
+Renato Vargas
+Renato
+acho que não vai ser o 25 que vai rodar não
+pq o 25 tem um role random de exploração em cima do que é o "melhor" agora
+sei lá, dá o run e ve suhauhsahusa
+João Pedro Ramos Lopes
+João Pedro
+File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 595, in __del__
+TypeError: 'NoneType' object is not callable
+Renato Vargas
+Renato
+vish, sei disso não
+to deixando rodando 100 vezes aqui pra ver o que vira
+pqp, ele não para de piorar shuahsuahusau
+João Pedro Ramos Lopes
+João Pedro
+reward 28 duas vezes aqui já
+Renato Vargas
+Renato
+- 13 já aqui
+João Pedro Ramos Lopes
+João Pedro
+foi pra 3
+e agora deu -0.34
+2.3
+Renato Vargas
+Renato
+-23
+João Pedro Ramos Lopes
+João Pedro
+ctz que o reward do seu ta pra frente?
+hahahaha
+robbie jackson
+Renato Vargas
+Renato
+shausahusausahua é pra tá
+João Pedro Ramos Lopes
+João Pedro
+aprendendo a fazer moon walk
+Renato Vargas
+Renato
+mas nem é ir pra traz
+ele tá girando indo pra esqueda
+João Pedro Ramos Lopes
+João Pedro
+ah
+tendi
+Renato Vargas
+Renato
+aprendeu a ciscar com uma pata de traz
+pensa que é galinha
+sauhsauhsahuhsuahsua
+João Pedro Ramos Lopes
+João Pedro
+oloco
+aqui ele só vibra
+como muda a posição inicial da camera?
+Renato Vargas
+Renato
+mas to achando estranho que ele não continuou com a estratégia que deu 23 no começo
+tira do play e muda .-.
+João Pedro Ramos Lopes
+João Pedro
+ops
+haha
+achei que o reset fazia a camera voltar
+não tentei tirar o pla
+play
+Renato Vargas
+Renato
+sahsauhsahuhusa
+o reset tira do play e coloca de novo
+João Pedro Ramos Lopes
+João Pedro
+de um epsódio pro outro ele mantém o que foi aprendido?
+Renato Vargas
+Renato
+imagino que sim
+se não não imagino fazendo sentdio sauhsha
+João Pedro Ramos Lopes
+João Pedro
+pq os valores aqui tão parecendo aleatórios
+então, mas ctz que ele tá?
+Renato Vargas
+Renato
+não, não sei de nada
+João Pedro Ramos Lopes
+João Pedro
+pa chega a parecer que não vai convergir nunca
+29 de reward
+Renato Vargas
+Renato
+-37 aqui
+vai ser muito da hora se de fato ele aprender né shuahsuahusahusa
+Isadora Sophia
+Isadora
+ele sobrescreve o arquivo mesmo
+;_;
+eu posso implementar pra ele salvar oq tiver reward maior só
+massss teoricamente quanto maia tempo roda melhor seria o modelo
+Renato Vargas
+Renato
+mas eu acho que faz sentido salvar o errado msm
+pra aprender não fazer aqui
+aquilo*
+Isadora Sophia
+Isadora
+yep
+Renato Vargas
+Renato
+episódio 60 já aqui
+agora tá estabilizando entre -1 e 0
+Isadora Sophia
+Isadora
+tá piorando?
+Renato Vargas
+Renato
+agora parou de piorar
+mas tá variando no negativo ainda
+-8 agora
+Isadora Sophia
+Isadora
+hahahaha manjeo
+manjei
+é q assim
+o modelo foi feito pra n acreditar no feedback de cara
+e ir confiando conforme vai passando episodios
+e ele tem noise pra explorar outras coisas
+Renato Vargas
+Renato
+hmmmm
+bem, vo ir deixando rodando enquanto estudo aqui
+aí dpeois pensar se precisa mexer em algo
+foda é que não consigo pensar no que mexeria
+João Pedro Ramos Lopes
+João Pedro
+talvez seria uma boa salvar num arquivo diferente só a melhor instância
+caso a gente queira recuperar
+Isadora Sophia
+Isadora
+acho melhor nao
+faz assim
+deveria salvar
+com o numero da iteraçao
+q salvou
+tem uma funcao do tensorflow q fazia isso
+mas pode fazer na mao tb
+pq quanto maior a iteraçao melhor a network sacou
+João Pedro Ramos Lopes
+João Pedro
+ah
+saquei
+bom, vou deixar rodando aqui também
+Isadora Sophia
+Isadora
+de qqr forma por enquanto da pra so renomear
+o arquivo
+pra dar um checkpoint dps
+João Pedro Ramos Lopes
+João Pedro
+justo
+FRI 12:28AM
+
+João Pedro Ramos Lopes
+João Pedro
+
+rodei pra 200 epsódios
+queria ver como ficava o gráfico disso 😛
+Isadora Sophia
+Isadora
+ahh legal, hehe
+isso são os rewards?
+o keras tem mt funcionalidade pra plotar grafico
+da pra entender melhor tb
+é só umas funçoezinhas
+João Pedro Ramos Lopes
+João Pedro
+sim
+os rewards de cada epsódio
+Isadora Sophia
+Isadora
+entendi
+João Pedro Ramos Lopes
+João Pedro
+plotei no gdocs
+isa, vc tem mais xp com isso
+pra mim isso tá ṕarecendo aleatório
+Isadora Sophia
+Isadora
+eu sei
+hahaha
+tem ruim
+João Pedro Ramos Lopes
+João Pedro
+em algoritmos genéticos, zbusca e tal ele vai convergindo
+Isadora Sophia
+Isadora
+tem que pensar D:
+João Pedro Ramos Lopes
+João Pedro
+só alterando os parâmetros arrumaria isso?
+Isadora Sophia
+Isadora
+não seii aaa pode ser várias coisas
+João Pedro Ramos Lopes
+João Pedro
+eu fiz umas mudanças aleatórias e to rodando aqui pra ver no que altera o grafico
+batch_size=32, wd=.02, gamma=.45, tau=.003, lra=.001, lrc=.0005,
+Isadora Sophia
+Isadora
+tenta aumentar learning rate...
+diminuir o noise
+João Pedro Ramos Lopes
+João Pedro
+é que a professora tinha falado de 24h pra treinar(?)
+e etn pode ser que a gente simplesmente está muito no começo (1 hora?)
+de qlqr jeito, antes de dormir vou deixar rodando uns 2000 episódios
+Isadora Sophia
+Isadora
+hmmmm não sei mesmo 😞 pode ser
+normalmente é parametro q nao ta ajeitado
+João Pedro Ramos Lopes
+João Pedro
+saquei
+Isadora Sophia
+Isadora
+posso tentar checar se tem algo torto no algoritmo
+tem que plotar grafico
+João Pedro Ramos Lopes
+João Pedro
+tendi
+Isadora Sophia
+Isadora
+tipo
+João Pedro Ramos Lopes
+João Pedro
+o que significa cada parâmetro?
+wd, gamma, tau, lra, lrc
+Isadora Sophia
+Isadora
+é chamar plot_model (actor.helper, filename)
+algo assim
+n é nd dificil
+abre o link do paper, acho q dica melgor serio haha
+tem o comentario tv
+tb**
+logo no inicio da funcao
+explica as abreviaçoes
+no init da ddpg
+https://arxiv.org/pdf/1509.02971.pdf
+arxiv.org
+arxiv.org
+##  -> wd:      weight decay for Q;
+    ##  -> gamma:   discount factor;
+    ##  -> tau:     soft target updates
+    ##  -> lra:     learning rate for ACTOR
+    ##  -> lrc:     learning rate for CRITIC
+http://machinelearningmastery.com/display-deep-learning-model-training-history-in-keras/
+Display Deep Learning Model Training History in Keras - Machine Learning Mastery
+You can learn a lot about neural networks and deep learning models by observing their performance over time during training. Keras is a powerful library in Python that provides a clean interface for creating deep learning models and wraps the more technical TensorFlow and Theano backends. In this po...
+machinelearningmastery.com
+ok era mais tretinha o grafico haha mas é só pegar o retorno da função e montar o pyplot
+se quiser eu posso ver isso amanhã
+eu acho
+x_x senão sábado sem falta
+mas o keras n é mt tenso de pegar, sei lá
+o tensorflow puro era bem mais pesado
+FRI 1:48AM
+
+João Pedro Ramos Lopes
+João Pedro
+
+FRI 10:35AM
+
+Renato Vargas
+Renato
+fiz 3670 epis@odios aqui
+pelo menos não dá mais negativo
+tá entre 0 e 10
+mas tinha mudado uns parametros e como calcula a reward tbm
+João Pedro Ramos Lopes
+João Pedro
+fiz 2000 episódios aqui
+aumentei só os dois learning rates
+
+no começo parece que teve mais resultados espalhados, depois foi meio que convergindo pra -0.5
+Renato Vargas
+Renato
+to achando que a modelagem dos estados e ações tá errado msm
+assumindo que o alg tá certo
+Isadora Sophia
+Isadora
+eu posso dar double check no algoritmo, enquanto vc tenta dar uma remodelada nos estados/açoes, não sei
+seria legal se alguém mais manjasse um pouco do algoritmo, to me sentindo com mt responsabilidade x_x
+Renato Vargas
+Renato
+é, é a maior parte do projeto né... barney ou jobs, poderiam ajudar nisso?
+to tentando ver como outras pessoas modelaram isso
+Renato Vargas
+Renato
+tava pensando em pior dos casos tomar de base o modelo de andar que já vem no gato e melhorar os parâmetros dele
+Isadora Sophia
+Isadora
+nossa hahaha acho q fica mt trash
+nao sei
+Renato Vargas
+Renato
+no pior dos casos né suhahusahusa
+se for domingo e não tiver nada
+Isadora Sophia
+Isadora
+acho q era melhor apresentar nosso modelo e dizer q n funcionou
+Renato Vargas
+Renato
+hmmm pode ser
+Isadora Sophia
+Isadora
+):
+Isa, Renato, vcs estão na unicamp hj?
+Gostaria de encontrar com vcs pra entender melhor o código
+Ou Barney tbm
+Tipo, não precisa ser todo mundo
+Renato Vargas
+Renato
+eu só tenho aula das 19h as 21h, mas tenho compromisso depois, então só antes
+Ok
+João Pedro Ramos Lopes
+João Pedro
+tenho aula até às 18h
+Vc tá livre de tarde?
+Renato Vargas
+Renato
+o mais perto das 19h melhor, pq queria estudar outra matéria tbm
+João Pedro Ramos Lopes
+João Pedro
+será que rola explicar em 1h?
+daí posso ver também
+Renato Vargas
+Renato
+só explicar acho que dá sim, mas o algoritmo em si não vou saber explicar tão bem
+Isadora Sophia
+Isadora
+eu tenho lab pra entregar, depois eu posso
+Renato Vargas
+Renato
+pra isso seria melhor ler o paper msm
+@Isadora tava vendo o paper que os caras se basearam pro cheetah
+mó rolezão ein shauhusahusahu
+pelo jeito eles usaram umas equações de newton-euler que meio que ajudam a definir o movimento das pernas
+Isadora Sophia
+Isadora
+nossa
+entao n foi de deep learning ne
+Renato Vargas
+Renato
+eu não duvido que nosso modelo vai chegar num ponto legal uma hora, mas sepá vai demorar pra caralho msm
+Isadora Sophia
+Isadora
+foi modelar msm
+Renato Vargas
+Renato
+foi sim
+Isadora Sophia
+Isadora
+entendir
+Renato Vargas
+Renato
+mas ai ajustaram os parametros
+não foi do zero
+Isadora Sophia
+Isadora
+os caras do gym demoravam 80k iteraçoes
+foda
+Renato Vargas
+Renato
+eita lele
+Isadora Sophia
+Isadora
+mqndwmskwmdmwenqke q bosta
+eu tinha feito uma centopeia andar
+Renato Vargas
+Renato
+o foda é demorar umas 40k pra ver que não tá nem chegando perto
+Isadora Sophia
+Isadora
+e foi ok
+pois é aaaa
+tipo
+1 coisa q eu posso fazer
+é aplicar meu modelo em algo mais simples pra ver se ta convergindo
+Renato Vargas
+Renato
+tem uma cobra no vrep tbm se quiserem trocar sauhshuahusa
+Isadora Sophia
+Isadora
+nekwkewkekwkekwkewkkdqls
+Renato Vargas
+Renato
+hmmmmm pode ser uma boa
+Isadora Sophia
+Isadora
+como eles tao fazendo
+de parametro pro cheetah?
+acho q no paper fala as iteraçoes
+Renato Vargas
+Renato
+https://pdfs.semanticscholar.org/d1e4/93fb86f42104e6dfffec8191af3d43d44072.pdf
+Isadora Sophia
+Isadora
+q demorou pra convergir
+Renato Vargas
+Renato
+final da paǵina 25
+Isadora Sophia
+Isadora
+eu to no trabalgo agora, mas depois eu vejo haha
+Renato Vargas
+Renato
+esse é o que eles se basearam
+beleza
+mas então, não entendi porra nenhuma dos estados que usaram
+imagino que é tudo coisa que saem das equações lá
+Isadora Sophia
+Isadora
+D: sera q a gente tá dando input bosta?
+tenta checar os modelos do mujoco de novo
+e o input deles
+Renato Vargas
+Renato
+só depois de 80k interações pra saber shaushuasa
+Isadora Sophia
+Isadora
+aaaaaaaaa
+Quanto tempo leva 80k?
+2 horas?
+10 horas?
+Renato Vargas
+Renato
+jurava que esse aaaaaaa era de "solucionei todos nossos problemas"
+Um dia inteiro?
+Renato Vargas
+Renato
+fiz 3600 em 9 horas
+Ave maria
+Renato Vargas
+Renato
+com 200 steps, que é relativamente curto, uns 15 segundos
+15 segundos cada?
+Renato Vargas
+Renato
+foi a média
+isso que tem casos que reinicia antes, pq detecta que tá parado
+João Pedro Ramos Lopes
+João Pedro
+aqui demorou 6h pra rodar 2k
+mas tava com 300steps
+FRI 1:23PM
+
+João Pedro Ramos Lopes
+João Pedro
+18h no ic então?
+Renato Vargas
+Renato
+pode ser
+blz
+Renato Vargas
+Renato
+será que teria como falar com a esther hoje?
+talvez ela pudesse salvar a gente
+capaz de ela estar no IC
+FRI 4:55PM
+
+Renato, vc vai de carro pro IC?
+Renato Vargas
+Renato
+yes
+precisa de carona?
+Sim, por favor 😛
+Que horas vc vai?
+Renato Vargas
+Renato
+umas 17:45 sepá
+João Pedro Ramos Lopes
+João Pedro
+to na 304
+Renato, vc vai de carro pro IC?
+SAT 12:12AM
+
+Isadora Sophia
+Isadora
+mano wtf
+aqui ele ta andando super bem
+wkekwkekwkelwlwlwpwpwlelqlwlqlepwps
+sei la qq é
+pode ser cagada
+como assim?
+Ele tá indo pra frente?
+Isadora Sophia
+Isadora
+nossa caguei no video
+fuc features de facebook
+sim mano
+n entendir
+mas cara
+o reward parece mt x
+tem hora q ele vai reto e dá -80
+ai ele meio q entorta e vai 5
+estranho
+Isadora Sophia
+Isadora
+acho q tem q arrumar reward real
+O reward não era baseado na distância y que ele anda?
+Isadora Sophia
+Isadora
+entao n entendir
+João Pedro Ramos Lopes
+João Pedro
+Mas "ele tá andando de boas"
+Tipo, ele vai reto e pra frente?
+Isadora Sophia
+Isadora
+nah
+tava andanod pra frente
+mas a loss n tá convergindo
+entao n adianta
+asidofjaosidfjoicxzv
+eu salvei os pesos tho
+http://pemami4911.github.io/blog/2016/08/21/ddpg-rl.html
+SAT 1:49AM
+
+Renato Vargas
+Renato
+então, eu não consegui deixar ainda de um jeito muito bom msm os rewards
+ontem eu tava testando outras opções, mas nada muito satisfatório pra pushar
+João Pedro Ramos Lopes
+João Pedro
+ow
+mas eu não sei se foi pura sorte
+mas ele tava andando indo pra direita até virar 90º
+daí depois quando ele começou a virar pra direita ele deu uma volta virando pra esquerda e o reward aumentou bastante
+daí ele já começou dando voltinhas virando pra esquerda
+daí agora ele ta rodando pra esquerda x)
+Isadora Sophia
+Isadora
+hehehehehehe
+João Pedro Ramos Lopes
+João Pedro
+com ele endando indo tudo pra direita tava dando reward -700
+Isadora Sophia
+Isadora
+jwejeejkekwkewkekwkejw
+mds
+João Pedro Ramos Lopes
+João Pedro
+daí agora dando voltinha pra esquerda ele chegou a reward 45 (foi quando ele mudou de estratégia)
+Isadora Sophia
+Isadora
+to testando uns role
+João Pedro Ramos Lopes
+João Pedro
+e tá dando voltinhas dando reward -150
+alguem sabe de alguma ferramenta pra gente fazer gravação?
+a ideia seria gravar um pedaço da tela por uns 30s a cada hora(?) ou algo do tipo
+Isadora Sophia
+Isadora
+hmmmmm
+da pra tirar screenshots
+João Pedro Ramos Lopes
+João Pedro
+mas a ideia era mostrar trechos de gerações diferentes
+screenshots não resolve
+Isadora Sophia
+Isadora
+peguei uma implementacao da internet
+ver qq da
+ta mais ou menos
+sei lá
+esse algoritmo eu sei que funciona
+e continua dando os emsmos ruins
+João Pedro Ramos Lopes
+João Pedro
+vc fala do aprendizado?
+Isadora Sophia
+Isadora
+sim
+João Pedro Ramos Lopes
+João Pedro
+bom, aquela situação que eu mencionei, pra mim ou foi uma sorte absurda ou ele aprendeu algo
+estou plotando os rewards e loss
+Isadora Sophia
+Isadora
+yep
+hahahahahah
+João Pedro Ramos Lopes
+João Pedro
+10000 episódios
+amanhã a gente ve  no que dá
+Isadora Sophia
+Isadora
+uhum
+João Pedro Ramos Lopes
+João Pedro
+e btw, o algoritmo genético pros parâmetros provavelmente não vai rolar... Um detalhe que eu esqueci é que esse negócio demora infinito pra convergir
+Isadora Sophia
+Isadora
+je2rk2ork2krk2kek2keo2ke
+foda mano
+João Pedro Ramos Lopes
+João Pedro
+AG precisa de poder calcular o resultado relativamente rapido
+tipo, se desse pra saber se um parâmetro da melhor que o outro em 30s acho que rolaria até
+mas na escala de horas é impomssível
+impossível
+Isadora Sophia
+Isadora
+mano a gente tem q focar na reward
+eu acho
+n sei tb
+ele descobriu que se ficar parado a reward aumenta
+e agora ta parado
+wnemwkekwkekwkewkekwkekwoeowkd
+João Pedro Ramos Lopes
+João Pedro
+ctz que ainda tá rodando?
+por um momento eu achei isso
+Isadora Sophia
+Isadora
+yep
+João Pedro Ramos Lopes
+João Pedro
+daí fui ver e ele tinha parado de rodar hahahaha
+Isadora Sophia
+Isadora
+tá plotando dado
+João Pedro Ramos Lopes
+João Pedro
+eita
+torcer pro noise ter efeito
+tirar ele da zona de conforto
+Isadora Sophia
+Isadora
+kswkskskwlow2ooeo2oe
+João Pedro Ramos Lopes
+João Pedro
+bom, vou dormir
+amanhã a gente ve o resultado
+boa noite o/
+Isadora Sophia
+Isadora
+nightt
+SAT 10:45AM
+
+João Pedro Ramos Lopes
+João Pedro
+
+
+o primeiro é o gráfico de rewardss
+dá pra ver que ele está aprendendo
+Isadora Sophia
+Isadora
+o segundo é o que?
+João Pedro Ramos Lopes
+João Pedro
+mas ele aprendeu errado, tá dando voltinhas pra esquerda
+o segundo é o loss
+Isadora Sophia
+Isadora
+aaaaa manjei
+eu rodei o outro algoritmo a noite toda aqui tb
+e ele tava andando de uma forma mt estranha
+a gente tem que mudar o reward pra resolver
+tipo
+penalizar ficar parado
+e n negativar se ele for mt pro lado
+sei la
+ou dar mt incentivo pro y
+João Pedro Ramos Lopes
+João Pedro
+o pior é que ele ta andando de costas
+logo que começou ele começou andando pra trás
+acho que nunca aprendeu a andar pra frente
+Isadora Sophia
+Isadora
+khcohgohfjojgojgjljgpjgohf
+faz assim
+tem uma pasta em aidata
+q ele anda pra frente mt bem
+dai vc começa nela
+heheheheheh
+João Pedro Ramos Lopes
+João Pedro
+hahaha
+ok
+a primeira vez que eu tentei que ele tava andando pra direita, acho que veio do seu
+pq eu não tinha apagado
+Isadora Sophia
+Isadora
+é q eu botei numa pasta /nicely
+Renato Vargas
+Renato
+eu tentei mudar os reward pra penalizar menos pra ir pros lados
+mas aí ele tá indo mto pros lados
+mas ele anda bastante até
+Isadora Sophia
+Isadora
+eu faria tipo
+Renato Vargas
+Renato
+só que ele começou andando bastsnte desde o primeiro episódio
+e não melhorou nada durante a noite
+Isadora Sophia
+Isadora
+ir pra trás etc dá -100
+ir pra frente mas pro lado 10
+ir pra frente +50
+João Pedro Ramos Lopes
+João Pedro
+virar de costas -200
+Isadora Sophia
+Isadora
+n sei
+João Pedro Ramos Lopes
+João Pedro
+pq ele não deve em nenhum momento ficar de costas
+o problema é que ta considerando rotação, então ele ir rodando indo pra direita por exemplo da reward bem negativo
+acho que seria uma boa dar reward +10 só pela distância percorrida
+Isadora Sophia
+Isadora
+isso
+João Pedro Ramos Lopes
+João Pedro
+pq mesmo que ele ande torto ele aprenderia a andar
+distância percorrida desde que seja alguma coisa pra frente
+pq de andar todo pra andar a diferença não é tão grande
+e por agora ele ta dando muitas voltas
+e andando pra trás, ao menos aqui
+Renato Vargas
+Renato
+mas na moral ainda acho que tem algo estranho além das rewards, pq eu já troquei esses valores de reward pra ir pra frente dar mais que pros lados, e em uma noite inteira não mudou nada desde o primeiro run
+Isadora Sophia
+Isadora
+entao
+o algoritmo eu vou tentar arrumar
+eu ja rodei um outro
+mas continua estranho
+sacou
+Renato Vargas
+Renato
+saquei
+distância percorrida, vc diz magnitude da variação de posição?
+Isadora Sophia
+Isadora
+entao só no y
+quanto mais y mais reward
+o x deixa sem peso
+sei la
+something like that
+Renato Vargas
+Renato
+x sem peso não acho que faz mto sentido
+Isadora Sophia
+Isadora
+ele so fica dont care ir pra x
+sei la
+podia tentar testar
+Renato Vargas
+Renato
+é que aí não tem tanto motivo pra ele não sair ir pro lado
+Isadora Sophia
+Isadora
+tem motivo q se ele for mais pra frente q pro lado a reward aumenta
+Renato Vargas
+Renato
+verdade, mas eu acho que ter o reward negativo é pra ajudar a convergir mais rápido
+Isadora Sophia
+Isadora
+sei ka
+na pratica ta so estranho
+Renato Vargas
+Renato
+o problema de dar mto negativo, é só questão do valor de punição estar bem alto
+Isadora Sophia
+Isadora
+na iteraçao q o robo andava mttt pra frente ele ficou com reward -5
+Renato Vargas
+Renato
+aqui os valores tão melhores com a troca de valores
+João Pedro Ramos Lopes
+João Pedro
+aqui deu -350
+apesar dele ter andado bem pra frente, mas ter girado 90º
+quando ele tava dando voltinhas no mesmo lugar andando de COSTAS tava dando reward -50 se não me engano
+tipo, ele aprendeu a dar exatamente uma volta nos 200 steps
+então ele voltava pra posição inicial basicamente, olhando pra frente
+Renato Vargas
+Renato
+se ele virar de costas o que acham de dar os -200 que nem vcs falaram e parar a simulação?
+pra ele não aprender a dar essa volta completa e ficar olhando pra frente
+Isadora Sophia
+Isadora
+acho melhor n parar
+incentiva o quanto ele andou em absoluto pro y
+ao inves de relativo
+Renato Vargas
+Renato
+atualmente já tá o absoluto
+eu ia mudar pro relativo pro x e y, pq pensei que ia dar valores que fazem mais sentido
+João Pedro Ramos Lopes
+João Pedro
+acho justo
+acho melhor deixar a simulação mesmo
+Renato Vargas
+Renato
+to começando a achar que o noise pode estar muito alto
+fiz umas mudanças e treinei um pouco, e no treinamento sempre saia bem ruim
+Isadora Sophia
+Isadora
+calma
+eu arrumei
+o algoritmo
+vou commitar ja
+guenta
+Renato Vargas
+Renato
+ahh, beleza
+mas então, o que ia falar é que o train tava estranho, mas o run foi mó bem
+vou commitar minhas mudanças tbm
+as rewards agora são
+diff em y -> 10
+diff em x -> -2
+orientação é "menor que 180" -> -5
+Isadora Sophia
+Isadora
+nice
+Renato Vargas
+Renato
+como esse da orientation aplica todo frame que tá virado pra trás, eu coloquei -5 e não -200, pq já dá negativo o suficiente
+Isadora Sophia
+Isadora
+commitei
+Renato Vargas
+Renato
+percebi, foi bem na hora que tava pushando
+aí não deixou
+sauhshauuhsahusa
+Isadora Sophia
+Isadora
+jcjwkejwkdkwkeowoewkekwoeoq
+Renato Vargas
+Renato
+mandei agora tbm
+Isadora Sophia
+Isadora
+--force
+Renato Vargas
+Renato
+nossa, pra que tanto hahaha
+git pull --rebase
+Isadora Sophia
+Isadora
+jdkwfkwkdkwkeowkekwkewod
+to zoando
+Renato Vargas
+Renato
+sauhsahusahu ah tá
+Isadora Sophia
+Isadora
+ele ta ate saindo da tela agora
+#esperança
+Renato Vargas
+Renato
+shuahusahusahusa
+ele tá indo muito louco pra trás
+João Pedro Ramos Lopes
+João Pedro
+Vc colocou reward positivo se ele tá indo y pra frente e negativo se for y pra trás né?
+Ou y, se ele começa no zero e a frente é positivo
+Renato Vargas
+Renato
+não entendi a segunda frase
+João Pedro Ramos Lopes
+João Pedro
+se ele tá no eixo y
+o reward vai ser simplesmente y
+Renato Vargas
+Renato
+vai dar reward tanto pra trás quanto pra frente
+João Pedro Ramos Lopes
+João Pedro
+pq se ele for pra trás vai ser neativo
+negativo
+Renato Vargas
+Renato
+pq eu pego o diff e multiplico pelo reward
+se voltou, vai ser negativo
+Isadora Sophia
+Isadora
+acho q ainda tá meio estranho
+Renato Vargas
+Renato
+que caso?
+Isadora Sophia
+Isadora
+ele anda bastante mas vira  um pouco no final e pega reward -300
+aí ele anda em circulo e pega rewad -100
+Renato Vargas
+Renato
+virar um pouco só não é pra dar isso...
+ele não começou a virar ao contrário?
+Isadora Sophia
+Isadora
+yep
+quer dizer
+nao sei na real
+ele fazia rodinhas
+em circulo
+aí eu reiniciei
+acho q andava pra frente
+Renato Vargas
+Renato
+to querendo saber do caso que deu -300
+Isadora Sophia
+Isadora
+ah
+ele andava pra frente
+até quase sair da tela
+aí ele virava pra direita
+e saía da tela pela direita
+Renato Vargas
+Renato
+as provavelmente ele virou mais de 90 graus pra dar tão negativo
+Isadora Sophia
+Isadora
+acho que a gente tem que penalizar muito mais quando ele quase nao muda de posiçado
+João Pedro Ramos Lopes
+João Pedro
+mó engraçado ficar olhando pra ele quando tá no começo do aprendizado
+ele fica pulando feito louco sem quase sair do lugar, só dando voltinhas
+e o rabo balançando como se nada tivesse acontecendo hahahaah
+Isadora Sophia
+Isadora
+JDFOIASJFOIDSAJFOIJCVOIAJDF
+o rabo é o melhor
+tem algum outro grupo com o gatinho?
+João Pedro Ramos Lopes
+João Pedro
+não sei nada dos outros grupos
+Isadora Sophia
+Isadora
+é nem eu
+ele anda em circulos pra tras mesmo
+João Pedro Ramos Lopes
+João Pedro
+Tenta colocar pra parar a simulação se ele chega em -180
+Ou se ele chega bem perto de ficar virado pra trás
+@Renato Vargas
+João Pedro Ramos Lopes
+João Pedro
+hm... eu coloquei aqui
+mas parece que ele não aprende com o err
+erro
+pq ele fica fazendo a mesma coisa várias vezes
+Isadora Sophia
+Isadora
+aqui ele progride
+tipo sei la
+eu tenho 80% de ctz q agora ta funcionando wjekqkeoqoe
+eu rodei ontem um q tinha 100% e dava a msm coisa mais ou menos
+João Pedro Ramos Lopes
+João Pedro
+Nuss
+Ele aprendeu a andar quase em linha reta
+De costas (pra trás)
+Isadora Sophia
+Isadora
+kxwdowdowdowodwodwofwof
+João Pedro Ramos Lopes
+João Pedro
+reward negativo é propagado pros estados anteriores?
+se eu colocar -10000 reward se ele ficar de costas, esse reward vai sair só pro último movimento que levou aquele estado
+ou vai ser propagado pra todo o conjunto de ações que levou aquilo?
+Isadora Sophia
+Isadora
+ele vai ser propagado com as 10000 ultimas açoes q ele executou (elas sao escolhidas de forma aleatoria)
+João Pedro Ramos Lopes
+João Pedro
+ações = steps?
+Isadora Sophia
+Isadora
+isso
+João Pedro Ramos Lopes
+João Pedro
+mas a gente ta rodando com tipo 200 steps
+então vai pra todas, não?
+Isadora Sophia
+Isadora
+ele pega de outros episodios
+João Pedro Ramos Lopes
+João Pedro
+que variável define isso?
+Isadora Sophia
+Isadora
+buffer size
+João Pedro Ramos Lopes
+João Pedro
+ok, tnks
+pq teve uma vez que ele andou pra frente bem bonito
+teve reward mto bom
+e do nada ele parou e foi dar voltinhas andando pra trás
+e nunca mais voltou a andar pra frente
+Isadora Sophia
+Isadora
+nejqjrkwjwjewjwjwiejwieow
+tenta ler o link q passei
+ele da uns insights legais
+pra isso do buffer
+Renato Vargas
+Renato
+tava almoçando
+é pra fazer alguma coisa ainda?
+Isadora Sophia
+Isadora
+o objetivo é deixar rodando e tentar dar tweaks
+eu ainda n curti mt a reward mas n sei
+a gente poderia trocar a metrica pra o quao rapido ele consegue andar tb
+ou penalizar quando ele rotaciona ao inves de se basear em x ou y
+é dar varios bonus por distancia percorrida
+Renato Vargas
+Renato
+como o tempo é limitado, a gente já testa a velocidade indiretamente
+penalizar pela rotação poderia ser, mas acho que só substituiria o x, o y ainda precisamos né
+Isadora Sophia
+Isadora
+yep
+algo desse tipo
+Renato Vargas
+Renato
+vários bonus? algium diferente do que já tempos?
+temos*
+Isadora Sophia
+Isadora
+vc acha q da pra so usar distancia percorrida
+independente de x e y
+e penalizar na rotaçao?
+Renato Vargas
+Renato
+dar, dá, se vai ajudar a convergir não sei hahaha
+parece que funcionaria
+assim como ainda acho que o atual tbm deveria funcionar
+Isadora Sophia
+Isadora
+hahahahahah é foda
+acho q é ir testando e ver oq ele da de reward na pratica
+e se faz sentido
+tem uma metrica q chamam de human feedback KQDMEKFKWORMWKR
+tipo o robo faz
+e a gente fala se foi bom ou ruim
+QKDJEKROQOROWKRKW
+#desespero
+Renato Vargas
+Renato
+shaiuhsiahusahuuhashusauh pode ser uma opção tbm
+é que pra mim não deu nenhum caso mto estranho
+Isadora Sophia
+Isadora
+entendi
+Renato Vargas
+Renato
+mas posso tentar mudar pra isso que vc falou
+fica mais simples tbm
+Isadora Sophia
+Isadora
+acho q é mais pra testar
+Renato Vargas
+Renato
+talvez*
+Isadora Sophia
+Isadora
+no fim a gente tem q ficar testando msm
+Renato Vargas
+Renato
+é...
+o problema é a modelagem dos estados e ações que tiver cagado
+Isadora Sophia
+Isadora
+D: foda
+Renato Vargas
+Renato
+tava pensando e se as ações fossem limitadas a -1, 0 e 1
+Isadora Sophia
+Isadora
+no discreto
+?
+acho q n ia adiantar mt
+ia piorar o jeito q ele anda
+acho q teria q ver os estados
+sei la
+tenta imprimir os estados
+e ver se faz sentido
+n sei
+Renato Vargas
+Renato
+não ia ser mais rápido de convergir só com 3 possibilidades de valor ao inves de infinitos?
+Isadora Sophia
+Isadora
+acho q n ia ficar legal
+sei la
+e no fim ia gerar algo q nem agora e arredondar pra 0 ou 1
+Renato Vargas
+Renato
+hmmmm
+João Pedro Ramos Lopes
+João Pedro
+tenta mudar pro angulo ao invés de X então
+acho que faz sentido
+pq aqui ele ainda tá rodando mto
+mas o problema é que parece que ele tá ignorando o reward negativo
+Renato Vargas
+Renato
+to tentando aqui
+João Pedro Ramos Lopes
+João Pedro
+ta dando negativo com ele andando pra trás, mas ele não vai pra frente
+Renato Vargas
+Renato
+tem uns detalhes chatos de implementar pra dar reward pela distancia
+pq andar pra frente ou pra tras agora é relativo
+Isadora Sophia
+Isadora
+na real ele ta tentando maximizar o reward
+entao -100 é melhor que -300
+eu drixei rodando a noite inteira e ele ficou com reward 20
+ele andava reto
+mas tava mtttt estranho
+e andava mt pouco
+foi uns 2000 episodios
+de 200 steps
+SAT 4:48PM
+
+Renato Vargas
+Renato
+foda é que o angulo parece que ta vindo mó cagado
+pq ele usa angulo de euler
+aí como o gato dá umas mexidas nos outros eixos tbm, os angulos de euler ficam locão no eixo que a gente quer
+acho que por isso os rewards tão estranhos
+um dos motivos pelo menos
+Renato Vargas
+Renato
+arrumei
+Renato Vargas
+Renato
+bem mudei as rewards aqui pra pegar sempre a distancia relativa ao ultimo frame (positiva pra frente e negativa pra tras) independente do x
+20 a cada metro
+e penalizo pelas variações de orientação
+-180 por volta completa
+to rodando aqui e posso commitar se quiserem
+as funções anteriores tbm tão lá e é só comentar as atuais e descomentar as antigas
+hmmm, acho que vou colocar a penalização de andar pra trás ser bem pior msm
+João Pedro Ramos Lopes
+João Pedro
+eu tentei fazer isso e não fez mta diferença
+mas não tava considerando rotação
+Renato Vargas
+Renato
+isso
+eu tava falando em ser bem pior em relação a rotação
+pq ficar rodando em circulo pra frente é mais perto da "solução" do que ir pra trás
+Vc pode dar commit nisso Renato?
+Renato Vargas
+Renato
+a única parte que tenho que ter certeza que o calculo tá certo é detectar se relativo a orientação anterior, ele tá indo pra frente ou pra trás
+Vou colocar pra rodar aqui tbm
+Renato Vargas
+Renato
+pronto
+se puder, dá print em "direction" na função de reward pra ver o sinal
+tem que ser 1 se tiver andando pra frente em relação a si mesmo e -1 caso contrário
+e não se assuste com os valores que eles mudaram bastante em relação a antes
+Como assim?
+Renato Vargas
+Renato
+a ordem dos números mudou
+pq mudei bastante os valores
+ah, e abram de novo a cena, pq fiz alterações nela
+mudei o frame de referencia do gato
+Renato Vargas
+Renato
+ah, acho que faz sentido agora tirar a posição y do estado, já que agora tudo é relativo
+calculo da direção tá errado msm 😞
+vcs tiveram problema pra rodar a simulação por aí?
+aqui tá dando esse erro
+The remoteApi library could not be loaded. Make sure
+it is located in the same folder as "vrep.py", or
+appropriately adjust the file "vrep.py"
+Traceback (most recent call last):
+  File "train_robot.py", line 3, in <module>
+    from simulator import Simulator
+  File "C:\Users\Gustavo\Unicamp\MCEsther\Robotics-AI\final\simulator.py", line 1, in <module>
+    import vrep
+  File "C:\Users\Gustavo\Unicamp\MCEsther\Robotics-AI\final\vrep.py", line 55, in <module>
+    c_GetJointPosition          = ct.CFUNCTYPE(ct.c_int32,ct.c_int32, ct.c_int32, ct.POINTER(ct.c_float), ct.c_int32)(("simxGetJointPosition", libsimx))
+AttributeError: 'NoneType' object has no attribute '_handle'
+Renato Vargas
+Renato
+aqui não dá nada não...
+vc tá rodando como??
+Isadora Sophia
+Isadora
+tem que botar na mesma pasta de vrep.py
+Renato Vargas
+Renato
+commitei agora umas arrumanções
+peguem de novo aí
+mas como removi o estado da posição x, acho que precisa resetar a rede
+Isadora Sophia
+Isadora
+beleza
+mudou a dimensao?
+Renato Vargas
+Renato
+sim
+25 pra 24
+Isadora Sophia
+Isadora
+acho q ele só nao carrega
+quando muda
+pq eu mudei uma coisa tb
+Renato Vargas
+Renato
+testa aí, mas lembro de ter dado erro aqui uma vez
+Isadora Sophia
+Isadora
+meio random
+alguém já pegou/conhece alguém q pegou materia de pos com o tk?
+de programming languages?
+nope
+Isadora Sophia
+Isadora
+parece promissor
+o novo robot
+#esperança
+João Pedro Ramos Lopes
+João Pedro
+já fiz matéria com o tk
+não da pós
+eu achei bem boa a aula dele
+Isadora Sophia
+Isadora
+então
+a matéria parece ser basicamente compiladores 2
+tipo
+parece ser legal
+mas to com medo de chegar e ser uma trap level anal hahah
+João Pedro Ramos Lopes
+João Pedro
+hm...
+ele é bem mais de boas que chris/arnaldo/cid/rezende
+quer dizer, ele é mais de boas
+bem mais de boas seria exagero
+qnd fiz achei ele extremamente coerente
+mas foi mc202
+não compiladores 2 hahahah
+Isadora Sophia
+Isadora
+uhum
+hehehehehe
+to entre essa matéria e machine learning
+João Pedro Ramos Lopes
+João Pedro
+nossa, vai ter 3 matérias da pós relacionadas a eng de software
+vai ter mais professor que aluno
+lol
+João Pedro Ramos Lopes
+João Pedro
+também achei interessante essa de aprendizado de máquina
+vai ter da juliana também de internet das coisas
+Isadora Sophia
+Isadora
+né cara
+João Pedro Ramos Lopes
+João Pedro
+as duas são professoras novas, acho
+Isadora Sophia
+Isadora
+então é q aprendizado vai ser uma prof x
+aí eu não sei...
+eu tenho mt preguiça de iot hahaha
+João Pedro Ramos Lopes
+João Pedro
+Sandra Avila
+Professor of Computer Science
+ic.unicamp.br
+a cara dela é de ser gente boa
+tipo esther
+Isadora Sophia
+Isadora
+é que antes era o rocha
+aí eu tava mó animada
+aí agora vai ser ela
+aí eu to:
+"hmm é..."
+n queria fazer uma disciplina level helio
+q só faz por fazer
+João Pedro Ramos Lopes
+João Pedro
+ah, to esperando que ela vai ser boa
+também tava animado com o rocha
+mas no geral os professores novos do ic foram muito bons
+usberti, esther mto bons
+heiko ouvi falar mto bem
+lucas, rafael mto bons também
+Isadora Sophia
+Isadora
+nossaa heiko me deu ihc
+ele é mais ou menos
+João Pedro Ramos Lopes
+João Pedro
+é? poxa, ouvi falar bem do esquema de avaliação dele
+e que a aula era melhor que a da baranauskas
+Isadora Sophia
+Isadora
+aa.....
+João Pedro Ramos Lopes
+João Pedro
+que eu achei bem boa
+Isadora Sophia
+Isadora
+é aquela matéria q assim
+vc abstrai
+e faz os trabalhos
+mas os trabalhos n são ruins
+João Pedro Ramos Lopes
+João Pedro
+tendi... eu gostei da aula da baranauskas no final
+também to querendo fazer mo405
+com o lee
+Isadora Sophia
+Isadora
+nossa mas o lee é meio meh n?
+João Pedro Ramos Lopes
+João Pedro
+sim
+mas a ementa da matéria parece que vai ser bem coxa
+Grafos, subgrafos, grafos orientados, famílias de grafos. Árvores, caminhos, ciclos. Conexidade. Grafos eulerianos. Grafos hamiltonianos. Emparelhamento em grafos bipartidos. Coloração de arestas. Coloração de vértices. Conjuntos independentes. Grafos Perfeitos. Grafos planares.
+Renato Vargas
+Renato
+vo sair agora, então vou deixar rodando por umas horas com os parâmetros que deixei commitado
+João Pedro Ramos Lopes
+João Pedro
+ok
+to torcendo pra ser um A de graça na pós
+nossa, se bem que tá com 2,49 de facilidade do gde
+Isadora Sophia
+Isadora
+sei lá mano
+to de boas de grafos
+hahahahahah
+tem um professor muito bom pra grafos
+chama lehilton
+Isadora Sophia
+Isadora
+AAAAAAAA
+João Pedro Ramos Lopes
+João Pedro
+hahaha
+/s
+João Pedro Ramos Lopes
+João Pedro
+ok, um exemplo de professor novo que não é mto bom
+tem o leandro também que é definição de várzea
+nossa
+tava tentando lembrar o nome dele ontem
+grande leandro villas
+João Pedro Ramos Lopes
+João Pedro
+leandro várzea
+Isadora Sophia
+Isadora
+ijfosaidjfoklzcjxvoiadfjkczxv
+658 vai ser com o cid cara
+já to vendo o nabo
+João Pedro Ramos Lopes
+João Pedro
+poxa, esperei 1 semestre pra fazer com ele
+aula dele é mó boa
+e achei ele bem coerente, pesado mas coerente
+Isadora Sophia
+Isadora
+fiz 458 com ele
+ele é coerente
+mas assim
+já to vendo os nabo
+João Pedro Ramos Lopes
+João Pedro
+hahaha
+tem que fechar x58 direito
+358 e 458 com rezende
+558 e 658 com cid
+Isadora Sophia
+Isadora
+348 rezende
+458 cid
+558 *~*~lehilton
+João Pedro Ramos Lopes
+João Pedro
+huahuahauah
+na real, qual a avaliação de vcs pro lehilton?
+Isadora Sophia
+Isadora
+assim
+achei relativamente coxa
+mas não vale o stress
+Isadora Sophia
+Isadora
+isso
+João Pedro Ramos Lopes
+João Pedro
+stress pq?
+pq ele dá aula passivo-agressivamente
+o tempo todo
+Isadora Sophia
+Isadora
+tem q ficar fingido que presta atençao...
+e ele fica até 18h05
+e se vc sair antes ele dá indireta
+João Pedro Ramos Lopes
+João Pedro
+nossa
+não gosto de professor carente
+Isadora Sophia
+Isadora
+exato..
+mano o robo parece q tá bala agora
+sério msm
+João Pedro Ramos Lopes
+João Pedro
+o.O
+Isadora Sophia
+Isadora
+OIJDFOIAJFDOISDJA
+dps do commit da reward
+João Pedro Ramos Lopes
+João Pedro
+vou testar
+isso é bom?
+João Pedro Ramos Lopes
+João Pedro
+vc ta só com o commit do renato ou fez alguma mudança?
+Isadora Sophia
+Isadora
+o do renato msm
+João Pedro Ramos Lopes
+João Pedro
+vou rodar aqui
+alguem já ouviu falar do adin?
+Isadora Sophia
+Isadora
+aaaaaaaa
+eu faço engenharia de software com ele
+q matéria?
+João Pedro Ramos Lopes
+João Pedro
+introdução a visão computacional
+tipo, a matéria até parece ser legal
+mas n queria um outro hélio
+Isadora Sophia
+Isadora
+acho que vai ser outro hélio
+pra ser sincera
+hahahah
+João Pedro Ramos Lopes
+João Pedro
+ah ok 😕
+João Pedro Ramos Lopes
+João Pedro
+ow
+tem alguma coisa errada
+aqui ele ta indo bem bem pra trás
+e ta dando reward positiva
+ah
+acho que é pq ele começa andando pra trás e da reward negativa
+mas daí ele continua andando pra trás e como manteve a direção ta achando que tá indo pro mesmo lado
+como ta ai @@Isadora Sophia?
+ele ta indo pra frente certo?
+Isadora Sophia
+Isadora
+então
+ele tava indo muito bem
+aí começou a do nada a ir super mal
+não entendi mt oq ocorreu
+talvez tem q ficaar observando com grafico msm
+ele tava indo 90% reto cara
+Renato Vargas
+Renato
+eu calculo a direção toda vez, então não é pra dar essse problema
+barney deu pull nas últimas alterações?
+João Pedro Ramos Lopes
+João Pedro
+dei sim
+Renato Vargas
+Renato
+isa, roda o run e vê se fica ruim ainfa
+João Pedro Ramos Lopes
+João Pedro
+mas vc calcula a direção relativa a útima direção, não?
+Renato Vargas
+Renato
+não
+em relação a orientação
+João Pedro Ramos Lopes
+João Pedro
+tipo, se ele andou pra trás duas vezes vai parecer que ele ta andando pra frente
+eu coloquei pra imprimir direction
+Renato Vargas
+Renato
+não
+João Pedro Ramos Lopes
+João Pedro
+dá -1 no primeiro e depois da 1
+Renato Vargas
+Renato
+então deixei passar algo, mas não faz isso não
+João Pedro Ramos Lopes
+João Pedro
+eh, certamente a maioria dos directions dão 1 apesar dele estar indo pra trás
+e chequei e tá atualizado
+"Scene zoom and reward change"
+Renato Vargas
+Renato
+recarregou a cena tbm com certeza?
+João Pedro Ramos Lopes
+João Pedro
+ah
+ok
+pera
+ah
+foi isso
+esqueci de recarregar
+Renato Vargas
+Renato
+pq mudei o frame de referência
+SAT 9:30PM
+
+João Pedro Ramos Lopes
+João Pedro
+aqui já é a segunda vez que ele aprende a ficar parado...
+Isadora Sophia
+Isadora
+ele sai depois de um tempo
+João Pedro Ramos Lopes
+João Pedro
+aí ele ta indo pra frente?
+Isadora Sophia
+Isadora
+uhum
+depende da iteraçao
+João Pedro Ramos Lopes
+João Pedro
+tendi
+Renato Vargas
+Renato
+legal!
+tô botando fé
+João Pedro Ramos Lopes
+João Pedro
+ele ta andando retinho aqui agora
+Isadora Sophia
+Isadora
+mano
+grava um video
+ANFNWKRKQMRKQMEKQ
+just in case
+sim, por favor kkkkkkk
+filma com o celular se precisar
+Isadora Sophia
+Isadora
+ofqeogaodvoqdggrpqrogqrogoargwr0
+João Pedro Ramos Lopes
+João Pedro
+tipo, eu diminui o número de passos
+então ele ta andando pouco
+mas reto
+Play	
+-0:17
+Additional Visual SettingsEnter Fullscreen	Unmute
+e faz umas 100 cenas que o reward tá o mesmo
+Isadora Sophia
+Isadora
+oloco
+João Pedro Ramos Lopes
+João Pedro
+então suponho que faz umas 100 cenas que ele tá assim
+o mesmo tipo, no intervalo [20, 25]
+uma coisa, dado que o noise vai diminuindo com o tempo
+depois que converge ele não vai melhorar mais né?
+tipo, ele nunca vai aprender a andar mais rapido
+Isadora Sophia
+Isadora
+acho que não
+João Pedro Ramos Lopes
+João Pedro
+ou correr em algum momento
+Isadora Sophia
+Isadora
+nao sei se tem incentivo
+pra ir mais rapido
+na real
+no reward
+João Pedro Ramos Lopes
+João Pedro
+tem um pouco pq o número de passos é limitado
+então quanto mais longe ele chega melhor
+maior o reward
+João Pedro Ramos Lopes
+João Pedro
+
+o reward atual
+
+loss atual
+Isadora Sophia
+Isadora
+uhum
+João Pedro Ramos Lopes
+João Pedro
+pior que eu acho que ele ta alcançando valores mais altos
+pq antes não tinha nenhum acima de 25
+mas agora já vi 26 27 29
+também aparece uns 13, 9
+vou deixar ai rodando até amanhã
+SUN 1:53AM
+
+João Pedro Ramos Lopes
+João Pedro
+sem melhorias até agora 😕
+SUN 3:59AM
+
+Renato Vargas
+Renato
+to voltando agora e vou ver como ficou
+tava pensando que talvez desse pra dar um incentivo por usar uma velocidade no mesmo sentido que no frame anterior
+mas menor que o de movimento
+aí a gente inventiva ele a dar passos e não só tremer
+vo tentar rodar assim
+Renato Vargas
+Renato
+mto estranho.... no treinamento tava dando quase sempre 0
+no run tá dando -900
+mas ele antes de eu sair tava conseguindo valores bem melhores
+a convergência tá estranha ainda
+Renato Vargas
+Renato
+commitei isso se alguém quiser
+se não quiser, só comentar o loop da linha 191
+vo deixar rodando de novo aqui
+SUN 10:44AM
+
+João Pedro Ramos Lopes
+João Pedro
+aqui eu parei a simulação antes de ir dormir
+e coloquei 4x mais passos
+pra ele aprender a andar reto até mais longe
+usando o que ele já tinha aprendido
+
+começou em 80
+ele aprendeu até 100
+Isadora Sophia
+Isadora
+nossa aqui ele tá fazendo um caminho super x
+e ganhando reward 380
+hahaahah
+vcs mudaram os valores?
+quando vc diz super x, é um caminho ruim:?
+ou é ele seguindo só o eixo x?
+Isadora Sophia
+Isadora
+Play	
+-0:26
+Additional Visual SettingsEnter Fullscreen	Unmute
+Renato Vargas
+Renato
+talvez alguns valores de reward novos tenham ido no ultimo commit de madrugada
+mas pelo que a gente combinou que ia dar o reward, tá certo isso aí msm
+Isadora Sophia
+Isadora
+beleza
+é q ontem tava uns 80
+Renato Vargas
+Renato
+se quiser penalizar mai a rotação, tem que aumentar lá a penalização
+ah sim
+acho que foi pelo que eu mudei mesmo
+aparentemente meus treinamentos foram todos em vão
+parece que quando bloqueia a tela aqui, o robo não mexe e sempre dá zero
+Isadora Sophia
+Isadora
+quando bloqueia a tela?
+do pc vc diz?
+Renato Vargas
+Renato
+opa
+to com sono
+sauhsahuhsauhsa
+isso
+Isadora Sophia
+Isadora
+ndkskdkwkekqkekqkskws ok
+Renato Vargas
+Renato
+dar lock no pc
+Isadora Sophia
+Isadora
+uhum
+Isadora Sophia
+Isadora
+gente, vocês acham que tá ruim?
+aqui tá bem razoável
+o treinamento
+e quando ele fica parado dura alguns episódios
+e ele volta a andar
+Renato Vargas
+Renato
+aqui tbm parece razoável tbm
+em 50 episódios ele tá andando pra frente sem ficar absurdamente torto
+Isadora Sophia
+Isadora
+yep
+Renato Vargas
+Renato
+agora lembrei que sonhei que acordei e ele tava correndo que nem um leopardo
+sauhahsuhusahusahusahusa
+Isadora Sophia
+Isadora
+KDJWKEKQKEKQKEKQKEKQ
+mas cara
+ele n tem mt movimento
+eu acho q ele n consegue se mexer mt
+pra andar level leopardo
+Renato Vargas
+Renato
+foi isso que tentei corrigir no commit de madrugada
+eu checo o sinal da ultima velocidade é igual a do frame anterior e do reward pra isso
+Isadora Sophia
+Isadora
+nao mas entao
+to falando de tipo
+se andar q nem leopardo
+ele teria q mexer amplamente as patas
+e ele n consegue fazer isso
+mesmo q devolva 1 ou -1
+q é o movimento maximo
+sacou
+Renato Vargas
+Renato
+aaah, eu falei leopardo, mas só quis dizer que era mto rápido
+sauhshauahsuhusahusa
+Isadora Sophia
+Isadora
+ah tq wjrjwkekqke
+é q eu acho q pra ir mt rapido
+Renato Vargas
+Renato
+ele conseguia correr
+Isadora Sophia
+Isadora
+ele teria q ter mais movimento
+nas patas
+Renato Vargas
+Renato
+uhum
+Isadora Sophia
+Isadora
+mas pq ele n consegue mexer tanto?
+foi pra restringir liberdade?
+Renato Vargas
+Renato
+não tá limitado não, consegue mexer bastante sim
+cada junta pode rotacionar 180 graus
+Isadora Sophia
+Isadora
+vc tem ctz?
+Renato Vargas
+Renato
+é só que a velocidade fica alternando entre positivo e negativo rápido e fica assim
+Isadora Sophia
+Isadora
+hmmm entendi
+Renato Vargas
+Renato
+pelo menos tinha testado antes de colocar o ddpg
+se quiser tava uma velocidade 1000
+quiser testar*
+Isadora Sophia
+Isadora
+a velocidade n muda mt coisa
+Renato Vargas
+Renato
+pior que não mudou msm...
+calma ae
+a velocidade muda rápido por causa do noise não?
+o que aconteceria se mudar pra aceleração?
+Isadora Sophia
+Isadora
+renato, pro seu tcc:
+http://karpathy.github.io/2016/05/31/rl/
+achei mó daora
+Renato Vargas
+Renato
+ooo valeu! vou dar uma olhada
+então ele realmente parece que tá ignorando o input em parte
+por mais que fale pra ir pra certas posições válidas, ele não tá indo
+João Pedro Ramos Lopes
+João Pedro
+eu não li o artigo do pong
+mas esse video
+https://www.youtube.com/watch?v=YOW8m2YGtRg
+tem legenda:
+The learned agent (in green, right) facing off with the hard-coded AI opponent (left).
+wtf, um jogador lvl1 vs jogador lvl 100 é facil ganhar
+pior que agora to com vontade de ler pra ver o motivo que o jogador de aprendizado tem velocidade 10 * maior que o hard coded
+Isadora Sophia
+Isadora
+hehehehehehheheh o hard coded é mo op ne
+opa
+pera
+é o contraro
+João Pedro Ramos Lopes
+João Pedro
+é o contrário
+Isadora Sophia
+Isadora
+oloco
+aí sim
+João Pedro Ramos Lopes
+João Pedro
+o hard coded tá lerdo
+se for só isso não tem validade nenhuma o aprendizado
+por isso fiquei curioso
+Isadora Sophia
+Isadora
+ele aprende rapido pq é o comportamento otimo msm
+João Pedro Ramos Lopes
+João Pedro
+vou colocar nos favoritos e depois leio
+não, mas o movimento dele
+se o hard coded andasse na mesma velocidade ele provavelmente ganharia
+e ele tá usando o hard coded mais burro que existe
+ao invés de prever a trajetória ele só tenta seguir a bola
+só vendo o video, sem ler o artigo
+seria tipo comparar o nosso gatinho andando com um gato 'hard coded' sem pernas
+que tem que se mover só com movimentos da cabeça e do rabo
+ele deve ter algum motivo descrito no artigo tho 😛
+aumentei pra 300 steps
+começou com 120 de reward
+ele alcançou 150 mas não tá estável
+a posição dele entra no estado do robo?
+Isadora Sophia
+Isadora
+aqui ta com 200 steps e ele ta com 500 de reward
+e ta reto
+:b
+João Pedro Ramos Lopes
+João Pedro
+oloco
+manda video
+vc mudou a reward?
+Renato Vargas
+Renato
+mano................................
+Isadora Sophia
+Isadora
+Play	
+-0:06
+Additional Visual SettingsEnter Fullscreen	Unmute
+Renato Vargas
+Renato
+grande merda descoberta
+aparentemente o robo tá resetando sempre as juntas dele
+Isadora Sophia
+Isadora
+qnrkqkekqkekqkekqkekwe what
+Renato Vargas
+Renato
+to pensando que talvez todas as juntas na verdade são mexidas automaticamente, e a gente mexe diretamente a posição do pé
+e as juntas vão por inversed kinematics
+existe essa chance que to investigando agora
+João Pedro Ramos Lopes
+João Pedro
+isso explicaria bastante pq ele NUNCA tenta subir a pata
+fica só no mesmo lugar
+Isadora Sophia
+Isadora
+entao qkekqkekqemkqe ele n mexe msm
+Renato Vargas
+Renato
+pelo menos o algoritmo é ctz que tá funcionando, pq ele tá conseguindo aprender a movimentar através de bug shashuauhsahushau
+Isadora Sophia
+Isadora
+KQFMWKEKWKRMQKEKWKE
+é só o modo stealth
+vcs não tiveram nenhum problema com o Vrep esse tempo todo?
+Isadora Sophia
+Isadora
+nope
+D:
+eu troquei de máquina, instalei o vrep e as dependencias tudo de novo
+continua dando o mesmo erro
+o repositório tem que estar em algum lugar específico?
+Isadora Sophia
+Isadora
+tem que executar dentro de final
+Renato Vargas
+Renato
+em que pasta e que comando vc tá executando?
+C:\Users\Gustavo\Unicamp\MCEsther\Robotics-AI\final>python train_robot.py
+Using Theano backend.
+WARNING (theano.configdefaults): g++ not available, if using conda: `conda install m2w64-toolchain`
+WARNING (theano.configdefaults): g++ not detected ! Theano will be unable to execute optimized C-implementations (for both CPU and GPU) and will default to Python implementations. Performance will be severely degraded. To remove this warning, set Theano flags cxx to an empty string.
+----------------------------------------------------
+The remoteApi library could not be loaded. Make sure
+it is located in the same folder as "vrep.py", or
+appropriately adjust the file "vrep.py"
+----------------------------------------------------
+
+Traceback (most recent call last):
+  File "train_robot.py", line 3, in <module>
+    from simulator import Simulator
+  File "C:\Users\Gustavo\Unicamp\MCEsther\Robotics-AI\final\simulator.py", line 1, in <module>
+    import vrep
+  File "C:\Users\Gustavo\Unicamp\MCEsther\Robotics-AI\final\vrep.py", line 55, in <module>
+    c_GetJointPosition          = ct.CFUNCTYPE(ct.c_int32,ct.c_int32, ct.c_int32, ct.POINTER(ct.c_float), ct.c_int32)(("simxGetJointPosition", libsimx))
+AttributeError: 'NoneType' object has no attribute '_handle'
+Isadora Sophia
+Isadora
+vc tem q usar o tensorflow como backend
+como?
+Isadora Sophia
+Isadora
+acho q tem no google
+vc exporta uma variaveld e ambiente
+ou entao so baixa o tensorflow
+n lembro
+Renato Vargas
+Renato
+pra mim foi só instalar o tensorflow que reconheceu
+já tá instalado
+Renato Vargas
+Renato
+talvez no mac seja diferente
+wifi-177-220-84-89:final gmcrivelli$ python train_robot.py 
+Using TensorFlow backend.
+----------------------------------------------------
+The remoteApi library could not be loaded. Make sure
+it is located in the same folder as "vrep.py", or
+appropriately adjust the file "vrep.py"
+----------------------------------------------------
+
+Traceback (most recent call last):
+  File "train_robot.py", line 3, in <module>
+    from simulator import Simulator
+  File "/Users/gmcrivelli/Downloads/Robotics-AI-master/final/simulator.py", line 1, in <module>
+    import vrep
+  File "/Users/gmcrivelli/Downloads/Robotics-AI-master/final/vrep.py", line 55, in <module>
+    c_GetJointPosition          = ct.CFUNCTYPE(ct.c_int32,ct.c_int32, ct.c_int32, ct.POINTER(ct.c_float), ct.c_int32)(("simxGetJointPosition", libsimx))
+AttributeError: 'NoneType' object has no attribute '_handle'
+wifi-177-220-84-89:final gmcrivelli$
+Renato Vargas
+Renato
+então, sobre o robo, vou explicar como é o movimento de verdade dele, e temos que pensar como modelar isso na ações
+primeiro, desculpa por deixar passar isso até agora D:
+Mesma coisa, o tensorflow não muda isso...
+Isadora Sophia
+Isadora
+hahahahaha relaxaaa ta td bem
+Renato Vargas
+Renato
+todas as juntas do robo são movidas por IK então, não mexemos nela
+existe um foot tip pra cada pata que é o pé mesmo, aí cada um tá linkado com um foot tip dummy
+a gente mexe a posição no espaço desse dummy, e o foot tip vai tentar ficar na mesma posição que o dummy
+eu pensei em continuar devolvendo valores de -1 a 1
+Isadora Sophia
+Isadora
+https://stackoverflow.com/questions/40310035/how-to-change-keras-backend-wheres-the-json-file
+Renato Vargas
+Renato
+mas agora seriam 3 pra cada uma das patas (posição relativa nos 3 eixos)
+e a gente multiplica pelos valores máximos que pode se mexer
+ou fazer o mesmo esquema de velocidade, que talvez faça mais sentido
+e tbm pensei que talvez possamos ignorar o eixo x, pq a pata não é pra ir pra dentro ou fora do robo
+Isadora Sophia
+Isadora
+hmmm entendi
+maa talvez seja interessante dar essa liberdade
+n sei
+Renato Vargas
+Renato
+é que são mais 4 ações né
+João Pedro Ramos Lopes
+João Pedro
+aumenta mto o número de estados se permitir movimentos em x?
+Renato Vargas
+Renato
+de estados não, de ações
+de 8 pra 12
+João Pedro Ramos Lopes
+João Pedro
+vamo tentar primeiro sem X
+qlqr coisa depois a gente adiciona ele
+Renato Vargas
+Renato
+pode ser
+o modelo em relação a estados e ações vai ficar bem parecido
+João Pedro Ramos Lopes
+João Pedro
+ele já tá andando pra frente sem controlar as patas... sem controlar o x das patas é o de menos x)
+http://www.forum.coppeliarobotics.com/viewtopic.php?f=9&t=3745
+Renato Vargas
+Renato
+verdade shahusasahuhsua
+jobs, será que não compensa uma maquina virtual?
+aparentemente dá pra desativar o IK em um grupo de juntas
+João Pedro Ramos Lopes
+João Pedro
+tem reward pra queda?
+pq tem chance dele cair agora
+Renato Vargas
+Renato
+ah, mas não queremos desativar o IK
+João Pedro Ramos Lopes
+João Pedro
+ou basta checar o stuck?
+o erro que tá dando não faz sentido, pq no mac ele tá com o tensorflow de backend e continua a mesma coisa
+Renato Vargas
+Renato
+acho que é só checar o stuck
+não acho que máquina virtual vai resolver
+deve ser outra coisa
+Renato Vargas
+Renato
+se der merda, a gente checa o Z do robo se é menor que tal valor
+onde fica o repositório pra vcs em relação ao Vrep?
+João Pedro Ramos Lopes
+João Pedro
+justo
+Renato Vargas
+Renato
+mas não tá indo pro reward atualmente
+João Pedro Ramos Lopes
+João Pedro
+qlqr lugar
+barney
+João Pedro Ramos Lopes
+João Pedro
+não tem ligação nenhuma, basta ele estar rodando
+Renato Vargas
+Renato
+vo almoçar e volto
+João Pedro Ramos Lopes
+João Pedro
+de boas
+vcs instalaram as coisas usando pip ou conda?
+Isadora Sophia
+Isadora
+pip
+Renato Vargas
+Renato
+pip
+Renato, pq desativar o IK seria ruim?
+SUN 3:11PM
+
+Renato Vargas
+Renato
+Play	
+-0:10
+Additional Visual SettingsEnter Fullscreen	Unmute
+o gatinho gosta de rolar 😛
+pq o gato ia cair
+KKKKKKKKKKKKKKKKKKKK
+Renato Vargas
+Renato
+e  a gente ia ter que controlar todas as juntas além das patas
+olha a velocidade desse bicho
+vc deletou os dummys?
+Renato Vargas
+Renato
+é difícil controlar limites de movimento agora
+não, a gente vai mexer eles
+btw, descobri o problema do VRep
+mas não consigo passar de 9 episódios sem crashar
+o server de vcs desconectava do nada em algum ponto?
+Isadora Sophia
+Isadora
+nope D:
+mano esse gatinho hahahah
+vai dando update do q ta rolando
+João Pedro Ramos Lopes
+João Pedro
+Como ele tá rolando desse jeito? o.O
+Se ele for rolando mas for pra frente é de boas eu acho haha
+Renato Vargas
+Renato
+é que tá mexendo em posição das patas quase que direto agora
+sem limites, ele vai pra qlqr canto
+mas eu vou checar se caiu e parar a simulação e dar um reward negativo
+foda que agora tá com estado demais... 33
+tem que analisar melhor o que pode tirar
+# 12 states (4 feet tips position 3 axis)
+# 8 states (4 feet targets speed 2 axis)
+# 13 states (passive joints position)
+# 3 states (robot orientation 3 axis)
+# total: 25 states
+Isadora Sophia
+Isadora
+eu acho ok
+pq aumentou action ne
+Renato Vargas
+Renato
+action ficou 8
+opa, a soma ta errada, total 33
+36 na verdade
+Isadora Sophia
+Isadora
+acho q aumentar estado n é problema
+Renato Vargas
+Renato
+beleza
+SUN 5:08PM
+
+Renato Vargas
+Renato
+PRONTO
+Isadora Sophia
+Isadora
+KQJDKWDKQKEKWKEKWNE oq
+Renato Vargas
+Renato
+essa mudança foi trampo pra carai
+commitei agora o robo movendo certo
+com estados, ações, etc, tudo novo
+Isadora Sophia
+Isadora
+eita
+Renato Vargas
+Renato
+recarreguem a cena
+Isadora Sophia
+Isadora
+crl
+e como ta andando?
+Renato Vargas
+Renato
+veja pelos seus próprios olhos sauhsahusahusa
+mas melhor que antes
+não deixei treinando muito
+Isadora Sophia
+Isadora
+mdkwrkwkrkwkekqkelw beleza
+to curiosa
+Renato Vargas
+Renato
+mandei agora pra vcs ajudarem a ver os rewards
+e tbm pra ver os limites de movimento nos eixos
+MIN_LIMITS = [0, -4e-2, -2e-2]
+MAX_LIMITS = [0, 2e-2, 3e-2]
+isso aqui é quanto cada pata pode mexer nos eixos
+vejam se algum tá demais ou pouco
+e agora ele desconecta logo que o corpo fica abaixo de certa altura
+acho melhor deixar 100 steps pra treinar agora, pq ele faz bem mais coisa agora
+Isadora Sophia
+Isadora
+aaaaa agora sim
+tá mt engraçado aifjsdoifja
+Renato Vargas
+Renato
+sim suhahusahusahu
+mas to vendo que vai demorar pra caralho pra convergir
+vamo ver
+Isadora Sophia
+Isadora
+vamo ve
+pelo menos o outro tava bala
+João Pedro Ramos Lopes
+João Pedro
+pode checar os rewards?
+teve uma vez que ele andou bem daora pra frente mas deu -160
+tipo, ele saiu deslisando rapido e pra frente e relativamente reto
+e o reward foi praticamente o mesmo
+Renato Vargas
+Renato
+então, o reward é pra ser basicamente igual antes
+única cosia que mudou é penalizar em caso de queda ou stuck
+João Pedro Ramos Lopes
+João Pedro
+hm... ele não tinha caido e não tinha ficado parado
+Renato Vargas
+Renato
+Play	
+-0:09
+Additional Visual SettingsEnter Fullscreen	Unmute
+tem um aqui aprendendo a ficar em 3 patas husauhsahushau
+então, tem que analisar melhor o que aconteceu, só com isso não consigo imaginar nada de errado não
+mas eu passei pra vcs agora justamente pra vcs brincarem com os valores tbm, pq só eu ficar mexendo não vai rolar...
+Isadora Sophia
+Isadora
+QKEKQKEKQKWKQKWKQKE
+to mwxendo aqui
+o gatinho ta tipo
+Renato Vargas
+Renato
+Play	
+-0:05
+Additional Visual SettingsEnter Fullscreen	Unmute
+preparando para o ataque
+Isadora Sophia
+Isadora
+"existence is pain"
+Renato Vargas
+Renato
+mano, o meu aqui tá mto fofo
+sahusahusahusahusahu
+João Pedro Ramos Lopes
+João Pedro
+sim, to brincando com os valores
+tem algum na sua parte pra brincar?
+ou é só a os valores do ddpg?
+Isadora Sophia
+Isadora
+vamo tocar na aula
+com musica triste
+no fundo
+Renato Vargas
+Renato
+é dos meus que to falando mesmo
+os da ddpg acho que nem é pra mexer mais
+Isadora Sophia
+Isadora
+q valores vc ta mexendo?
+Play	
+-0:10
+Additional Visual SettingsEnter Fullscreen	Unmute
+Renato Vargas
+Renato
+# reward values
+FORWARD_REWARD = 100
+CONTINUOUS_REWARD = 0.125
+BACKWARDS_PENALTY = -200
+ROTATION_PENALTY = -2
+STUCK_PENALTY = -100
+FALL_PENALTY = -1000
+
+# action values
+MAX_SPEED = 0.5
+MIN_LIMITS = [0, -2e-2, -1e-2]
+MAX_LIMITS = [0, 2e-2, 3e-2]
+Renato Vargas
+Renato
+# reward values
+FORWARD_REWARD = 100 # reward for getting far
+CONTINUOUS_REWARD = 0.125 # reward for having same speed as last frame
+BACKWARDS_PENALTY = -200 # penalty for going backwards
+ROTATION_PENALTY = -2 # penalty for getting off track
+STUCK_PENALTY = -100 # penalty for getting stuck
+FALL_PENALTY = -1000 # penalty for falling down
+
+# action values
+MAX_SPEED = 0.5 # max speed of feet
+MIN_LIMITS = [0, -2e-2, -1e-2] # max relative position of each feet
+MAX_LIMITS = [0, 2e-2, 3e-2] # min relative position of each feet
+Isadora Sophia
+Isadora
+vc acha q a rewaed ta ruim?
+n to conseguindo tirar mt info
+tipo
+ele so ta meio q sofrendo
+e recebendo reward ruim
+vou esperar ele andar
+Renato Vargas
+Renato
+commitei agora umas pequenas mudanças numas variáveis e esses comentários que mandei aqui
+Isadora Sophia
+Isadora
+ok
+vale a pena reiniciar o treinamento pra dar pull?
+Renato Vargas
+Renato
+ah, acho que não
+vc deve tá mexendo nas msm variáveis
+João Pedro Ramos Lopes
+João Pedro
+aqui não apareceu n
+vc deu push?
+Renato Vargas
+Renato
+eu só diminui um pouco os limites pq tava mto locao
+Isadora Sophia
+Isadora
+to mezendo nas q vc mandou aqui haha
+relaxa
+no episodio 80k
+ele aprende
+Renato Vargas
+Renato
+ah, foi agora
+Isadora Sophia
+Isadora
+WNFNWNRJWKEKWKEKQKWWKWOQ
+Renato Vargas
+Renato
+o jobs tinha commitado antes ai bloqueou o push
+sahusahusahusuhasahuhsai pode cre
+Isadora Sophia
+Isadora
+mano
+João Pedro Ramos Lopes
+João Pedro
+mas foi só esse último acho
+o outro veio
+Isadora Sophia
+Isadora
+pq o coelho n funciona
+Renato Vargas
+Renato
+mandei agora
+aqui funciona
+mas é que ele reseta quando reseta a cena
+Isadora Sophia
+Isadora
+acho q eu prefiro ele com mais liberdade pra se mexer
+pra poder cair e tal
+senao parece cheat
+qq vcs acham?
+Renato Vargas
+Renato
+cheat não acho que não é, é normal limitar isso e até a prof tinha falado
+mas minha preocupação maior é de demorar mais pra convergir só
+Isadora Sophia
+Isadora
+entendi
+Renato Vargas
+Renato
+temos que treinar ele e fazer o relatório até amanhã
+Isadora Sophia
+Isadora
+mano entao
+pq o coelho n funciona
+?
+Renato Vargas
+Renato
+então, não é pq reseta junto com a cena?
+Isadora Sophia
+Isadora
+mas msm quando eu aperto
+fica igual
+antes de resetar a cena
+Renato Vargas
+Renato
+estranho
+aqui acelera
+o rabinho fica rapidinho
+Isadora Sophia
+Isadora
+sera q a ddpg q pesa entao?
+#gpu
+Renato Vargas
+Renato
+capaz
+Isadora Sophia
+Isadora
+to sem gpu aqui
+D:
+João Pedro Ramos Lopes
+João Pedro
+então, o coelho aqui funciona só pra um episódio
+e isso não muda a velocidade no ddpg
+tipo, ele não vai fazer os steps mais rapido
+ele só vai demorar a responder qual o passo correto
+Renato Vargas
+Renato
+to achando que o gato aqui começou a explorar o reward que eu dou de continuar mexendo no msm sentido que a ultima ação
+to pensando em não dar mais
+Isadora Sophia
+Isadora
+pois é
+eu tirei ele
+João Pedro Ramos Lopes
+João Pedro
+o de vcs já ta andando?
+Renato Vargas
+Renato
+eu to resetando frequentemente testando valores novos, então não
+vo deixar rodando agora
+mas não acho que vai ser tão rápido assim
+João Pedro Ramos Lopes
+João Pedro
+é que vc tinha dito que ele tava explorando o reward de continuar no mesmo sentido
+Isadora Sophia
+Isadora
+acho q vai demorar tb
+:/
+João Pedro Ramos Lopes
+João Pedro
+o meu ainda ta parado
+Renato Vargas
+Renato
+ele tá, mas não é tão rápido assim
+e pode ter outras coisas afetando né...
+to tirando umas penalidades aqui e testando
+o que talvez precisa é penalizar por ficar parado
+Renato Vargas
+Renato
+commitei com a variavél nova que penaliza por ficar parado
+ahhhhh, agora que entendi oq vc falou que eu falei shuauhsahs
+ah, calma
+esquece o que eu falei agora sahushuahusa
+só testem aí
+mudei outras variáveis, então qlqr coisa salvem as de vcs antes em outro lugar pra pullar
+Isadora Sophia
+Isadora
+KQKEKWKEKWEKQKEKQ
+beleza
+Renato Vargas
+Renato
+diminui vários valores que tavam altos por causa de quando era pelas joints
+Isadora Sophia
+Isadora
+uhum
+ficou melhor
+João Pedro Ramos Lopes
+João Pedro
+isa, vc salvou os dados que tava dando 500 de reward?
+Isadora Sophia
+Isadora
+nao, acho q n ia adiantar nada agora com o novo sistema
+x_x
+mas tenho videos
+(q eu mandei aqui)
+djwjekwkekwkwkqle
+João Pedro Ramos Lopes
+João Pedro
+justo
+Isadora Sophia
+Isadora
+nossa a loss ta mt instavel
+o modelo deve estar mt crazy
+ele ta andando de lado qkekwmekqekwkek
+Play	
+-0:22
+Additional Visual SettingsEnter Fullscreen	Unmute
+Renato Vargas
+Renato
+ta valendo shauhsuahusa
+shauhusauhsauh eita
+João Pedro Ramos Lopes
+João Pedro
+aqui ele tava engatinhando um pouquinho
+só que pra trás hahaha
+ele aprendeu a ficar balançando pra não tomar penalidade de ficar parado
+mas ele tá ficando no mesmo lugar ainda
+mas ao menos ele tá indo bem menos pra trás que antes
+Isadora Sophia
+Isadora
+a loss ta divergindo mt
+aaaaaaa
+Renato Vargas
+Renato
+:(
+Isadora Sophia
+Isadora
+eu acho q os estados n tao correlacionando com os rewards
+e ta quase impossivel de emular uma funcao
+ai da um loss absurdo
+Isadora Sophia
+Isadora
+to tentando deixar um ganho absurdo pra andar pra frente
+melhorou
+tem q penalizar mais q td ele ficar paraddo
+Renato Vargas
+Renato
+só aumentar lá
+Isadora Sophia
+Isadora
+sim eu to fazendo e comentando
+pra vcs jogarem ideia
+Renato Vargas
+Renato
+pode aumentar tbm o STUCK_MARGIN pra considerar um raio maior como parado
+Isadora Sophia
+Isadora
+wmrmwkekwkekwkekwke
+é
+Isadora Sophia
+Isadora
+Play	
+-0:19
+Additional Visual SettingsEnter Fullscreen	Unmute
+botei musica de açao w snwemwmemwmemkwfoowkejwkekkgkekdkwld
+tá reto
+ro emocionada
+gente do ceu
+vou chorar
+Renato Vargas
+Renato
+sahusauhsahusauhhusahusahuashusahhsauhusahuasuhsauhasuh
+é a música que inspirou ele
+aeeee, será que vai??
+tá indo né
+Isadora Sophia
+Isadora
+acho q ta indo
+vou commitar os parametros
+a loss n ta divergindo
+Renato Vargas
+Renato
+acho que tá sim
+começou mó alta
+de 200 aqui já abaixou pra uns 13
+e caindo
+mas não sei como tá rodando, pq to em headless mode sahsahusha
+Isadora Sophia
+Isadora
+hndkqkelwlekqkeqowoqopwq
+commitei ja
+Renato Vargas
+Renato
+eita, mudou pra carai hsuahusa
+Isadora Sophia
+Isadora
+yep qkekqjewjejwkekqkwo
+Renato Vargas
+Renato
+eita, bateu um milagre no meu agora
+reward de 20 a 50
+Isadora Sophia
+Isadora
+oloco
+Renato Vargas
+Renato
+com loss de 0.80
+Isadora Sophia
+Isadora
+olocoooo
+qq isso
+o meu tava com loss 800
+Renato Vargas
+Renato
+diminuiu do nada
+Isadora Sophia
+Isadora
+qkdkekdkwkekwkdwlldlqdlwlsllwdlwld
+antes de mudar
+Renato Vargas
+Renato
+sem pular ainda
+é que mudei tbm aqui
+eita, na verdade nem mudei sauhhsuauhsa
+só mudei STUCK_MARGIN = 5e-2
+vo deixar rodando mais um pouco em quanto janto, ai rodo com gui e gravo como ta
+Isadora Sophia
+Isadora
+uhum
+João Pedro Ramos Lopes
+João Pedro
+que legal
+aqui ele aprendeu meio que chutar com as patas de trás pra ir pra frente
+Isadora Sophia
+Isadora
+jaekwkekekkqkwoqwowoew
+João Pedro Ramos Lopes
+João Pedro
+vai pouco mas ao menos vai pra frente, n pra trás
+Isadora Sophia
+Isadora
+o loss ta divergindo?
+se tiver divergindo nem investe
+João Pedro Ramos Lopes
+João Pedro
+n, to usando os seus parâmetros qse
+ta 2~3
+mas ele esqueceu o que fazer
+decidiu ficar parado
+tava dando reward 10 +/-
+agora ta dando reward -200
+-100
+e ele continua parado 😕
+Isadora Sophia
+Isadora
+tem que usar outros parametros
+é pq pra ele compensava mais ficar parado do q arriscar andar e ter reward pior ainda
+do jeito q ele tava modelado
+Play	
+-0:35
+Additional Visual SettingsEnter Fullscreen	Unmute
+João Pedro Ramos Lopes
+João Pedro
+lol
+aqui ele aprendeu a ficar indo pra frente e pra trás
+pq o reward de ir pra frente tava em 100
+e pra tras -5
+daí ele acumulava reward positiva
+cortei a mamata dele e ele voltou a andar pra frente um pouco
+nada tão promissor quanto o seu
+Renato Vargas
+Renato
+eita, ta indo muito sucesso o seu ai!
+Isadora Sophia
+Isadora
+e ele ta melhorando cara
+Renato Vargas
+Renato
+fui dar run no meu e ele ta parado
+vo pegar as suas mudanças e mudar mais um pouco
+pra ter coisa diferente rodando
+quantos epi já foram?
+Isadora Sophia
+Isadora
+312
+mas tipo
+n muda mt pq ta funcionando
+qnekwmekwkekwlel1elwoeowl
+cria outra branh
+sei la
+Renato Vargas
+Renato
+sahusahusahusauhs
+não vou commitar nada não
+Isadora Sophia
+Isadora
+@Gustavo Crivelli como ta o relatorio?
+amanha n vou poder entrar no pc dps das 14h eu acho D:
+só cel
+João Pedro Ramos Lopes
+João Pedro
+ele foi dormir por volta das 17h30
+disse que tava umas 30h acordado
+Isadora Sophia
+Isadora
+jskwieoqkwqnsnwkekqkwkqwos
+Renato Vargas
+Renato
+mas sabe se ele já teve progresso?
+João Pedro Ramos Lopes
+João Pedro
+no idea
+suponho que n
+pq ele n falou nada
+Renato Vargas
+Renato
+hmm entendi
+isa, que parametro vc acha que poderia mexer pra melhorar o seu?
+só possíveis coisas
+Isadora Sophia
+Isadora
+ddpg?
+cara
+eu n arriscaria mt
+Renato Vargas
+Renato
+não, do robo msm
+Isadora Sophia
+Isadora
+aaaa do robo
+manje8
+entao
+eu acho q teria q ter mais penalidade pra entortar
+Renato Vargas
+Renato
+é que eu acho que é bom deixar coisas diferentes rodando
+Isadora Sophia
+Isadora
+mas eu to com medo dele ficar parado
+entao teria q ver ate quanto
+Renato Vargas
+Renato
+nessa madrugada tem que sair nossa solução sahusahuhsuahuas
+entortar de angulo?
+Isadora Sophia
+Isadora
+talvez mudar -.25 pra -.5
+no rotation
+Renato Vargas
+Renato
+hmmmm
+Isadora Sophia
+Isadora
+penalty
+e assim
+se loss passou de 10 esquece
+i guess
+loss é tipo
+o quanto a funcao sintetica tá parecida com a funçao real
+Renato Vargas
+Renato
+o max/min position algum deles ainda tá dando mais do que o robo consegue mover, pq quando pausa o robo continua movnedo tentando ir pra um ponto que não consegue alcançar
+Isadora Sophia
+Isadora
+no caso de reward
+Renato Vargas
+Renato
+passou de 10 em que episódio +-?
+Isadora Sophia
+Isadora
+eu acho q ele ta mexendo relativamente pouco ate
+Renato Vargas
+Renato
+desde o começo?
+Isadora Sophia
+Isadora
+nos outros foi no 50+
+acho
+Renato Vargas
+Renato
+eu acho que  o problema é que eu to usando a mesma restrição pras patas da frente e de tras
+ai um mexe mais do que pode e o o outro restringe o movimento
+Renato Vargas
+Renato
+separei os limites das pernas da frente e de trás
+consegui deixar o range bem maior
+vou commitar com os valores iguais como tavam antes pra não mexer os seus dados
+mas quem quiser pode brincar já
+Renato Vargas
+Renato
+os limites que calculei são esses btw
+FRONT_MIN_LIMITS = [0, -6e-2, -1e-2] # min relative position of front feet
+FRONT_MAX_LIMITS = [0, 2e-2, 3e-2] # max relative position of front feet
+BACK_MIN_LIMITS = [0, -2e-2, -1e-2] # min relative position of back feet
+BACK_MAX_LIMITS = [0, 7e-2, 2e-2] # max relative position of back feet
+Isadora Sophia
+Isadora
+mano
+ele voltou a girar
+Aaaaaaaaaaaa
+lembra no antigo
+q ele girava
+ta igual
+Renato Vargas
+Renato
+sepá tem que ter penalidade maior por girar msm
+Isadora Sophia
+Isadora
+pois é
+e isso só depois das 400
+Renato Vargas
+Renato
+estranho
+testa o run pra ver se ele gira
+ele pode só tá testando se girar é uma boa haha
+Isadora Sophia
+Isadora
+de qqr forma
+eu guardei os pesos q ele tava indo reto
+qkekqkekwkwkwowowoeoqw
+Renato Vargas
+Renato
+sahusahusahusahuhsua sucesso
+Isadora Sophia
+Isadora
+é so falar q ele fica preso em minimo local
+ou algum migue
+qkekqjejqjewkekwkekwke
+Renato Vargas
+Renato
+sahusauhsahusahushau não sei se cola
+Isadora Sophia
+Isadora
+ctz q rola uns jargao em reinforcement learning
+Renato Vargas
+Renato
+uhsahusahushua deve ter
+João Pedro Ramos Lopes
+João Pedro
+não sei... aqui já é a n-ésima vez que ele desaprende um truque
+tipo, ele passa uns tempos com reward 50
+daí do anda ele decide tentar ficar parado
+Isadora Sophia
+Isadora
+eu nao sei.....
+João Pedro Ramos Lopes
+João Pedro
+daí tudo bem, esperava que ele visse a reward baixa e voltasse ao que era antes
+mas não, ele fica parado
+e esquece o que aprendeu
+Isadora Sophia
+Isadora
+ele nao esquece oq aprendeu
+é mais complexo q isso
+n q eu entenda 100% tb
+qnenwkekwmekwke
+João Pedro Ramos Lopes
+João Pedro
+mas se ele sabe ganhar reward e não ganha mais é o mesmo que ele tivesse esquecido
+=P
+Isadora Sophia
+Isadora
+é q tem a funcao n dimensional dele
+aì ele ta tentando dar fit nela
+ai just happens q ele ficou em um minimo local
+q acredita q girar em circulo é melhor
+ai ele tem q achar o minimo global pra falar q n existe melhores rewards
+q ele ja viu antes
+mas ele n remodelou em cima disso
+João Pedro Ramos Lopes
+João Pedro
+saquei
+Isadora Sophia
+Isadora
+ou pode ser um bug no codigo q eu n vi
+qjekwkekwkekwkekqke
+Renato Vargas
+Renato
+mas eventualmente é pra ele conseguir sair do minimo local ou  é problema de modelagem?
+Isadora Sophia
+Isadora
+entao
+ele deveria sair
+dps de um tempo
+João Pedro Ramos Lopes
+João Pedro
+o que faria ele sair é o noise, não?
+Isadora Sophia
+Isadora
+mas sempre da pra remodelar a funcao ou mexer em algum parametro do ddpg
+tipo o learning rate...
+Renato Vargas
+Renato
+sempre até amanhã shauuhsauhsauhsa
+Isadora Sophia
+Isadora
+é o noise mas tb a introduçao de um novo episodio
+iwjdekdkekdkwkekwkewekwkwkwowkwekwke
+assim
+a gentr tem um role q funciona vai
+Renato Vargas
+Renato
+sim sim
+Isadora Sophia
+Isadora
+eu ficaria dando tweak e vendo...
+Renato Vargas
+Renato
+meu medo é ela pensar que foi migué, enquanto deu mó trampo
+Isadora Sophia
+Isadora
+foda q tem parametro do modelo e da ai
+fica mt coisa cara
+ah n pode se
+a gente fala no relatorio
+o trabalho q deu
+Renato Vargas
+Renato
+vai depender do relatório
+Isadora Sophia
+Isadora
+mostra grafico e video
+e tipo
+João Pedro Ramos Lopes
+João Pedro
+a gente tentou implementar um estado da arte
+Isadora Sophia
+Isadora
+é um role estado da arte kqmewmekwkekwkekwe
+João Pedro Ramos Lopes
+João Pedro
+bleeding edge
+Isadora Sophia
+Isadora
+exato qkrkwkekwkewkekwkrkwkrlwlrlw
+fronteira da ciencia
+João Pedro Ramos Lopes
+João Pedro
+cutting edge*
+né
+Isadora Sophia
+Isadora
+ela falou q deep ja era dificil
+fez cara de susto sabe
+ai a gente fala q fez um role q transcende a parte deep
+qjrjej2kekwkekwkekwke2keowpr
+Renato Vargas
+Renato
+sahusahushausauhusahu
+outro nível
+Renato Vargas
+Renato
+Play	
+-0:08
+Additional Visual SettingsEnter Fullscreen	Unmute
+ele sai do minimo local sim sahusahushauhusa
+e saiu com força
+Isadora Sophia
+Isadora
+KQKFK2EKKWEKWKWO1OEO2O2O2OWO2OWW
+bota musica de metal pesado
+Renato Vargas
+Renato
+sahusahuhusahusahsahuhusa perdi a chance, já voltou a parar
+Isadora Sophia
+Isadora
+fnmwkdkwkekwekwkekwlwlwlwowlwowe
+João Pedro Ramos Lopes
+João Pedro
+é só mudar o título de robo que aprende a andar pra robo que aprende break dance
+Renato Vargas
+Renato
+como tá aí isa?
+Isadora Sophia
+Isadora
+eu parei de rodar pra terminar um lab
+D:
+ele tava girando em circulos
+ai fiquei brava tb
+1jekwkreoro2ro2kro2oe
+João Pedro Ramos Lopes
+João Pedro
+Play	
+-0:15
+Additional Visual SettingsEnter Fullscreen	Unmute
+Renato Vargas
+Renato
+hahahaah saquei
+olha só, tô bom esse ai tbm
+tá bom*
+msm parâmetros da isa?
+João Pedro Ramos Lopes
+João Pedro
+não
+mudei um pouco
+se ele começar a andar em circulos ou ficar parado dou qq
+na moral
+Isadora Sophia
+Isadora
+OJDOIDFJAOISDFJASDF
+vc mudou os parametros relaxa
+#esperança
+bom
+pelo menos depois disso
+vamo botar um video no youtube
+João Pedro Ramos Lopes
+João Pedro
+logbook - episode 541: cat keeps going forward
+Isadora Sophia
+Isadora
+o pessoal super vê essas coisas
+seri omsm
+JODOIFJASDFIOJCVDF
+nice
+dá um push
+baixa um screenrecorder
+João Pedro Ramos Lopes
+João Pedro
+tem gravador no proprio vrep se não me engano
+btw, mudei o número de passos e o buffer_size
+além de rewards
+Isadora Sophia
+Isadora
+uhum
+calma
+você deu push?
+João Pedro Ramos Lopes
+João Pedro
+yep
+caramba
+Isadora Sophia
+Isadora
+ok
+João Pedro Ramos Lopes
+João Pedro
+no instance que eu cliquei em gravar ele bugou
+Isadora Sophia
+Isadora
+n fala q ele ta girando
+João Pedro Ramos Lopes
+João Pedro
+deu reward 8
+Isadora Sophia
+Isadora
+DIAOFJSAOIDFJIOASDFCXIOZVJDAF
+João Pedro Ramos Lopes
+João Pedro
+e ta indo pra direita agora
+Isadora Sophia
+Isadora
+SAME
+eu falei
+"vou grava"
+ai ele comecou a ir pro lado
+e eu fiquei
+?????
+João Pedro Ramos Lopes
+João Pedro
+vc gravou com o gravador do vrep?
+Isadora Sophia
+Isadora
+n
+foi com um outro
+foi so karma msm
+João Pedro Ramos Lopes
+João Pedro
+caramba
+e agora ta em 14 (tava em 80) o reward
+bom, tem o backup da ai, qlqr coisa eu recupero
+ta no nicely2
+VELHO
+É mentira ISSO
+eu cliquei em stop
+ELE FOI RETO
+e agora ta indo reto
+reward voltou pra 80
+esse gato aprendeu a ter vergonha, isso sim
+Isadora Sophia
+Isadora
+robbie-test?
+DSIOFJSAFKLCXZVM,FJSDKMCXZV
+João Pedro Ramos Lopes
+João Pedro
+q q é robbie-test?
+Renato Vargas
+Renato
+essa cena pode ignorar
+é a cena sem remote api
+vc commitou um print que não roda em python 2.7
+ddph linha 169
+ddpg
+João Pedro Ramos Lopes
+João Pedro
+vish
+não sabia
+ele imprime na saida de erro
+eu pego a saída de erro pra plotar o gráfico depois
+pode apagar ela
+Renato Vargas
+Renato
+ok
+João Pedro Ramos Lopes
+João Pedro
+to rodando com 
+python3 train_robot.py 2> output.csv
+daí output.csv tem o csv com os rewards e loss
+Play	
+-0:24
+Additional Visual SettingsEnter Fullscreen	Unmute
+vrep pisca o meu plano de fundo entre uma simulação em outra
+Renato Vargas
+Renato
+tá faltando a música
+João Pedro Ramos Lopes
+João Pedro
+não é nenhuma mensagem subliminar que eu tava querendo passar
+hahaha
+Renato Vargas
+Renato
+pareceu uhsauhsha
+Isadora Sophia
+Isadora
+to baixand9 musica triste pro meu video
+João Pedro Ramos Lopes
+João Pedro
+eu tenho a música perfeita pro seu
+https://www.youtube.com/watch?v=4N3N1MlvVc4&feature=youtu.be&t=2m36s
+Isadora Sophia
+Isadora
+vai ficar maravilhoso
+João Pedro Ramos Lopes
+João Pedro
+exatamente nesse ponto da música
+Isadora Sophia
+Isadora
+guenta
+Isadora Sophia
+Isadora
+Isadora Sophia
+Isadora
+ops
+MANO
+TAVA PEGANDO ESSA
+WKKWFKWKRKWKEKWKRKWKEWLELLWELWLE
+João Pedro Ramos Lopes
+João Pedro
+uahuahauhauah
+sério?
+Isadora Sophia
+Isadora
+juro
+Play	
+-1:15
+Additional Visual SettingsEnter Fullscreen	Unmute
+João Pedro Ramos Lopes
+João Pedro
+Legilimens aqui haha
+huahuaha
+ele se joga
+mas cade a parte que ele anda em circulos? haha
+Isadora Sophia
+Isadora
+dsfjsfiosjcoizixocjzifjxz ne
+João Pedro Ramos Lopes
+João Pedro
+e quantos passos ta isso? ou vc ta usando o run?
+Isadora Sophia
+Isadora
+botei no run
+João Pedro Ramos Lopes
+João Pedro
+tend
+tendi
+aumentei pra 100 passos aqui e aumentei a penalty por rotação
+ver se ele roda menos e vai mais longe
+Isadora Sophia
+Isadora
+uhum
+Renato Vargas
+Renato
+sahusahushauhaushusahusahusahusahuashuhasuhsauhaus
+mano, ri mais do que eu deveria com o gatinho se jogando sahushuahusa
+diminuiu pra 100 pessoas né, tava 200
+João Pedro Ramos Lopes
+João Pedro
+não, no meu tava em 50
+Renato Vargas
+Renato
+ah tá, é que no repo tava 200
+João Pedro Ramos Lopes
+João Pedro
+https://github.com/jpedrorl/Robotics-AI/blob/master/final/train_robot.py
+tá 50 mesmo 😣
+Isadora Sophia
+Isadora
+pessoas
+sjifocxzklvjadifj
+Renato Vargas
+Renato
+ah, vc tinha mudado sasahuhsua
+Isadora Sophia
+Isadora
+botei 200 e deixei rodando
+vou deixar overnight
+e seja oq deus quiser
+tomara q eu n acorde e ele esteja girando
+Renato Vargas
+Renato
+tomara
+João Pedro Ramos Lopes
+João Pedro
+boa noite o/
+Isadora Sophia
+Isadora
+night!!
+Renato Vargas
+Renato
+vou testar um reward a mais aqui
+dar reward pra caso o angulo não mude quase nada
+Renato Vargas
+Renato
+Play	
+-0:18
+Additional Visual SettingsEnter Fullscreen	Unmute
+caralho, sepá tá sucesso assim
+isso em 20 episódios
+ele tava torto e tá ficando reto cada vez mais
+João Pedro Ramos Lopes
+João Pedro
+teria como dar um reward bonus no final da cena de acordo com o Y total?
+a ideia é tentar fazer ele ir mais rapido
+ou Y² na vdd
+Renato Vargas
+Renato
+dar dá, mas eu não acho que vai ajudar mto, pq fazemos tudo relativo ignorando os eixos
+João Pedro Ramos Lopes
+João Pedro
+saquei
+Renato Vargas
+Renato
+ia te mandar a fórmula agora, mas percebi que ia ser mó role
+pq o robo não sabe quando acaba a cena com sucesso
+João Pedro Ramos Lopes
+João Pedro
+nah
+deixa
+eu aumentei o reward de foward e de rotação
+ow, uma dúvida
+ele considera qlqr rotação como rotação?
+ou só em torno de Z?
+Renato Vargas
+Renato
+só em z
+João Pedro Ramos Lopes
+João Pedro
+a
+ah
+ok
+pq meu medo era ele contar como rotação ele subir e descer
+Renato Vargas
+Renato
+nem, só  vai pro estado essas outras rotações
+Acordei agora, vou mexer no relatório e mais tarde boto ele no git
+Renato Vargas
+Renato
+bom dia
+kkkkkkkkkkk
+João Pedro Ramos Lopes
+João Pedro
+faz no sharelatex
+pretendo
+https://pt.sharelatex.com/project/59508a78e341f31a47fcbf90
+Vcs conseguem traçar a rota do gato com o ground truth:
+?
+Calma
+@Isadora Sophia, vc é da CC??
+João Pedro Ramos Lopes
+João Pedro
+ela mudou se não me engano
+menos mal, achei que eu tava lembrando errando
+errado*
+João Pedro Ramos Lopes
+João Pedro
+e já foi dormir também btw
+x)

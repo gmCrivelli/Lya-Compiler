@@ -91,7 +91,7 @@ class Environment(object):
         self.procedure_has_returns_stack.append(False)
 
     def pop(self):
-        self.printStack()
+        #self.printStack()
         self.scope_stack.pop()
         self.stack.pop()
         self.procedure_has_returns_stack.pop()
@@ -270,7 +270,7 @@ class Visitor(NodeVisitor):
         if not node.stmts is None:
             for stmts in node.stmts: self.visit(stmts)
 
-        self.environment.printStack()
+        #self.environment.printStack()
         node.scope_offset = self.environment.scope_offset
 
     def visit_Declaration_Statement(self,node):
@@ -296,16 +296,17 @@ class Visitor(NodeVisitor):
                 else:
                     node.scope = self.environment.get_current_scope()
                     node.offset = self.environment.scope_offset[node.scope]
-                    print("SETTING OFFSET FOR IDENTIFIER ", ident.ID ," TO ", node.offset)
+                    #print("SETTING OFFSET FOR IDENTIFIER ", ident.ID ," TO ", node.offset)
                     self.environment.scope_offset[node.scope] += node.mode.size
                     #if node.mode.raw_type[0] == '$': # this is an array
-                    print("something hereeeeee", node.mode.size)
+                    #print("something hereeeeee", node.mode.size)
                     self.environment.add_local(ident.ID, ['var',
                                                           node.mode.raw_type,
                                                           False,
                                                           node.mode.size,
                                                           node.offset,
                                                           node.scope,
+                                                          node.mode.upper_bound_value,
                                                           node.mode.lower_bound_value])
                     #else:
                     #    self.environment.add_local(ident.ID, ['var',
@@ -327,9 +328,10 @@ class Visitor(NodeVisitor):
         node.offset = 0
         node.scope = 0
         node.lower_bound_value = 0
+        node.upper_bound_value = 0
         #self.visit(node.ID)
         if(node.type != None):
-            print("Identifier: ID \"" + str(node.ID) + "\" type \"{} {}\"".format(node.type[0], node.type[1]))
+            #print("Identifier: ID \"" + str(node.ID) + "\" type \"{} {}\"".format(node.type[0], node.type[1]))
             node.dcl_type = node.type[0] # declaration type (var, proc, synonym, label, etc.)
             node.raw_type = node.type[1] # raw type (int, bool, char, etc.)
             node.loc = node.type[2] # loc
@@ -346,8 +348,9 @@ class Visitor(NodeVisitor):
                 node.offset = node.type[4]
                 node.scope = node.type[5]
 
-            if node.raw_type[0] == '$': # this is an array
+            if node.raw_type[0] == '$' or node.raw_type == 'string': # this is an array
                 node.lower_bound_value = node.type[-1]
+                node.upper_bound_value = node.type[-2]
 
 
             #while(not isinstance(node.type, ExprType) and node.type[0] == "type"):
@@ -356,7 +359,8 @@ class Visitor(NodeVisitor):
             self.print_error(node.lineno,
             "Identifier {} was not defined".format(node.ID))
 
-        print("MY LOWER BOUND IS", node.lower_bound_value)
+        #print("MY LOWER BOUND IS", node.lower_bound_value)
+        #print("MY UPPER BOUND IS", node.upper_bound_value)
 
     def visit_Synonym_Statement(self, node):
         # Visit all of the synonyms
@@ -383,6 +387,7 @@ class Visitor(NodeVisitor):
                                                       node.constant_expression.size,
                                                       self.environment.get_current_scope(),
                                                       node.constant_expression.value,
+                                                      node.constant_expression.upper_bound_value,
                                                       node.constant_expression.lower_bound_value])
 
     def visit_Constant_Expression(self, node):
@@ -394,6 +399,7 @@ class Visitor(NodeVisitor):
         node.raw_type = node.expression.raw_type
         node.size = node.expression.size
         node.lower_bound_value = 0
+        node.upper_bound_value = 0
 
     def visit_Newmode_Statement(self, node):
         if not node.newmode_list is None:
@@ -415,32 +421,37 @@ class Visitor(NodeVisitor):
                                                           node.mode.size,
                                                           node.mode.size,
                                                           self.environment.get_current_scope(),
+                                                          node.mode.upper_bound_value,
                                                           node.mode.lower_bound_value])
 
     def visit_Integer_Mode(self, node):
         #self.visit(node.INT)
-        print("Integer Mode: " + str(node.INT))
+        #print("Integer Mode: " + str(node.INT))
         node.raw_type = 'int' #self.typemap[node.INT]
         node.size = 1
         node.lower_bound_value = 0
+        node.upper_bound_value = 0
 
     def visit_Boolean_Mode(self, node):
         #self.visit(node.BOOL)
-        print("Boolean Mode: " + str(node.BOOL))
+        #print("Boolean Mode: " + str(node.BOOL))
         node.raw_type = 'bool' #self.typemap[node.BOOL]
         node.size = 1
         node.lower_bound_value = 0
+        node.upper_bound_value = 0
 
     def visit_Character_Mode(self, node):
         #self.visit(node.CHAR)
-        print("Character Mode: " + str(node.CHAR))
+        #print("Character Mode: " + str(node.CHAR))
         node.raw_type = 'char' #self.typemap[node.CHAR]
         node.size = 1
         node.lower_bound_value = 0
+        node.upper_bound_value = 0
 
     def visit_Discrete_Range_Mode(self, node):
         self.visit(node.literal_range)
-        node.lower_bound_value = 25
+        node.lower_bound_value = 0
+        node.upper_bound_value = 0
         raw_type = None
         params = []
         if node.identifier is not None:
@@ -464,6 +475,7 @@ class Visitor(NodeVisitor):
         node.raw_type = node.identifier.raw_type
         node.size = node.identifier.size
         node.lower_bound_value = node.identifier.lower_bound_value
+        node.upper_bound_value = node.identifier.upper_bound_value
 
     def visit_Literal_Range(self, node):
         self.visit(node.lower_bound.expression)
@@ -480,19 +492,23 @@ class Visitor(NodeVisitor):
             self.print_error(node.lineno, "Improper literal range")
         node.raw_type = node.lower_bound.expression.raw_type
         node.lower_bound_value = node.lower_bound.expression.value
-        print("AQUI",node.lower_bound_value)
+        node.upper_bound_value = node.upper_bound.expression.value
+        #print("AQUI",node.lower_bound_value, node.upper_bound_value)
 
     def visit_Reference_Mode(self, node):
         self.visit(node.mode)
         node.raw_type = self.ref_symbol + node.mode.raw_type
         node.size = node.mode.size
         node.lower_bound_value = node.mode.lower_bound_value
+        node.upper_bound_value = node.mode.upper_bound_value
 
     def visit_String_Mode(self, node):
-        print("String Mode")
+        #print("String Mode")
         node.raw_type = 'string' #self.typemap["string"]
-        self.visit(node.string_length)
-        node.size = node.string_length.size
+        # self.visit(node.string_length)
+        #node.size = node.string_length
+        node.lower_bound_value = 0
+        node.upper_bound_value = node.size
 
     # def visit_String_Length(self, node):
     #     node.size = node.string_length
@@ -504,19 +520,20 @@ class Visitor(NodeVisitor):
                 #print(index_mode)
                 self.visit(index_mode)
                 node.size *= index_mode.size
-        print("array size:", node.size)
+        #print("array size:", node.size)
         self.visit(node.element_mode)
         node.raw_type = self.array_symbol + node.element_mode.raw_type
         node.size *= node.element_mode.size
         node.lower_bound_value = node.index_mode_list[0].lower_bound_value
-        print("EI AQUI", node.lower_bound_value)
+        node.upper_bound_value = node.index_mode_list[0].upper_bound_value
+        #print("EI AQUI", node.lower_bound_value, node.upper_bound_value)
 
     def visit_Element_Mode(self, node):
         self.visit(node.mode)
         node.raw_type = node.mode.raw_type
 
     def visit_Integer_Expression(self, node):
-        print("Integer expression")
+        #print("Integer expression")
         self.visit(node.expression)
 
         #if isinstance(node.expression, Identifier):
@@ -603,7 +620,8 @@ class Visitor(NodeVisitor):
         node.ID = node.array_location.ID
         node.loc = node.array_location.loc
         node.lower_bound_value = node.array_location.lower_bound_value
-        print("ARRAY",node.lower_bound_value)
+        node.upper_bound_value = node.array_location.upper_bound_value
+        #print("ARRAY",node.lower_bound_value, node.upper_bound_value)
 
     def visit_Array_Slice(self, node):
         self.visit(node.array_location)
@@ -626,8 +644,11 @@ class Visitor(NodeVisitor):
         node.ID = node.location.ID
         node.loc = node.location.loc
         node.lower_bound_value = 0
+        node.upper_bound_value = 0
         if hasattr(node.location, "lower_bound_value"):
             node.lower_bound_value = node.location.lower_bound_value
+            node.upper_bound_value = node.location.upper_bound_value
+
         else:
             self.print_error(node.lineno, "Array must have a lower bound")
 
@@ -637,7 +658,7 @@ class Visitor(NodeVisitor):
 
     def visit_Integer_Literal(self, node):
         #self.visit(node.ICONST)
-        print("Integer Literal: " + str(node.value))
+        #print("Integer Literal: " + str(node.value))
         node.raw_type = 'int' #self.typemap["int"]
         node.dcl_type = 'literal'
         node.ID = None
@@ -645,7 +666,7 @@ class Visitor(NodeVisitor):
 
     def visit_Boolean_Literal(self, node):
         #self.visit(node.BOOL)
-        print("Boolean Literal: " + str(node.value))
+        #print("Boolean Literal: " + str(node.value))
         node.raw_type = 'bool' #self.typemap["bool"]
         node.dcl_type = 'literal'
         node.ID = None
@@ -653,7 +674,7 @@ class Visitor(NodeVisitor):
 
     def visit_Character_Literal(self, node):
         #self.visit(node.CCONST)
-        print("Character Literal: " + str(node.value))
+        #print("Character Literal: " + str(node.value))
         node.raw_type = 'char' #self.typemap["char"]
         node.dcl_type = 'literal'
         node.ID = None
@@ -661,7 +682,7 @@ class Visitor(NodeVisitor):
 
     def visit_Empty_Literal(self, node):
         #self.visit(node.NULL)
-        print("Empty literal")
+        #print("Empty literal")
         node.raw_type = 'void' #self.typemap["void"]
         node.dcl_type = 'literal'
         node.ID = None
@@ -669,7 +690,7 @@ class Visitor(NodeVisitor):
 
     def visit_Character_String_Literal(self, node):
         #self.visit(node.SCONST)
-        print("Character String Literal: " + str(node.value))
+        #print("Character String Literal: " + str(node.value))
         node.raw_type = 'string' #self.typemap["string"]
         node.dcl_type = 'literal'
         node.ID = None
@@ -708,7 +729,7 @@ class Visitor(NodeVisitor):
     # expression
 
     def visit_Conditional_Expression(self, node):
-        print("Conditional expression")
+        #print("Conditional expression")
         self.visit(node.boolean_expression)
         self.visit(node.then_expression)
         then_type = node.then_expression.raw_type
@@ -729,20 +750,15 @@ class Visitor(NodeVisitor):
             self.print_error(node.lineno, aux_msg)
         else:
             if node.boolean_expression.value != None:
-                print("aruahruhr")
                 if node.boolean_expression.value:
                     node.value = node.then_expression.value
-                    print("heyeyeyeyyeye")
                 elif node.elsif_expression != None:
-                    print("alskalskalsalskaslklkkkk")
                     choice = node.elsif_expression.was_chosen
                     if choice != None:
                         if choice:
                             node.value = node.elsif_expression.value
-                            print("howowowowowoow")
                         else:
                             node.value = node.else_expression.value
-                            print("lets goooooooooooo")
 
         node.raw_type = then_type
         node.dcl_type = 'conditional expression'
@@ -751,7 +767,7 @@ class Visitor(NodeVisitor):
 
 
     def visit_Boolean_Expression(self, node):
-        print("Boolean expression")
+        #print("Boolean expression")
         self.visit(node.expression)
         exp_type = None
         if node.expression.raw_type != None:
@@ -768,7 +784,7 @@ class Visitor(NodeVisitor):
         node.raw_type = exp_type
 
     def visit_Then_Expression(self, node):
-        print("Then expression")
+        #print("Then expression")
         self.visit(node.expression)
 
         #if isinstance(node.expression, Identifier):
@@ -780,7 +796,7 @@ class Visitor(NodeVisitor):
         node.value = node.expression.value
 
     def visit_Else_Expression(self, node):
-        print("Else expression")
+        #print("Else expression")
         self.visit(node.expression)
 
         #if isinstance(node.expression, Identifier):
@@ -792,7 +808,7 @@ class Visitor(NodeVisitor):
         node.value = node.expression.value
 
     def visit_Elsif_Expression(self, node):
-        print("Elsif expression")
+        #print("Elsif expression")
         node.was_chosen = None
         self.visit(node.boolean_expression)
         self.visit(node.then_expression)
@@ -802,9 +818,9 @@ class Visitor(NodeVisitor):
             if node.boolean_expression.value != None:
                 if node.boolean_expression.value:
                     node.value = node.then_expression.value
-                    print("I dont have children and was chosen")
+                    #print("I dont have children and was chosen")
                 node.was_chosen = node.boolean_expression.value
-                print("I dont have children and was looked at")
+                #print("I dont have children and was looked at")
         else:
             self.visit(node.elsif_expression)
             elsif_type = node.elsif_expression.raw_type
@@ -812,7 +828,7 @@ class Visitor(NodeVisitor):
                 self.print_error(node.lineno, "Mismatching types in Elsif expression {} and {}".format(then_type, elsif_type))
             else:
                 if node.elsif_expression.was_chosen:
-                    print("my child was chosen, so I was too!!")
+                    #print("my child was chosen, so I was too!!")
                     node.value = node.elsif_expression.value
                     node.was_chosen = True
                 elif node.elsif_expression.was_chosen == False:
@@ -826,7 +842,7 @@ class Visitor(NodeVisitor):
         self.visit(node.operand0)
         self.visit(node.operand1)
         # self.visit(node.operator1)
-        print("Relational or Membership operator: " + str(node.operator1))
+        #print("Relational or Membership operator: " + str(node.operator1))
         node.raw_type = self.raw_type_binary(node, node.operator1, node.operand0, node.operand1)
         if node.operand0.value != None and node.operand1.value != None and not self.semantic_error:
             node.value = self.executeBinaryOperation(node.operand0.value, node.operand1.value, node.operator1, node.lineno)
@@ -844,7 +860,7 @@ class Visitor(NodeVisitor):
         self.visit(node.operand1)
         self.visit(node.operand2)
         #self.visit(node.operator2)
-        print("Binary operator: " + str(node.operator2))
+        #print("Binary operator: " + str(node.operator2))
         node.raw_type = self.raw_type_binary(node, node.operator2, node.operand1, node.operand2)
         if node.operand1.value != None and node.operand2.value != None and not self.semantic_error:
             node.value = self.executeBinaryOperation(node.operand1.value, node.operand2.value, node.operator2, node.lineno)
@@ -864,7 +880,7 @@ class Visitor(NodeVisitor):
 
     def visit_Unary_Expression(self, node):
         #self.visit(node.monadic_operator)
-        print("Monadic operator: " + str(node.monadic_operator))
+        #print("Monadic operator: " + str(node.monadic_operator))
         self.visit(node.operand4)
         node.raw_type = self.raw_type_unary(node, node.monadic_operator, node.operand4)
         if node.operand4.value != None and not self.semantic_error:
@@ -938,7 +954,7 @@ class Visitor(NodeVisitor):
                                  "Mismatched assignment types {} and {}".format(node.location.raw_type, exp_type))
 
             # self.visit(node.assigning_operator)
-            print("Assigning to {} with operator {}".format(node.location.ID, node.assigning_operator))
+            #print("Assigning to {} with operator {}".format(node.location.ID, node.assigning_operator))
             if(node.assigning_operator != self.assign):
                 loc_type = self.get_exprType(node.location.raw_type, node.lineno)
                 if not (node.assigning_operator in loc_type.closed_dyadic_ops):
@@ -960,7 +976,7 @@ class Visitor(NodeVisitor):
     # closed_dyadic_operator
 
     def visit_If_Action(self, node):
-        print("If Action")
+        #print("If Action")
         self.visit(node.boolean_expression)
 
         self.environment.push("IF_ACTION.THEN_CLAUSE")
@@ -1099,7 +1115,7 @@ class Visitor(NodeVisitor):
         node.dcl_type = node.expression.dcl_type
         node.ID = node.expression.ID
         node.loc = node.expression.loc
-        print(node.ID)
+        #print(node.ID)
 
     def visit_Exit_Action(self, node):
         self.visit(node.exit_label_id)
@@ -1112,7 +1128,7 @@ class Visitor(NodeVisitor):
         node.offset = 0
         node.scope = 0
         if(node.type != None):
-            print("Identifier: ID \"" + str(node.ID) + "\" type \"{} {}\"".format(node.type[0], node.type[1]))
+            #print("Identifier: ID \"" + str(node.ID) + "\" type \"{} {}\"".format(node.type[0], node.type[1]))
             node.dcl_type = node.type[0]
             node.raw_type = node.type[1]
             node.loc = node.type[2]
@@ -1176,9 +1192,15 @@ class Visitor(NodeVisitor):
         node.ID = node.builtin_name.name
         node.loc = False
 
+        if node.ID == 'asc':
+            node.raw_type = 'char'
+        if node.ID == 'num':
+            node.raw_type = 'int'
+
     # TODO: LIST OF PARAMETERS FOR BUILTIN NAMES
     def visit_Builtin_Name(self, node):
-        print("Builtin Name: " + str(node.name))
+        #print("Builtin Name: " + str(node.name))
+        return
 
 
     def visit_Procedure_Statement(self, node):
@@ -1237,7 +1259,7 @@ class Visitor(NodeVisitor):
         node.parameter_space = (-2) - self.environment.offset
 
         proc_name = self.environment.peek().return_type().replace("PROCEDURE DECLARATION ","")
-        print("Procedure declaration: {}".format(proc_name))
+        #print("Procedure declaration: {}".format(proc_name))
 
         aux_type = self.environment.lookup(proc_name)
         if not aux_type is None:
@@ -1268,7 +1290,7 @@ class Visitor(NodeVisitor):
         if not node.identifier_list is None:
             for ident in node.identifier_list:
 
-                print(ident.ID, node.loc)
+                #print(ident.ID, node.loc)
                 aux_type = self.environment.lookup(ident.ID)
 
                 if not aux_type is None and aux_type[0] == 'var' and aux_type[5] == self.environment.get_current_scope():
@@ -1283,6 +1305,7 @@ class Visitor(NodeVisitor):
                                                           node.mode.size,
                                                           offset,
                                                           self.environment.get_current_scope(),
+                                                          node.mode.upper_bound_value,
                                                           node.mode.lower_bound_value])
                     node.param_list.append([node.raw_type, node.mode.size, node.loc])
 

@@ -78,6 +78,7 @@ class AST(object):
     scope_offset = []
     value = None
     size = 1
+    heap_index = -1
 
     is_returning_from_loc_procedure_stack = [False]
 
@@ -121,14 +122,14 @@ class Program(AST):
         AST.code = []
         AST.label_counter = 0
 
-        print("Program")
+        #print("Program")
         AST.code.append(("stp", ))
         super(Program, self).generate_code()
         if AST.scope_offset[0] > 0:
             AST.code.append(("dlc", AST.scope_offset[0]))
         AST.code.append(("end", ))
-        print(AST.label_dict)
-        print(AST.end_label_dict)
+        #print(AST.label_dict)
+        #print(AST.end_label_dict)
 
 # statement_list
 # statement
@@ -149,7 +150,6 @@ class Declaration(AST):
 
         if self.initialization != None:
             self.initialization.generate_code()
-
             for i, ident in enumerate(self.identifier_list):
                 AST.code.append(("stv", ident.scope, ident.offset))
 
@@ -167,7 +167,7 @@ class Identifier(AST):
 
     def generate_code(self):
         #print("ID={}, raw_type={}, dcl_type={}, loc={}".format(self.ID, self.raw_type, self.dcl_type, self.loc))
-        print(self.__dict__)
+        #print(self.__dict__)
         if self.loc:
             AST.code.append(('lrv', self.scope, self.offset))
         elif AST.is_returning_from_loc_procedure_stack[-1]:
@@ -253,8 +253,8 @@ class Reference_Mode(AST):
 class String_Mode(AST):
     _fields = ['size']
 
-class String_Length(AST):
-    _fields = ['integer_literal']
+#class String_Length(AST):
+#    _fields = ['integer_literal']
 
 class Array_Mode(AST):
     _fields = ['index_mode_list', 'element_mode']
@@ -324,7 +324,7 @@ class Array_Location(AST):
         if self.location.loc:
             AST.code.append(("ldv",self.location.scope, self.location.offset))
         else:
-            print("MY OFFSET IS ", self.location.offset)
+            #print("MY OFFSET IS ", self.location.offset)
             AST.code.append(("ldr",self.location.scope, self.location.offset))
 
 # primitive_value
@@ -506,11 +506,14 @@ class Binary_Expression(AST):
     _fields = ['operand1', 'operator2', 'operand2']
 
     def generate_code(self):
-        print(self.value)
+        #print(self.value)
         if self.value == None:
             super(Binary_Expression, self).generate_code()
             if self.operator2 == '+' :
-                AST.code.append(("add",))
+                if self.operand1.raw_type == 'string':
+                    print("Operation not yet supported")
+                else:
+                    AST.code.append(("add",))
             elif self.operator2 == '-':
                 AST.code.append(("sub",))
             elif self.operator2 == '*':
@@ -568,7 +571,7 @@ class Action_Statement(AST):
 
     def generate_code(self):
         if self.action.__class__ in [Do_Action, If_Action] and self.label_id != None:
-            print("DO ACTION END LABEL PREDICTED: ", AST.label_counter)
+            #print("DO ACTION END LABEL PREDICTED: ", AST.label_counter)
             AST.end_label_dict[self.label_id.identifier.ID] = AST.label_counter + 1
         super(Action_Statement, self).generate_code()
 
@@ -721,13 +724,13 @@ class Do_Action(AST):
             for instruction in control_instructions:
                 AST.code.append(instruction)
             AST.code.append(("jmp", control_label))
-            print("APPENDING DO ACTION END LABEL: ", end_label)
+            #print("APPENDING DO ACTION END LABEL: ", end_label)
             AST.code.append(("lbl", end_label))
 
         else:
             for action_statement in self.action_statement_list:
                 action_statement.generate_code()
-            print("APPENDING DO ACTION END LABEL: ", end_label)
+            #print("APPENDING DO ACTION END LABEL: ", end_label)
             AST.code.append(("lbl", end_label))
 
 
@@ -770,24 +773,24 @@ class Step_Enumeration(AST):
         AST.code.append(("leq",))
         AST.code.append(("jof", end_label))
 
-        print("WRITING THE CONTROL INSTRUCTIONS!")
+        #print("WRITING THE CONTROL INSTRUCTIONS!")
         control_instructions = []
 
         if self.step_value != None:
-            print("OOOOH BOY HERE WE GO AGAIN")
+            #print("OOOOH BOY HERE WE GO AGAIN")
             leng = len(AST.code)
             self.step_value.generate_code()
-            print(AST.code)
+            #print(AST.code)
             control_instructions = AST.code[leng:]
             del AST.code[leng:]
-            print(AST.code)
+            #print(AST.code)
         else:
             control_instructions.append(("ldc", 1))
 
         control_instructions.append(loop_counter_code)
         control_instructions.append(("add",))
         control_instructions.append(("stv", scope, offset))
-        print(control_instructions)
+        #print(control_instructions)
         return control_instructions
 
 class Loop_Counter(AST):
@@ -875,7 +878,7 @@ class Return_Action(AST):
         if self.result != None:
             if self.loc:
                 AST.is_returning_from_loc_procedure_stack.append(True)
-                print("this si return loc", self.result.__class__)
+                #print("this si return loc", self.result.__class__)
                 self.result.generate_code()
                 AST.is_returning_from_loc_procedure_stack.pop()
             else:
@@ -905,23 +908,59 @@ class Builtin_Call(AST):
 
         if self.builtin_name.name == 'print':
             for param in self.parameter_list:
-                if param.expression.raw_type == "string":
-                    AST.code.append(('prc', param.expression.heap_index))
+                if param.expression.raw_type == 'string':
+                    if param.expression.heap_index != -1:
+                        AST.code.append(('prc', param.expression.heap_index))
+                    else:
+                        AST.code.append(('ldr',param.expression.scope, param.expression.offset))
+                        AST.code.append(('prs',))
                 else:
                     param.expression.generate_code()
                     if param.expression.raw_type == 'char':
                         AST.code.append(('prv', 1))
                     else:
                         AST.code.append(('prv', 0))
+
         elif self.builtin_name.name == 'read':
             for param in self.parameter_list:
-                store = ('stv', param.expression.scope, param.expression.offset)
-                if param.expression.__class__ == Array_Element:
-                    param.expression.generate_code()
-                    del AST.code[-1]
-                    store = ("smv", param.expression.size)
-                AST.code.append(('rdv',))
-                AST.code.append(store)
+                if param.expression.raw_type == 'string':
+                    AST.code.append(('ldr',param.expression.scope, param.expression.offset))
+                    AST.code.append(('rds',))
+                else:
+                    store = ('stv', param.expression.scope, param.expression.offset)
+                    if param.expression.__class__ == Array_Element:
+                        param.expression.generate_code()
+                        del AST.code[-1]
+                        store = ("smv", param.expression.size)
+                    AST.code.append(('rdv',))
+                    AST.code.append(store)
+
+        elif self.builtin_name.name == 'abs':
+            for param in self.parameter_list:
+                param.expression.generate_code()
+                AST.code.append(('ldc',0))
+                AST.code.append(('les',))
+                abs_label = AST.label_counter
+                AST.label_counter += 1
+                AST.code.append(('jof',abs_label))
+                param.expression.generate_code()
+                AST.code.append(('ldc',-1))
+                AST.code.append(('mul',))
+                AST.code.append(('lbl',abs_label))
+            else:
+                print("Invalid abs call on line ", self.lineno)
+
+        elif self.builtin_name.name == 'length':
+            for param in self.parameter_list:
+                AST.code.append(('ldc',param.expression.upper_bound_value - param.expression.lower_bound_value + 1))
+
+        #elif self.builtin_name.name == 'asc':
+        #    for param in self.parameter_list:
+        #        AST.code.append(('ldc',param.expression.upper_bound_value - param.expression.lower_bound_value + 1))
+
+        else:
+            print("Builtin Call {} not implemented".format(self.builtin_name.name))
+
 
 
         # super(Builtin_Call, self).generate_code()

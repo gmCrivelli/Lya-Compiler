@@ -214,16 +214,16 @@ class Parser:
         p[0] = p[1]
 
     def p_string_mode(self, p):
-        '''string_mode : CHARS LBRACKET string_length RBRACKET'''
+        '''string_mode : CHARS LBRACKET ICONST RBRACKET'''
         # p[0] = ('string_mode', p[1], p[2], p[3], p[4], p.lineno(1))
 
         p[0] = String_Mode(p[3], lineno = p.lineno(1))
 
-    def p_string_length(self, p):
-        '''string_length : ICONST'''
-        # p[0] = ('string_length', p[1], p.lineno(1))
+    #def p_string_length(self, p):
+    #    '''string_length : ICONST'''
+    #    # p[0] = ('string_length', p[1], p.lineno(1))
 
-        p[0] = String_Length(p[1], lineno = p[1].lineno)
+    # p[0] = String_Length(p[1], lineno = p.lineno(1))
 
     def p_array_mode(self, p):
         '''array_mode : ARRAY LBRACKET index_mode_list RBRACKET element_mode'''
@@ -386,7 +386,6 @@ class Parser:
         '''character_string_literal : SCONST'''
         # p[0] = ('character_string_literal', p[1], p.lineno(1))
 
-        print("PARSING",p[1])
         p[0] = Character_String_Literal(p[1], lineno = p.lineno(1))
 
     def p_value_array_element(self, p):
@@ -1042,7 +1041,7 @@ def main():
     print(']')
 
     H = nv.string_literals
-    print(H)
+    print("String literals: ", H)
     VirtualMachine.execute(AST.code, H, False)
 
 
