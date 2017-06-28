@@ -224,6 +224,22 @@ class VirtualMachine:
             elif t[0] == 'abs':
                 memory[sp] = abs(memory[sp])
 
+            elif t[0] == 'num':
+                t = memory[sp]
+                num = 0
+                for i in range(0,memory[t]):
+                    num *= 10
+                    num += memory[t+i+1] - ord('0')
+                memory[sp] = num
+
+            elif t[0] == 'low':
+                if memory[sp] >= 65 and memory[sp] <= 90:
+                    memory[sp] += 32
+
+            elif t[0] == 'upp':
+                if memory[sp] >= 97 and memory[sp] <= 122:
+                    memory[sp] -= 32
+
             elif t[0] == 'and':
                 memory[sp - 1] = memory[sp - 1] and memory[sp]
                 sp -= 1
@@ -414,8 +430,8 @@ class VirtualMachine:
 
             elif t[0] == 'prc':
                 i = t[1]
-
-                print(heap[i],end="")
+                for c in heap[i]:
+                    print(chr(c),end="")
 
             elif t[0] == 'prs':
                 adr = memory[sp]

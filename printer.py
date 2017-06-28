@@ -1,541 +1,81 @@
-import sys
-import lexer
 from ast import *
 
-debug = False
-
-class SymbolTable(dict):
-    """
-    Class representing a symbol table. It should
-    provide functionality for adding and looking
-    up nodes associated with identifiers.
-    """
-    def __init__(self, decl=None):
-        super().__init__()
-        self.decl = decl
-    def add(self, name, value):
-        self[name] = value
-    def lookup(self, name):
-        return self.get(name, None)
-    def return_type(self):
-        if self.decl:
-            #return self.decl.mode
-            return self.decl
-        return None
-
-
-class ExprType(object):
-    def __init__(self, type, unary_ops, binary_ops, closed_dyadic_ops, default_value):
-        super().__init__()
-        self.type = type
-        self.unary_ops = unary_ops
-        self.binary_ops = binary_ops
-        self.closed_dyadic_ops = closed_dyadic_ops
-        self.default_value = default_value
-
-    def __str__(self):
-        return self.type
-
-relational_ops = ["!=", "==", ">", ">=", "<", "<="]
-membership_ops = ["in"]
-
-int_type = ExprType("int",["-"],["+", "-", "*", "/", "%", "!=", "==", ">", ">=", "<", "<="],['+=','-=','*=','/=','%='],0)
-bool_type = ExprType("bool",["!"],["==", "!=", "&&", "||"],[],False)
-char_type = ExprType("char",[],[],[],"")
-string_type = ExprType("string",[],["+", "==", "!="],['+='],"")
-void_type = ExprType("void",[],[],[],"")
-
-class Environment(object):
-    def __init__(self):
-        self.stack = []
-        self.scope_stack = []
-        self.root = SymbolTable()
-        self.stack.append(self.root)
-        self.offset = 0
-        self.current_scope = -1
-        self.scope_offset = dict()
-
-        self.parameter_space_stack = []
-        self.procedure_scope_stack = []
-        self.procedure_offset_stack = []
-        self.procedure_is_loc_stack = []
-        self.procedure_has_returns_stack = []
-        self.expected_return_stack = []
-
-        self.root.update({
-            "int": int_type,
-            "char": char_type,
-            "string": string_type,
-            "bool": bool_type
-
-            #TODO: implement structure for built-in calls
-            # Remember that parameters and returns may vary
-            #"abs": ['proc', 'int', ['int']],
-            #"asc": ['proc', 'int', ['char' OR 'string']],
-            #"num": ['proc', 'int' OR 'bool, ['string']],
-            #"upper": ['proc', 'string' OR 'char', ['string' OR 'char']],
-            #"lower": ['proc', 'string' OR 'char', ['string' OR 'char']],
-            #"length": ['proc', 'int', ['string' OR array?]],
-            #"read": ['proc', 'void', [ MULTIPLE VARIABLES ]],
-            #"print": ['proc', 'void', ['string']]
-        })
-    def get_current_scope(self):
-        return self.scope_stack[-1]
-
-    def push(self, enclosure):
-        self.current_scope += 1
-        self.stack.append(SymbolTable(decl=enclosure))
-        self.scope_stack.append(self.current_scope)
-        self.offset = 0
-        self.scope_offset[self.current_scope] = 0
-        self.procedure_has_returns_stack.append(False)
-
-    def pop(self):
-        #self.printStack()
-        self.scope_stack.pop()
-        self.stack.pop()
-        self.procedure_has_returns_stack.pop()
-
-    def peek(self):
-        return self.stack[-1]
-    def parent_scope(self):
-        return self.stack[-2]
-    def scope_level(self):
-        return len(self.stack)
-    def add_local(self, name, value):
-        self.peek().add(name, value)
-    def add_parent(self, name, value):
-        self.parent_scope().add(name, value)
-    def add_root(self, name, value):
-        self.root.add(name, value)
-    def lookup(self, name):
-        for scope in reversed(self.stack):
-            hit = scope.lookup(name)
-            if hit is not None:
-                return hit
-        return None
-    def find(self, name):
-        if name in self.stack[-1]:
-            return True
-        else:
-            return False
-    def printStack(self):
-        print("Printing environment scope stack:")
-        for table in self.stack:
-            print(table)
-    def getOffset(self):
-        return self.offset
-
 class Visitor(NodeVisitor):
-    """
-    Program Visitor class. This class uses the visitor pattern as
-    described in lya_ast.py.   It’s define methods of the form
-    visit_NodeName() for each kind of AST node that we want to process.
-    Note: You will need to adjust the names of the AST nodes if you
-    picked different names.
-    """
-    def __init__(self):
-        self.environment = Environment()
-        self.typemap = {
-            "int": int_type,
-            "char": char_type,
-            "string": string_type,
-            "bool": bool_type,
-            "void": void_type
-        }
-        self.assign = '='
-        self.array_symbol = '$'
-        self.ref_symbol = '&'
-        self.loc_symbol = '!'
-        self.semantic_error = False
-        self.string_literals = []
-        self.string_literals_ascii = []
 
-    def executeBinaryOperation(self, a, b, operation, lineno):
-        try:
-            if operation == '+':
-                return a+b
-            elif operation == '-':
-                return a-b
-            elif operation == '*':
-                return a*b
-            elif operation == '/':
-                return int(a/b)
-            elif operation == '%':
-                return a%b
-            elif operation == '>':
-                return a > b
-            elif operation == '>=':
-                return a >= b
-            elif operation == '<':
-                return a < b
-            elif operation == '<=':
-                return a <= b
-            elif operation == '==':
-                return a == b
-            elif operation == '!=':
-                return a != b
-            elif operation == '&&':
-                return a and b
-            elif operation == '||':
-                return a or b
-        except:
-            self.print_error(lineno, "Attempted binary operation on mismatching types ({}{}{})".format(a, operation, b))
-
-    def executeUnaryOperation(self, a, operation, lineno):
-        try:
-            if operation == '-':
-                return -a
-            elif operation == '!':
-                return not a
-        except:
-            self.print_error(lineno, "Attempted binary operation on mismatching types ({}{})".format(operation, a))
-
-
-    def print_error(self, lineno, text):
-        if lineno is None:
-            e = "ERROR: "
+    def print(self,node,show_values,tabbing):
+        """
+        Execute a method of the form print_NodeName(node) where
+        NodeName is the name of the class of a particular node.
+        """
+        if node:
+            method = 'print_' + node.__class__.__name__
+            visitor = getattr(self, method, self.generic_print)
+            return visitor(node,show_values,tabbing)
         else:
-            e = "ERROR (line " + str(lineno) + "): "
-        print(e + text)
-        self.semantic_error = True
+            return None
 
-    def get_exprType(self, raw_type, lineno):
-        if raw_type in self.typemap:
-            return self.typemap[raw_type]
-        self.print_error(lineno, "Type {} not found".format(raw_type))
-        return self.typemap["void"]
+    def generic_print(self,node,show_values,tabbing):
+        #if not isinstance(node, AST):
+        #    print(node)
+        #    return
 
-    def raw_type_unary(self, node, op, val):
+        #node.print()
 
-        if hasattr(val, "raw_type") and (val.raw_type != None):
-            #if isinstance(val.type, ExprType):
-            #    val_type = val.type
-            #else:
-            #    val_type = val.type[1]
+        """
+        Method executed if no applicable print_ method can be found.
+        This examines the node to see if it has _fields, is a list,
+        or can be further traversed.
+        """
+        print(tabbing, node.__class__.__name__)
 
-            val_type = self.get_exprType(val.raw_type, node.lineno)
+        for field in getattr(node,"_fields"):
+            value = getattr(node,field,None)
+            if isinstance(value, list):
+                for item in value:
+                    if isinstance(item,AST):
+                        #item.print()
+                        self.print(item,show_values,tabbing + '  ')
+            elif isinstance(value, AST):
+                #value.print()
+                self.print(value, show_values, tabbing + '  ')
 
-            if op not in val_type.unary_ops:
-                self.print_error(node.lineno,
-                      "Unary operator {} not supported".format(op))
-            return val.raw_type
-        return None
+    def print_Identifier(self, node, show_values, tabbing):
+        print(tabbing, node.__class__.__name__, end='')
+        if show_values:
+            print(" [ID={}, Type={}, Scope={}, Offset={}]".format(node.ID, node.raw_type, node.scope, node.offset),end='')
+        print('')
 
-    def raw_type_binary(self, node, op, left, right):
-        if hasattr(left, "raw_type") and hasattr(right, "raw_type") and (left.raw_type != None) and (right.raw_type != None):
+    def print_Constant_Expression(self, node, show_values, tabbing):
+        print(tabbing, node.__class__.__name__, end='')
+        if show_values:
+            print(" [Type={}, Value={}]".format(node.raw_type, node.value),end='')
+        print('')
+        self.print(node.expression, show_values, tabbing + '  ')
 
-            #if isinstance(left.type, ExprType):
-            #    left_type = left.type
-            #else:
-            #    left_type = left.type[1]
+    def print_Discrete_Range_Mode(self, node, show_values, tabbing):
+        print(tabbing, node.__class__.__name__, end='')
+        if show_values:
+            print(" [Lower Bound={}, Upper Bound={}]".format(node.lower_bound_value, node.upper_bound_value),end='')
+        print('')
+        self.print(node.identifier, show_values, tabbing + '  ')
+        self.print(node.literal_range, show_values, tabbing + '  ')
+        self.print(node.discrete_mode, show_values, tabbing + '  ')
 
-            #if isinstance(right.type, ExprType):
-            #    right_type = right.type
-            #else:
-            #    right_type = right.type[1]
+    def print_Literal_Range(self, node, show_values, tabbing):
+        print(tabbing, node.__class__.__name__, end='')
+        if show_values:
+            print(" [Lower Bound={}, Upper Bound={}]".format(node.lower_bound_value, node.upper_bound_value),end='')
+        print('')
+        self.print(node.lower_bound.expression, show_values, tabbing + '  ')
+        self.print(node.upper_bound.expression, show_values, tabbing + '  ')
 
-            left_type = self.get_exprType(left.raw_type, node.lineno)
-            right_type = self.get_exprType(right.raw_type, node.lineno)
-
-            if left_type != right_type:
-                self.print_error(node.lineno,
-                "Binary operator {} does not have matching types: {} and {}".format(op, left_type, right_type))
-                return left_type
-            errside = None
-            if op not in left_type.binary_ops:
-                errside = "LHS"
-            if op not in right_type.binary_ops:
-                errside = "RHS"
-            if errside is not None:
-                self.print_error(node.lineno,
-                      "Binary operator {} not supported on {} of expression".format(op, errside))
-
-            if op in relational_ops:
-                return 'bool'
-            return left.raw_type
-
-        if(not hasattr(left, "raw_type")):
-            self.print_error(node.lineno,
-            "Operand {} has no type".format(left))
-        else:
-            self.print_error(node.lineno,
-            "Operand {} has no type".format(right))
-        return None
-
-    def visit_Program(self,node):
-        self.environment.push(node)
-        node.environment = self.environment
-        node.symtab = self.environment.peek()
-        # Visit all of the statements
-        if not node.stmts is None:
-            for stmts in node.stmts: self.visit(stmts)
-
-        #self.environment.printStack()
-        node.scope_offset = self.environment.scope_offset
-
-        for strin in self.string_literals:
-            s = ''
-            for c in strin:
-                s += chr(c)
-            self.string_literals_ascii.append(s)
-
-
-    def visit_Declaration_Statement(self,node):
-        # Visit all of the declarations
-        if not node.declaration_list is None:
-            for dcl in node.declaration_list: self.visit(dcl)
-
-    def visit_Declaration(self,node):
-        self.visit(node.mode)
-        if not node.initialization is None:
-            self.visit(node.initialization)
-            if(node.mode.raw_type != node.initialization.raw_type):
-                self.print_error(node.lineno, "Mismatched type initialization, expected " + str(node.mode.raw_type) + ", found " + str(node.initialization.raw_type))
-
-        # Visit all of the identifiers
-        if not node.identifier_list is None:
-            for ident in node.identifier_list:
-                aux_type = self.environment.lookup(ident.ID)
-                if not aux_type is None and aux_type[0] == 'var' and aux_type[5] == self.environment.get_current_scope():
-                            self.print_error(node.lineno,
-                                     "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
-                                                                                                         aux_type[1]))
-                else:
-                    node.scope = self.environment.get_current_scope()
-                    node.offset = self.environment.scope_offset[node.scope]
-                    #print("SETTING OFFSET FOR IDENTIFIER ", ident.ID ," TO ", node.offset)
-                    self.environment.scope_offset[node.scope] += node.mode.size
-                    #if node.mode.raw_type[0] == '$': # this is an array
-                    #print("something hereeeeee", node.mode.size)
-                    self.environment.add_local(ident.ID, ['var',
-                                                          node.mode.raw_type,
-                                                          False,
-                                                          node.mode.size,
-                                                          node.offset,
-                                                          node.scope,
-                                                          node.mode.upper_bound_value,
-                                                          node.mode.lower_bound_value])
-                    #else:
-                    #    self.environment.add_local(ident.ID, ['var',
-                    #                                          node.mode.raw_type,
-                    #                                          False,
-                    #                                          node.offset,
-                    #                                          node.scope,
-                    #                                          0])
-                    self.visit(ident)
-
-#    def visit_Initialization(self, node):
-#        self.visit(node.expression) <- GO HERE
-
-    def visit_Identifier(self, node):
-        node.type = self.environment.lookup(node.ID)
-        node.raw_type = '^UNDEFINED^'
-        node.dcl_type = '^UNDEFINED^'
-        node.loc = False
-        node.offset = 0
-        node.scope = 0
-        node.lower_bound_value = 0
-        node.upper_bound_value = 0
-        #self.visit(node.ID)
-        if(node.type != None):
-            #print("Identifier: ID \"" + str(node.ID) + "\" type \"{} {}\"".format(node.type[0], node.type[1]))
-            node.dcl_type = node.type[0] # declaration type (var, proc, synonym, label, etc.)
-            node.raw_type = node.type[1] # raw type (int, bool, char, etc.)
-            node.loc = node.type[2] # loc
-            if node.dcl_type != 'proc':
-                node.size = node.type[3]
-                node.offset = node.type[4]
-                node.scope = node.type[5]
-
-
-                if node.dcl_type == 'synonym':
-                    node.value = node.type[6]
-
-            else:
-                node.offset = node.type[4]
-                node.scope = node.type[5]
-
-            if node.raw_type[0] == '$' or node.raw_type == 'string': # this is an array
-                node.lower_bound_value = node.type[-1]
-                node.upper_bound_value = node.type[-2]
-
-
-            #while(not isinstance(node.type, ExprType) and node.type[0] == "type"):
-            #    node.type = node.type[1]
-        else:
-            self.print_error(node.lineno,
-            "Identifier {} was not defined".format(node.ID))
-
-        #print("MY LOWER BOUND IS", node.lower_bound_value)
-        #print("MY UPPER BOUND IS", node.upper_bound_value)
-
-    def visit_Synonym_Statement(self, node):
-        # Visit all of the synonyms
-        if not node.synonym_list is None:
-            for syn in node.synonym_list: self.visit(syn)
-
-    def visit_Synonym_Definition(self, node):
-        self.visit(node.constant_expression)
-        if not node.mode is None:
-            self.visit(node.mode)
-            if (node.mode.raw_type != node.constant_expression.raw_type):
-                self.print_error(node.lineno,
-                                 "Mismatched type initialization, expected " + node.mode.raw_type + ", found " + node.initialization.type)
-        for ident in node.identifier_list:
-            aux_type = self.environment.lookup(ident.ID)
-            if not aux_type is None:
-                self.print_error(node.lineno,
-                                "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0], aux_type[1]))
-            else:
-                self.environment.add_local(ident.ID, ['synonym',
-                                                      node.constant_expression.raw_type,
-                                                      False,
-                                                      node.constant_expression.size,
-                                                      node.constant_expression.size,
-                                                      self.environment.get_current_scope(),
-                                                      node.constant_expression.value,
-                                                      node.constant_expression.upper_bound_value,
-                                                      node.constant_expression.lower_bound_value])
-
-    def visit_Constant_Expression(self, node):
-        self.visit(node.expression)
-        if node.expression.value == None:
-            self.print_error(node.lineno,
-                             "Expression in synonym declaration is not constant")
-        node.value = node.expression.value
-        node.raw_type = node.expression.raw_type
-        node.size = node.expression.size
-        node.lower_bound_value = 0
-        node.upper_bound_value = 0
-
-    def visit_Newmode_Statement(self, node):
-        if not node.newmode_list is None:
-            for newmode in node.newmode_list: self.visit(newmode)
-
-    def visit_Mode_Definition(self, node):
-        self.visit(node.mode)
-        if not node.identifier_list is None:
-            for ident in node.identifier_list:
-                aux_type = self.environment.lookup(ident.ID)
-                if not aux_type is None:
-                    self.print_error(node.lineno,
-                                     "Identifier " + str(ident.ID) + " already declared as {} {}".format(aux_type[0],
-                                                                                                         aux_type[1]))
-                else:
-                    self.environment.add_local(ident.ID, ['mode',
-                                                          node.mode.raw_type,
-                                                          False,
-                                                          node.mode.size,
-                                                          node.mode.size,
-                                                          self.environment.get_current_scope(),
-                                                          node.mode.upper_bound_value,
-                                                          node.mode.lower_bound_value])
-
-    def visit_Integer_Mode(self, node):
-        #self.visit(node.INT)
-        #print("Integer Mode: " + str(node.INT))
-        node.raw_type = 'int' #self.typemap[node.INT]
-        node.size = 1
-        node.lower_bound_value = 0
-        node.upper_bound_value = 0
-
-    def visit_Boolean_Mode(self, node):
-        #self.visit(node.BOOL)
-        #print("Boolean Mode: " + str(node.BOOL))
-        node.raw_type = 'bool' #self.typemap[node.BOOL]
-        node.size = 1
-        node.lower_bound_value = 0
-        node.upper_bound_value = 0
-
-    def visit_Character_Mode(self, node):
-        #self.visit(node.CHAR)
-        #print("Character Mode: " + str(node.CHAR))
-        node.raw_type = 'char' #self.typemap[node.CHAR]
-        node.size = 1
-        node.lower_bound_value = 0
-        node.upper_bound_value = 0
-
-    def visit_Discrete_Range_Mode(self, node):
-        self.visit(node.literal_range)
-        node.lower_bound_value = 0
-        node.upper_bound_value = 0
-        raw_type = None
-        params = []
-        if node.identifier is not None:
-            self.visit(node.identifier)
-            raw_type = node.identifier.raw_type
-        else:
-            self.visit(node.discrete_mode)
-            raw_type = node.discrete_mode.raw_type
-            if hasattr(node.discrete_mode, "params"):
-                params = node.discrete_mode.params
-        #node.raw_type = '(' + raw_type
-        node.raw_type = raw_type
-        node.params = params.append(node.literal_range.raw_type)
-        #TODO: calculate size of literal range
-
-    def visit_Mode_Name(self, node):
-        #print("Mode name")
-        self.visit(node.identifier)
-        if node.identifier.type is None or (node.identifier.type is not None and node.identifier.type[0] != 'mode'):
-            self.print_error(node.lineno, "{} is not a valid mode.".format(node.identifier.ID))
-        node.raw_type = node.identifier.raw_type
-        node.size = node.identifier.size
-        node.lower_bound_value = node.identifier.lower_bound_value
-        node.upper_bound_value = node.identifier.upper_bound_value
-
-    def visit_Literal_Range(self, node):
-        self.visit(node.lower_bound.expression)
-        self.visit(node.upper_bound.expression)
-        node.size = 1
-        if node.lower_bound.expression.raw_type != None and node.upper_bound.expression.raw_type != None:
-            if node.lower_bound.expression.raw_type != node.upper_bound.expression.raw_type:
-                self.print_error(node.lineno, "Mismatching bound types in literal range")
-            else:
-                node.size = node.upper_bound.expression.value - node.lower_bound.expression.value + 1
-                if node.size < 0:
-                    self.print_error(node.lineno, "Upper bound must be greater than lower bound")
-        else:
-            self.print_error(node.lineno, "Improper literal range")
-        node.raw_type = node.lower_bound.expression.raw_type
-        node.lower_bound_value = node.lower_bound.expression.value
-        node.upper_bound_value = node.upper_bound.expression.value
-        #print("AQUI",node.lower_bound_value, node.upper_bound_value)
-
-    def visit_Reference_Mode(self, node):
-        self.visit(node.mode)
-        node.raw_type = self.ref_symbol + node.mode.raw_type
-        node.size = node.mode.size
-        node.lower_bound_value = node.mode.lower_bound_value
-        node.upper_bound_value = node.mode.upper_bound_value
-
-    def visit_String_Mode(self, node):
-        #print("String Mode")
-        node.raw_type = 'string' #self.typemap["string"]
-        # self.visit(node.string_length)
-        #node.size = node.string_length
-        node.size += 1
-        node.lower_bound_value = 0
-        node.upper_bound_value = node.size
-
-    # def visit_String_Length(self, node):
-    #     node.size = node.string_length
-
-    def visit_Array_Mode(self, node):
-        node.size = 1
-        if not node.index_mode_list is None:
-            for index_mode in node.index_mode_list:
-                #print(index_mode)
-                self.visit(index_mode)
-                node.size *= index_mode.size
-        #print("array size:", node.size)
-        self.visit(node.element_mode)
-        node.raw_type = self.array_symbol + node.element_mode.raw_type
-        node.size *= node.element_mode.size
-        node.lower_bound_value = node.index_mode_list[0].lower_bound_value
-        node.upper_bound_value = node.index_mode_list[0].upper_bound_value
-        #print("EI AQUI", node.lower_bound_value, node.upper_bound_value)
+    def print_Array_Mode(self, node, show_values, tabbing):
+        print(tabbing, node.__class__.__name__, end='')
+        if show_values:
+            print(" [Lower Bound={}, Upper Bound={}, Size={}]".format(node.lower_bound_value, node.upper_bound_value, node.size),end='')
+        print('')
+        self.print(node.index_mode_list, show_values, tabbing + '  ')
+        self.print(node.element_mode, show_values, tabbing + '  ')
 
     def visit_Element_Mode(self, node):
         self.visit(node.mode)
@@ -572,42 +112,6 @@ class Visitor(NodeVisitor):
         node.dcl_type = node.location.dcl_type
         node.ID = node.location.ID
         node.loc = node.location.loc
-
-    # def visit_String_Element(self, node):
-    #     self.visit(node.identifier)
-    #     self.visit(node.start_element)
-    #     node.raw_type = None
-    #     node.dcl_type = node.identifier.dcl_type
-    #     if (node.identifier.raw_type == 'string'):
-    #         node.raw_type = 'char'
-    #     else:
-    #         self.print_error(node.lineno, "Attempted to access string element in non-string " + str(node.identifier.ID))
-
-    #def visit_Start_Element(self, node):
-    #    self.visit(node.integer_expression)
-
-    # def visit_String_Slice(self, node):
-    #     self.visit(node.identifier)
-    #     self.visit(node.left_element)
-    #     self.visit(node.right_element)
-    #
-    #     node.raw_type = None
-    #     node.dcl_type = node.identifier.dcl_type
-    #     if (node.identifier.raw_type == 'string'):
-    #         node.raw_type = 'char'
-    #     #elif (node.raw_type[0] == self.array_symbol):
-    #     #    self.visit_Array_Slice(node)
-    #     else:
-    #         self.print_error(node.lineno, "Attempted to access string element in non-string " + str(node.identifier.ID))
-    #
-    # def visit_Left_Element(self, node):
-    #     self.visit(node.integer_expression)
-    #
-    # def visit_Right_Element(self, node):
-    #     self.visit(node.integer_expression)
-
-
-    # expression_list
 
     def visit_Array_Element(self, node):
 

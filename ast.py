@@ -56,8 +56,6 @@ class NodeVisitor(object):
                 #value.print()
                 self.visit(value)
 
-
-
 class AST(object):
     """
     Base class example for the AST nodes.  Each node is expected to
@@ -90,30 +88,26 @@ class AST(object):
         for name,value in kwargs.items():
             setattr(self,name,value)
 
-    def print(self):
-        print(self.__class__)
-        for attr in dir(self):
-            if not callable(getattr(self, attr)) and not attr.startswith("__"):
-                if not isinstance(attr, AST):
-                    param = getattr(self, attr)
-                    if isinstance(param,list):
-                        for item in param:
-                            if not isinstance(item,AST):
-                                print(item, "= list of something else", end="; ")
-                    else:
-                        print(attr,'=',getattr(self, attr),end="; ")
+    def print(self, show_values, tabbing):
+        print(tabbing, end='')
+        print(self.__class__.__name__, end='')
+        if show_values:
+            print(" {",end='')
+            for attr in ['ID','raw_type','scope','offset','value','lower_bound_value','upper_bound_value']:
+                if hasattr(self, attr):
+                    field = getattr(self,attr)
+                    print(attr,'=',field, end=', ')
+            print("}", end='')
         print("")
 
-        for attr in dir(self):
-            if not callable(getattr(self, attr)) and not attr.startswith("__"):
-                if not isinstance(attr, AST):
-                    param = getattr(self, attr)
-                    if isinstance(param,list):
-                        for item in param:
-                            if isinstance(item,AST):
-                                item.print()
-                else:
-                    attr.print()
+        for field in self._fields:
+            aux = getattr(self, field)
+            if isinstance(aux, list):
+                for item in aux:
+                    if isinstance(item, AST):
+                        item.print(show_values, tabbing + '  ')
+            elif isinstance(aux, AST):
+                aux.print(show_values, tabbing + '  ')
 
     def generate_code(self):
         for field in self._fields:
@@ -963,15 +957,8 @@ class Builtin_Call(AST):
         elif self.builtin_name.name == 'abs':
             for param in self.parameter_list:
                 param.expression.generate_code()
-                AST.code.append(('ldc',0))
-                AST.code.append(('les',))
-                abs_label = AST.label_counter
-                AST.label_counter += 1
-                AST.code.append(('jof',abs_label))
-                param.expression.generate_code()
-                AST.code.append(('ldc',-1))
-                AST.code.append(('mul',))
-                AST.code.append(('lbl',abs_label))
+                AST.code.append(('abs',))
+
             else:
                 print("Invalid abs call on line ", self.lineno)
 
@@ -988,7 +975,44 @@ class Builtin_Call(AST):
             for param in self.parameter_list:
                 if param.expression.raw_type == 'char':
                     AST.code.append(('ldv',param.expression.scope, param.expression.offset))
-                    AST.code.append(('ldc',ord))
+                    AST.code.append(('ldc',ord('0')))
+                    AST.code.append(('sub',))
+                elif param.expression.raw_type == 'string':
+                    AST.code.append(('ldr',param.expression.scope, param.expression.offset))
+                    AST.code.append(('num',))
+
+        elif self.builtin_name.name == 'lower':
+            for param in self.parameter_list:
+                if param.expression.raw_type == 'char' or param.expression.raw_type == 'string':
+                    if param.expression.raw_type == 'char':
+                        AST.code.append(('ldv',param.expression.scope, param.expression.offset))
+                        AST.code.append(('low',))
+                    else:
+                        AST.code.append(('ldr',param.expression.scope, param.expression.offset))
+                        AST.code.append(('ldc',1))
+                        AST.code.append(('add',1))
+                        AST.code.append(('grc',1))
+                        AST.code.append(('low',))
+
+
+
+
+        elif self.builtin_name.name == 'upper':
+            for param in self.parameter_list:
+                if param.expression.raw_type == 'char' or param.expression.raw_type == 'string':
+                    if param.expression.raw_type == 'char':
+                        AST.code.append(('ldv',param.expression.scope, param.expression.offset))
+                    else:
+                        AST.code.append(('ldr',param.expression.scope, param.expression.offset))
+                        AST.code.append(('ldc',1))
+                        AST.code.append(('add',1))
+                        AST.code.append(('grc',1))
+                    AST.code.append(('upp',))
+
+
+
+
+
         else:
             print("Builtin Call {} not implemented".format(self.builtin_name.name))
 

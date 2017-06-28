@@ -1,8 +1,2 @@
 dcl t chars[10] = "teste";
-print(t);
-print(t[4]);
-t[0] = 'b';
-t[4] = 'a';
-print(t);
-read(t[1]);
-print(t);
+print(lower(t), upper(t));

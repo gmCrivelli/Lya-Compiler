@@ -1031,10 +1031,10 @@ def main():
     result = Parser()
     ast = result.parse(s)
 
-    ast.print()
-
     nv = Visitor()
     nv.visit(ast)
+
+    ast.print(False,'')
 
     ast.generate_code()
 
@@ -1044,8 +1044,8 @@ def main():
     print(']')
 
     H = nv.string_literals
-    print("String literals: ", H)
-    VirtualMachine.execute(AST.code, H, True)
+    print("String literals: ", nv.string_literals_ascii)
+    VirtualMachine.execute(AST.code, H, False)
 
 
 
