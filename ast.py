@@ -949,12 +949,15 @@ class Builtin_Call(AST):
                     AST.code.append(('ldr',param.expression.scope, param.expression.offset))
                     AST.code.append(('rds',))
                 else:
+                    read = ('rdv',)
+                    if param.expression.raw_type == 'char':
+                        read = ('rdc',)
                     store = ('stv', param.expression.scope, param.expression.offset)
                     if param.expression.__class__ == Array_Element:
                         param.expression.generate_code()
                         del AST.code[-1]
                         store = ("smv", param.expression.size)
-                    AST.code.append(('rdv',))
+                    AST.code.append(read)
                     AST.code.append(store)
 
         elif self.builtin_name.name == 'abs':

@@ -364,6 +364,17 @@ class VirtualMachine:
                 sp += 1
                 memory[sp] = value
 
+            elif t[0] == 'rdc':
+                value = input()
+                try:
+                    value = ord(value)
+                except ValueError:
+                    print("ValueError: expected a 'char', not found1")
+                    exit(1)
+
+                sp += 1
+                memory[sp] = value
+
             elif t[0] == 'rds':
                 st = input()
                 adr = memory[sp]
@@ -400,7 +411,7 @@ class VirtualMachine:
                 l = memory[adr]
                 for i in range(0,l):
                     adr = adr + 1
-                    print(memory[adr], end = "")
+                    print(chr(memory[adr]), end = "")
                 sp -= 1
 
             elif t[0] == 'stp':
