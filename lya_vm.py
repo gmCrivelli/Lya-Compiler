@@ -126,6 +126,7 @@ class VirtualMachine:
         labels = {}
         memory = []
         display = []
+        buf = []
         sp = 0
         pc = 0
 
@@ -354,7 +355,11 @@ class VirtualMachine:
                 sp -= 1
 
             elif t[0] == 'rdv':
-                value = input()
+                if len(buf) == 0:
+                    buf = input().split()
+                value = int(buf[0])
+                buf = buf[1:]
+
                 try:
                     value = int(value)
                 except ValueError:
@@ -365,18 +370,24 @@ class VirtualMachine:
                 memory[sp] = value
 
             elif t[0] == 'rdc':
-                value = input()
-                try:
-                    value = ord(value)
-                except ValueError:
-                    print("ValueError: expected a 'char', not found1")
-                    exit(1)
+                if len(buf) == 0:
+                    buf = input().split()
+
+                if len(list(buf[0])) > 1:
+                        print("ValueError: expected a 'char', found a 'string'")
+                        exit(1)
+                value = ord(list(buf[0])[0])
+                buf = buf[1:]
 
                 sp += 1
                 memory[sp] = value
 
             elif t[0] == 'rds':
-                st = input()
+                if len(buf) == 0:
+                    buf = input().split()
+                st = buf[0]
+                buf = buf[1:]
+
                 adr = memory[sp]
                 memory[adr] = len(st)
 
