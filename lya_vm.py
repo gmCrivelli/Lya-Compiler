@@ -406,15 +406,15 @@ class VirtualMachine:
                 ischar = t[1]
 
                 if ischar:
-                    print(chr(memory[sp]))
+                    print(chr(memory[sp]),end='')
                 else:
-                    print(memory[sp])
+                    print(memory[sp],end='')
                 sp -= 1
 
             elif t[0] == 'prt':
                 k = t[1]
 
-                print(memory[sp - k + 1 : sp + 1]);
+                print(memory[sp - k + 1 : sp + 1], end='');
                 sp -= (k-1)
 
             elif t[0] == 'prc':

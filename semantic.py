@@ -88,13 +88,11 @@ class Environment(object):
         self.scope_stack.append(self.current_scope)
         self.offset = 0
         self.scope_offset[self.current_scope] = 0
-        self.procedure_has_returns_stack.append(False)
 
     def pop(self):
         #self.printStack()
         self.scope_stack.pop()
         self.stack.pop()
-        self.procedure_has_returns_stack.pop()
 
     def peek(self):
         return self.stack[-1]
@@ -154,6 +152,7 @@ class Visitor(NodeVisitor):
     def executeBinaryOperation(self, a, b, operation, lineno):
         try:
             if operation == '+':
+                print(a+b)
                 return a+b
             elif operation == '-':
                 return a-b
@@ -871,7 +870,10 @@ class Visitor(NodeVisitor):
         #self.visit(node.operator2)
         #print("Binary operator: " + str(node.operator2))
         node.raw_type = self.raw_type_binary(node, node.operator2, node.operand1, node.operand2)
+        print("BINOP", node.operand1.value , node.operand2.value ,self.semantic_error)
         if node.operand1.value != None and node.operand2.value != None and not self.semantic_error:
+            #if node.operand1.raw_type != 'string':
+
             node.value = self.executeBinaryOperation(node.operand1.value, node.operand2.value, node.operator2, node.lineno)
         node.dcl_type = 'binary expression'
         node.ID = None
@@ -1233,6 +1235,7 @@ class Visitor(NodeVisitor):
         self.environment.procedure_scope_stack.append(node.scope)
         self.environment.procedure_offset_stack.append(node.formal_procedure_head.offset)
 
+        self.environment.procedure_has_returns_stack.append(False)
         self.environment.expected_return_stack.append(node.formal_procedure_head.result_spec)
 
         if not node.statement_list is None:
@@ -1240,9 +1243,11 @@ class Visitor(NodeVisitor):
                 self.visit(statement)
 
         if not self.environment.procedure_has_returns_stack[-1] and self.environment.expected_return_stack[-1] is not None:
+            print(self.environment.procedure_has_returns_stack, self.environment.expected_return_stack[-1])
             proc_name = self.environment.peek().return_type().replace("PROCEDURE DECLARATION ", "")
             self.print_error(node.lineno, "Procedure {} has no return".format(proc_name))
 
+        self.environment.procedure_has_returns_stack.pop()
         self.environment.expected_return_stack.pop()
 
     def visit_Formal_Procedure_Head(self, node):

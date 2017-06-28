@@ -1034,7 +1034,7 @@ def main():
     nv = Visitor()
     nv.visit(ast)
 
-    ast.print(False,'')
+    #ast.print(False,'')
 
     ast.generate_code()
 

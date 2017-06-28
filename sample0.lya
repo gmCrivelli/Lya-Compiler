@@ -1,2 +1,2 @@
-dcl t chars[10] = "teste";
-print(lower(t), upper(t));
+dcl t chars[10] = "teste" + " novo";
+print(lower(t), upper(t), "\n");
