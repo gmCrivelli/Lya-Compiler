@@ -1,3 +1,2 @@
-dcl t int = 15;
-dcl x chars[10] = "teste";
-print(x);
+dcl t char = 'n';
+print(t);

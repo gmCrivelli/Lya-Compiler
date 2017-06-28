@@ -131,7 +131,7 @@ class Lexer:
 
     def t_CCONST(self, t):
         r'\'(\\\"|\\\'|[^\'\"])\''
-        t.value = chr(t.value)
+        t.value = ord(t.value[1:-1])
         return t
 
 

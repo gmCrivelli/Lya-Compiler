@@ -417,6 +417,7 @@ class Parser:
         '''expression : operand0
                       | conditional_expression'''
         # p[0] = ('expression', p[1], p.lineno(1))
+
         p[0] = p[1]
 
     def p_conditional_expression(self, p):

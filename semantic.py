@@ -1197,6 +1197,8 @@ class Visitor(NodeVisitor):
             node.raw_type = 'char'
         if node.ID == 'num':
             node.raw_type = 'int'
+        if node.ID == 'abs':
+            node.raw_type = 'int'
 
     # TODO: LIST OF PARAMETERS FOR BUILTIN NAMES
     def visit_Builtin_Name(self, node):
