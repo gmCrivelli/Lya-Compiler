@@ -981,11 +981,43 @@ class Builtin_Call(AST):
             for param in self.parameter_list:
                 if param.expression.raw_type == 'char':
                     AST.code.append(('ldv',param.expression.scope, param.expression.offset))
-                    AST.code.append(('ldc',ord(0)))
+                    AST.code.append(('ldc',ord('0')))
                     AST.code.append(('sub',))
                 elif param.expression.raw_type == 'string':
                     AST.code.append(('ldr',param.expression.scope, param.expression.offset))
                     AST.code.append(('num',))
+
+        elif self.builtin_name.name == 'lower':
+            for param in self.parameter_list:
+                if param.expression.raw_type == 'char' or param.expression.raw_type == 'string':
+                    if param.expression.raw_type == 'char':
+                        AST.code.append(('ldv',param.expression.scope, param.expression.offset))
+                        AST.code.append(('low',))
+                    else:
+                        AST.code.append(('ldr',param.expression.scope, param.expression.offset))
+                        AST.code.append(('ldc',1))
+                        AST.code.append(('add',1))
+                        AST.code.append(('grc',1))
+                        AST.code.append(('low',))
+
+
+
+
+        elif self.builtin_name.name == 'upper':
+            for param in self.parameter_list:
+                if param.expression.raw_type == 'char' or param.expression.raw_type == 'string':
+                    if param.expression.raw_type == 'char':
+                        AST.code.append(('ldv',param.expression.scope, param.expression.offset))
+                    else:
+                        AST.code.append(('ldr',param.expression.scope, param.expression.offset))
+                        AST.code.append(('ldc',1))
+                        AST.code.append(('add',1))
+                        AST.code.append(('grc',1))
+                    AST.code.append(('upp',))
+
+
+
+
 
         else:
             print("Builtin Call {} not implemented".format(self.builtin_name.name))

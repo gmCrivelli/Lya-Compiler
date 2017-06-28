@@ -1193,11 +1193,9 @@ class Visitor(NodeVisitor):
         node.ID = node.builtin_name.name
         node.loc = False
 
-        if node.ID == 'asc':
+        if node.ID in ['asc','lower','upper']:
             node.raw_type = 'char'
-        if node.ID == 'num':
-            node.raw_type = 'int'
-        if node.ID == 'abs':
+        elif node.ID in ['num', 'abs','length']:
             node.raw_type = 'int'
 
     # TODO: LIST OF PARAMETERS FOR BUILTIN NAMES

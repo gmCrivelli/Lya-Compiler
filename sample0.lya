@@ -1,3 +1,2 @@
-dcl t chars[10] = "123";
-read(t);
-print(5 + num(t));
+dcl t chars[10] = "teste";
+print(lower(t), upper(t));
